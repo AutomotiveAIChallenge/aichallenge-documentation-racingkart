@@ -12,7 +12,7 @@ sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt update
 
 # Install drivers
-sudo ubuntu-drivers autoinstall
+sudo ubuntu-drivers install
 
 # Reboot
 reboot
