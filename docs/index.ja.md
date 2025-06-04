@@ -14,17 +14,17 @@
 
 ### 技術的な観点からの大会の役割
 
-- ハードウェアを理解しながらのソフトウェアのインテグレーションを通してSDV開発を学ぶ
-- 継続的インテグレーション / 継続的デプロイメント（CI/CD）を学ぶ
-- 開発をOpen Source Software（OSS）で行い社会実装に向けたイノベーションの場とする
+- 💻ハードウェアを理解しながらのソフトウェアのインテグレーションを通してSDV開発を学ぶ
+- 🔄継続的インテグレーション / 継続的デプロイメント（CI/CD）を学ぶ
+- 🌐開発をOpen Source Software（OSS）で行い社会実装に向けたイノベーションの場とする
 
 ### 人材育成としての大会の役割
 
-- 幅広い分野のエンジニア参加の促進
-- 教育コンテンツの提供によるスキル開発の加速
-- 実機とシミュレータのすり合わせを行いながらSDVの開発の仕方を学ぶ
-- デジタルツインシミュレーションを通じた技術革新
-- 技術コンペ×エンタメ=モータースポーツを題材とした「憧れ」や「情熱・興奮」の創出
+- 👩‍💻幅広い分野のエンジニア参加の促進
+- 📈教育コンテンツの提供によるスキル開発の加速
+- 🏎️実機とシミュレータのすり合わせを行いながらSDVの開発の仕方を学ぶ
+- ⚡デジタルツインシミュレーションを通じた技術革新
+- 🏁技術コンペ×エンタメ=モータースポーツを題材とした「憧れ」や「情熱・興奮」の創出
 
 ## 挑戦課題
 
@@ -32,7 +32,7 @@
 
 オンラインのシミュレーションで実施します。予選の競技はデジタルツイン指向のAWSIMを用いてコースをより速く走行することを目指します。参加者は、Autoware※の構造を学ぶだけでなく、実際に行動、判断の部分についてパラメータ調整を行い、また必要に応じて新しいアルゴリズムの開発も行います。
 
-<iframe width="960" height="540" src="https://www.youtube.com/embed/cM3Up6fgpWI?si=S6N3wzBEgXVpl54x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="960" height="540" src="https://www.youtube.com/embed/Mynxk4GBAzA?si=V-JH6oRW7t-Y9bcX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### 決勝
 
@@ -40,12 +40,8 @@
 
 例えば参加者には実車両に適用するため、パラメータ調整にも挑戦してもらいます。また、シミュレーションでは再現できないノイズ処理、遅延対策のアルゴリズム開発も行います。
 
-<iframe width="960" height="540" src="https://www.youtube.com/embed/GsuCUoNrMDM?si=zoh1mL_U0yRnB2fj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="960" height="540"src="https://www.youtube.com/embed/COZDHMm4E_8?si=HP99OsIzndmwDEvF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## 走行コース
 
 <iframe width="960" height="540" src="https://www.youtube.com/embed/K-N-2nLXXF8?si=pZ2NovtO_IGwsa_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-## 使用車両
-
-![TOM'S Racing Kart](./assets/racing-kart.jpeg)
