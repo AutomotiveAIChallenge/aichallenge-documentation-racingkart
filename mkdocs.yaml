@@ -77,7 +77,7 @@ plugins:
             development: 開発
             specifications: 仕様
             course: 入門講座
-            Community: 仲間達
+            Community: コミュニティ
         - locale: en
           name: English
           build: true
