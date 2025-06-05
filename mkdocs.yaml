@@ -15,7 +15,7 @@ theme:
   palette:
     scheme: slate
     primary: custom
-    accent: purple
+    accent: green
     # logo:
     # favicon:
 
@@ -37,10 +37,10 @@ nav:
       - setup/headless-simulation.md
       - setup/visible-simulation.md
       - setup/build-docker.md
+      - setup/reference.md
   - development:
       - development/workspace-usage.md
       - development/main-module.md
-      - development/reference.md
   - specifications:
       - specifications/interface.md
       - specifications/hardware.md
@@ -59,6 +59,11 @@ extra_css:
 markdown_extensions:
   - admonition
   - attr_list
+  # yamllint disable: quoted-strings
+  - pymdownx.emoji:
+      emoji_index: materialx.emoji.twemoji
+      emoji_generator: materialx.emoji.to_svg
+  # yamllint enable: quoted-strings
 
 plugins:
   - search:
