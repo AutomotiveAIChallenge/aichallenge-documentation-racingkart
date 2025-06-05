@@ -15,7 +15,7 @@ theme:
   palette:
     scheme: slate
     primary: custom
-    accent: red
+    accent: purple
     # logo:
     # favicon:
 
@@ -29,6 +29,7 @@ nav:
   - finals:
       - finals/index.md
       - finals/operation.md
+      - finals/agreement.md
   - setup:
       - setup/requirements.md
       - setup/workspace-setup.md
@@ -69,13 +70,14 @@ plugins:
           name: 日本語
           build: true
           nav_translations:
-            index: トップページ
+            index: 大会概要
             preliminaries: 予選
             finals: 決勝
             setup: 環境構築
             development: 開発
             specifications: 仕様
             course: 入門講座
+            Community: 仲間達
         - locale: en
           name: English
           build: true
