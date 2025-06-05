@@ -1,17 +1,17 @@
 :root > * {
   --md-primary-fg-color: #15151e;
   --md-primary-fg-color--light: #ecb7b7;
-  --md-primary-fg-color--dark: #b70000;
-  --md-typeset-a-color: #b70000;
+  --md-primary-fg-color--dark: #3ACD7E;
+  --md-typeset-a-color: #3ACD7E;
 }
 
 .md-header {
-  border-bottom: 2px solid #b70000;
+  border-bottom: 2px solid #3ACD7E;
 }
 
 h1 {
   padding: 10px 0 10px 20px;
-  border-bottom: 2px solid #b70000;
+  border-bottom: 2px solid #3ACD7E;
   background-color: #15151e;
 }
 
@@ -21,10 +21,10 @@ h1 {
 }
 
 .banner-button {
-  background-color: #b70000 !important;
+  background-color: #3ACD7E !important;
 }
 
 .banner-button:hover {
   background-color: #15151e !important;
-  border: 2px solid #b70000 !important;
+  border: 2px solid #3ACD7E !important;
 }
