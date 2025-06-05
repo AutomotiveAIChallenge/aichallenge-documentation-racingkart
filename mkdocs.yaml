@@ -59,11 +59,9 @@ extra_css:
 markdown_extensions:
   - admonition
   - attr_list
-  # yamllint disable: quoted-strings
   - pymdownx.emoji:
-      emoji_index: materialx.emoji.twemoji
-      emoji_generator: materialx.emoji.to_svg
-  # yamllint enable: quoted-strings
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 plugins:
   - search:

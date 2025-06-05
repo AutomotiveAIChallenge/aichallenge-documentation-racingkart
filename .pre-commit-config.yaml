@@ -4,6 +4,7 @@ repos:
     hooks:
       - id: check-merge-conflict
       - id: check-yaml
+        exclude: ^mkdocs\.yaml$
       - id: detect-private-key
       - id: end-of-file-fixer
       - id: mixed-line-ending
