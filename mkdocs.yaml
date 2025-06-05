@@ -7,9 +7,11 @@ use_directory_urls: false
 
 theme:
   name: material
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+    - announce.dismiss
   palette:
     scheme: slate
     primary: custom

@@ -14,3 +14,16 @@ h1 {
   border-bottom: 2px solid #7900dc;
   background-color: #15151e;
 }
+
+.md-banner {
+  background-color: #15151e;
+}
+
+.banner-button {
+  background-color: #b70000 !important;
+}
+
+.banner-button:hover {
+  background-color: #15151e !important;
+  border: 2px solid #b70000 !important;
+}
