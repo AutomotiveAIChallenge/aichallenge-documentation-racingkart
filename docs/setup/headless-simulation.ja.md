@@ -1,6 +1,9 @@
 # 描画なしAWSIMのダウンロード
 
-## AWSIMのダウンロード（シミュレータの配布は大会開始時になります）
+## AWSIMのダウンロード
+
+!!! warning "🚧 準備中 / Under Construction"
+    シミュレータは大会開始と同時に公開されます。
 
 1. Google Driveから最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
 
