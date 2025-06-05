@@ -41,7 +41,7 @@
 
 サンプルコードが提出できたら、次は開発環境の構築を行いましょう。
 
-[:material-arrow-right-circle: AIチャレンジの環境構築](./setup/requirements.ja.md){ .md-button .md-button--primary target="_blank" }
+[:material-arrow-right-circle: AIチャレンジの環境構築](./setup/requirements.ja.md){ .md-button .md-button--primary}
 !!! info
 
     本大会ではUbuntu 22.04を搭載したPC一台のみで参加ができます。
@@ -50,11 +50,11 @@
 
 環境構築が完了したら、実際に自動運転ソフトウェアを改良してみましょう。
 
-[:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/workspace-usage.ja.md){ .md-button .md-button--primary target="_blank" }
+[:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/workspace-usage.ja.md){ .md-button .md-button--primary }
 
 ## 6.開発したコードを提出
 
 完成したコードの提出は[オンライン採点環境](https://aichallenge-board.jsae.or.jp/live)から行います。
 下記リンクより再度提出してみましょう。
 
-[:material-launch: ソースコードの提出](./preliminaries/submission.ja.md){ .md-button .md-button--primary target="_blank" }
+[:material-launch: ソースコードの提出](./preliminaries/submission.ja.md){ .md-button .md-button--primary}
