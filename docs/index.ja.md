@@ -43,8 +43,9 @@
 <iframe width="960" height="540"src="https://www.youtube.com/embed/COZDHMm4E_8?si=HP99OsIzndmwDEvF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## 大会概要
+
 !!! info
 
     大会の日程などの詳細情報は公式サイトでご確認ください。
-    
-    [🔗 大会公式サイトを見る ](https://www.jsae.or.jp/jaaic2025/){ .md-button .md-button--primary target="_blank" }
+
+    [:material-launch: 大会公式サイトを見る ](https://www.jsae.or.jp/jaaic2025/){ .md-button .md-button--primary target="_blank" }
