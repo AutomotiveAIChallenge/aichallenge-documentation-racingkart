@@ -77,5 +77,3 @@ docker-dev
 docker-eval
 
 ![eval](./images/docker/eval.drawio.svg)
-
-## [NextStep: Reference](./reference.en.md)

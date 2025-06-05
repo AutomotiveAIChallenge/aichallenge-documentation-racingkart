@@ -80,5 +80,3 @@ docker-dev
 docker-eval
 
 ![eval](./images/docker/eval.drawio.svg)
-
-## [NextStep:参考](./reference.ja.md)
