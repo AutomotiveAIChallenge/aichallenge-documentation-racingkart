@@ -1,16 +1,29 @@
 :root > * {
   --md-primary-fg-color: #15151e;
   --md-primary-fg-color--light: #ecb7b7;
-  --md-primary-fg-color--dark: #b70000;
-  --md-typeset-a-color: #b70000;
+  --md-primary-fg-color--dark: #3acd7e;
+  --md-typeset-a-color: #3acd7e;
 }
 
 .md-header {
-  border-bottom: 2px solid #b70000;
+  border-bottom: 2px solid #3acd7e;
 }
 
 h1 {
   padding: 10px 0 10px 20px;
-  border-bottom: 2px solid #b70000;
+  border-bottom: 2px solid #3acd7e;
   background-color: #15151e;
+}
+
+.md-banner {
+  background-color: #15151e;
+}
+
+.banner-button {
+  background-color: #3acd7e !important;
+}
+
+.banner-button:hover {
+  background-color: #15151e !important;
+  border: 2px solid #3acd7e !important;
 }
