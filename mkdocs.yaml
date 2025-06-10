@@ -50,6 +50,7 @@ nav:
       - course/vehicle.md
       - course/velocity_planning.md
       - course/avoidance.md
+      - course/localization.md
   - FAQ: faq.md
   - Community: community.md
 
