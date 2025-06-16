@@ -6,7 +6,7 @@
 
 ## Articles on Autonomous Driving AI Challenge Efforts
 
-<https://automotive.panasonic.com/feature/jaaic>
+<https://automotive.panasonic.com/en/newsroom/jaaic>
 
 <https://www.ritsumei.ac.jp/ise/suki_ict/story01.html/>
 
