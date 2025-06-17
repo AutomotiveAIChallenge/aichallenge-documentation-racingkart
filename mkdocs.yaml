@@ -74,7 +74,7 @@ plugins:
           name: 日本語
           build: true
           nav_translations:
-            index: 大会概要
+            index: 競技概要
             preliminaries: 予選
             finals: 決勝
             setup: 環境構築
