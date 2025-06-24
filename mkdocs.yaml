@@ -53,6 +53,7 @@ nav:
       - course/localization.md
   - FAQ: faq.md
   - Community: community.md
+  - AI: ai.md
 
 extra_css:
   - stylesheets/custom.css
@@ -82,6 +83,7 @@ plugins:
             specifications: 仕様
             course: 入門講座
             Community: コミュニティ
+            AI: AI
         - locale: en
           name: English
           build: true
