@@ -53,12 +53,15 @@ nav:
       - course/localization.md
   - FAQ: faq.md
   - Community: community.md
-  - AI: ai.md
+  - AI教材: ai.md
 
 extra_css:
   - stylesheets/custom.css
 
 markdown_extensions:
+  - pymdownx.details
+  - pymdownx.superfences
+  - admonition
   - admonition
   - attr_list
   - pymdownx.emoji:

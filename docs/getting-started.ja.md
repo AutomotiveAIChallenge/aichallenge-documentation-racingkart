@@ -58,3 +58,20 @@
 下記リンクより再度提出してみましょう。
 
 [:material-launch: ソースコードの提出](./preliminaries/submission.ja.md){ .md-button .md-button--primary}
+
+## 7.AIを活用した練習教材を試してみる（任意）
+
+Autowareの基本を習得した後、さらに技術の幅を広げたい方向けに、機械学習を活用した練習教材をご用意しています。
+
+**こんな方におすすめ：**
+
+- 従来手法だけでなく、最新のAI技術にも触れてみたい
+
+- 時間に余裕があり、追加の学習にチャレンジしたい
+
+- 自動運転×AIの分野に興味がある
+
+!!! warning "完全に任意の教材です"
+    この教材は競技の採点には一切影響しません。純粋に技術的な興味から取り組んでいただく内容です。
+
+[:material-arrow-right-circle: AIを活用した練習教材](./ai.ja.md){ .md-button .md-button--primary }
