@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1481,6 +1500,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1587,66 +1628,66 @@
 </div>
 <p>デフォルトで描画なしのAWSIMを配布しておりますが、描画ありを希望される方の環境構築方法も記載しております。GPUを使用する環境構築では詰まって進まなくなる事例が多々ありましたので、<a href="requirements.html">推奨環境</a>を満たすのスペックのPCが用意できない方や初めてのご参加の方はあくまでも参考程度としてください。</p>
 <h2 id="nvidia">NVIDIAドライバのインストール</h2>
-<pre><code class="language-bash"># リポジトリの追加
-sudo add-apt-repository ppa:graphics-drivers/ppa
+<div class="highlight"><pre><span></span><code><span class="c1"># リポジトリの追加</span>
+sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:graphics-drivers/ppa
 
-# パッケージリストの更新
-sudo apt update
+<span class="c1"># パッケージリストの更新</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
 
-# インストール
-sudo ubuntu-drivers install
+<span class="c1"># インストール</span>
+sudo<span class="w"> </span>ubuntu-drivers<span class="w"> </span>install
 
-# 再起動
+<span class="c1"># 再起動</span>
 reboot
 
-# 再起動の後、インストールできていることを確認
+<span class="c1"># 再起動の後、インストールできていることを確認</span>
 nvidia-smi
-</code></pre>
+</code></pre></div>
 <p><img alt="nvidia-smi" src="images/nvidia-smi.png" /></p>
 <h2 id="nvidia-container-toolkit">NVIDIA Container Toolkit</h2>
 <p><a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html">NVIDIA Container Toolkit</a>を参考にインストールを行います。</p>
-<pre><code class="language-bash"># インストールの下準備
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
-      &amp;&amp; curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
-      &amp;&amp; curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
-            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
-            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+<div class="highlight"><pre><span></span><code><span class="c1"># インストールの下準備</span>
+<span class="nv">distribution</span><span class="o">=</span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="p">;</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ID$VERSION_ID</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://nvidia.github.io/libnvidia-container/gpgkey<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-L<span class="w"> </span>https://nvidia.github.io/libnvidia-container/<span class="nv">$distribution</span>/libnvidia-container.list<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>sed<span class="w"> </span><span class="s1">&#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/nvidia-container-toolkit.list
 
-# インストール
-sudo apt-get update
-sudo apt-get install -y nvidia-container-toolkit
-sudo nvidia-ctk runtime configure --runtime=docker
-sudo systemctl restart docker
+<span class="c1"># インストール</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nvidia-container-toolkit
+sudo<span class="w"> </span>nvidia-ctk<span class="w"> </span>runtime<span class="w"> </span>configure<span class="w"> </span>--runtime<span class="o">=</span>docker
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
 
-#インストールできているかをテスト
-sudo docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi
+<span class="c1">#インストールできているかをテスト</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="o">=</span>nvidia<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>nvidia/cuda:11.6.2-base-ubuntu20.04<span class="w"> </span>nvidia-smi
 
-#最後のコマンドで以下のように出力されれば成功です。
-#（下記はNVIDIAウェブサイトからの引用です）
-#
-# +-----------------------------------------------------------------------------+
-# | NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.0     |
-# |-------------------------------+----------------------+----------------------+
-# | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-# | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-# |                               |                      |               MIG M. |
-# |===============================+======================+======================|
-# |   0  Tesla T4            On   | 00000000:00:1E.0 Off |                    0 |
-# | N/A   34C    P8     9W /  70W |      0MiB / 15109MiB |      0%      Default |
-# |                               |                      |                  N/A |
-# +-------------------------------+----------------------+----------------------+
-# +-----------------------------------------------------------------------------+
-# | Processes:                                                                  |
-# |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-# |        ID   ID                                                   Usage      |
-# |=============================================================================|
-# |  No running processes found                                                 |
-# +-----------------------------------------------------------------------------+
-</code></pre>
+<span class="c1">#最後のコマンドで以下のように出力されれば成功です。</span>
+<span class="c1">#（下記はNVIDIAウェブサイトからの引用です）</span>
+<span class="c1">#</span>
+<span class="c1"># +-----------------------------------------------------------------------------+</span>
+<span class="c1"># | NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.0     |</span>
+<span class="c1"># |-------------------------------+----------------------+----------------------+</span>
+<span class="c1"># | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span>
+<span class="c1"># | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span>
+<span class="c1"># |                               |                      |               MIG M. |</span>
+<span class="c1"># |===============================+======================+======================|</span>
+<span class="c1"># |   0  Tesla T4            On   | 00000000:00:1E.0 Off |                    0 |</span>
+<span class="c1"># | N/A   34C    P8     9W /  70W |      0MiB / 15109MiB |      0%      Default |</span>
+<span class="c1"># |                               |                      |                  N/A |</span>
+<span class="c1"># +-------------------------------+----------------------+----------------------+</span>
+<span class="c1"># +-----------------------------------------------------------------------------+</span>
+<span class="c1"># | Processes:                                                                  |</span>
+<span class="c1"># |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |</span>
+<span class="c1"># |        ID   ID                                                   Usage      |</span>
+<span class="c1"># |=============================================================================|</span>
+<span class="c1"># |  No running processes found                                                 |</span>
+<span class="c1"># +-----------------------------------------------------------------------------+</span>
+</code></pre></div>
 <h2 id="vulkun">Vulkunのインストール</h2>
-<pre><code class="language-bash">sudo apt update
-sudo apt install -y libvulkan1
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvulkan1
+</code></pre></div>
 <h2 id="awsim_1">AWSIMのダウンロード（シミュレータの配布は大会開始時になります）</h2>
 <ol>
 <li>
@@ -1662,29 +1703,29 @@ sudo apt install -y libvulkan1
 <p><img alt="パーミッション変更の様子" src="images/awsim-permmision.png" /></p>
 <h2 id="awsim_2">AWSIMの起動確認</h2>
 <p>描画ありのAWSIMを使用する場合は、以下のコマンドでコンテナを起動してください。</p>
-<pre><code class="language-bash">cd aichallenge-2025
-./docker_build.sh dev
-./docker_run.sh dev gpu
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-2025
+./docker_build.sh<span class="w"> </span>dev
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>gpu
+</code></pre></div>
 <p>コンテナを起動したターミナル(コンテナ内)で以下を実行します。</p>
-<pre><code class="language-bash">cd /aichallenge
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./build_autoware.bash
-</code></pre>
+</code></pre></div>
 <p>Autowareのビルド後、run_simulator.bashを変更します。<code>AISIM_GPU_**</code>には先程展開したディレクトリを指定してください。</p>
-<pre><code class="language-bash">#!/bin/bash
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-# shellcheck disable=SC1091
-source /aichallenge/workspace/install/setup.bash
-sudo ip link set multicast on lo
+<span class="c1"># shellcheck disable=SC1091</span>
+<span class="nb">source</span><span class="w"> </span>/aichallenge/workspace/install/setup.bash
+sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>multicast<span class="w"> </span>on<span class="w"> </span>lo
 /aichallenge/simulator/AWSIM_GPU_**/AWSIM.x86_64
-</code></pre>
+</code></pre></div>
 <p>run_evaluetion.bashに対しても同様に次の変更を加えます。</p>
-<pre><code class="language-bash"># AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM
-AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM_GPU_**
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM</span>
+<span class="nv">AWSIM_DIRECTORY</span><span class="o">=</span>/aichallenge/simulator/AWSIM_GPU_**
+</code></pre></div>
 <p>以下のコマンドを実行します。</p>
-<pre><code class="language-bash">./run_evaluation.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>./run_evaluation.bash
+</code></pre></div>
 <p>以下のような画面が現れたら成功です。</p>
 <p><img alt="AWSIM-Autoware" src="images/awsim-and-autoware.png" /></p>
 <p>以上で環境構築は終了となります！</p>

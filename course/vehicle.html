@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1454,6 +1473,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1530,8 +1571,8 @@
 <h2 id="01-01">01-01. 車両の直進</h2>
 <p>下記のコマンドを実行し、シミュレーターを起動してください。起動が完了すると、図のように Rviz に車両と緑色のエリアが表示されます。
 この緑色のエリアに車両が入れば課題達成となるため、まずは車両を直進させるノードを作成していきます。</p>
-<pre><code class="language-bash">ros2 launch autoware_practice_launch practice.launch.xml problem:=vehicle_forward
-</code></pre>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>autoware_practice_launch<span class="w"> </span>practice.launch.xml<span class="w"> </span>problem:<span class="o">=</span>vehicle_forward
+</code></pre></div>
 <p><img alt="vehicle-forward-judging" src="images/vehicle-forward-judging.png" /></p>
 <p>車両を動かすためのインターフェースとして <code>/control/command/control_cmd</code> が定義されています。
 これは AckermannControlCommand というメッセージで、各フィールドは以下のような意味を持っています。</p>
@@ -1581,39 +1622,39 @@
 <li><a href="https://github.com/AutomotiveAIChallenge/autoware-practice/blob/main/src/autoware_practice_course/src/vehicle/forward.hpp">vehicle/forward.hpp</a></li>
 <li><a href="https://github.com/AutomotiveAIChallenge/autoware-practice/blob/main/src/autoware_practice_course/src/vehicle/forward.cpp">vehicle/forward.cpp</a></li>
 </ul>
-<pre><code class="language-diff">-  command.longitudinal.speed = 0.0;
--  command.longitudinal.acceleration = -2.5;
-+  command.longitudinal.speed = 3.0;
-+  command.longitudinal.acceleration = 1.0;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gd">-  command.longitudinal.speed = 0.0;</span>
+<span class="gd">-  command.longitudinal.acceleration = -2.5;</span>
+<span class="gi">+  command.longitudinal.speed = 3.0;</span>
+<span class="gi">+  command.longitudinal.acceleration = 1.0;</span>
+</code></pre></div>
 <p>コードを書き換えたらビルドして実行します。新しい端末を起動して以下のコマンドを実行してください。
 上手く出来ていればシミュレーターの車両が動き、条件を満たして結果が SUCCESS になります。</p>
-<pre><code class="language-bash">colcon build --symlink-install --packages-select autoware_practice_course
-ros2 run autoware_practice_course vehicle_forward
-</code></pre>
+<div class="highlight"><pre><span></span><code>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--packages-select<span class="w"> </span>autoware_practice_course
+ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>vehicle_forward
+</code></pre></div>
 <p><img alt="vehicle-forward-success" src="images/vehicle-forward-success.png" /></p>
 <h2 id="01-02">01-02. 車両の旋回</h2>
 <p>先程と同様に下記のコマンドを実行し、シミュレーターを起動してください。緑色のエリアに車両が入れば課題達成となるため、車両を旋回させるノードを作成していきます。</p>
-<pre><code class="language-bash">ros2 launch autoware_practice_launch practice.launch.xml problem:=vehicle_turning
-</code></pre>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>autoware_practice_launch<span class="w"> </span>practice.launch.xml<span class="w"> </span>problem:<span class="o">=</span>vehicle_turning
+</code></pre></div>
 <p><img alt="vehicle-turning-judging" src="images/vehicle-turning-judging.png" /></p>
 <p>先程利用したサンプルのデータを変更して、車両が旋回するようにします。</p>
 <ul>
 <li><a href="https://github.com/AutomotiveAIChallenge/autoware-practice/blob/main/src/autoware_practice_course/src/vehicle/forward.hpp">vehicle/forward.hpp</a></li>
 <li><a href="https://github.com/AutomotiveAIChallenge/autoware-practice/blob/main/src/autoware_practice_course/src/vehicle/forward.cpp">vehicle/forward.cpp</a></li>
 </ul>
-<pre><code class="language-diff">-  command.lateral.steering_tire_angle = 0.0;
-+  command.lateral.steering_tire_angle = 2.0;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gd">-  command.lateral.steering_tire_angle = 0.0;</span>
+<span class="gi">+  command.lateral.steering_tire_angle = 2.0;</span>
+</code></pre></div>
 <p>コードを書き換えたらビルドして実行します。新しい端末を起動して以下のコマンドを実行してください。 上手く出来ていればシミュレーターの車両が動き、条件を満たして結果が SUCCESS になります。</p>
-<pre><code class="language-bash">colcon build --symlink-install --packages-select autoware_practice_course
-ros2 run autoware_practice_course vehicle_forward
-</code></pre>
+<div class="highlight"><pre><span></span><code>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--packages-select<span class="w"> </span>autoware_practice_course
+ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>vehicle_forward
+</code></pre></div>
 <p><img alt="vehicle-turning-success" src="images/vehicle-turning-success.png" /></p>
 <h2 id="01-03">01-03. 車両の後退</h2>
 <p>下記のコマンドを実行し、シミュレーターを起動してください。この緑色のエリアに車両が入れば課題達成となるため、まずは車両を後退させるノードを作成していきます。</p>
-<pre><code class="language-bash">ros2 launch autoware_practice_launch practice.launch.xml problem:=vehicle_backward
-</code></pre>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>autoware_practice_launch<span class="w"> </span>practice.launch.xml<span class="w"> </span>problem:<span class="o">=</span>vehicle_backward
+</code></pre></div>
 <p><img alt="vehicle-backward-judging" src="images/vehicle-backward-judging.png" /></p>
 <p>以下に後退するためのコマンドを送信するノードのサンプルを用意しました。直進するためのコードと異なり、ギアを制御するコードが含まれています。サンプルでは停止保持するコマンドを送信し続けるようになっているので、データを変更して車両が後退するようにします。
 ギアがREVERSEのときは、目標加速度を正、目標速度を負にします。</p>
@@ -1621,15 +1662,15 @@ ros2 run autoware_practice_course vehicle_forward
 <li><a href="https://github.com/AutomotiveAIChallenge/autoware-practice/blob/main/src/autoware_practice_course/src/vehicle/backward.hpp">vehicle/backward.hpp</a></li>
 <li><a href="https://github.com/AutomotiveAIChallenge/autoware-practice/blob/main/src/autoware_practice_course/src/vehicle/backward.cpp">vehicle/backward.cpp</a></li>
 </ul>
-<pre><code class="language-diff">-  command.longitudinal.speed = 0.0;
--  command.longitudinal.acceleration = -2.5;
-+  command.longitudinal.speed = -3.0;
-+  command.longitudinal.acceleration = 1.0;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gd">-  command.longitudinal.speed = 0.0;</span>
+<span class="gd">-  command.longitudinal.acceleration = -2.5;</span>
+<span class="gi">+  command.longitudinal.speed = -3.0;</span>
+<span class="gi">+  command.longitudinal.acceleration = 1.0;</span>
+</code></pre></div>
 <p>コードを書き換えたらビルドして実行します。新しい端末を起動して以下のコマンドを実行してください。 上手く出来ていればシミュレーターの車両が動き、条件を満たして結果が SUCCESS になります。</p>
-<pre><code class="language-bash">colcon build --symlink-install --packages-select autoware_practice_course
-ros2 run autoware_practice_course vehicle_backward
-</code></pre>
+<div class="highlight"><pre><span></span><code>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install<span class="w"> </span>--packages-select<span class="w"> </span>autoware_practice_course
+ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>vehicle_backward
+</code></pre></div>
 <p><img alt="vehicle-backward-success" src="images/vehicle-backward-success.png" /></p>
 
 

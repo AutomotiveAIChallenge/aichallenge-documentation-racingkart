@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1481,6 +1500,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1598,13 +1639,13 @@
 <p>環境構築後何をして良いのかわからない方向けに、まずパラメータを調整してみましょう。
 今回は制御モジュールのsimple_pure_pursuitのパラメータを変更してみることにします。</p>
 <p><code>$HOME/aichallenge-2025/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml</code>内の以下の<code>value</code>値を調整してみましょう。</p>
-<pre><code class="language-xml">&lt;node pkg=&quot;simple_pure_pursuit&quot; exec=&quot;simple_pure_pursuit&quot; name=&quot;simple_pure_pursuit_node&quot; output=&quot;screen&quot;&gt;
-    &lt;param name=&quot;use_external_target_vel&quot; value=&quot;true&quot;/&gt;
-    &lt;param name=&quot;external_target_vel&quot; value=&quot;8.0&quot;/&gt;
-    &lt;param name=&quot;lookahead_gain&quot; value=&quot;0.4&quot;/&gt;
-    &lt;param name=&quot;lookahead_min_distance&quot; value=&quot;5.0&quot;/&gt;
-    &lt;param name=&quot;speed_proportional_gain&quot; value=&quot;1.0&quot;/&gt;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;node</span><span class="w"> </span><span class="na">pkg=</span><span class="s">&quot;simple_pure_pursuit&quot;</span><span class="w"> </span><span class="na">exec=</span><span class="s">&quot;simple_pure_pursuit&quot;</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;simple_pure_pursuit_node&quot;</span><span class="w"> </span><span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;use_external_target_vel&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;external_target_vel&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;8.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lookahead_gain&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;0.4&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;lookahead_min_distance&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;5.0&quot;</span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;speed_proportional_gain&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
 <p>調整が終わったら再び<a href="../setup/build-docker.html">ビルド・実行</a>してみましょう。挙動が変わったことが確認できたかと思います。</p>
 <h2 id="_3">新規パッケージを作成してみる</h2>
 <p>新たに自作パッケージを作成してみましょう。まずはオープンソースのパッケージや<a href="https://github.com/AutomotiveAIChallenge/autoware-practice">autoware practice</a>をコピーしてみましょう。

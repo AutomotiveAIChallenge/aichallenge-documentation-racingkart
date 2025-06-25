@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1598,6 +1617,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1883,10 +1924,10 @@
 </ul>
 <h2 id="ecu_1">車両ECU接続後の操作</h2>
 <h3 id="1-docker">1. 各種ドライバやDockerコンテナの起動</h3>
-<pre><code class="language-bash">cd aichallenge-2025
-./docker_build.sh dev (最初に1回実行すればOKです)
-bash run_vehicle_tmux.sh
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-2025
+./docker_build.sh<span class="w"> </span>dev<span class="w"> </span><span class="o">(</span>最初に1回実行すればOKです<span class="o">)</span>
+bash<span class="w"> </span>run_vehicle_tmux.sh
+</code></pre></div>
 <p>以下のように端末が分割されコマンドが実行されます．</p>
 <p><img alt="tmux-image" src="images/tmux.png" /></p>
 <ul>
@@ -1899,47 +1940,47 @@ bash run_vehicle_tmux.sh
 <p>右側③の車両ドライバ・右側④のZenohブリッジは自動で起動します。</p>
 <h3 id="2-autoware">2. Autowareの起動</h3>
 <p>Dockerコンテナ内で行います．デフォルトでは左側①か右側②のコンテナの端末です．</p>
-<pre><code class="language-bash">cd /aichallenge
-./build_autoware.bash (最初に1回実行後は、ビルドが必要な変更を行った際に実行してください)
-./run_autoware.bash vehicle (autowareが起動し準備完了)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+./build_autoware.bash<span class="w"> </span><span class="o">(</span>最初に1回実行後は、ビルドが必要な変更を行った際に実行してください<span class="o">)</span>
+./run_autoware.bash<span class="w"> </span>vehicle<span class="w"> </span><span class="o">(</span>autowareが起動し準備完了<span class="o">)</span>
+</code></pre></div>
 <h3 id="3-rosbag">3. ROSBAGの記録</h3>
 <p>Dockerコンテナ内で行います．デフォルトでは左側①か右側②のコンテナの端末です．</p>
-<pre><code class="language-bash">cd /aichallenge
-source workspace/install/setup.bash
-ros2 bag record -a
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+<span class="nb">source</span><span class="w"> </span>workspace/install/setup.bash
+ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-a
 
-# 動作上問題はありませんが、警告が出るのが嫌な方は代わりに以下のコマンドを実行してください
-ros2 bag record -a -x &quot;(/racing_kart/.*|/to_can_bus|/from_can_bus)&quot;
+<span class="c1"># 動作上問題はありませんが、警告が出るのが嫌な方は代わりに以下のコマンドを実行してください</span>
+ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-a<span class="w"> </span>-x<span class="w"> </span><span class="s2">&quot;(/racing_kart/.*|/to_can_bus|/from_can_bus)&quot;</span>
 
-#こちらのコマンドでも記録が可能です
-cd /aichallenge
+<span class="c1">#こちらのコマンドでも記録が可能です</span>
+<span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./record_rosbag.bash
-</code></pre>
+</code></pre></div>
 <h3 id="4">4.走行終了時</h3>
 <p>右側⑤の端末で以下を実行し、コンテナ・tmuxを終了します。</p>
-<pre><code class="language-bash">./stop_vehicle_tmux.sh
-</code></pre>
+<div class="highlight"><pre><span></span><code>./stop_vehicle_tmux.sh
+</code></pre></div>
 <h2 id="pcecuros">手元のPCとECUでROS通信したい場合</h2>
 <ul>
 <li>手元のPCで以下を実行します</li>
 </ul>
-<pre><code class="language-bash"># 最初の1回でOKです
-./docker_build.sh dev
+<div class="highlight"><pre><span></span><code><span class="c1"># 最初の1回でOKです</span>
+./docker_build.sh<span class="w"> </span>dev
 
-# Dockerコンテナに入る
-./docker_run.sh dev cpu
+<span class="c1"># Dockerコンテナに入る</span>
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
 
-# temrinator(tmuxのGUI版)を起動し、画面を右クリックで分割します
-# terminatorの片方のターミナルでZenohで車両と接続します
-cd /remote
-./connect_zenoh.bash &lt;車両番号&gt;
+<span class="c1"># temrinator(tmuxのGUI版)を起動し、画面を右クリックで分割します</span>
+<span class="c1"># terminatorの片方のターミナルでZenohで車両と接続します</span>
+<span class="nb">cd</span><span class="w"> </span>/remote
+./connect_zenoh.bash<span class="w"> </span>&lt;車両番号&gt;
 
-# terminatorのもう片方のターミナルでECUと通信ができます
-# (例：Rvizの起動)
-cd /aichallenge
+<span class="c1"># terminatorのもう片方のターミナルでECUと通信ができます</span>
+<span class="c1"># (例：Rvizの起動)</span>
+<span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./run_rviz.bash
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Zenohを起動しているターミナルでCTRL+Cを押下することで、通信を終了できます。</li>
 </ul>
@@ -1948,12 +1989,12 @@ cd /aichallenge
 <p>A. 手元PCとECU両方でZenohを再起動します</p>
 <h4 id="ecuzenoh">ECUのZenoh再起動</h4>
 <p>ECU側は⑤のターミナルで以下を実行し、Zenohを停止させます</p>
-<pre><code class="language-bash">cd vehicle
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>vehicle
 ./kill_zenoh.bash
-</code></pre>
+</code></pre></div>
 <p>その後④のターミナルでZenohを再度起動します</p>
-<pre><code class="language-bash">./run_zenoh.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>./run_zenoh.bash
+</code></pre></div>
 <h4 id="pczenoh">手元PCのZenoh再起動</h4>
 <p>Zenohが起動しているターミナルでCTRL+Cを押下し、Zenohを停止させる</p>
 <p>その後<code>./connect_zenoh.bash &lt;車両番号&gt;</code>を実行し、再度起動します</p>

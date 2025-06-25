@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1701,6 +1720,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2033,15 +2074,15 @@
 <h2 id="environment-setup">Environment Setup</h2>
 <h3 id="the-communication-between-awsim-and-autoware-is-unstable"><u>The communication between AWSIM and Autoware is unstable.</u></h3>
 <p>When testing locally, setting <code>ROS_LOCALHOST_ONLY=1</code> in all terminals can improve communication speed. Add the following lines to your <code>.bashrc</code>.</p>
-<pre><code class="language-bash">export ROS_LOCALHOST_ONLY=1
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_LOCALHOST_ONLY</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_cyclonedds_cpp
 
-if [ ! -e /tmp/cycloneDDS_configured ]; then
-    sudo sysctl -w net.core.rmem_max=2147483647
-    sudo ip link set lo multicast on
-    touch /tmp/cycloneDDS_configured
-fi
-</code></pre>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-e<span class="w"> </span>/tmp/cycloneDDS_configured<span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>sudo<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.core.rmem_max<span class="o">=</span><span class="m">2147483647</span>
+<span class="w">    </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>lo<span class="w"> </span>multicast<span class="w"> </span>on
+<span class="w">    </span>touch<span class="w"> </span>/tmp/cycloneDDS_configured
+<span class="k">fi</span>
+</code></pre></div>
 <p>For a dual-PC setup (Windows+Linux or Linux+Linux), set <code>ROS_LOCALHOST_ONLY=0</code>.</p>
 <p>Note:</p>
 <ul>

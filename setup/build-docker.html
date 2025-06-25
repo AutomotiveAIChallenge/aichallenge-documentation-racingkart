@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1463,6 +1482,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1554,32 +1595,32 @@
 <h2 id="docker">大会環境のDockerイメージのビルド</h2>
 <p>再度<code>Alt+Ctrl+T</code>でターミナルを立ち上げて下さい。以下に従ってコマンドを<code>Ctrl+Shift+P</code>で貼り付け<code>Enter</code>で実行します。</p>
 <p>まず大会用リポジトリに入ります。</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+</code></pre></div>
 <p>Dockerイメージのビルドを行います。</p>
-<pre><code class="language-bash">./docker_build.sh dev
-</code></pre>
-<pre><code class="language-bash">docker images
-</code></pre>
+<div class="highlight"><pre><span></span><code>./docker_build.sh<span class="w"> </span>dev
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
+</code></pre></div>
 <p>で以下のイメージが生成されていることを確認しましょう。</p>
-<pre><code class="language-txt">aichallenge-2025-dev   latest   df2e83a20349   33 minutes ago   8.9GB
-</code></pre>
+<div class="highlight"><pre><span></span><code>aichallenge-2025-dev   latest   df2e83a20349   33 minutes ago   8.9GB
+</code></pre></div>
 <h2 id="dockerautoware">Dockerコンテナ上でのAutowareのビルド</h2>
 <p>以下を実行してDockerコンテナを立ち上げます。</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-./docker_run.sh dev cpu
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+</code></pre></div>
 <p>特に何も変わっていないように見えますが、上記のコマンドを実行すると環境がDockerコンテナ内部に移行します。今の環境がDockerコンテナ内かどうかは以下のコマンドで何も表示されていないかを確認するのがわかりやすいです。</p>
-<pre><code class="language-bash">ls ~
-</code></pre>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>~
+</code></pre></div>
 <p>Dockerコンテナ内で以下を実行してAutowareをビルドします。</p>
-<pre><code class="language-bash">cd /aichallenge
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./build_autoware.bash
-</code></pre>
+</code></pre></div>
 <h2 id="dockerautowaresimulator">Dockerコンテナ上でのAutowareとSimulatorの実行</h2>
 <p>Autowareのビルド後、以下のコマンドを実行します。</p>
-<pre><code class="language-bash">./run_evaluation.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>./run_evaluation.bash
+</code></pre></div>
 <p>下記の様な画面が表示されたら起動完了です。終了するにはターミナル上でCTRL + Cを入力します。
 <img alt="autoware" src="images/autoware.png" /></p>
 <h2 id="next-step"><a href="../development/workspace-usage.html">Next Step: 開発をしてみる</a></h2>

@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1454,6 +1473,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1530,36 +1571,36 @@
 <h2 id="incorporating-changes">Incorporating Changes</h2>
 <p>When there are significant updates to the competition environment, announcements will be made accordingly. For reference, the following instructions are provided.</p>
 <p>Update Docker</p>
-<pre><code class="language-bash">docker pull ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
+</code></pre></div>
 <p>Update Repository</p>
-<pre><code class="language-sh">cd aichallenge2025 # path to aichallenge2025
-git pull origin/main
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge2025<span class="w"> </span><span class="c1"># path to aichallenge2025</span>
+git<span class="w"> </span>pull<span class="w"> </span>origin/main
+</code></pre></div>
 <h2 id="installing-awsim-with-visualization">Installing AWSIM with Visualization</h2>
 <p>If you want to check the simulation screen of AWSIM, follow the steps in <a href="visible-simulation.html">this guide</a> to install AWSIM with visualization.</p>
 <h2 id="setting-up-three-terminals-for-debugging-reference">Setting up Three Terminals for Debugging (Reference)</h2>
 <p>To develop with three terminals for debugging, open the first terminal using <code>Alt+Ctrl+T</code> and then execute the following commands by pasting them with <code>Ctrl+Shift+P</code> and pressing <code>Enter</code>.</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-./docker_run.sh dev cpu
-</code></pre>
-<pre><code class="language-bash">cd /aichallenge
-bash run_simulator.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+bash<span class="w"> </span>run_simulator.bash
+</code></pre></div>
 <p>Open the second terminal using <code>Alt+Ctrl+T</code> and then execute the following commands by pasting them with <code>Ctrl+Shift+P</code> and pressing <code>Enter</code>.</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-./docker_run.sh dev cpu
-</code></pre>
-<pre><code class="language-bash">cd /aichallenge
-bash run_autoware.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+bash<span class="w"> </span>run_autoware.bash
+</code></pre></div>
 <p>Open the third terminal using <code>Alt+Ctrl+T</code> and then execute the following commands by pasting them with <code>Ctrl+Shift+P</code> and pressing <code>Enter</code>.</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-./docker_run.sh dev cpu
-</code></pre>
-<pre><code class="language-bash">cd /aichallenge
-ros2 topic pub --once /control/control_mode_request_topic std_msgs/msg/Bool '{data: true}' &gt;/dev/null
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/control/control_mode_request_topic<span class="w"> </span>std_msgs/msg/Bool<span class="w"> </span><span class="s1">&#39;{data: true}&#39;</span><span class="w"> </span>&gt;/dev/null
+</code></pre></div>
 <p>When the screen below appears, the startup is complete. To terminate, press CTRL + C in each terminal.
 <img alt="autoware" src="../../setup/images/autoware.png" /></p>
 

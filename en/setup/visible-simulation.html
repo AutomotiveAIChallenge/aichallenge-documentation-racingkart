@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1481,6 +1500,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1583,66 +1624,66 @@
 <h1 id="downloading-awsim-with-visualization-reference">Downloading AWSIM with Visualization (Reference)</h1>
 <p>By default, we distribute a headless version of AWSIM, but we also provide instructions for setting up an environment with visualization for those who wish to use it. Note that setting up a GPU-based environment can often lead to issues, so if you cannot meet the <a href="requirements.html">recommended environment</a> specifications or if this is your first time participating, please consider this as a reference.</p>
 <h2 id="installing-nvidia-drivers">Installing NVIDIA Drivers</h2>
-<pre><code class="language-bash"># Add repository
-sudo add-apt-repository ppa:graphics-drivers/ppa
+<div class="highlight"><pre><span></span><code><span class="c1"># Add repository</span>
+sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:graphics-drivers/ppa
 
-# Update package list
-sudo apt update
+<span class="c1"># Update package list</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update
 
-# Install drivers
-sudo ubuntu-drivers install
+<span class="c1"># Install drivers</span>
+sudo<span class="w"> </span>ubuntu-drivers<span class="w"> </span>install
 
-# Reboot
+<span class="c1"># Reboot</span>
 reboot
 
-# After reboot, check the installation
+<span class="c1"># After reboot, check the installation</span>
 nvidia-smi
-</code></pre>
+</code></pre></div>
 <p><img alt="nvidia-smi" src="../../setup/images/nvidia-smi.png" /></p>
 <h2 id="installing-nvidia-container-toolkit">Installing NVIDIA Container Toolkit</h2>
 <p>Refer to the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html">NVIDIA Container Toolkit</a> for installation.</p>
-<pre><code class="language-bash"># Prepare for installation
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
-      &amp;&amp; curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
-      &amp;&amp; curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
-            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
-            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+<div class="highlight"><pre><span></span><code><span class="c1"># Prepare for installation</span>
+<span class="nv">distribution</span><span class="o">=</span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="p">;</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ID$VERSION_ID</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://nvidia.github.io/libnvidia-container/gpgkey<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-L<span class="w"> </span>https://nvidia.github.io/libnvidia-container/<span class="nv">$distribution</span>/libnvidia-container.list<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>sed<span class="w"> </span><span class="s1">&#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/nvidia-container-toolkit.list
 
-# Install
-sudo apt-get update
-sudo apt-get install -y nvidia-container-toolkit
-sudo nvidia-ctk runtime configure --runtime=docker
-sudo systemctl restart docker
+<span class="c1"># Install</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nvidia-container-toolkit
+sudo<span class="w"> </span>nvidia-ctk<span class="w"> </span>runtime<span class="w"> </span>configure<span class="w"> </span>--runtime<span class="o">=</span>docker
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
 
-# Test the installation
-sudo docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi
+<span class="c1"># Test the installation</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="o">=</span>nvidia<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>nvidia/cuda:11.6.2-base-ubuntu20.04<span class="w"> </span>nvidia-smi
 
-# If the following output is displayed, the installation was successful:
-# (The output below is quoted from the NVIDIA website)
-#
-# +-----------------------------------------------------------------------------+
-# | NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.0     |
-# |-------------------------------+----------------------+----------------------+
-# | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-# | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-# |                               |                      |               MIG M. |
-# |===============================+======================+======================|
-# |   0  Tesla T4            On   | 00000000:00:1E.0 Off |                    0 |
-# | N/A   34C    P8     9W /  70W |      0MiB / 15109MiB |      0%      Default |
-# |                               |                      |                  N/A |
-# +-------------------------------+----------------------+----------------------+
-# +-----------------------------------------------------------------------------+
-# | Processes:                                                                  |
-# |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-# |        ID   ID                                                   Usage      |
-# |=============================================================================|
-# |  No running processes found                                                 |
-# +-----------------------------------------------------------------------------+
-</code></pre>
+<span class="c1"># If the following output is displayed, the installation was successful:</span>
+<span class="c1"># (The output below is quoted from the NVIDIA website)</span>
+<span class="c1">#</span>
+<span class="c1"># +-----------------------------------------------------------------------------+</span>
+<span class="c1"># | NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.0     |</span>
+<span class="c1"># |-------------------------------+----------------------+----------------------+</span>
+<span class="c1"># | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |</span>
+<span class="c1"># | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |</span>
+<span class="c1"># |                               |                      |               MIG M. |</span>
+<span class="c1"># |===============================+======================+======================|</span>
+<span class="c1"># |   0  Tesla T4            On   | 00000000:00:1E.0 Off |                    0 |</span>
+<span class="c1"># | N/A   34C    P8     9W /  70W |      0MiB / 15109MiB |      0%      Default |</span>
+<span class="c1"># |                               |                      |                  N/A |</span>
+<span class="c1"># +-------------------------------+----------------------+----------------------+</span>
+<span class="c1"># +-----------------------------------------------------------------------------+</span>
+<span class="c1"># | Processes:                                                                  |</span>
+<span class="c1"># |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |</span>
+<span class="c1"># |        ID   ID                                                   Usage      |</span>
+<span class="c1"># |=============================================================================|</span>
+<span class="c1"># |  No running processes found                                                 |</span>
+<span class="c1"># +-----------------------------------------------------------------------------+</span>
+</code></pre></div>
 <h2 id="installing-vulkan">Installing Vulkan</h2>
-<pre><code class="language-bash">sudo apt update
-sudo apt install -y libvulkan1
-</code></pre>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvulkan1
+</code></pre></div>
 <h2 id="downloading-awsim-the-simulator-distribution-has-ended">Downloading AWSIM (The simulator distribution has ended.)</h2>
 <ol>
 <li>
@@ -1659,29 +1700,29 @@ sudo apt install -y libvulkan1
 <p>With this, the environment setup is complete!</p>
 <h2 id="verifying-awsim-startup">Verifying AWSIM Startup</h2>
 <p>If you are using AWSIM with visualization, start the container with the following commands:</p>
-<pre><code class="language-bash">cd aichallenge-2025
-./docker_build.sh dev
-./docker_run.sh dev gpu
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-2025
+./docker_build.sh<span class="w"> </span>dev
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>gpu
+</code></pre></div>
 <p>Within the terminal where the container is running (inside the container), execute the following:</p>
-<pre><code class="language-bash">cd /aichallenge
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./build_autoware.bash
-</code></pre>
+</code></pre></div>
 <p>After building Autoware, modify <code>run_simulator.bash</code>. Specify the directory you just extracted for <code>AISIM_GPU_**</code>.</p>
-<pre><code class="language-bash">#!/bin/bash
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
-# shellcheck disable=SC1091
-source /aichallenge/workspace/install/setup.bash
-sudo ip link set multicast on lo
+<span class="c1"># shellcheck disable=SC1091</span>
+<span class="nb">source</span><span class="w"> </span>/aichallenge/workspace/install/setup.bash
+sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>multicast<span class="w"> </span>on<span class="w"> </span>lo
 /aichallenge/simulator/AWSIM_GPU_**/AWSIM.x86_64
-</code></pre>
+</code></pre></div>
 <p>Make the following changes to <code>run_evaluation.bash</code> as well.</p>
-<pre><code class="language-bash"># AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM
-AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM_GPU_**
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM</span>
+<span class="nv">AWSIM_DIRECTORY</span><span class="o">=</span>/aichallenge/simulator/AWSIM_GPU_**
+</code></pre></div>
 <p>Execute the following command:</p>
-<pre><code class="language-bash">./run_evaluation.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>./run_evaluation.bash
+</code></pre></div>
 <p>If the following screen appears, it was successful.</p>
 <p><img alt="AWSIM-Autoware" src="../../setup/images/awsim-and-autoware.png" /></p>
 <p>This concludes the environment setup!</p>

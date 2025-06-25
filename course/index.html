@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1445,6 +1464,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1517,24 +1558,24 @@
 <p>まず､ Autoware の動作に必要な ROS 2 をインストールします｡
 <a href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html">ROS 2 Documentation</a> の手順にしたがってEnvironment setupまでを完了させてください｡</p>
 <p>つづけて､いくつかの開発支援ツールセットもインストールします｡</p>
-<pre><code class="language-bash"># Install rosdep
-sudo apt install python3-rosdep
-# Install vcstool
-sudo apt install python3-vcstool
-# Install colcon
-sudo apt install python3-colcon-common-extensions
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install rosdep</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-rosdep
+<span class="c1"># Install vcstool</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-vcstool
+<span class="c1"># Install colcon</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-colcon-common-extensions
+</code></pre></div>
 <p>任意のディレクトリにて入門講座のリポジトリをクローンし、ビルドを行ってください。</p>
-<pre><code class="language-bash">git clone https://github.com/AutomotiveAIChallenge/autoware-practice.git
-cd autoware-practice
-vcs import src &lt; autoware.repos
-rosdep install -y --from-paths src --ignore-src --rosdistro humble
-colcon build --symlink-install
-</code></pre>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/AutomotiveAIChallenge/autoware-practice.git
+<span class="nb">cd</span><span class="w"> </span>autoware-practice
+vcs<span class="w"> </span>import<span class="w"> </span>src<span class="w"> </span>&lt;<span class="w"> </span>autoware.repos
+rosdep<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span>humble
+colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
+</code></pre></div>
 <p>ビルドが完了したら、以下のコマンドを実行してビルドされたパッケージを利用できるようにします。
 また、今後講座の中でコマンドを実行する際は、事前にこちらのコマンドを実行しておいてください。</p>
-<pre><code class="language-bash">source install/setup.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>install/setup.bash
+</code></pre></div>
 
 
 

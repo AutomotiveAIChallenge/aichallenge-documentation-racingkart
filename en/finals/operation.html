@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1598,6 +1617,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1864,10 +1905,10 @@
 </ul>
 <h2 id="operations-after-connecting-to-vehicle-ecu">Operations After Connecting to Vehicle ECU</h2>
 <h3 id="1-starting-drivers-and-docker-containers">1. Starting Drivers and Docker Containers</h3>
-<pre><code class="language-bash">cd aichallenge-2025
-./docker_build.sh dev (only needs to be executed once initially)
-bash run_vehicle_tmux.sh
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-2025
+./docker_build.sh<span class="w"> </span>dev<span class="w"> </span><span class="o">(</span>only<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>executed<span class="w"> </span>once<span class="w"> </span>initially<span class="o">)</span>
+bash<span class="w"> </span>run_vehicle_tmux.sh
+</code></pre></div>
 <p>The terminal will be split as shown below:
 <img alt="tmux-image" src="../../finals/images/tmux.png" /></p>
 <ul>
@@ -1880,42 +1921,42 @@ bash run_vehicle_tmux.sh
 <p>The vehicle driver (right ③) and Zenoh bridge (right ④) will start automatically.</p>
 <h3 id="2-starting-autoware">2. Starting Autoware</h3>
 <p>Execute within Docker container. By default, use terminal ① on the left or ② on the right.</p>
-<pre><code class="language-bash">cd /aichallenge
-./build_autoware.bash (execute only once initially, then as needed when making changes that require rebuilding)
-./run_autoware.bash vehicle (autoware starts and is ready)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+./build_autoware.bash<span class="w"> </span><span class="o">(</span>execute<span class="w"> </span>only<span class="w"> </span>once<span class="w"> </span>initially,<span class="w"> </span><span class="k">then</span><span class="w"> </span>as<span class="w"> </span>needed<span class="w"> </span>when<span class="w"> </span>making<span class="w"> </span>changes<span class="w"> </span>that<span class="w"> </span>require<span class="w"> </span>rebuilding<span class="o">)</span>
+./run_autoware.bash<span class="w"> </span>vehicle<span class="w"> </span><span class="o">(</span>autoware<span class="w"> </span>starts<span class="w"> </span>and<span class="w"> </span>is<span class="w"> </span>ready<span class="o">)</span>
+</code></pre></div>
 <h3 id="3-recording-rosbag">3. Recording ROSBAG</h3>
 <p>Execute within Docker container. By default, use terminal ① on the left or ② on the right.</p>
-<pre><code class="language-bash">cd /aichallenge
-source workspace/install/setup.bash
-ros2 bag record -a
-# If you want to avoid warnings (though they don't affect operation), use this alternative command:
-ros2 bag record -a -x &quot;(/racing_kart/.*|/to_can_bus|/from_can_bus)&quot;
-# You can also record using this command:
-cd /aichallenge
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+<span class="nb">source</span><span class="w"> </span>workspace/install/setup.bash
+ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-a
+<span class="c1"># If you want to avoid warnings (though they don&#39;t affect operation), use this alternative command:</span>
+ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>-a<span class="w"> </span>-x<span class="w"> </span><span class="s2">&quot;(/racing_kart/.*|/to_can_bus|/from_can_bus)&quot;</span>
+<span class="c1"># You can also record using this command:</span>
+<span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./record_rosbag.bash
-</code></pre>
+</code></pre></div>
 <h3 id="4-when-finishing-operation">4. When Finishing Operation</h3>
 <p>Execute the following in terminal ⑤ on the right to stop the container and tmux:</p>
-<pre><code class="language-bash">./stop_vehicle_tmux.sh
-</code></pre>
+<div class="highlight"><pre><span></span><code>./stop_vehicle_tmux.sh
+</code></pre></div>
 <h2 id="for-ros-communication-between-local-pc-and-ecu">For ROS Communication Between Local PC and ECU</h2>
 <ul>
 <li>Execute the following on your local PC:</li>
 </ul>
-<pre><code class="language-bash"># Only needed once initially
-./docker_build.sh dev
-# Enter Docker container
-./docker_run.sh dev cpu
-# Launch terminator (GUI version of tmux) and split screen by right-clicking
-# In one terminator terminal, connect to vehicle via Zenoh
-cd /remote
-./connect_zenoh.bash &lt;vehicle_number&gt;
-# In the other terminator terminal, you can communicate with ECU
-# (Example: Launch Rviz)
-cd /aichallenge
+<div class="highlight"><pre><span></span><code><span class="c1"># Only needed once initially</span>
+./docker_build.sh<span class="w"> </span>dev
+<span class="c1"># Enter Docker container</span>
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+<span class="c1"># Launch terminator (GUI version of tmux) and split screen by right-clicking</span>
+<span class="c1"># In one terminator terminal, connect to vehicle via Zenoh</span>
+<span class="nb">cd</span><span class="w"> </span>/remote
+./connect_zenoh.bash<span class="w"> </span>&lt;vehicle_number&gt;
+<span class="c1"># In the other terminator terminal, you can communicate with ECU</span>
+<span class="c1"># (Example: Launch Rviz)</span>
+<span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./run_rviz.bash
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Press CTRL+C in the Zenoh terminal to end communication.</li>
 </ul>
@@ -1924,12 +1965,12 @@ cd /aichallenge
 <p>A. Restart Zenoh on both local PC and ECU</p>
 <h4 id="restarting-zenoh-on-ecu">Restarting Zenoh on ECU</h4>
 <p>Stop Zenoh in terminal ⑤ by executing:</p>
-<pre><code class="language-bash">cd vehicle
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>vehicle
 ./kill_zenoh.bash
-</code></pre>
+</code></pre></div>
 <p>Then restart Zenoh in terminal ④:</p>
-<pre><code class="language-bash">./run_zenoh.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code>./run_zenoh.bash
+</code></pre></div>
 <h4 id="restarting-zenoh-on-local-pc">Restarting Zenoh on Local PC</h4>
 <p>Press CTRL+C in the Zenoh terminal to stop it
 Then execute <code>./connect_zenoh.bash &lt;vehicle_number&gt;</code> to restart</p>

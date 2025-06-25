@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1454,6 +1473,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1531,36 +1572,36 @@
 <p>大会環境の重大なアップデートがあった際には適宜アナウンスがあります。
 参考までにこちらに記載しています。以下を実行してください。</p>
 <p>Dockerのupdate</p>
-<pre><code class="language-bash">docker pull ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
+</code></pre></div>
 <p>Repositoryのupdate</p>
-<pre><code class="language-sh">cd aichallenge2025 # path to aichallenge2025
-git pull origin/main
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge2025<span class="w"> </span><span class="c1"># path to aichallenge2025</span>
+git<span class="w"> </span>pull<span class="w"> </span>origin/main
+</code></pre></div>
 <h2 id="awsim">描画ありAWSIMの導入</h2>
 <p>AWSIMのシミュレーション画面を確認したい方は、<a href="visible-simulation.html">こちら</a>の手順に従って描画ありAWSIMの導入を行ってください。</p>
 <h2 id="debugterminal3">Debug用にTerminalを3つ用意して開発したい場合 (参考)</h2>
 <p><code>Alt+Ctrl+T</code>で１つ目のターミナルを立ち上げてから、以下のコマンド<code>Ctrl+Shift+P</code>で貼り付けた後に<code>Enter</code>で実行します。</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-./docker_run.sh dev cpu
-</code></pre>
-<pre><code class="language-bash">cd /aichallenge
-bash run_simulator.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+bash<span class="w"> </span>run_simulator.bash
+</code></pre></div>
 <p><code>Alt+Ctrl+T</code>で2つ目のターミナルを立ち上げてから、以下のコマンド<code>Ctrl+Shift+P</code>で貼り付けた後に<code>Enter</code>で実行します。</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-./docker_run.sh dev cpu
-</code></pre>
-<pre><code class="language-bash">cd /aichallenge
-bash run_autoware.bash
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+bash<span class="w"> </span>run_autoware.bash
+</code></pre></div>
 <p><code>Alt+Ctrl+T</code>で3つ目のターミナルを立ち上げてから、以下のコマンド<code>Ctrl+Shift+P</code>で貼り付けた後に<code>Enter</code>で実行します。</p>
-<pre><code class="language-bash">cd ~/aichallenge-2025
-./docker_run.sh dev cpu
-</code></pre>
-<pre><code class="language-bash">cd /aichallenge
-ros2 topic pub --once /control/control_mode_request_topic std_msgs/msg/Bool '{data: true}' &gt;/dev/null
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
+./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/control/control_mode_request_topic<span class="w"> </span>std_msgs/msg/Bool<span class="w"> </span><span class="s1">&#39;{data: true}&#39;</span><span class="w"> </span>&gt;/dev/null
+</code></pre></div>
 <p>下記の様な画面が表示されたら起動完了です。終了するには各ターミナル上でCTRL + Cを入力します。
 <img alt="autoware" src="images/autoware.png" /></p>
 

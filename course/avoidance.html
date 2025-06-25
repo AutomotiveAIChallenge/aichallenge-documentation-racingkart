@@ -424,6 +424,25 @@
   
 
       
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
     </ul>
   </div>
 </nav>
@@ -1502,6 +1521,28 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1654,20 +1695,20 @@
 この簡易lidarシミュレータは物体の輪郭を点群化し、車両の一定範囲内の点群を取得します。</p>
 <p><code>src/autoware_practice_lidar_simulator/config/object_centers.csv</code>で座標を指定することで自由に障害物を設定することができます。
 3つの障害物を配置するために、以下のようにobejct_centers.csvを編集します。</p>
-<pre><code class="language-diff">+  x_center,y_center
-+  7.0,0.0
-+  10.0,5.0
-+  5.0,-3.0
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="gi">+  x_center,y_center</span>
+<span class="gi">+  7.0,0.0</span>
+<span class="gi">+  10.0,5.0</span>
+<span class="gi">+  5.0,-3.0</span>
+</code></pre></div>
 <p>以下のコマンドでシミュレータを起動し、一定範囲内にある障害物の点群が表示されるか確認しましょう。</p>
-<pre><code class="language-bash">ros2 launch autoware_practice_launch practice.launch.xml
-</code></pre>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>autoware_practice_launch<span class="w"> </span>practice.launch.xml
+</code></pre></div>
 <p><img alt="simple_lidar_sim1" src="images/3-1/simple_lidar_sim1.png" /></p>
 <p>以下のコマンドを別々のターミナルで実行して、車両の位置が変化するのに伴って取得できる点群が変化するのを確認しましょう。</p>
-<pre><code class="language-bash">ros2 run autoware_practice_course trajectory_loader --ros-args -p path_file:=src/autoware_practice_course/config/trajectory_zigzag.csv
-</code></pre>
-<pre><code class="language-bash">ros2 run autoware_practice_course trajectory_follower --ros-args -p kp:=5.0 -p lookahead_distance:=5.0
-</code></pre>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>trajectory_loader<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>path_file:<span class="o">=</span>src/autoware_practice_course/config/trajectory_zigzag.csv
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>trajectory_follower<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>kp:<span class="o">=</span><span class="m">5</span>.0<span class="w"> </span>-p<span class="w"> </span>lookahead_distance:<span class="o">=</span><span class="m">5</span>.0
+</code></pre></div>
 <p><img alt="imple_lidar_sim2" src="images/3-1/simple_lidar_sim2.png" /></p>
 <h2 id="03-02">03-02. 点群情報に基づいて経路・軌道計画し車両を追従させる</h2>
 <p>取得した点群を元に障害物を回避することを考えます。
@@ -1722,23 +1763,23 @@
 <p>今回は以下のようにtrajectory_plannerノードにstate lattice plannerを作成しました。</p>
 <p><img alt="alt text" src="images/3-2/nodemap.jpg" /></p>
 <p><code>src/autoware_practice_lidar_simulator/config/object_centers.csv</code>を修正して障害物の位置を変更します。</p>
-<pre><code class="language-diff">x_center,y_center
--  7.0,0.0
--  10.0,5.0
--  5.0,-3.0
-+  47.0,-1.0
-+  30.0,1.0
-+  15.0,-1.0
-</code></pre>
+<div class="highlight"><pre><span></span><code>x_center,y_center
+<span class="gd">-  7.0,0.0</span>
+<span class="gd">-  10.0,5.0</span>
+<span class="gd">-  5.0,-3.0</span>
+<span class="gi">+  47.0,-1.0</span>
+<span class="gi">+  30.0,1.0</span>
+<span class="gi">+  15.0,-1.0</span>
+</code></pre></div>
 <p>以下のコマンドを別々のターミナルで実行して画像のように障害物を適切に回避できるか確かめましょう。</p>
-<pre><code class="language-bash">ros2 launch autoware_practice_launch practice.launch.xml
-</code></pre>
-<pre><code class="language-bash">ros2 run autoware_practice_course trajectory_loader --ros-args -p path_file:=src/autoware_practice_course/config/trajectory.csv --remap /planning/scenario_planning/trajectory:=/planning/trajectory_loader/trajectory
-</code></pre>
-<pre><code class="language-bash">ros2 run autoware_practice_course trajectory_follower --ros-args -p kp:=5.0 -p lookahead_distance:=5.0
-</code></pre>
-<pre><code class="language-bash">ros2 run autoware_practice_course trajectory_planner --ros-args -p state_num:=9 -p target_interval:=1.0
-</code></pre>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>autoware_practice_launch<span class="w"> </span>practice.launch.xml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>trajectory_loader<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>path_file:<span class="o">=</span>src/autoware_practice_course/config/trajectory.csv<span class="w"> </span>--remap<span class="w"> </span>/planning/scenario_planning/trajectory:<span class="o">=</span>/planning/trajectory_loader/trajectory
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>trajectory_follower<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>kp:<span class="o">=</span><span class="m">5</span>.0<span class="w"> </span>-p<span class="w"> </span>lookahead_distance:<span class="o">=</span><span class="m">5</span>.0
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>run<span class="w"> </span>autoware_practice_course<span class="w"> </span>trajectory_planner<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>state_num:<span class="o">=</span><span class="m">9</span><span class="w"> </span>-p<span class="w"> </span>target_interval:<span class="o">=</span><span class="m">1</span>.0
+</code></pre></div>
 <p><code>state_num</code>は経路上にサンプリングする目標状態の数、<code>target_interval</code>はサンプリングする目標位置の間隔です。
 trajectory_plannerを起動する際に他のパラメータも指定できるので是非変更してみてください。ノード起動時に設定できるパラメータは<code>src/autoware_practice_course/src/avoidance/trajectory_planner.cpp</code>で確認することができます。</p>
 <p><img alt="alt text" src="images/3-2/rviz_image.png" /></p>
