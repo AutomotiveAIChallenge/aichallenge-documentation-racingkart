@@ -1,4 +1,4 @@
-# Japan Automotive AI Challenge 2025
+# 自動運転 AI チャレンジ 2025
 
 <iframe width="960" height="540" src="https://www.youtube.com/embed/FGGTUcfV7nU?si=3OWNwnpa_utk8D31" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
