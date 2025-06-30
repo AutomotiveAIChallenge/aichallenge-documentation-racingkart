@@ -8,6 +8,7 @@ use_directory_urls: false
 theme:
   name: material
   custom_dir: overrides
+  favicon: assets/favicon.ico
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -17,7 +18,6 @@ theme:
     primary: custom
     accent: green
     # logo:
-    # favicon:
 
 nav:
   - index: index.md
