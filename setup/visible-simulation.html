@@ -22,7 +22,7 @@
     
     
       
-        <title>描画ありAWSIMのダウンロード (参考) - 自動運転 AI チャレンジ 2025</title>
+        <title>描画ありAWSIMの起動 (参考) - 自動運転 AI チャレンジ 2025</title>
       
     
     
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              描画ありAWSIMのダウンロード (参考)
+              描画ありAWSIMの起動 (参考)
             
           </span>
         </div>
@@ -591,7 +591,7 @@
   
   
   <span class="md-ellipsis">
-    ルール WIP
+    ルール
     
   </span>
   
@@ -931,7 +931,7 @@
   
   
   <span class="md-ellipsis">
-    描画ありAWSIMのダウンロード (参考)
+    描画ありAWSIMの起動 (参考)
     
   </span>
   
@@ -944,7 +944,7 @@
   
   
   <span class="md-ellipsis">
-    描画ありAWSIMのダウンロード (参考)
+    描画ありAWSIMの起動 (参考)
     
   </span>
   
@@ -994,16 +994,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#awsim_1" class="md-nav__link">
+  <a href="#awsimawsim" class="md-nav__link">
     <span class="md-ellipsis">
-      AWSIMのダウンロード（シミュレータの配布は大会開始時になります）
+      AWSIMのダウンロード（描画無しのAWSIMでダウンロードした方はスキップ）
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#awsim_2" class="md-nav__link">
+  <a href="#awsim_1" class="md-nav__link">
     <span class="md-ellipsis">
       AWSIMの起動確認
     </span>
@@ -1576,16 +1576,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#awsim_1" class="md-nav__link">
+  <a href="#awsimawsim" class="md-nav__link">
     <span class="md-ellipsis">
-      AWSIMのダウンロード（シミュレータの配布は大会開始時になります）
+      AWSIMのダウンロード（描画無しのAWSIMでダウンロードした方はスキップ）
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#awsim_2" class="md-nav__link">
+  <a href="#awsim_1" class="md-nav__link">
     <span class="md-ellipsis">
       AWSIMの起動確認
     </span>
@@ -1621,11 +1621,7 @@
   
 
 
-<h1 id="awsim">描画ありAWSIMのダウンロード (参考)</h1>
-<div class="admonition warning">
-<p class="admonition-title">🚧 準備中 / Under Construction</p>
-<p>シミュレータは大会開始と同時に公開されます。</p>
-</div>
+<h1 id="awsim">描画ありAWSIMの起動 (参考)</h1>
 <p>デフォルトで描画なしのAWSIMを配布しておりますが、描画ありを希望される方の環境構築方法も記載しております。GPUを使用する環境構築では詰まって進まなくなる事例が多々ありましたので、<a href="requirements.html">推奨環境</a>を満たすのスペックのPCが用意できない方や初めてのご参加の方はあくまでも参考程度としてください。</p>
 <h2 id="nvidia">NVIDIAドライバのインストール</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># リポジトリの追加</span>
@@ -1688,10 +1684,10 @@ sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvulkan1
 </code></pre></div>
-<h2 id="awsim_1">AWSIMのダウンロード（シミュレータの配布は大会開始時になります）</h2>
+<h2 id="awsimawsim">AWSIMのダウンロード（描画無しのAWSIMでダウンロードした方はスキップ）</h2>
 <ol>
 <li>
-<p>Google Drive から最新の <code>AWSIM_GPU_**.zip</code> をダウンロードし、<code>aichallenge-2025/aichallenge/simulator</code> に展開します。</p>
+<p>One Drive から最新の <code>AWSIM.zip</code> をダウンロードし、<code>aichallenge-2025/aichallenge/simulator</code> に展開します。</p>
 </li>
 <li>
 <p>実行ファイルが<code>aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64</code>に存在していることを確認してください。</p>
@@ -1701,7 +1697,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </li>
 </ol>
 <p><img alt="パーミッション変更の様子" src="images/awsim-permmision.png" /></p>
-<h2 id="awsim_2">AWSIMの起動確認</h2>
+<h2 id="awsim_1">AWSIMの起動確認</h2>
 <p>描画ありのAWSIMを使用する場合は、以下のコマンドでコンテナを起動してください。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-2025
 ./docker_build.sh<span class="w"> </span>dev
@@ -1711,17 +1707,12 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./build_autoware.bash
 </code></pre></div>
-<p>Autowareのビルド後、run_simulator.bashを変更します。<code>AISIM_GPU_**</code>には先程展開したディレクトリを指定してください。</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># shellcheck disable=SC1091</span>
 <span class="nb">source</span><span class="w"> </span>/aichallenge/workspace/install/setup.bash
 sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>multicast<span class="w"> </span>on<span class="w"> </span>lo
 /aichallenge/simulator/AWSIM_GPU_**/AWSIM.x86_64
-</code></pre></div>
-<p>run_evaluetion.bashに対しても同様に次の変更を加えます。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM</span>
-<span class="nv">AWSIM_DIRECTORY</span><span class="o">=</span>/aichallenge/simulator/AWSIM_GPU_**
 </code></pre></div>
 <p>以下のコマンドを実行します。</p>
 <div class="highlight"><pre><span></span><code>./run_evaluation.bash

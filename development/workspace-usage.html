@@ -591,7 +591,7 @@
   
   
   <span class="md-ellipsis">
-    ルール WIP
+    ルール
     
   </span>
   
@@ -917,7 +917,7 @@
   
   
   <span class="md-ellipsis">
-    描画ありAWSIMのダウンロード (参考)
+    描画ありAWSIMの起動 (参考)
     
   </span>
   
@@ -1082,51 +1082,6 @@
       目次
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      参加者有志の参考記事を読んでみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      パラメータを変更してみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      新規パッケージを作成してみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#map" class="md-nav__link">
-    <span class="md-ellipsis">
-      [任意]Mapの編集をしてみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      提出してみる
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
@@ -1549,51 +1504,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      参加者有志の参考記事を読んでみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      パラメータを変更してみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      新規パッケージを作成してみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#map" class="md-nav__link">
-    <span class="md-ellipsis">
-      [任意]Mapの編集をしてみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      提出してみる
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#next-step" class="md-nav__link">
     <span class="md-ellipsis">
       Next Step:メインモジュールについて知る
@@ -1632,10 +1542,13 @@
 
 <p>参加者の皆様にはこちらのコードやパラメータをカスタマイズすることで開発を進めていただきますが、Autowareに不慣れな方はまずは<a href="../course/index.html">入門講座</a>を一通りやっていただくことをお勧めします。</p>
 <p>※リポジトリ内のコードを使わず独自に開発する方など、各種仕様について知りたい方は<a href="../specifications/interface.html">インターフェース仕様</a>、<a href="../specifications/simulator.html">シミュレータ仕様</a>のページを参照してください。</p>
-<h2 id="_1">参加者有志の参考記事を読んでみる</h2>
+<details class="tip">
+<summary>参加者有志の参考記事を読んでみる</summary>
 <p>参加者有志が取り組んでくださった取り組みは<a href="https://qiita.com/advent-calendar/2023/jidounten-ai">Advent Calendar</a>にまとめられていますので参考にしてみてください。</p>
 <p>どれから読もうか迷った方は2023年度コミュニティ貢献賞を受賞した田中新太さんが記載してくれた<a href="https://qiita.com/Arata-stu/items/4b03772348dca4f7ef89">こちらの記事</a>から読み進めると良いと思います。</p>
-<h2 id="_2">パラメータを変更してみる</h2>
+</details>
+<details class="tip">
+<summary>パラメータを変更してみる</summary>
 <p>環境構築後何をして良いのかわからない方向けに、まずパラメータを調整してみましょう。
 今回は制御モジュールのsimple_pure_pursuitのパラメータを変更してみることにします。</p>
 <p><code>$HOME/aichallenge-2025/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml</code>内の以下の<code>value</code>値を調整してみましょう。</p>
@@ -1647,7 +1560,9 @@
 <span class="w">    </span><span class="nt">&lt;param</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;speed_proportional_gain&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
 </code></pre></div>
 <p>調整が終わったら再び<a href="../setup/build-docker.html">ビルド・実行</a>してみましょう。挙動が変わったことが確認できたかと思います。</p>
-<h2 id="_3">新規パッケージを作成してみる</h2>
+</details>
+<details class="tip">
+<summary>新規パッケージを作成してみる</summary>
 <p>新たに自作パッケージを作成してみましょう。まずはオープンソースのパッケージや<a href="https://github.com/AutomotiveAIChallenge/autoware-practice">autoware practice</a>をコピーしてみましょう。
 以下のように進めると良いと思います。</p>
 <ol>
@@ -1663,13 +1578,24 @@
 <li>aichallenge_submit_launch内のlaunchファイル(reference.launch.xml)を変更</li>
 </ol>
 <p>※コピー元のパッケージのライセンスを違反しないよう各自確認お願いいたします。</p>
-<h2 id="map">[任意]Mapの編集をしてみる</h2>
+</details>
+<details class="tip">
+<summary>[任意]Vector Mapの編集をしてみる</summary>
 <p>2025年度のAIチャレンジでは<a href="https://tools.tier4.jp/feature/vector_map_builder_ll2/">VectorMapBuilder</a>などのツールを使ってpoint cloud map , lanelet2 mapなどの地図の編集を推奨しています。</p>
 <p>Mapのファイル置き場からpointcloud map lanelet2 mapなどをダウンロードして編集してみましょう！（Mapの配布は大会開始時になります）</p>
 <p><a href="https://www.youtube.com/watch?v=GvZr707TmuM">VectorMapBuilderの使い方動画</a>にステップバイステップのインストラクションなどがあるので参考にしてみてください。</p>
 <p>作成したlanelet2 mapは<code>aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/map</code>に格納してください。</p>
-<h2 id="_4">提出してみる</h2>
+</details>
+<details class="tip">
+<summary>[任意]Trajectoryの編集をしてみる</summary>
+<p>2025年度のAIチャレンジでは岐阜大学のチームが作成してくれた<a href="https://github.com/AutomotiveAIChallenge/aichallenge-trajectory-editor">Trajectory Editor</a>などのツールを使ってTrajectoryの編集をしていきます。</p>
+<p><a href="https://github.com/iASL-Gifu/aichallenge-trajectory-editor">Readme</a>にステップバイステップのインストラクションなどがあるので参考にしてみてください。</p>
+<p>作成したlanelet2 mapは<code>aichallenge/workspace/src/aichallenge_submit/simple_trajectory_generator/data</code>に格納してください。</p>
+</details>
+<details class="tip">
+<summary>提出してみる</summary>
 <p>ワークスペースのカスタマイズを行ったら<a href="../preliminaries/submission.html">ここ</a>を参考に提出をしてみましょう。</p>
+</details>
 <h2 id="next-step"><a href="main-module.html">Next Step:メインモジュールについて知る</a></h2>
 
 
