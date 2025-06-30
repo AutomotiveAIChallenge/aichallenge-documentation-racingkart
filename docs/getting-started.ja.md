@@ -28,11 +28,11 @@
     1. アクセスが出来たら、一度ソースコードの提出をしてみましょう。
     下の赤ボタンからサンプルコードの圧縮ファイルをダウンロードします。
 
-    2. オンライン採点環境の「UPLOAD」ボタンからそのままアップロードすることで提出ができます。
+    2. オンライン採点環境の「Submit Code」ボタンからそのままアップロードすることで提出ができます。
 
     [:material-launch: サンプルコードの圧縮ファイルのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B4aNBsc0aygEdqNPsmm_J8g){ .md-button .md-button--primary  target="_blank" }
 
-    ![submit](./preliminaries/images/submit.png)
+    ![submit](./preliminaries/images/siteImage2.png)
 
 ??? note  "4. AIチャレンジの環境構築"
 
