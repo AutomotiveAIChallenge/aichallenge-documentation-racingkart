@@ -1605,25 +1605,25 @@
 <p>オンライン環境にアップロード</p>
 <p><a href="https://aichallenge-board.jsae.or.jp">オンライン環境</a>にアクセスします。
 <img src="./images/topImage.png" width="100%"></p>
-<p>右上<a href="https://aichallenge-board.jsae.or.jp/auth/custom/sign-in">「LOG IN」</a>ボタンからログインします。
+<p>右上の「Login」 ボタンからログインします。
 <img src="./images/siteImage1.png" width="100%"></p>
-<p>ログインが完了したら緑色の「UPLOAD」ボタンから<code>aichallenge_submit.tar.gz</code>をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
+<p>ログインが完了したら緑色の「Submit Code」ボタンから<code>aichallenge_submit.tar.gz</code>をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
 <img src="./images/siteImage2.png" width="100%"></p>
-<ul>
-<li>正常に終了した場合、採点完了と表示され、<code>result.json</code>がダウンロードでき、各ラップタイムが表示されます。</li>
-<li>シナリオ実行後、launchに失敗した等でスコアが出力されていない場合は「結果無し」と表示されます。この場合、サーバーサイドでの内部エラーの可能性があるため、再アップロードをお願いします。問題が続く場合はお問い合わせください。</li>
-<li>ビルドに失敗した場合は「ビルド失敗」と表示されます。手順の確認後、再度アップロードしてください。</li>
-<li>ランキングはこれまでの採点での最高点が適用されます。</li>
-<li>採点実行中は新たなソースのアップロードはできません。</li>
-<li>アップロードは1日に20回まで可能で、日本時間0時に回数がリセットされます。</li>
-</ul>
+<p>正常に終了した場合、「Success」と表示されます。
+ビルドに失敗したり、launchに失敗した等でスコアが出力されていない場合は「Failed」と表示されます。この場合、サーバーサイドでの内部エラーの可能性があるため、再アップロードをお願いします。問題が続く場合はslackでお問い合わせください。</p>
+<p><img src="./images/siteImage3.png" width="100%"></p>
+<p>ランキングはこれまでの採点での最高点が適用されます。
+アップロードは1日に20回まで可能で、日本時間0時に回数がリセットされます。</p>
 </li>
 <li>
 <p>結果の確認</p>
-<p>オンライン環境で評価が終わると、<code>result.json</code>がダウンロード可能になります。ダウンロードして結果を確認してください。</p>
+<p>オンライン環境で評価が終わると、提出履歴の右端のボタンで結果を確認することができます。</p>
+<p><img src="./images/siteImage4.png" width="100%"></p>
+<p>result.jsonとrosbagとautoware.logを確認することができます。</p>
+<p><img src="./images/siteImage5.png" width="100%"></p>
 </li>
 <li>
-<p>結果なしの場合</p>
+<p>Failedの場合</p>
 <p>4.1. packageの依存関係に問題がないか確認</p>
 <ul>
 <li>使用言語に応じて、<code>package.xml</code>、<code>setup.py</code>、または<code>CMakeLists.txt</code>に依存関係の漏れがないか確認してください。</li>
