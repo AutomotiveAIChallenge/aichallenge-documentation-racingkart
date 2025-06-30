@@ -43,14 +43,14 @@
     [オンライン環境](https://aichallenge-board.jsae.or.jp)にアクセスします。
     <img src="./images/topImage.png" width="100%">
 
-    右上[「LOG IN」](https://aichallenge-board.jsae.or.jp/auth/custom/sign-in)ボタンからログインします。
+    右上[「Login」](https://aichallenge-board.jsae.or.jp/auth/custom/sign-in)ボタンからログインします。
     <img src="./images/siteImage1.png" width="100%">
 
-    ログインが完了したら緑色の「UPLOAD」ボタンから`aichallenge_submit.tar.gz`をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
+    ログインが完了したら緑色の「Submit Code」ボタンから`aichallenge_submit.tar.gz`をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
     <img src="./images/siteImage2.png" width="100%">
 
-    - 正常に終了した場合、採点完了と表示され、`result.json`がダウンロードでき、各ラップタイムが表示されます。
-    - シナリオ実行後、launchに失敗した等でスコアが出力されていない場合は「結果無し」と表示されます。この場合、サーバーサイドでの内部エラーの可能性があるため、再アップロードをお願いします。問題が続く場合はお問い合わせください。
+    - 正常に終了した場合、「Success」と表示され、`result.json`がダウンロードでき、各ラップタイムが表示されます。
+    - シナリオ実行後、launchに失敗した等でスコアが出力されていない場合は「Failed」と表示されます。この場合、サーバーサイドでの内部エラーの可能性があるため、再アップロードをお願いします。問題が続く場合はお問い合わせください。
     - ビルドに失敗した場合は「ビルド失敗」と表示されます。手順の確認後、再度アップロードしてください。
     - ランキングはこれまでの採点での最高点が適用されます。
     - 採点実行中は新たなソースのアップロードはできません。
