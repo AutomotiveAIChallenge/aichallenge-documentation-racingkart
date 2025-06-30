@@ -43,7 +43,7 @@
     [オンライン環境](https://aichallenge-board.jsae.or.jp)にアクセスします。
     <img src="./images/topImage.png" width="100%">
 
-    右上「Login」 ボタンからログインします。
+    右上の「Login」 ボタンからログインします。
     <img src="./images/siteImage1.png" width="100%">
 
     ログインが完了したら緑色の「Submit Code」ボタンから`aichallenge_submit.tar.gz`をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
