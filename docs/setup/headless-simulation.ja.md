@@ -2,14 +2,13 @@
 
 ## AWSIMのダウンロード
 
-!!! warning "🚧 準備中 / Under Construction"
-    シミュレータは大会開始と同時に公開されます。
+1. One Driveから最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
 
-1. Google Driveから最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
+[:material-launch: AWSIMのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B4aNBsc0aygEdqNPsmm_J8g){ .md-button .md-button--primary  target="_blank" }
 
-2. 実行ファイルが`aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
+1. 実行ファイルが`aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
 
-3. パーミッションを図のように変更します。
+2. パーミッションを図のように変更します。
 
    ![パーミッション変更の様子](./images/awsim-permmision.png)
 

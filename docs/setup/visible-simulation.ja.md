@@ -1,7 +1,4 @@
-# 描画ありAWSIMのダウンロード (参考)
-
-!!! warning "🚧 準備中 / Under Construction"
-    シミュレータは大会開始と同時に公開されます。
+# 描画ありAWSIMの起動 (参考)
 
 デフォルトで描画なしのAWSIMを配布しておりますが、描画ありを希望される方の環境構築方法も記載しております。GPUを使用する環境構築では詰まって進まなくなる事例が多々ありましたので、[推奨環境](./requirements.ja.md)を満たすのスペックのPCが用意できない方や初めてのご参加の方はあくまでも参考程度としてください。
 
@@ -77,9 +74,9 @@ sudo apt update
 sudo apt install -y libvulkan1
 ```
 
-## AWSIMのダウンロード（シミュレータの配布は大会開始時になります）
+## AWSIMのダウンロード（描画無しのAWSIMでダウンロードした方はスキップ）
 
-1. Google Drive から最新の `AWSIM_GPU_**.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
+1. One Drive から最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
 
 2. 実行ファイルが`aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
 
@@ -104,8 +101,6 @@ cd /aichallenge
 ./build_autoware.bash
 ```
 
-Autowareのビルド後、run_simulator.bashを変更します。`AISIM_GPU_**`には先程展開したディレクトリを指定してください。
-
 ```bash
 #!/bin/bash
 
@@ -113,13 +108,6 @@ Autowareのビルド後、run_simulator.bashを変更します。`AISIM_GPU_**`�
 source /aichallenge/workspace/install/setup.bash
 sudo ip link set multicast on lo
 /aichallenge/simulator/AWSIM_GPU_**/AWSIM.x86_64
-```
-
-run_evaluetion.bashに対しても同様に次の変更を加えます。
-
-```bash
-# AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM
-AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM_GPU_**
 ```
 
 以下のコマンドを実行します。
