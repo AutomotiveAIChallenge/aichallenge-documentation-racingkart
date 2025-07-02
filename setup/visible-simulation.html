@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
     
     
       
@@ -1685,17 +1685,10 @@ sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </
 sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvulkan1
 </code></pre></div>
 <h2 id="awsimawsim">AWSIMのダウンロード（描画無しのAWSIMでダウンロードした方はスキップ）</h2>
-<ol>
-<li>
-<p>One Drive から最新の <code>AWSIM.zip</code> をダウンロードし、<code>aichallenge-2025/aichallenge/simulator</code> に展開します。</p>
-</li>
-<li>
+<p>One Driveから最新の <code>AWSIM.zip</code> をダウンロードし、<code>aichallenge-2025/aichallenge/simulator</code> に展開します。</p>
+<p><a class="md-button md-button--primary" href="https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B4aNBsc0aygEdqNPsmm_J8g" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span> AWSIMのダウンロード</a></p>
 <p>実行ファイルが<code>aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64</code>に存在していることを確認してください。</p>
-</li>
-<li>
 <p>パーミッションを図のように変更します。</p>
-</li>
-</ol>
 <p><img alt="パーミッション変更の様子" src="images/awsim-permmision.png" /></p>
 <h2 id="awsim_1">AWSIMの起動確認</h2>
 <p>描画ありのAWSIMを使用する場合は、以下のコマンドでコンテナを起動してください。</p>
@@ -1707,14 +1700,14 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
 ./build_autoware.bash
 </code></pre></div>
+<p>下記のコマンドでシミュレータが起動するか確認しましょう。</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-
-<span class="c1"># shellcheck disable=SC1091</span>
-<span class="nb">source</span><span class="w"> </span>/aichallenge/workspace/install/setup.bash
-sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>multicast<span class="w"> </span>on<span class="w"> </span>lo
-/aichallenge/simulator/AWSIM_GPU_**/AWSIM.x86_64
+<span class="nb">cd</span><span class="w"> </span>/aichallenge
+./run_simulator.bash
 </code></pre></div>
-<p>以下のコマンドを実行します。</p>
+<p>下記のようにシミュレータが現れたら成功です。
+<img alt="AWSIM-Autoware" src="images/awsim.png" /></p>
+<p>確認が終わったら、一度シミュレータを終了し、最後に以下のコマンドを実行します。</p>
 <div class="highlight"><pre><span></span><code>./run_evaluation.bash
 </code></pre></div>
 <p>以下のような画面が現れたら成功です。</p>
@@ -1777,7 +1770,7 @@ sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </spa
       <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "announce.dismiss"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
       
     
   </body>
