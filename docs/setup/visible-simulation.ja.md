@@ -76,7 +76,9 @@ sudo apt install -y libvulkan1
 
 ## AWSIMのダウンロード（描画無しのAWSIMでダウンロードした方はスキップ）
 
-1. One Drive から最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
+1. One Driveから最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
+
+[:material-launch: AWSIMのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B4aNBsc0aygEdqNPsmm_J8g){ .md-button .md-button--primary  target="_blank" }
 
 2. 実行ファイルが`aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
 
@@ -101,16 +103,18 @@ cd /aichallenge
 ./build_autoware.bash
 ```
 
+下記のコマンドでシミュレータが起動するか確認しましょう。
+
 ```bash
 #!/bin/bash
-
-# shellcheck disable=SC1091
-source /aichallenge/workspace/install/setup.bash
-sudo ip link set multicast on lo
-/aichallenge/simulator/AWSIM_GPU_**/AWSIM.x86_64
+cd /aichallenge
+./run_simulator.bash
 ```
 
-以下のコマンドを実行します。
+下記のようにシミュレータが現れたら成功です。
+![AWSIM-Autoware](./images/awsim.png)
+
+確認が終わったら、一度シミュレータを終了し、最後に以下のコマンドを実行します。
 
 ```bash
 ./run_evaluation.bash
