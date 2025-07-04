@@ -53,15 +53,6 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
     ※コピー元のパッケージのライセンスを違反しないよう各自確認お願いいたします。
 
-??? tip "[任意]Vector Mapの編集をしてみる"
-    2025年度のAIチャレンジでは[VectorMapBuilder](https://tools.tier4.jp/feature/vector_map_builder_ll2/)などのツールを使ってpoint cloud map , lanelet2 mapなどの地図の編集を推奨しています。
-
-    Mapのファイル置き場からpointcloud map lanelet2 mapなどをダウンロードして編集してみましょう！（Mapの配布は大会開始時になります）
-
-    [VectorMapBuilderの使い方動画](https://www.youtube.com/watch?v=GvZr707TmuM)にステップバイステップのインストラクションなどがあるので参考にしてみてください。
-
-    作成したlanelet2 mapは`aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/map`に格納してください。
-
 ??? tip "[任意]Trajectoryの編集をしてみる"
     2025年度のAIチャレンジでは岐阜大学のチームが作成してくれた[Trajectory Editor](https://github.com/AutomotiveAIChallenge/aichallenge-trajectory-editor)などのツールを使ってTrajectoryの編集をしていきます。
 
