@@ -8,7 +8,7 @@ In the competition repository, the actual runtime environment is provided entire
 
 ## Building the Docker Image for the Competition Environment
 
-Open a terminal again using `Alt+Ctrl+T`. Follow the commands below by pasting them with `Ctrl+Shift+P` and pressing `Enter`.
+Open a terminal again using `Alt+Ctrl+T`. Follow the commands below by pasting them with `Ctrl+Shift+V` and pressing `Enter`.
 
 First, navigate to the competition repository.
 

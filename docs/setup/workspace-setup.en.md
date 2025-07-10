@@ -2,7 +2,7 @@
 
 ## Installing Dependencies
 
-Open a terminal with `Alt+Ctrl+T`, then paste the following commands using `Ctrl+Shift+P` and press `Enter`. First, install the necessary libraries.
+Open a terminal with `Alt+Ctrl+T`, then paste the following commands using `Ctrl+Shift+V` and press `Enter`. First, install the necessary libraries.
 
 ```bash
 sudo apt update

@@ -23,7 +23,7 @@ If you want to check the simulation screen of AWSIM, follow the steps in [this g
 
 ## Setting up Three Terminals for Debugging (Reference)
 
-To develop with three terminals for debugging, open the first terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+P` and pressing `Enter`.
+To develop with three terminals for debugging, open the first terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+V` and pressing `Enter`.
 
 ```bash
 cd ~/aichallenge-2025
@@ -35,7 +35,7 @@ cd /aichallenge
 bash run_simulator.bash
 ```
 
-Open the second terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+P` and pressing `Enter`.
+Open the second terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+V` and pressing `Enter`.
 
 ```bash
 cd ~/aichallenge-2025
@@ -47,7 +47,7 @@ cd /aichallenge
 bash run_autoware.bash
 ```
 
-Open the third terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+P` and pressing `Enter`.
+Open the third terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+V` and pressing `Enter`.
 
 ```bash
 cd ~/aichallenge-2025

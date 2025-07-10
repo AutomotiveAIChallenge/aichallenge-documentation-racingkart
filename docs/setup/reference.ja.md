@@ -24,7 +24,7 @@ AWSIMのシミュレーション画面を確認したい方は、[こちら](../
 
 ## Debug用にTerminalを3つ用意して開発したい場合 (参考)
 
-`Alt+Ctrl+T`で１つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+P`で貼り付けた後に`Enter`で実行します。
+`Alt+Ctrl+T`で１つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+V`で貼り付けた後に`Enter`で実行します。
 
 ```bash
 cd ~/aichallenge-2025
@@ -36,7 +36,7 @@ cd /aichallenge
 bash run_simulator.bash
 ```
 
-`Alt+Ctrl+T`で2つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+P`で貼り付けた後に`Enter`で実行します。
+`Alt+Ctrl+T`で2つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+V`で貼り付けた後に`Enter`で実行します。
 
 ```bash
 cd ~/aichallenge-2025
@@ -48,7 +48,7 @@ cd /aichallenge
 bash run_autoware.bash
 ```
 
-`Alt+Ctrl+T`で3つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+P`で貼り付けた後に`Enter`で実行します。
+`Alt+Ctrl+T`で3つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+V`で貼り付けた後に`Enter`で実行します。
 
 ```bash
 cd ~/aichallenge-2025
