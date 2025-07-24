@@ -83,4 +83,3 @@
 
         - `/aichallenge/workspace/*`
         - `/autoware/install/*`
-
