@@ -12,24 +12,24 @@
 
 ### オンライン環境へのアップロード手順
 
-1. 動作確認
+1. ソースコードの圧縮
 
-    1.1. 事前準備
+    - `./create_submit_file.bash`を実行してaichallenge_submitディレクトリを圧縮します。
+    - 
 
-    - `aichallenge_submit`を圧縮し、結果出力用のフォルダを生成します。
-    - `./create_submit_file.bash`
+2. ローカル評価環境での動作確認
 
-    1.2. Dockerイメージのビルド
+    2.1. Dockerイメージのビルド
 
     - `./docker_build.sh eval`
 
-    1.3. Dockerコンテナの起動
+    2.2. Dockerコンテナの起動
 
     - 起動後、自動でAutowareが立ち上がり、自動運転が開始されます。
     - GPU版AWSIMを使用している場合: `./docker_run.sh eval gpu`
     - CPU版AWSIMを使用している場合: `./docker_run.sh eval cpu`
 
-    1.4. `result.json`の確認
+    2.3. `result.json`の確認
 
     - 評価完了後、`output/latest`フォルダに以下のファイルが格納されます。
         - `autoware.log`
@@ -38,8 +38,9 @@
         - `result-summary.json`
         - `result-details.json`
 
-2. オンライン環境にアップロード
+3. オンライン採点環境への提出
 
+    3.1. 結果の確認
     [オンライン環境](https://aichallenge-board.jsae.or.jp)にアクセスします。
     <img src="./images/topImage.png" width="100%">
 
@@ -55,9 +56,8 @@
     <img src="./images/siteImage3.png" width="100%">
 
     ランキングはこれまでの採点での最高点が適用されます。
-    アップロードは1日に20回まで可能で、日本時間0時に回数がリセットされます。
 
-3. 結果の確認
+    3.2. 結果の確認
 
     オンライン環境で評価が終わると、提出履歴の右端のボタンで結果を確認することができます。
 
@@ -67,15 +67,15 @@
 
     <img src="./images/siteImage5.png" width="100%">
 
-4. Failedの場合
+    3.3. 結果の確認Failedの場合
 
-    4.1. packageの依存関係に問題がないか確認
+    - packageの依存関係に問題がないか確認
 
-    - 使用言語に応じて、`package.xml`、`setup.py`、または`CMakeLists.txt`に依存関係の漏れがないか確認してください。
+        - 使用言語に応じて、`package.xml`、`setup.py`、または`CMakeLists.txt`に依存関係の漏れがないか確認してください。
 
-    4.2. dockerの確認
+    - dockerの確認
 
-    - 以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。
+        - 以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。
 
         - `docker run -it aichallenge-2025-eval:latest /bin/bash`
 
@@ -84,7 +84,3 @@
         - `/aichallenge/workspace/*`
         - `/autoware/install/*`
 
-    4.3. ファイル容量の確認
-
-    ファイルが重すぎると提出ができません。不要はファイルはなるべく削除するようにしてください。
-    また、現在の提出可能なファイル容量の上限は1.043MBと設定されておりますが、今後は20MB程度に拡張を予定しております。詳細のアップデートはアナウンスをお待ちください。
