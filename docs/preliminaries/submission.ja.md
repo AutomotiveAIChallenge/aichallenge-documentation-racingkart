@@ -67,7 +67,7 @@
 
     <img src="./images/siteImage5.png" width="100%">
 
-    3.3. 結果の確認Failedの場合
+    3.3. Failedの場合
 
     - packageの依存関係に問題がないか確認
 
