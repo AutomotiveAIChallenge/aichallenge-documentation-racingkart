@@ -10,12 +10,12 @@
 2. ローカル評価環境での動作確認
 3. オンライン採点環境への提出
 
-### オンライン環境へのアップロード手順
+### オンライン環境への提出手順
 
 1. ソースコードの圧縮
 
     - `./create_submit_file.bash`を実行してaichallenge_submitディレクトリを圧縮します。
-    - 
+    - 圧縮したファイルはaichallenge-2025/submit/aichallenge_submit.tar.gzに保存されています。
 
 2. ローカル評価環境での動作確認
 
