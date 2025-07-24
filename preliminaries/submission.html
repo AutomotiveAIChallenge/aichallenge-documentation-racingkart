@@ -676,7 +676,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      オンライン環境へのアップロード手順
+      オンライン環境への提出手順
     </span>
   </a>
   
@@ -1531,7 +1531,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      オンライン環境へのアップロード手順
+      オンライン環境への提出手順
     </span>
   </a>
   
@@ -1570,26 +1570,28 @@
 <li>ローカル評価環境での動作確認</li>
 <li>オンライン採点環境への提出</li>
 </ol>
-<h3 id="_3">オンライン環境へのアップロード手順</h3>
+<h3 id="_3">オンライン環境への提出手順</h3>
 <ol>
 <li>
-<p>動作確認</p>
-<p>1.1. 事前準備</p>
+<p>ソースコードの圧縮</p>
 <ul>
-<li><code>aichallenge_submit</code>を圧縮し、結果出力用のフォルダを生成します。</li>
-<li><code>./create_submit_file.bash</code></li>
+<li><code>./create_submit_file.bash</code>を実行してaichallenge_submitディレクトリを圧縮します。</li>
+<li>圧縮したファイルはaichallenge-2025/submit/aichallenge_submit.tar.gzに保存されています。</li>
 </ul>
-<p>1.2. Dockerイメージのビルド</p>
+</li>
+<li>
+<p>ローカル評価環境での動作確認</p>
+<p>2.1. Dockerイメージのビルド</p>
 <ul>
 <li><code>./docker_build.sh eval</code></li>
 </ul>
-<p>1.3. Dockerコンテナの起動</p>
+<p>2.2. Dockerコンテナの起動</p>
 <ul>
 <li>起動後、自動でAutowareが立ち上がり、自動運転が開始されます。</li>
 <li>GPU版AWSIMを使用している場合: <code>./docker_run.sh eval gpu</code></li>
 <li>CPU版AWSIMを使用している場合: <code>./docker_run.sh eval cpu</code></li>
 </ul>
-<p>1.4. <code>result.json</code>の確認</p>
+<p>2.3. <code>result.json</code>の確認</p>
 <ul>
 <li>評価完了後、<code>output/latest</code>フォルダに以下のファイルが格納されます。<ul>
 <li><code>autoware.log</code></li>
@@ -1602,8 +1604,9 @@
 </ul>
 </li>
 <li>
-<p>オンライン環境にアップロード</p>
-<p><a href="https://aichallenge-board.jsae.or.jp">オンライン環境</a>にアクセスします。
+<p>オンライン採点環境への提出</p>
+<p>3.1. 結果の確認
+<a href="https://aichallenge-board.jsae.or.jp">オンライン環境</a>にアクセスします。
 <img src="./images/topImage.png" width="100%"></p>
 <p>右上の「Login」 ボタンからログインします。
 <img src="./images/siteImage1.png" width="100%"></p>
@@ -1612,28 +1615,29 @@
 <p>正常に終了した場合、「Success」と表示されます。
 ビルドに失敗したり、launchに失敗した等でスコアが出力されていない場合は「Failed」と表示されます。この場合、サーバーサイドでの内部エラーの可能性があるため、再アップロードをお願いします。問題が続く場合はslackでお問い合わせください。</p>
 <p><img src="./images/siteImage3.png" width="100%"></p>
-<p>ランキングはこれまでの採点での最高点が適用されます。
-アップロードは1日に20回まで可能で、日本時間0時に回数がリセットされます。</p>
-</li>
-<li>
-<p>結果の確認</p>
+<p>ランキングはこれまでの採点での最高点が適用されます。</p>
+<p>3.2. 結果の確認</p>
 <p>オンライン環境で評価が終わると、提出履歴の右端のボタンで結果を確認することができます。</p>
 <p><img src="./images/siteImage4.png" width="100%"></p>
 <p>result.jsonとrosbagとautoware.logを確認することができます。</p>
 <p><img src="./images/siteImage5.png" width="100%"></p>
-</li>
+<p>3.3. Failedの場合</p>
+<ul>
 <li>
-<p>Failedの場合</p>
-<p>4.1. packageの依存関係に問題がないか確認</p>
+<p>packageの依存関係に問題がないか確認</p>
 <ul>
 <li>使用言語に応じて、<code>package.xml</code>、<code>setup.py</code>、または<code>CMakeLists.txt</code>に依存関係の漏れがないか確認してください。</li>
 </ul>
-<p>4.2. dockerの確認</p>
+</li>
+<li>
+<p>dockerの確認</p>
 <ul>
 <li>
 <p>以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。</p>
-<ul>
-<li><code>docker run -it aichallenge-2025-eval:latest /bin/bash</code></li>
+</li>
+<li>
+<p><code>docker run -it aichallenge-2025-eval:latest /bin/bash</code></p>
+</li>
 </ul>
 </li>
 <li>
@@ -1644,9 +1648,6 @@
 </ul>
 </li>
 </ul>
-<p>4.3. ファイル容量の確認</p>
-<p>ファイルが重すぎると提出ができません。不要はファイルはなるべく削除するようにしてください。
-また、現在の提出可能なファイル容量の上限は1.043MBと設定されておりますが、今後は20MB程度に拡張を予定しております。詳細のアップデートはアナウンスをお待ちください。</p>
 </li>
 </ol>
 
