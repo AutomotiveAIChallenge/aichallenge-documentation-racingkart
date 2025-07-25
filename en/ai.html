@@ -1492,7 +1492,16 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      提供予定
+      入力: 画像データ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      出力: 軌道データ（waypoint
     </span>
   </a>
   
@@ -1501,7 +1510,7 @@
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      重要な留意事項
+      提供予定
     </span>
   </a>
   
@@ -1510,7 +1519,7 @@
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      インターネット上での共有
+      重要な留意事項
     </span>
   </a>
   
@@ -1519,7 +1528,7 @@
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      予選表彰式でのプレゼンテーション企画
+      インターネット上での共有
     </span>
   </a>
   
@@ -1527,6 +1536,15 @@
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      予選表彰式でのプレゼンテーション企画
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       まとめ
     </span>
@@ -1544,7 +1562,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       参考：モビリティ業界で活躍するためのスキル&amp;キャリアパス
     </span>
@@ -1625,7 +1643,16 @@
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      提供予定
+      入力: 画像データ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      出力: 軌道データ（waypoint
     </span>
   </a>
   
@@ -1634,7 +1661,7 @@
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      重要な留意事項
+      提供予定
     </span>
   </a>
   
@@ -1643,7 +1670,7 @@
         <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      インターネット上での共有
+      重要な留意事項
     </span>
   </a>
   
@@ -1652,7 +1679,7 @@
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      予選表彰式でのプレゼンテーション企画
+      インターネット上での共有
     </span>
   </a>
   
@@ -1660,6 +1687,15 @@
       
         <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      予選表彰式でのプレゼンテーション企画
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       まとめ
     </span>
@@ -1677,7 +1713,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       参考：モビリティ業界で活躍するためのスキル&amp;キャリアパス
     </span>
@@ -1763,29 +1799,49 @@
 軌道データ（waypoint）の出力
 <img alt="alt text" src="../assets/ai_image.png" /></p>
 <p>入出力仕様:</p>
-<p>入力: 画像データ</p>
-<p>出力: 軌道データ（waypoint）</p>
-<h2 id="_5">提供予定</h2>
+<h2 id="_5">入力: 画像データ</h2>
+<p>AWSIMでuse imageのボタンを押してカメラ画像を有効にします。</p>
+<p><img alt="alt text" src="../assets/camera_awsim.png" /></p>
+<p>カメラから出力される画像データは以下のROSトピックを通じて提供されます：</p>
+<ul>
+<li><strong>画像トピック</strong>: <code>/sensing/camera/image_raw</code></li>
+<li>型: <code>sensor_msgs/msg/Image</code></li>
+<li>QoS: Reliability=BEST_EFFORT, Durability=VOLATILE</li>
+<li>解像度: 1920×1080 (Full HD)</li>
+<li>エンコーディング: BGR8</li>
+<li>
+<p>フレームID: camera_link</p>
+</li>
+<li>
+<p><strong>カメラ情報トピック</strong>: <code>/sensing/camera/camera_info</code></p>
+</li>
+<li>型: <code>sensor_msgs/msg/CameraInfo</code></li>
+<li>QoS: Reliability=BEST_EFFORT, Durability=VOLATILE</li>
+<li>歪み補正モデル: plumb_bob</li>
+<li>内部パラメータ行列（K）、歪み係数（D）、投影行列（P）を含む</li>
+</ul>
+<h2 id="waypoint">出力: 軌道データ（waypoint</h2>
+<h2 id="_6">提供予定</h2>
 <p>VADモデルのROS Node実装を8月上旬にサンプルとして公開予定</p>
 <p>画像Topic出力シミュレータ
 AWSIMから画像topicを出力するシミュレータ環境を提供します。
 活用方法:</p>
 <p>上記の機械学習モデル（E2E Planner）と組み合わせることで、AWSIMデータを用いた推論が実行可能
 リアルな環境でのシミュレーション検証が可能</p>
-<h2 id="_6">重要な留意事項</h2>
+<h2 id="_7">重要な留意事項</h2>
 <p>競技への影響について
 本取り組みは予選競技の採点には影響いたしません。 あくまで取組に興味を持った参加者が気軽に使える環境を提供することに限定されています。
 成果共有の推進
 本取り組みを活用した結果については、以下での共有を推進しています</p>
-<h2 id="_7">インターネット上での共有</h2>
+<h2 id="_8">インターネット上での共有</h2>
 <p>GitHubでのコード公開
 技術ブログでの実装レポート
 SNSでの成果発表</p>
-<h2 id="_8">予選表彰式でのプレゼンテーション企画</h2>
+<h2 id="_9">予選表彰式でのプレゼンテーション企画</h2>
 <p>実装成果の報告
 技術的知見の共有
 参加者間での情報交換</p>
-<h2 id="_9">まとめ</h2>
+<h2 id="_10">まとめ</h2>
 <p>この追加的取り組みにより、参加者は実際の機械学習システムを自動運転環境で動作させる貴重な経験を積むことができます。Embodied AIとシミュレータの組み合わせにより、より実践的なスキルの習得が期待されます。
 興味のある方は、ぜひお試しください。また、実装した成果については積極的な共有をお願いいたします。</p>
 <h2 id="faq">FAQ</h2>
@@ -1845,7 +1901,7 @@ SNSでの成果発表</p>
 <p class="admonition-title">最後に</p>
 <p>自動運転AIチャレンジの本質は、参加者の皆様が自動運転技術を学び、成長することです。この教材は、その選択肢を広げるための一つのツールに過ぎません。ご自身の目的と興味に応じて、活用をご検討ください。</p>
 </div>
-<h2 id="_10">参考：モビリティ業界で活躍するためのスキル&amp;キャリアパス</h2>
+<h2 id="_11">参考：モビリティ業界で活躍するためのスキル&amp;キャリアパス</h2>
 <div class="admonition quote">
 <p class="admonition-title">未来の移動体験を生み出すソフトウェアエンジニアのしごと図鑑2025</p>
 <p>ただ走るクルマを作るだけがモビリティ業界じゃない。

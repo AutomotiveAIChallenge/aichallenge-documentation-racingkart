@@ -1482,11 +1482,11 @@
 <p>次の2ステップでまずはオンライン採点環境を使ってみましょう！</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>オンライン採点環境へのアクセスから提出までの所要時間は５分程度です</p>
+<p>オンライン採点環境へのアクセスから提出までの所要時間は5分程度です</p>
 </div>
 <ol>
 <li>
-<p>自動運転AIチャレンジの参加登録後。ログイン情報が登録メールアドレスに送られてきます．</p>
+<p>自動運転AIチャレンジの参加登録後、ログイン情報が登録メールアドレスに送られてきます。</p>
 </li>
 <li>
 <p><a class="md-button md-button--primary" href="https://aichallenge-board.jsae.or.jp" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span> オンライン採点環境</a>にアクセスし、メールアドレス記載の資格情報を用いてログインしてください。</p>
@@ -1508,7 +1508,13 @@
 <p><img alt="submit" src="preliminaries/images/siteImage2.png" /></p>
 </details>
 <details class="note">
-<summary>4. AIチャレンジの環境構築</summary>
+<summary>4. チームのアイコンを設定する</summary>
+<p>チームのアイコンの設定をお願いいたします。アイコンの作成においては、ChatGPTなどの生成AIを活用するのも効果的です。
+作成したアイコンは、SDVスキル標準に基づいた保有スキルの一覧表にも掲載されます。</p>
+<p><a class="md-button md-button--primary" href="https://aichallenge-board.jsae.or.jp/public/jobs"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span> 参加者の保有スキル</a></p>
+</details>
+<details class="note">
+<summary>5. AIチャレンジの環境構築</summary>
 <p>サンプルコードが提出できたら、次は開発環境の構築を行いましょう。</p>
 <p><a class="md-button md-button--primary" href="setup/requirements.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M6 13h8l-3.5 3.5 1.42 1.42L17.84 12l-5.92-5.92L10.5 7.5 14 11H6z"/></svg></span> AIチャレンジの環境構築</a></p>
 <div class="admonition note">
@@ -1517,18 +1523,41 @@
 </div>
 </details>
 <details class="note">
-<summary>5. AIチャレンジでの開発の進め方</summary>
+<summary>6. AIチャレンジでの開発の進め方</summary>
 <p>環境構築が完了したら、実際に自動運転ソフトウェアを改良してみましょう。</p>
 <p><a class="md-button md-button--primary" href="development/workspace-usage.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M6 13h8l-3.5 3.5 1.42 1.42L17.84 12l-5.92-5.92L10.5 7.5 14 11H6z"/></svg></span> AIチャレンジでの開発の進め方</a></p>
 </details>
 <details class="note">
-<summary>6. 開発したコードを提出</summary>
+<summary>7. 開発したコードを提出</summary>
 <p>完成したコードの提出は<a href="https://aichallenge-board.jsae.or.jp/live">オンライン採点環境</a>から行います。
 下記リンクより再度提出してみましょう。</p>
 <p><a class="md-button md-button--primary" href="preliminaries/submission.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span> ソースコードの提出</a></p>
 </details>
 <details class="note">
-<summary>7. AIを活用した練習教材を試してみる（任意）</summary>
+<summary>8. 提出したコードがうまく動かないとき</summary>
+<p>提出したコードが動かないときは<code>aichallenge-2025/output/2025-$DATE-$TIME/autoware.log</code>をみてみましょう。</p>
+<p><div class="highlight"><pre><span></span><code>[INFO] [launch]: All log files can be found below $USER/.ros/log/2025-07-25-15-39-51-817891-XXX
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: The arguments for aichallenge_system_launch.
+[INFO] [launch.user]:  - simulation: true
+[INFO] [launch.user]:  - use_sim_time: true
+[INFO] [launch.user]:  - sensor_model: racing_kart_sensor_kit
+[INFO] [launch.user]:  - launch_vehicle_interface: true
+[INFO] [launch.user]:  - rviz config: /aichallenge/workspace/install/aichallenge_system_launch/share/aichallenge_system_launch/config/autoware.rviz
+↓↓↓↓↓↓↓↓
+[ERROR] [launch]: Caught exception in launch (see debug for traceback): &quot;package &#39;aichallenge_submit_launch&#39; not found, searching: [&#39;/aichallenge/workspace/install/simple_trajectory_generator&#39;, &#39;/aichallenge/workspace/install/simple_pure_pursuit&#39;, &#39;/aichallenge/workspace/install/racing_kart_sensor_kit_description&#39;, &#39;/aichallenge/workspace/install/racing_kart_gnss_poser&#39;, &#39;/
+↑↑↑↑↑↑↑↑
+</code></pre></div>
+それでも解決しない場合は<code>aichallenge/workspace/build</code>と<code>aichallenge/workspace/install</code>と<code>aichallenge/workspace/log</code>などを確認し、一度削除してからもう一度buildしてログを収集してみましょう。</p>
+<p>手元でどの方法でもエラーが再現できない場合は、下記の情報と共に質問チャンネルでお問い合わせください。</p>
+<pre><code>1. https://aichallenge-board.jsae.or.jp/public/submissions のID、日時などの情報
+2. 手元でやってみたことの手順の共有
+3. もともとのサンプルコードとの差分、どのような変更を加えたのかの説明
+4. ログの情報、その他思い当たる節がありそうな部分の共有
+</code></pre>
+</details>
+<details class="note">
+<summary>9. AIを活用した練習教材を試してみる（任意）</summary>
 <p>Autowareの基本を習得した後、さらに技術の幅を広げたい方向けに、機械学習を活用した練習教材をご用意しています。</p>
 <p><strong>こんな方におすすめ：</strong></p>
 <ul>
