@@ -52,9 +52,28 @@
 
 入出力仕様:
 
-入力: 画像データ
+**入力: 画像データ**
 
-出力: 軌道データ（waypoint）
+AWSIMでuse imageのボタンを押してカメラ画像を有効にします。
+
+![alt text](assets/camera_awsim.png)
+
+カメラから出力される画像データは以下のROSトピックを通じて提供されます：
+
+- **画像トピック**: `/sensing/camera/image_raw`
+  - 型: `sensor_msgs/msg/Image`
+  - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE
+  - 解像度: 1920×1080 (Full HD)
+  - エンコーディング: BGR8
+  - フレームID: camera_link
+
+- **カメラ情報トピック**: `/sensing/camera/camera_info`
+  - 型: `sensor_msgs/msg/CameraInfo`
+  - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE
+  - 歪み補正モデル: plumb_bob
+  - 内部パラメータ行列（K）、歪み係数（D）、投影行列（P）を含む
+
+**出力: 軌道データ（waypoint）**
 
 ## 提供予定
 
