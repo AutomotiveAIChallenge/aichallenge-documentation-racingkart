@@ -37,9 +37,9 @@
 ??? note  "4. チームのアイコンを設定する"
     チームのアイコンの設定をお願いいたします。アイコンの作成においては、ChatGPTなどの生成AIを活用するのも効果的です。
     作成したアイコンは、SDVスキル標準に基づいた保有スキルの一覧表にも掲載されます。
-    
+
     [:material-launch: 参加者の保有スキル](https://aichallenge-board.jsae.or.jp/public/jobs){ .md-button .md-button--primary}
-    
+
 ??? note  "5. AIチャレンジの環境構築"
 
     サンプルコードが提出できたら、次は開発環境の構築を行いましょう。
@@ -105,5 +105,3 @@
         この教材は競技の採点には一切影響しません。純粋に技術的な興味から取り組んでいただく内容です。
 
     [:material-arrow-right-circle: AIを活用した練習教材](./ai.ja.md){ .md-button .md-button--primary }
-
-
