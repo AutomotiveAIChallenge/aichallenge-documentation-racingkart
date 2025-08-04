@@ -38,7 +38,6 @@ graph LR
 ### Input詳細
 
 入力データは以下のROS topicを通じて提供されます．
-- TODO(Shin-kyoto): 埋める
 
 - **Image topic**: `/sensing/camera/image_raw`
   - 型: `sensor_msgs/msg/Image`
@@ -51,26 +50,26 @@ graph LR
   - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE
 
 - **Extrinsic Calibration topic**: `/tf_static`
-  - 型: 
-  - QoS: 
+  - 型: `tf2_msgs/msg/TFMessage`
+  - QoS: Reliability=RELIABLE, Durability=TRANSIENT_LOCAL
 
 - **Odmetry topic**: `/localization/kinematic_state`
-  - 型: 
-  - QoS: 
+  - 型: `nav_msgs/msg/Odometry`
+  - QoS: Reliability=RELIABLE, Durability=VOLATILE
 
 - **Acceleration topic**: `/localization/acceleration`
-  - 型: 
-  - QoS: 
+  - 型: `geometry_msgs/msg/AccelWithCovarianceStamped`
+  - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE 
 
 ### Output詳細: 軌道データ（waypoints）
 
 - **Candidate trajectories topic**: `/planning/vad/trajectories`
-  - 型: 
-  - QoS: 
+  - 型: `autoware_internal_planning_msgs/msg/CandidateTrajectories`
+  - QoS: Reliability=RELIABLE, Durability=VOLATILE
 
 - **Selected trajectory topic**: `/planning/vad/auto/trajectory`
-  - 型: 
-  - QoS: 
+  - 型: `autoware_auto_planning_msgs/msg/Trajectory`
+  - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE
 
 ## Input/Output実装(詳細)
 
@@ -82,7 +81,8 @@ graph LR
 <summary>実際の実装</summary>
 
 - Sample Nodeに使用しているalgorithmであるVADは，6枚の画像を入力に取ります．
-- TODO(Shin-kyoto): 書く
+  - 詳細については，[algorithm](./algorithms.md#vad-tinyの詳細)を確認してください．
+- しかし，AWSIMは1枚しか画像を出力しないので，5枚はdummy画像を生成し，VADにわたしています．
 
 ```mermaid
 graph LR

@@ -38,11 +38,34 @@
 ## VAD
 
 - ICCV2023で発表された手法です．BEV特徴量の使用，"Query based"な思想をUniADから引き継ぎながらも，Raster mapではなくVector mapを使用することで高速化・軽量化を達成．RTX3090で16.8 Fpsで動きます．
-- Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています．
 - 論文: [VAD: Vectorized Scene Representation for Efficient Autonomous Driving](https://arxiv.org/abs/2303.12077)
 - 学習・推論用code: https://github.com/hustvl/VAD
 
 ![VAD Architecture](https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png)
+
+Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています．
+
+<details>
+<summary>VAD-tinyの詳細</summary>
+
+### VAD-tinyの詳細
+
+- VAD-tinyのinput
+  - 6枚の画像(解像度: 384x640)
+  - VADが推論に使う基準座標系から各cameraへの座標変換行列
+      - python実装において，nuScenesで学習した際のVADの基準座標系がlidar座標系であることから`lidar2cam`と呼ばれます
+  - 車両の自己位置・加速度・速度・角速度・yawの値
+    　- 車両のCANを通じて取得する情報であることから`can_bus`と呼ばれます
+  - 過去のBEV特徴量を現在のBEV特徴量と結合する際に，過去のBEV特徴量を補正するための情報(`shift`)
+      - BEV特徴量のサイズと，`can_bus`に含まれるyawの情報から計算されます
+
+- VAD-tinyのoutput trajectory
+    - `[3, 6, 2]`のサイズの配列を出力
+        - 3: 右折，左折，直進の3種類
+        - 6: 6 step先までのwaypointを推論
+        - 2: (x,y)
+
+</details>
 
 <!-- ## DiffusionDrive
 
