@@ -57,7 +57,6 @@ Sample ROS Nodeと教材は以下のlinkより参照ください．
 - 実行方法，instructionを以下に提供
     - [Getting started](./ml_sample/getting_started.md)
     - [Design: Sample ROS Node](./ml_sample/design.md)
-    - [Detail: Sample ROS Node](./ml_sample/detailed_information.md)
     - [Algorithms](./ml_sample/algorithms.md)
     - [FAQ](./ml_sample/faq.md)
 
@@ -85,7 +84,6 @@ Sample ROS Nodeと教材は以下のlinkより参照ください．
 
 - [Getting started](./ml_sample/getting_started.md)
 - [Design: Sample ROS Node](./ml_sample/design.md)
-- [Detail: Sample ROS Node](./ml_sample/detailed_information.md)
 
 ### 機械学習モデルを使って実験してみたい方
 
