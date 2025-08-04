@@ -34,76 +34,87 @@
 
     - **キャリア形成**: 将来的に自動運転業界で求められるスキルの先取り
 
-## 実施内容
+## 提供教材
 
 本年度はEmbodied AI（実世界とインタラクションする機械学習システム）をシミュレータと結合して動作させ、推論を実行できるコードをサンプルとして提供します。
 
-## 提供教材
+- 自動運転AIチャレンジ2025の教材と結合可能な，機械学習モデルを使用して軌道生成可能なSample ROS Nodeを提供します．
+- このSample ROS Nodeを参考に，以下のような発展的学習を進められることを期待しています．
+    - 自分の使用したい機械学習モデルとシミュレータを結合し，走らせてみる
+    - Sample ROS Nodeを使って走行を行い，tuningしてみる
+    - 機械学習モデルを組み込んだシステムの実装方法について知識を得て，記事を書いてみる
+- 機能概要
+    - カメラから出力された画像を用いて，機械学習モデルによる推論を実行し，軌道データ（waypoint）を出力します．
+    - 実装の詳細については [Design: Sample ROS Node](./ml_sample/design.md)を参照．
+    - 使用しているアルゴリズムの詳細については [Algorithms](./ml_sample/algorithms.md)を参照．
 
-1. 機械学習モデル（E2E Planner）のROS Node
-自動運転AIチャレンジ2025の教材と結合可能な機械学習モデルを提供します。
-
-機能概要:
-
-カメラから出力された画像をROS topicへ変換
-機械学習モデルによる推論実行
-軌道データ（waypoint）の出力
 ![alt text](assets/ai_image.png)
 
-入出力仕様:
+Sample ROS Nodeと教材は以下のlinkより参照ください．
 
-## 入力: 画像データ
+- [AutomotiveAIChallenge/e2e-utils-beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)
+    - Sample nodeとtoolをまとめた実装を提供
+- 実行方法，instructionを以下に提供
+    - [Getting started](./ml_sample/getting_started.md)
+    - [Design: Sample ROS Node](./ml_sample/design.md)
+    - [Detail: Sample ROS Node](./ml_sample/detailed_information.md)
+    - [Algorithms](./ml_sample/algorithms.md)
+    - [FAQ](./ml_sample/faq.md)
 
-AWSIMでuse imageのボタンを押してカメラ画像を有効にします。
+## 本教材の想定読者
 
-![alt text](assets/camera_awsim.png)
+!!! tip "想定読者"
 
-カメラから出力される画像データは以下のROSトピックを通じて提供されます：
+    本教材は以下のような方におすすめです．
 
-- **画像トピック**: `/sensing/camera/image_raw`
-  - 型: `sensor_msgs/msg/Image`
-  - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE
-  - 解像度: 1920×1080 (Full HD)
-  - エンコーディング: BGR8
-  - フレームID: camera_link
+    - 自分自身で新しく機械学習モデルを作り，データを集め，学習し，AIチャレンジで使用するシミュレータと繋いで走らせてみたい方
+    
+    - 新しいことにトライし，その経験や知識を記事やプレゼンテーションとして発表したい方
 
-- **カメラ情報トピック**: `/sensing/camera/camera_info`
-  - 型: `sensor_msgs/msg/CameraInfo`
-  - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE
-  - 歪み補正モデル: plumb_bob
-  - 内部パラメータ行列（K）、歪み係数（D）、投影行列（P）を含む
+この教材では，自分自身の興味関心を基に，Embodied AIの領域を学習したい方向けに，その補助輪となるSampleを提供します．
 
-## 出力: 軌道データ（waypoint
+- 自作した機械学習モデルを使ってみたいがどう繋いだらいいかわからない
+- 機械学習モデルを使って実験してみたいという興味はあるが何から始めたらいいかわからない
+- 新しいことにトライし，その経験や知識を記事やプレゼンテーションとして発表したいが，どういう内容を発表すればいいかアイデアが浮かんでいない
 
-## 提供予定
+という方はぜひ使ってみてください．
 
-VADモデルのROS Node実装を8月上旬にサンプルとして公開予定
+### 自作した機械学習モデルを繋いでみたい方
 
-画像Topic出力シミュレータ
-AWSIMから画像topicを出力するシミュレータ環境を提供します。
-活用方法:
+以下の資料がおすすめです．Sample ROS Nodeの構成を学び，参考にし，ぜひ自作した機械学習モデルを使ってみてください．
 
-上記の機械学習モデル（E2E Planner）と組み合わせることで、AWSIMデータを用いた推論が実行可能
-リアルな環境でのシミュレーション検証が可能
+- [Getting started](./ml_sample/getting_started.md)
+- [Design: Sample ROS Node](./ml_sample/design.md)
+- [Detail: Sample ROS Node](./ml_sample/detailed_information.md)
+
+### 機械学習モデルを使って実験してみたい方
+
+以下の資料がおすすめです．Sample ROS Nodeで使用されているアルゴリズムについて勉強し，動かしてみて，簡単な実験をしてみましょう．
+
+- [Getting started](./ml_sample/getting_started.md)
+- [Algorithms](./ml_sample/algorithms.md)
+
+### 獲得した知識・経験をOutputしたい方
+
+- 大きく分けて，以下の２つのOutput方法を期待しております．
+
+#### 1. インターネット上での共有
+
+- GitHubでのコード公開
+- 技術ブログでの実装レポート
+- SNSでの成果発表
+
+#### 2. 予選表彰式でのプレゼンテーション企画
+
+- 実装成果の報告
+- 技術的知見の共有
+- 参加者間での情報交換
 
 ## 重要な留意事項
 
-競技への影響について
-本取り組みは予選競技の採点には影響いたしません。 あくまで取組に興味を持った参加者が気軽に使える環境を提供することに限定されています。
-成果共有の推進
-本取り組みを活用した結果については、以下での共有を推進しています
+### 競技への影響について
 
-## インターネット上での共有
-
-GitHubでのコード公開
-技術ブログでの実装レポート
-SNSでの成果発表
-
-## 予選表彰式でのプレゼンテーション企画
-
-実装成果の報告
-技術的知見の共有
-参加者間での情報交換
+- 本取り組みは予選競技の採点には影響いたしません。 あくまで取組に興味を持った参加者が気軽に使える環境を提供することに限定されています。
 
 ## まとめ
 
