@@ -28,6 +28,10 @@ AWSIMが表示されたら，AWSIMでuse imageのボタンを押してカメラ�
 
     この手順書に従って環境構築を行うことで，local環境が変更されます．
 
+### uvのinstall
+
+[こちら](https://docs.astral.sh/uv/getting-started/installation/)に従って`uv`をinstallしてください．
+
 ### ROSのinstall
 
 [こちらのドキュメント](https://autowarefoundation.github.io/autoware-documentation/main/installation/autoware/source-installation/#how-to-set-up-a-development-environment)に従って，ROS環境を構築してください．
