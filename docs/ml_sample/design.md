@@ -24,7 +24,7 @@ graph LR
     Vehicle -- "/tf_static" --> SampleNode
     
     SampleNode -- "/planning/vad/trajectories<br>" --> TrajectorySelection
-    TrajectorySelection -- "/planning/vad/auto/trajectory<br>" --> Control
+    TrajectorySelection -- "/planning/ml_planner/auto/trajectory<br>" --> Control
 ```
 
 ## Input/Output詳細
@@ -67,7 +67,7 @@ graph LR
   - 型: `autoware_internal_planning_msgs/msg/CandidateTrajectories`
   - QoS: Reliability=RELIABLE, Durability=VOLATILE
 
-- **Selected trajectory topic**: `/planning/vad/auto/trajectory`
+- **Selected trajectory topic**: `/planning/ml_planner/auto/trajectory`
   - 型: `autoware_auto_planning_msgs/msg/Trajectory`
   - QoS: Reliability=BEST_EFFORT, Durability=VOLATILE
 
@@ -95,7 +95,7 @@ graph LR
     Vehicle -- "/tf_static" --> SampleNode
     
     SampleNode -- "/planning/vad/trajectories<br>" --> TrajectorySelection
-    TrajectorySelection -- "/planning/vad/auto/trajectory<br>" --> Control
+    TrajectorySelection -- "/planning/ml_planner/auto/trajectory<br>" --> Control
 ```
 
 </details>

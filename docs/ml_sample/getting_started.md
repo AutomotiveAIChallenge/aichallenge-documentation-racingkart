@@ -115,7 +115,7 @@ cd e2e-utils-beta;source install/setup.bash
 ```
 
 ```sh
-cd src/vlm_trajectory_selector;uv venv -p python3.10
+cd src/vlm_planner;uv venv -p python3.10
 ```
 
 ```sh
@@ -141,28 +141,28 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 
 ```sh
 # Run the VLM planner node with custom output topic
-cd e2e-utils-beta/src/vlm_trajectory_selector
-python vlm_planner_node.py --ros-args -p output_topic:="/planning/vad/auto/trajectory"
+cd e2e-utils-beta/src/vlm_planner
+python vlm_planner_node.py --ros-args -p output_topic:="/planning/ml_planner/auto/trajectory"
 ```
 
 以下のコマンドで出力が得られていれば，正しく実行できています．
 
 ```sh
-ros2 topic echo /planning/vad/auto/trajectory
+ros2 topic echo /planning/ml_planner/auto/trajectory
 ```
 
 ## Tips
 
 このSampleでは，`gemini-2.5-flash-lite`をそのまま使用しており，サーキット用のチューニングができておらず，ヘアピンを回ることができない状態です．以下のTipsを参考に，改善にトライしてみてください．
 
-- `e2e-utils-beta/src/vlm_trajectory_selector/vlm_planner.py`を更新することでモデルを変更できます
+- `e2e-utils-beta/src/vlm_planner/vlm_planner.py`を更新することでモデルを変更できます
     - デフォルトでは`gemini-2.5-flash-lite`が使用されています．
 
 ```python
 self.model = genai.GenerativeModel("gemini-2.5-flash-lite")
 ```
 
-- プロンプト(e2e-utils-beta/src/vlm_trajectory_selector/prompt.py)を更新することでも改善ができる可能性があります．
+- プロンプト(e2e-utils-beta/src/vlm_planner/prompt.py)を更新することでも改善ができる可能性があります．
 
 - [Vertex AIでのファインチューニング](https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini-use-supervised-tuning?hl=ja)が軌道の改善に役立つ可能性があります．
 
