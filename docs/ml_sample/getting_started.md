@@ -22,74 +22,20 @@ AWSIMが表示されたら，AWSIMでuse imageのボタンを押してカメラ�
 
 ![alt text](../assets/camera_awsim.png)
 
-## local環境側の準備
+scaleは0.20程度に変更しましょう．(Geminiが5秒に1回しか推論できないため．)
+
+## VLM Planner環境側の準備
+
+### docker imageのpull
+
 
 !!! info
 
-    この手順書に従って環境構築を行うことで，local環境が変更されます．
-
-### uvのinstall
-
-[こちら](https://docs.astral.sh/uv/getting-started/installation/)に従って`uv`をinstallしてください．
-
-### ROSのinstall
-
-[こちらのドキュメント](https://autowarefoundation.github.io/autoware-documentation/main/installation/autoware/source-installation/#how-to-set-up-a-development-environment)に従って，ROS環境を構築してください．
+    docker pullでは，10GB程度のlayerのdownloadを行います．通信環境によっては，一時間以上の実行時間が必要となります．
 
 ```sh
-git clone https://github.com/autowarefoundation/autoware.git
-cd autoware
+docker pull ghcr.io/autowarefoundation/autoware:universe-devel-cuda
 ```
-
-以下を実行する際，途中で選択肢への回答が必要です．
-
-```sh
-./setup-dev-env.sh
-```
-
-以下を参考に回答してください．
-<details>
-<summary>選択肢への回答</summary>
-
-- 1. Are you sure you want to run setup?
-  - `y`と回答してください
-
-```sh
-❯ ./setup-dev-env.sh
-Setting up the build environment can take up to 1 hour.
->  Are you sure you want to run setup? [y/N] 
-```
-
-- 2. `BECOME password: `
-  - local環境の変更が行われても問題なければ，passwordを入力してください．
-
-```sh
-autoware.dev_env:0.1.0 was installed successfully
-ansible-playbook autoware.dev_env.universe --ask-become-pass --extra-vars install_devel=y --extra-vars data_dir=/home/autoware/autoware_data --extra-vars rosdistro=humble --extra-vars rmw_implementation=rmw_cyclonedds_cpp --extra-vars base_image=ros:humble-ros-base-jammy --extra-vars autoware_base_image=ghcr.io/autowarefoundation/autoware-base:latest --extra-vars autoware_base_cuda_image=ghcr.io/autowarefoundation/autoware-base:cuda-latest --extra-vars cuda_version=12.4 --extra-vars cudnn_version=8.9.7.29-1+cuda12.2 --extra-vars tensorrt_version=10.8.0.43-1+cuda12.8 --extra-vars pre_commit_clang_format_version=17.0.5 --extra-vars cumm_version=0.5.3 --extra-vars spconv_version=2.3.8 
-BECOME password: 
-```
-
-- 3. `Install NVIDIA libraries? [y/N]`と`Download artifacts? [y/N]`
-  - `N`と答えてください．
-
-```sh
-Install NVIDIA libraries? [y/N]: 
-[Warning] Should the ONNX model files and other artifacts be downloaded alongside setting up the development environment.
-Download artifacts? [y/N]: 
-```
-
-</details>
-
-### ROS環境の確認
-
-ROSがlocal環境に導入されたかどうかを確認します．
-
-```sh
-source /opt/ros/humbe/setup.bash
-echo $ROS_DISTRO
-```
-
-`humble`と表示されれば成功です．
 
 ### e2e_utils_betaの環境構築
 
@@ -101,10 +47,28 @@ cd e2e_utils_beta
 sh script/setup.sh
 ```
 
-### build
+### docker run
+
+- `/path/to/e2e_utils_beta`には，local環境にcloneしてきた`e2e_utils_beta`のpathを埋めてください．
 
 ```sh
-cd e2e_utils_beta
+rocker \
+  --nvidia \
+  --x11 \
+  --network host \
+  --user \
+  --volume /path/to/e2e_utils_beta:/home/e2e_utils_beta \
+  --name aichallenge-e2e-utils \
+  ghcr.io/autowarefoundation/autoware:universe-devel-cuda \
+  /bin/bash
+```
+
+### colcon build
+
+- 以下の手順はdockerの中で実施してください．
+
+```sh
+cd /home/e2e_utils_beta
 rosdep update;rosdep install -y --from-paths . --ignore-src --rosdistro $ROS_DISTRO
 ```
 
@@ -113,6 +77,9 @@ colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -
 ```
 
 ### uvの環境構築
+
+[こちら](https://docs.astral.sh/uv/getting-started/installation/)に従って`uv`をinstallしてください．
+
 
 ```sh
 cd e2e-utils-beta;source install/setup.bash
