@@ -17,12 +17,18 @@ cd /aichallenge
 ./run_evaluation.bash
 ```
 
-
-AWSIMが表示されたら，AWSIMでuse imageのボタンを押してカメラ画像を有効にします．
+- AWSIMが表示されたら，AWSIMでuse imageのボタンを押してカメラ画像を有効にします．
+- カメラ画像が左上に表示されれば，AWSIM用環境の準備はOKです．
 
 ![alt text](../assets/camera_awsim.png)
 
-scaleは0.20程度に変更しましょう．(Geminiが5秒に1回しか推論できないため．)
+## Gemini APIの準備
+
+- [こちらのdocument](https://ai.google.dev/gemini-api/docs/api-key?hl=ja)に従って，Gemini API KEYを取得してください．
+
+!!! info
+
+    Gemini API KEYは自分だけしか見られない場所に保管してください．GitHubにpushしないよう気をつけましょう．
 
 ## VLM Planner環境側の準備
 
@@ -97,10 +103,9 @@ source .venv/bin/activate
 uv pip install .
 ```
 
-### Gemini APIの取得
+### Gemini APIの設定
 
-- [こちらのdocument](https://ai.google.dev/gemini-api/docs/api-key?hl=ja)に従って，Gemini APIを取得してください．
-- 取得したAPI KEYを環境変数に設定しましょう．
+- [Gemini APIの準備](#gemini-apiの準備)にて取得したAPI KEYを環境変数に設定しましょう．
 
 ```sh
 export GEMINI_API_KEY="YOUR_API_KEY"
@@ -108,13 +113,21 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 
 ## VLM Plannerの実行
 
-- 以下のコマンドを実行し，VLM Plannerを動かしてみてください．
+- [VLM Planner環境側の準備](#vlm-planner環境側の準備)で作成したdocker container内で，以下を実行しましょう．
+  - 以下のコマンドを実行し，VLM Plannerを動かしてみてください．
 
 ```sh
 # Run the VLM planner node with custom output topic
 cd e2e-utils-beta/src/vlm_planner
 python vlm_planner_node.py --ros-args -p output_topic:="/planning/ml_planner/auto/trajectory"
 ```
+
+## AWSIMの実行
+
+- [AWSIM側の準備](#awsim側の準備)にて作成したdocker container内で，`./run_evaluation.bash`を実行しましょう．
+  - scaleは0.20程度に変更しましょう．(Geminiが5秒に1回しか推論できないため．)
+
+## 実行結果を確認
 
 以下のコマンドで出力が得られていれば，正しく実行できています．
 
