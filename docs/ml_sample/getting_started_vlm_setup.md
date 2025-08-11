@@ -1,6 +1,6 @@
-# Getting started
+# Getting started: Setup for VLM Planner
 
-このドキュメントでは，Gemini APIとAWSIMを用いて，VLM Plannerを動かす方法について説明します．
+このドキュメントでは，Gemini APIとAWSIMを用いて，VLM Plannerのsetupを行う方法について説明します．
 
 ## AWSIM側の準備
 
@@ -20,7 +20,7 @@ cd /aichallenge
 - AWSIMが表示されたら，AWSIMでuse imageのボタンを押してカメラ画像を有効にします．
 - カメラ画像が左上に表示されれば，AWSIM用環境の準備はOKです．
 
-![alt text](../assets/camera_awsim.png)
+![alt text](../assets/camera_awsim_after.png)
 
 ## Gemini APIの準備
 
@@ -111,42 +111,6 @@ uv pip install .
 export GEMINI_API_KEY="YOUR_API_KEY"
 ```
 
-## VLM Plannerの実行
+## Next Step
 
-- [VLM Planner環境側の準備](#vlm-planner環境側の準備)で作成したdocker container内で，以下を実行しましょう．
-  - 以下のコマンドを実行し，VLM Plannerを動かしてみてください．
-
-```sh
-# Run the VLM planner node with custom output topic
-cd e2e-utils-beta/src/vlm_planner
-python vlm_planner_node.py --ros-args -p output_topic:="/planning/ml_planner/auto/trajectory"
-```
-
-## AWSIMの実行
-
-- [AWSIM側の準備](#awsim側の準備)にて作成したdocker container内で，`./run_evaluation.bash`を実行しましょう．
-  - scaleは0.20程度に変更しましょう．(Geminiが5秒に1回しか推論できないため．)
-
-## 実行結果を確認
-
-以下のコマンドで出力が得られていれば，正しく実行できています．
-
-```sh
-ros2 topic echo /planning/ml_planner/auto/trajectory
-```
-
-## Tips
-
-このSampleでは，`gemini-2.5-flash-lite`をそのまま使用しており，サーキット用のチューニングができておらず，ヘアピンを回ることができない状態です．以下のTipsを参考に，改善にトライしてみてください．
-
-- `e2e-utils-beta/src/vlm_planner/vlm_planner.py`を更新することでモデルを変更できます
-    - デフォルトでは`gemini-2.5-flash-lite`が使用されています．
-
-```python
-self.model = genai.GenerativeModel("gemini-2.5-flash-lite")
-```
-
-- プロンプト(e2e-utils-beta/src/vlm_planner/prompt.py)を更新することでも改善ができる可能性があります．
-
-- [Vertex AIでのファインチューニング](https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini-use-supervised-tuning?hl=ja)が軌道の改善に役立つ可能性があります．
-
+[Getting started: VLM Plannerの実行](./getting_started_vlm_run.md)へお進みください．
