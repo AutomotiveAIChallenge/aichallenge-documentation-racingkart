@@ -45,10 +45,10 @@ docker pull ghcr.io/autowarefoundation/autoware:universe-devel-cuda
 
 ### e2e_utils_betaの環境構築
 
-[e2e_utils_beta](https://github.com/Shin-kyoto/e2e_utils_beta/tree/main)をcloneしてください．
+[e2e_utils_beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)をcloneしてください．
 
 ```sh
-git clone https://github.com/Shin-kyoto/e2e_utils_beta.git
+git clone https://github.com/AutomotiveAIChallenge/e2e-utils-beta.git
 cd e2e_utils_beta
 sh script/setup.sh
 ```
