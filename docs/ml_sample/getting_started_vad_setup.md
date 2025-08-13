@@ -92,7 +92,7 @@ rocker \
   --user \
   --volume /path/to/e2e_utils_beta:/home/e2e_utils_beta \
   --volume ~/autoware_data:/home/autoware_data \
-  --name aichallenge-e2e-utils \
+  --name aichallenge-e2e-utils-vad \
   ghcr.io/autowarefoundation/autoware:universe-devel-cuda \
   /bin/bash
 ```
