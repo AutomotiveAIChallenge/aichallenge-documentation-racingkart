@@ -4,10 +4,23 @@
 
 ## AWSIM側の準備
 
-[環境構築](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/requirements.html)のドキュメントに従い，[描画ありAWSIMの起動](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/requirements.html)と[大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/build-docker.html)までを実施してください．
+[aichallenge-2025-e2e-test](https://github.com/AutomotiveAIChallenge/aichallenge-2025-e2e-test)をcloneしてください．ここではホームディレクトリを指定していますが、お好きなディレクトリに配置していただいて構いません。
 
 ```sh
-cd ~/aichallenge-2025
+cd ~
+git clone https://github.com/AutomotiveAIChallenge/aichallenge-2025-e2e-test
+```
+
+AI Challenge 2025のドキュメントに従って，
+
+- [仮想環境のインストール](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/docker.html)
+- [描画ありAWSIMの起動](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/requirements.html)
+- [大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/build-docker.html)
+
+までを実施してください．
+
+```sh
+cd ~/aichallenge-2025-e2e-test
 ./docker_run.sh dev gpu
 ```
 
