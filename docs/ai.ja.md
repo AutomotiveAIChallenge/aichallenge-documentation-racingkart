@@ -55,7 +55,7 @@ Sample ROS Nodeと教材は以下のlinkより参照ください．
 - [AutomotiveAIChallenge/e2e-utils-beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)
     - Sample nodeとtoolをまとめた実装を提供
 - 実行方法，instructionを以下に提供
-    - [Getting started](./ml_sample/getting_started.md)
+    - [Getting started](./ml_sample/getting_started_vlm_setup.md)
     - [Design: Sample ROS Node](./ml_sample/design.md)
     - [Algorithms](./ml_sample/algorithms.md)
     - [FAQ](./ml_sample/faq.md)
@@ -82,14 +82,14 @@ Sample ROS Nodeと教材は以下のlinkより参照ください．
 
 以下の資料がおすすめです．Sample ROS Nodeの構成を学び，参考にし，ぜひ自作した機械学習モデルを使ってみてください．
 
-- [Getting started](./ml_sample/getting_started.md)
+- [Getting started](./ml_sample/getting_started_vlm_setup.md)
 - [Design: Sample ROS Node](./ml_sample/design.md)
 
 ### 機械学習モデルを使って実験してみたい方
 
 以下の資料がおすすめです．Sample ROS Nodeで使用されているアルゴリズムについて勉強し，動かしてみて，簡単な実験をしてみましょう．
 
-- [Getting started](./ml_sample/getting_started.md)
+- [Getting started](./ml_sample/getting_started_vlm_setup.md)
 - [Algorithms](./ml_sample/algorithms.md)
 
 ### 獲得した知識・経験をOutputしたい方
