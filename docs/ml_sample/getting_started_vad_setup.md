@@ -83,6 +83,7 @@ sh script/setup.sh
 ### docker run
 
 - `/path/to/e2e_utils_beta`には、local環境にcloneしてきた`e2e_utils_beta`のpathを埋めてください。
+- `user_name`には、お使いのPCのユーザー名を埋めてください。
 
 ```sh
 rocker \
@@ -91,7 +92,7 @@ rocker \
   --network host \
   --user \
   --volume /path/to/e2e_utils_beta:/home/e2e_utils_beta \
-  --volume ~/autoware_data:/home/autoware_data \
+  --volume /home/user_name/autoware_data:/home/user_name/autoware_data \
   --name aichallenge-e2e-utils-vad \
   ghcr.io/autowarefoundation/autoware:universe-devel-cuda \
   /bin/bash
