@@ -2,17 +2,17 @@
 
 !!! success "このページの想定読者"
 
-    - sample nodeが使用する入出力形式を知って，自分自身でML plannerのnodeを作成したい方
-    - sample nodeの入力画像データはどういうものか，出力する軌道データはどういうものか知って勉強したい方
+    - sample nodeが使用する入出力形式を知って、自分自身でML plannerのnodeを作成したい方
+    - sample nodeの入力画像データはどういうものか、出力する軌道データはどういうものか知って勉強したい方
 
 ## Input/Output概略
 
-- 基本構成としては，画像を入力し，trajectoryを出力するという設計になっています．
-- 画像の他にも，以下のような情報を含むtopicを入力として受け取っています．
+- 基本構成としては、画像を入力し、trajectoryを出力するという設計になっています。
+- 画像の他にも、以下のような情報を含むtopicを入力として受け取っています。
   - Camera Info, tf_static: 座標変換に用いる情報
   - kinematic_state, acceleration: 車両の現在状態の情報
 - 出力するtrajectoryはwaypointの形式で表現されています.
-  - Sample Nodeは三本trajectoryを生成し，Selector Nodeがその中から適切な一本を選びます．
+  - Sample Nodeは三本trajectoryを生成し、Selector Nodeがその中から適切な一本を選びます。
 
 ```mermaid
 graph LR
@@ -37,7 +37,7 @@ graph LR
 
 ### Input詳細
 
-入力データは以下のROS topicを通じて提供されます．
+入力データは以下のROS topicを通じて提供されます。
 
 - **Image topic**: `/sensing/camera/image_raw`
   - 型: `sensor_msgs/msg/Image`
@@ -73,16 +73,16 @@ graph LR
 
 ## Input/Output実装(詳細)
 
-- 実装の都合上，上記の簡略版の図に加えて，Dummy imageをpublishするNodeが存在しています．
-- 実際の実装でどのようになっているかを知りたい方は以下を参照ください．
+- 実装の都合上、上記の簡略版の図に加えて、Dummy imageをpublishするNodeが存在しています。
+- 実際の実装でどのようになっているかを知りたい方は以下を参照ください。
 
 <details>
 
 <summary>実際の実装</summary>
 
-- Sample Nodeに使用しているalgorithmであるVADは，6枚の画像を入力に取ります．
-  - 詳細については，[algorithm](./algorithms.md#vad-tinyの詳細)を確認してください．
-- しかし，AWSIMは1枚しか画像を出力しないので，5枚はdummy画像を生成し，VADにわたしています．
+- Sample Nodeに使用しているalgorithmであるVADは、6枚の画像を入力に取ります。
+  - 詳細については、[algorithm](./algorithms.md#vad-tinyの詳細)を確認してください。
+- しかし、AWSIMは1枚しか画像を出力しないので、5枚はdummy画像を生成し、VADにわたしています。
 
 ```mermaid
 graph LR

@@ -38,23 +38,23 @@
 
 本年度はEmbodied AI（実世界とインタラクションする機械学習システム）をシミュレータと結合して動作させ、推論を実行できるコードをサンプルとして提供します。
 
-- 自動運転AIチャレンジ2025の教材と結合可能な，機械学習モデルを使用して軌道生成可能なSample ROS Nodeを提供します．
-- このSample ROS Nodeを参考に，以下のような発展的学習を進められることを期待しています．
-    - 自分の使用したい機械学習モデルとシミュレータを結合し，走らせてみる
-    - Sample ROS Nodeを使って走行を行い，tuningしてみる
-    - 機械学習モデルを組み込んだシステムの実装方法について知識を得て，記事を書いてみる
+- 自動運転AIチャレンジ2025の教材と結合可能な、機械学習モデルを使用して軌道生成可能なSample ROS Nodeを提供します。
+- このSample ROS Nodeを参考に、以下のような発展的学習を進められることを期待しています。
+    - 自分の使用したい機械学習モデルとシミュレータを結合し、走らせてみる
+    - Sample ROS Nodeを使って走行を行い、tuningしてみる
+    - 機械学習モデルを組み込んだシステムの実装方法について知識を得て、記事を書いてみる
 - 機能概要
-    - カメラから出力された画像を用いて，機械学習モデルによる推論を実行し，軌道データ（waypoint）を出力します．
-    - 実装の詳細については [Design: Sample ROS Node](./ml_sample/design.md)を参照．
-    - 使用しているアルゴリズムの詳細については [Algorithms](./ml_sample/algorithms.md)を参照．
+    - カメラから出力された画像を用いて、機械学習モデルによる推論を実行し、軌道データ（waypoint）を出力します。
+    - 実装の詳細については [Design: Sample ROS Node](./ml_sample/design.md)を参照。
+    - 使用しているアルゴリズムの詳細については [Algorithms](./ml_sample/algorithms.md)を参照。
 
 ![alt text](assets/ai_image.png)
 
-Sample ROS Nodeと教材は以下のlinkより参照ください．
+Sample ROS Nodeと教材は以下のlinkより参照ください。
 
 - [AutomotiveAIChallenge/e2e-utils-beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)
     - Sample nodeとtoolをまとめた実装を提供
-- 実行方法，instructionを以下に提供
+- 実行方法、instructionを以下に提供
     - [Getting started](./ml_sample/getting_started_vlm_setup.md)
     - [Design: Sample ROS Node](./ml_sample/design.md)
     - [Algorithms](./ml_sample/algorithms.md)
@@ -64,37 +64,37 @@ Sample ROS Nodeと教材は以下のlinkより参照ください．
 
 !!! tip "想定読者"
 
-    本教材は以下のような方におすすめです．
+    本教材は以下のような方におすすめです。
 
-    - 自分自身で新しく機械学習モデルを作り，データを集め，学習し，AIチャレンジで使用するシミュレータと繋いで走らせてみたい方
+    - 自分自身で新しく機械学習モデルを作り、データを集め、学習し、AIチャレンジで使用するシミュレータと繋いで走らせてみたい方
     
-    - 新しいことにトライし，その経験や知識を記事やプレゼンテーションとして発表したい方
+    - 新しいことにトライし、その経験や知識を記事やプレゼンテーションとして発表したい方
 
-この教材では，自分自身の興味関心を基に，Embodied AIの領域を学習したい方向けに，その補助輪となるSampleを提供します．
+この教材では、自分自身の興味関心を基に、Embodied AIの領域を学習したい方向けに、その補助輪となるSampleを提供します。
 
 - 自作した機械学習モデルを使ってみたいがどう繋いだらいいかわからない
 - 機械学習モデルを使って実験してみたいという興味はあるが何から始めたらいいかわからない
-- 新しいことにトライし，その経験や知識を記事やプレゼンテーションとして発表したいが，どういう内容を発表すればいいかアイデアが浮かんでいない
+- 新しいことにトライし、その経験や知識を記事やプレゼンテーションとして発表したいが、どういう内容を発表すればいいかアイデアが浮かんでいない
 
-という方はぜひ使ってみてください．
+という方はぜひ使ってみてください。
 
 ### 自作した機械学習モデルを繋いでみたい方
 
-以下の資料がおすすめです．Sample ROS Nodeの構成を学び，参考にし，ぜひ自作した機械学習モデルを使ってみてください．
+以下の資料がおすすめです。Sample ROS Nodeの構成を学び、参考にし、ぜひ自作した機械学習モデルを使ってみてください。
 
 - [Getting started](./ml_sample/getting_started_vlm_setup.md)
 - [Design: Sample ROS Node](./ml_sample/design.md)
 
 ### 機械学習モデルを使って実験してみたい方
 
-以下の資料がおすすめです．Sample ROS Nodeで使用されているアルゴリズムについて勉強し，動かしてみて，簡単な実験をしてみましょう．
+以下の資料がおすすめです。Sample ROS Nodeで使用されているアルゴリズムについて勉強し、動かしてみて、簡単な実験をしてみましょう。
 
 - [Getting started](./ml_sample/getting_started_vlm_setup.md)
 - [Algorithms](./ml_sample/algorithms.md)
 
 ### 獲得した知識・経験をOutputしたい方
 
-- 大きく分けて，以下の２つのOutput方法を期待しております．
+- 大きく分けて、以下の２つのOutput方法を期待しております。
 
 #### 1. インターネット上での共有
 

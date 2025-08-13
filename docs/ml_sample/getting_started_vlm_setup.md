@@ -1,23 +1,23 @@
 # Getting started: Setup for VLM Planner
 
-このドキュメントでは，Gemini APIとAWSIMを用いて，VLM Plannerのsetupを行う方法について説明します．
+このドキュメントでは、Gemini APIとAWSIMを用いて、VLM Plannerのsetupを行う方法について説明します。
 
 ## AWSIM側の準備
 
-[aichallenge-2025-e2e-test](https://github.com/AutomotiveAIChallenge/aichallenge-2025-e2e-test)をcloneしてください．ここではホームディレクトリを指定していますが、お好きなディレクトリに配置していただいて構いません。
+[aichallenge-2025-e2e-test](https://github.com/AutomotiveAIChallenge/aichallenge-2025-e2e-test)をcloneしてください。ここではホームディレクトリを指定していますが、お好きなディレクトリに配置していただいて構いません。
 
 ```sh
 cd ~
 git clone https://github.com/AutomotiveAIChallenge/aichallenge-2025-e2e-test
 ```
 
-AI Challenge 2025のドキュメントに従って，
+AI Challenge 2025のドキュメントに従って、
 
 - [仮想環境のインストール](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/docker.html)
 - [描画ありAWSIMの起動](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/requirements.html)
 - [大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/build-docker.html)
 
-までを実施してください．
+までを実施してください。
 
 ```sh
 cd ~/aichallenge-2025-e2e-test
@@ -30,18 +30,18 @@ cd /aichallenge
 ./run_evaluation.bash
 ```
 
-- AWSIMが表示されたら，AWSIMでuse imageのボタンを押してカメラ画像を有効にします．
-- カメラ画像が左上に表示されれば，AWSIM用環境の準備はOKです．
+- AWSIMが表示されたら、AWSIMでuse imageのボタンを押してカメラ画像を有効にします。
+- カメラ画像が左上に表示されれば、AWSIM用環境の準備はOKです。
 
 ![alt text](../assets/camera_awsim_after.png)
 
 ## Gemini APIの準備
 
-- [こちらのdocument](https://ai.google.dev/gemini-api/docs/api-key?hl=ja)に従って，Gemini API KEYを取得してください．
+- [こちらのdocument](https://ai.google.dev/gemini-api/docs/api-key?hl=ja)に従って、Gemini API KEYを取得してください。
 
 !!! info
 
-    Gemini API KEYは自分だけしか見られない場所に保管してください．GitHubにpushしないよう気をつけましょう．
+    Gemini API KEYは自分だけしか見られない場所に保管してください。GitHubにpushしないよう気をつけましょう。
 
 ## VLM Planner環境側の準備
 
@@ -50,7 +50,7 @@ cd /aichallenge
 
 !!! info
 
-    docker pullでは，10GB程度のlayerのdownloadを行います．通信環境によっては，一時間以上の実行時間が必要となります．
+    docker pullでは、10GB程度のlayerのdownloadを行います。通信環境によっては、一時間以上の実行時間が必要となります。
 
 ```sh
 docker pull ghcr.io/autowarefoundation/autoware:universe-devel-cuda
@@ -58,7 +58,7 @@ docker pull ghcr.io/autowarefoundation/autoware:universe-devel-cuda
 
 ### e2e_utils_betaの環境構築
 
-[e2e_utils_beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)をcloneしてください．
+[e2e_utils_beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)をcloneしてください。
 
 ```sh
 git clone https://github.com/AutomotiveAIChallenge/e2e-utils-beta.git
@@ -68,7 +68,7 @@ sh script/setup.sh
 
 ### docker run
 
-- `/path/to/e2e_utils_beta`には，local環境にcloneしてきた`e2e_utils_beta`のpathを埋めてください．
+- `/path/to/e2e_utils_beta`には、local環境にcloneしてきた`e2e_utils_beta`のpathを埋めてください。
 
 ```sh
 rocker \
@@ -84,7 +84,7 @@ rocker \
 
 ### colcon build
 
-- 以下の手順はdockerの中で実施してください．
+- 以下の手順はdockerの中で実施してください。
 
 ```sh
 cd /home/e2e_utils_beta
@@ -97,7 +97,7 @@ colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -
 
 ### uvの環境構築
 
-[こちら](https://docs.astral.sh/uv/getting-started/installation/)に従って`uv`をinstallしてください．
+[こちら](https://docs.astral.sh/uv/getting-started/installation/)に従って`uv`をinstallしてください。
 
 
 ```sh
@@ -118,7 +118,7 @@ uv pip install .
 
 ### Gemini APIの設定
 
-- [Gemini APIの準備](#gemini-apiの準備)にて取得したAPI KEYを環境変数に設定しましょう．
+- [Gemini APIの準備](#gemini-apiの準備)にて取得したAPI KEYを環境変数に設定しましょう。
 
 ```sh
 export GEMINI_API_KEY="YOUR_API_KEY"
@@ -126,4 +126,4 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 
 ## Next Step
 
-[Getting started: VLM Plannerの実行](./getting_started_vlm_run.md)へお進みください．
+[Getting started: VLM Plannerの実行](./getting_started_vlm_run.md)へお進みください。
