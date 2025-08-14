@@ -16,7 +16,7 @@ python vlm_planner_node.py --ros-args -p output_topic:="/planning/ml_planner/aut
 ## AWSIMの実行
 
 - [AWSIM側の準備](./getting_started_vlm_setup.md#awsim側の準備)にて作成したdocker container内で、`./run_evaluation.bash`を実行しましょう。
-  - scaleは0.20程度に変更しましょう。(Geminiが5秒に1回しか推論できないため。)
+  - scaleは0.02程度に変更しましょう。(Geminiが5秒に1回しか推論できないため。)
 
 ![camera_awsim_after](../assets/camera_awsim_after.png)
 
