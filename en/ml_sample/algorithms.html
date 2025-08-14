@@ -1,0 +1,1748 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-2025/en/ml_sample/algorithms.html">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Algorithms - 自動運転 AI チャレンジ 2025</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#algorithms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+            
+            
+  誰でも参加登録できます！　<a href="https://questant.jp/q/DNW53QLW" class="md-button md-button--primary banner-button" target="_blank">自動運転AIチャレンジの参加登録はこちら！</a>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="自動運転 AI チャレンジ 2025" class="md-header__button md-logo" aria-label="自動運転 AI チャレンジ 2025" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            自動運転 AI チャレンジ 2025
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Algorithms
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../ml_sample/algorithms.html" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="algorithms.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-2025" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Top Page
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting Started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../preliminaries/rules.html" class="md-tabs__link">
+          
+  
+  
+  Preliminaries
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../finals/index.html" class="md-tabs__link">
+          
+  
+  
+  finals
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../setup/requirements.html" class="md-tabs__link">
+          
+  
+  
+  Setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../development/workspace-usage.html" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../specifications/interface.html" class="md-tabs__link">
+          
+  
+  
+  Specifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../course/index.html" class="md-tabs__link">
+          
+  
+  
+  Course
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../community.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../ai.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  AI教材
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="自動運転 AI チャレンジ 2025" class="md-nav__button md-logo" aria-label="自動運転 AI チャレンジ 2025" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    自動運転 AI チャレンジ 2025
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-2025" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Top Page
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Preliminaries
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Preliminaries
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preliminaries/rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rules
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preliminaries/submission.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preliminaries/check-results.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checking Results
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    finals
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            finals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finals/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Finals Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finals/operation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How to Operate the Vehicle
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finals/agreement.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    誓約事項及び禁止事項
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Recommended Environment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/workspace-setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cloning the Workspace
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installing the Virtual Environment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/headless-simulation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Downloading Headless AWSIM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/visible-simulation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Downloading AWSIM with Visualization (Reference)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/build-docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Building and Running the Competition Repository
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/reference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/workspace-usage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    How to Proceed with the AI Challenge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/main-module.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Main Module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Specifications
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Specifications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specifications/interface.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specifications/hardware.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specifications/simulator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Simulator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Course
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Course
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware Introduction Course
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/vehicle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    01. 車両インターフェース
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/velocity_planning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    02. 速度計画
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/avoidance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    03. 障害物回避
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/localization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    04. 自己位置推定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Community
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI教材
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      前提知識
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alvinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      ALVINN
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dave-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAVE-2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uniad" class="md-nav__link">
+    <span class="md-ellipsis">
+      UniAD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vad" class="md-nav__link">
+    <span class="md-ellipsis">
+      VAD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vlm-based-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      VLM based planner
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VLM based planner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#emma" class="md-nav__link">
+    <span class="md-ellipsis">
+      EMMA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#omnidrive" class="md-nav__link">
+    <span class="md-ellipsis">
+      OmniDrive
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s4-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      S4-Driver
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vlm-bevhybrid-planner" class="md-nav__link">
+    <span class="md-ellipsis">
+      VLM + BEVのhybrid planner
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VLM + BEVのhybrid planner">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drivevlm" class="md-nav__link">
+    <span class="md-ellipsis">
+      DriveVLM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#senna" class="md-nav__link">
+    <span class="md-ellipsis">
+      Senna
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="algorithms">Algorithms</h1>
+<p>教材への理解を深めるために、理解しておくと良いアルゴリズムについて紹介します。興味を惹かれる論文があれば、<a href="design.html">Sample NodeのDesign</a>を参考にして、ROS Nodeを作成してみてください。</p>
+<h2 id="_1">前提知識</h2>
+<ul>
+<li>機械学習、深層学習の知識<ul>
+<li>MLP, CNN, Transformer等の用語について理解している方を対象とします。</li>
+</ul>
+</li>
+</ul>
+<h2 id="alvinn"><a href="https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif">ALVINN</a></h2>
+<ul>
+<li>1980年代に発表された、深層学習による自動運転手法です。</li>
+<li>当時の計算能力は非常に限られていたため、たった3層の全結合型Neural Networkが使われていました。</li>
+<li>論文: <a href="https://proceedings.neurips.cc/paper/1988/file/812b4ba287f5ee0bc9d43bbf5bbe87fb-Paper.pdf">An Autonomous Land Vehicle In a Neural Network</a></li>
+</ul>
+<p><img alt="ALVINN" src="https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif" /></p>
+<p>引用元: <a href="https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif">https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif</a></p>
+<h2 id="dave-2"><a href="https://arxiv.org/abs/1604.07316">DAVE-2</a></h2>
+<ul>
+<li>2016年にNVIDIAから発表された手法で、CNNを用いています。</li>
+<li>ALVINNよりも計算機が強力になったものの、5層のconvolution layerと3層の全結合層からなる、コンパクトな構成でした。</li>
+<li>論文: <a href="https://arxiv.org/abs/1604.07316">End to End Learning for Self-Driving Cars</a></li>
+</ul>
+<p><img alt="DAVE-2 Architecture" src="https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png" /></p>
+<p>引用元: <a href="https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png">https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png</a></p>
+<h2 id="uniad"><a href="https://opendrivelab.com/assets/publication/uniad.jpg">UniAD</a></h2>
+<ul>
+<li>CVPR2023でOpenDriveLabから発表された手法で、画像を入力とし、trajectory(waypoints)を出力します。現在幅広く使われている、センサが入力、trajectoryが出力となる自動運転手法の基礎となっています。</li>
+<li>"Query based"と呼ばれる方法で、各module間をつなぐ手法を採用。</li>
+<li>複数の画像を、<a href="https://arxiv.org/abs/2203.17270">BEVFormer</a>と呼ばれる手法で処理し、BEV特徴量(Bird-eye-view, 鳥瞰図のように交通環境を上から見たときの特徴量)を取得します。</li>
+<li>Map情報はRasterで表現しており、かなり推論が遅いです(A100で1~4 FPS)</li>
+<li>論文: <a href="https://arxiv.org/abs/2212.10156">Planning-oriented Autonomous Driving</a></li>
+<li><a href="https://github.com/OpenDriveLab/UniAD">code</a></li>
+</ul>
+<p><img alt="UniAD" src="https://opendrivelab.com/assets/publication/uniad.jpg" /></p>
+<p>引用元: <a href="https://opendrivelab.com/assets/publication/uniad.jpg">https://opendrivelab.com/assets/publication/uniad.jpg</a></p>
+<p><img alt="UniAD-poster" src="https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true" /></p>
+<p>引用元: <a href="https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true">https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true</a></p>
+<h2 id="vad"><a href="https://arxiv.org/abs/2303.12077">VAD</a></h2>
+<ul>
+<li>ICCV2023で発表された手法です。</li>
+<li>BEV特徴量の使用、"Query based"な思想をUniADから引き継ぎながらも、Raster mapではなくVector mapを使用することで高速化・軽量化を達成。RTX3090で16.8 Fpsで動きます。</li>
+<li>論文: <a href="https://arxiv.org/abs/2303.12077">VAD: Vectorized Scene Representation for Efficient Autonomous Driving</a></li>
+<li><a href="https://github.com/hustvl/VAD">code</a></li>
+</ul>
+<p><img alt="VAD Architecture" src="https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png" /></p>
+<p>引用元: <a href="https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png">https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png</a></p>
+<p>Sample ROS Nodeでは<code>VAD-tiny</code>と呼ばれるmodelを使用しています。</p>
+<!-- ## DiffusionDrive
+
+## MonAD
+
+## PRIX -->
+
+<h2 id="vlm-based-planner">VLM based planner</h2>
+<ul>
+<li>言語モデルを使用したPlannerも多数登場しています。いくつか例を紹介します。</li>
+</ul>
+<h3 id="emma"><a href="https://waymo.com/research/emma/">EMMA</a></h3>
+<ul>
+<li>Geminiを自動運転データでfine-tuningして使用しています。</li>
+<li>道路上にカバンやハシゴが落ちていたら避ける軌道を出力し、路上にリスがいたらslow downするなど、long-tail driving scenario(珍しいシナリオ)に対応できるとの結果が得られています。</li>
+<li>論文: <a href="https://waymo.com/research/emma/">EMMA: End-to-End Multimodal Model for Autonomous Driving</a></li>
+</ul>
+<h3 id="omnidrive"><a href="https://arxiv.org/abs/2405.01533">OmniDrive</a></h3>
+<ul>
+<li>NVIDIAがCVPR2025で発表した論文です。</li>
+<li>「もしこの状況でこうするとどうなりますか？」というcounterfactual reasoning(反実仮想)の訓練ができるようなdatasetを作成しています。</li>
+<li>論文: <a href="https://arxiv.org/abs/2405.01533">OmniDrive: A Holistic Vision-Language Dataset for Autonomous Driving with Counterfactual Reasoning</a></li>
+<li><a href="https://github.com/NVlabs/OmniDrive">code</a></li>
+</ul>
+<p><img alt="OmniDrive Poster" src="https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686" /></p>
+<p>引用元: <a href="https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686">https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686</a></p>
+<h3 id="s4-driver"><a href="https://arxiv.org/abs/2505.24139">S4-Driver</a></h3>
+<ul>
+<li>WaymoがCVPR2025で発表した論文です。</li>
+<li>「VLMが2次元画像でしか事前学習しておらず、Motion Planningでの性能が低い」という課題感から、UniAD, VADのようなBEV特徴量を使った手法から着想を得て、BEV特徴量を使用したVLM modelを提案しています。</li>
+<li>論文: <a href="https://arxiv.org/abs/2505.24139">S4-Driver: Scalable Self-Supervised Driving Multimodal Large Language Modelwith Spatio-Temporal Visual Representation</a></li>
+</ul>
+<p><img alt="S4-Driver Poster" src="https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746" /></p>
+<p>引用元: <a href="https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746">https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746</a></p>
+<h2 id="vlm-bevhybrid-planner">VLM + BEVのhybrid planner</h2>
+<ul>
+<li>UniAD, VADのようなBEV特徴量を用いたPlannerと、VLMとを統合したPlannerも提案されています。</li>
+</ul>
+<h3 id="drivevlm"><a href="https://arxiv.org/abs/2402.12289">DriveVLM</a></h3>
+<ul>
+<li><code>"Fast&amp;Slow"</code>と呼ばれる、「VLMによる遅い推論」と「VADのようなmodelによる速い推論」を組み合わせたmodelです。</li>
+<li>「草木が落ちているような状況で回避軌道を生成できる」「警察の手でのジェスチャーに対応した軌道を生成できる」といった、long-tail driving scenario(珍しいシナリオ)に対応できるとの結果が得られています。</li>
+<li>論文: <a href="https://arxiv.org/abs/2402.12289">DriveVLM: The Convergence of Autonomous Driving and Large Vision-Language Models</a></li>
+<li><a href="https://www.youtube.com/embed/mt-SdHTTZzA">youtube link</a></li>
+</ul>
+<p><img alt="DriveVLM Pipeline" src="https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png" /></p>
+<p>引用元: <a href="https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png">https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png</a></p>
+<h3 id="senna"><a href="https://github.com/hustvl/Senna">Senna</a></h3>
+<ul>
+<li>VLMと学習ベースのPlannerを結合した手法です。</li>
+<li>VLMでhigh levelなcommandを決定し、VADのようなBEV特徴量を用いたmodelで使用します。</li>
+<li>論文: <a href="https://arxiv.org/abs/2410.22313">Senna: Bridging Large Vision-Language Models and End-to-End Autonomous Driving</a></li>
+<li><a href="https://github.com/hustvl/Senna">code</a></li>
+</ul>
+<p><img alt="Senna" src="https://github.com/hustvl/Senna/raw/main/assets/teaser.png" /></p>
+<p>引用元: <a href="https://github.com/hustvl/Senna/raw/main/assets/teaser.png">https://github.com/hustvl/Senna/raw/main/assets/teaser.png</a></p>
+<!-- # VLA based planner
+
+### [OpenDriveVLA]() -->
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 TIER IV, Inc.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+    
+  </body>
+</html>
