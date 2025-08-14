@@ -15,13 +15,17 @@
 
 ![ALVINN](https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif)
 
+引用元: [https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif](https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif)
+
 ## [DAVE-2](https://arxiv.org/abs/1604.07316)
 
 - 2016年にNVIDIAから発表された手法で、CNNを用いています。
 - ALVINNよりも計算機が強力になったものの、5層のconvolution layerと3層の全結合層からなる、コンパクトな構成でした。
 - 論文: [End to End Learning for Self-Driving Cars](https://arxiv.org/abs/1604.07316)
 
-![](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
+![DAVE-2 Architecture](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
+
+引用元: [https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
 
 ## [UniAD](https://opendrivelab.com/assets/publication/uniad.jpg)
 
@@ -33,7 +37,12 @@
 - [code](https://github.com/OpenDriveLab/UniAD)
 
 ![UniAD](https://opendrivelab.com/assets/publication/uniad.jpg)
+
+引用元: [https://opendrivelab.com/assets/publication/uniad.jpg](https://opendrivelab.com/assets/publication/uniad.jpg)
+
 ![UniAD-poster](https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true)
+
+引用元: [https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true](https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true)
 
 ## [VAD](https://arxiv.org/abs/2303.12077)
 
@@ -43,6 +52,8 @@
 - [code](https://github.com/hustvl/VAD)
 
 ![VAD Architecture](https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png)
+
+引用元: [https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png](https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png)
 
 Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 
@@ -69,7 +80,9 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 論文: [OmniDrive: A Holistic Vision-Language Dataset for Autonomous Driving with Counterfactual Reasoning](https://arxiv.org/abs/2405.01533)
 - [code](https://github.com/NVlabs/OmniDrive)
 
-![](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686)
+![OmniDrive Poster](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686)
+
+引用元: [https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686)
 
 ### [S4-Driver](https://arxiv.org/abs/2505.24139)
 
@@ -77,7 +90,9 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 「VLMが2次元画像でしか事前学習しておらず、Motion Planningでの性能が低い」という課題感から、UniAD, VADのようなBEV特徴量を使った手法から着想を得て、BEV特徴量を使用したVLM modelを提案しています。
 - 論文: [S4-Driver: Scalable Self-Supervised Driving Multimodal Large Language Modelwith Spatio-Temporal Visual Representation](https://arxiv.org/abs/2505.24139)
 
-![](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746)
+![S4-Driver Poster](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746)
+
+引用元: [https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746)
 
 ## VLM + BEVのhybrid planner
 
@@ -90,7 +105,9 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 論文: [DriveVLM: The Convergence of Autonomous Driving and Large Vision-Language Models](https://arxiv.org/abs/2402.12289)
 - [youtube link](https://www.youtube.com/embed/mt-SdHTTZzA)
 
-![](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
+![DriveVLM Pipeline](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
+
+引用元: [https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
 
 
 
@@ -101,7 +118,9 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 論文: [Senna: Bridging Large Vision-Language Models and End-to-End Autonomous Driving](https://arxiv.org/abs/2410.22313)
 - [code](https://github.com/hustvl/Senna)
 
-![](https://github.com/hustvl/Senna/raw/main/assets/teaser.png)
+![Senna](https://github.com/hustvl/Senna/raw/main/assets/teaser.png)
+
+引用元: [https://github.com/hustvl/Senna/raw/main/assets/teaser.png](https://github.com/hustvl/Senna/raw/main/assets/teaser.png)
 
 <!-- # VLA based planner
 
