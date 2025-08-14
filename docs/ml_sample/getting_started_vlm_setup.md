@@ -124,7 +124,7 @@ uv pip install .
 
 ### Gemini APIの設定
 
-- [Gemini APIの準備](#gemini-apiの準備)にて取得したAPI KEYを環境変数に設定しましょう。
+- [Gemini APIの準備](./getting_started_vlm_setup.md#gemini-apiの準備)にて取得したAPI KEYを環境変数に設定しましょう。
 
 ```sh
 export GEMINI_API_KEY="YOUR_API_KEY"
