@@ -52,8 +52,7 @@ AWSIMより出力される画像の解像度は`1920*1080`です。modelに入�
 | `/planning/ml_planner/auto/trajectory` | [`autoware_auto_planning_msgs/msg/Trajectory`](https://github.com/tier4/autoware_auto_msgs/blob/tier4/main/autoware_auto_planning_msgs/msg/Trajectory.idl) | Reliability=BEST_EFFORT, Durability=VOLATILE |
 
 Trajectoryは、点列(waypoints)の形式で表現されています。
-各点([`autoware_auto_planning_msgs/msg
-/TrajectoryPoint`](https://github.com/tier4/autoware_auto_msgs/blob/tier4/main/autoware_auto_planning_msgs/msg/TrajectoryPoint.idl))には、
+各点([`autoware_auto_planning_msgs/msg/TrajectoryPoint`](https://github.com/tier4/autoware_auto_msgs/blob/tier4/main/autoware_auto_planning_msgs/msg/TrajectoryPoint.idl))には、
 
 - 何秒後に
 - どの点に向かうべきか
