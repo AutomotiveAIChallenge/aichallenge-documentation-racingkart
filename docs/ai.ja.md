@@ -53,12 +53,11 @@
 Sample ROS Nodeと教材は以下のlinkより参照ください。
 
 - [AutomotiveAIChallenge/e2e-utils-beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)
-    - Sample nodeとtoolをまとめた実装を提供
-- 実行方法、instructionを以下に提供
+    - Sample nodeとtoolをまとめた実装が含まれています
+- 実行方法、instructionを以下に提供しております
     - [Getting started](./ml_sample/getting_started_vlm_setup.md)
     - [Design: Sample ROS Node](./ml_sample/design.md)
     - [Algorithms](./ml_sample/algorithms.md)
-    - [FAQ](./ml_sample/faq.md)
 
 ## 本教材の想定読者
 

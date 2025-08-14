@@ -53,3 +53,7 @@ python trajectory_selector.py --ros-args -p input_topic:="/planning/vad/trajecto
 ```sh
 ros2 topic echo /planning/ml_planner/auto/trajectory
 ```
+
+## Tips
+
+Sample ROS Nodeで提供している重みファイルは、公道走行を想定したtrajectoryを生成します。詳細は[FAQ](./ml_sample/faq.md)を参照してください。
