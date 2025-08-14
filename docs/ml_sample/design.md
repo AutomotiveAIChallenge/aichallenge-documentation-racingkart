@@ -22,7 +22,7 @@ graph LR
     Sensing -- "/sensing/camera/image_raw" --> SampleNode
     Localization -- "/localization/kinematic_state<br>/localization/acceleration" --> SampleNode
     
-    SampleNode -- "/planning/ml_planner/auto/trajectory<br>" --> Control
+    SampleNode -- "/planning/ml_planner/auto/trajectory" --> Control
 ```
 
 ## Input/Output詳細
