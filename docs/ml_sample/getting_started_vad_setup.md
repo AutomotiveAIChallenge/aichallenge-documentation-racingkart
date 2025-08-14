@@ -61,7 +61,6 @@ cd /aichallenge
 
 ### docker imageのpull
 
-
 !!! info
 
     docker pullでは、10GB程度のlayerのdownloadを行います。通信環境によっては、一時間以上の実行時間が必要となります。

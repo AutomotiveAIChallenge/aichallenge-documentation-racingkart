@@ -18,10 +18,10 @@
 ```mermaid
 graph LR
     SampleNode["Sample<br>ROS node"]
-    
+
     Sensing -- "/sensing/camera/image_raw" --> SampleNode
     Localization -- "/localization/kinematic_state<br>/localization/acceleration" --> SampleNode
-    
+
     SampleNode -- "/planning/ml_planner/auto/trajectory" --> Control
 ```
 

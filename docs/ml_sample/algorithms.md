@@ -109,8 +109,6 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 
 引用元: [https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
 
-
-
 ### [Senna](https://github.com/hustvl/Senna)
 
 - VLMと学習ベースのPlannerを結合した手法です。
