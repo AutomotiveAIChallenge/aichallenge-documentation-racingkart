@@ -28,6 +28,7 @@ ros2 launch vad_aic_launch vad_aic.launch.xml use_sim_time:=true
 ### trajectory selectorの実行
 
 - [VAD Planner環境側の準備](./getting_started_vad_setup.md#vad-planner環境側の準備)で作成したdocker container内に、もう一つterminalを立ち上げます。
+- このterminalの中でも、[GEMINI API KEYの設定](./getting_started_vad_setup.md#gemini-apiの設定)を行ってください。
 
 ```sh
 docker exec -it aichallenge-e2e-utils-vad /bin/bash
