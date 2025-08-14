@@ -67,7 +67,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - NVIDIAがCVPR2025で発表した論文です。
 - 「もしこの状況でこうするとどうなりますか？」というcounterfactual reasoning(反実仮想)の訓練ができるようなdatasetを作成しています。
 - 論文: [OmniDrive: A Holistic Vision-Language Dataset for Autonomous Driving with Counterfactual Reasoning](https://arxiv.org/abs/2405.01533)
-- 学習・推論用code: https://github.com/NVlabs/OmniDrive
+- [code](https://github.com/NVlabs/OmniDrive)
 
 ![](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686)
 
