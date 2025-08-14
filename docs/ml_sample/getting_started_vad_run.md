@@ -17,7 +17,7 @@
   - 以下のコマンドを実行し、VAD Plannerを動かしてみてください。
 
 ```sh
-cd e2e-utils-beta;source install/setup.bash
+cd /home/e2e-utils-beta;source install/setup.bash;export ROS_LOCALHOST_ONLY=1
 ```
 
 ```sh
@@ -35,11 +35,11 @@ docker exec -it aichallenge-e2e-utils-vad /bin/bash
 - 以下を実行し、trajectory selectorを起動してください。
 
 ```sh
-cd e2e-utils-beta;source install/setup.bash
+cd /home/e2e-utils-beta;source install/setup.bash;export ROS_LOCALHOST_ONLY=1
 ```
 
 ```sh
-cd e2e-utils-beta/src/vlm_trajectory_selector;source .venv/bin/activate
+cd /home/e2e-utils-beta/src/vlm_trajectory_selector;source .venv/bin/activate
 ```
 
 ```sh

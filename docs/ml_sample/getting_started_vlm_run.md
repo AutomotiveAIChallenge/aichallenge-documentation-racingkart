@@ -9,7 +9,7 @@
 
 ```sh
 # Run the VLM planner node with custom output topic
-cd e2e-utils-beta/src/vlm_planner
+cd /home/e2e-utils-beta/src/vlm_planner
 python vlm_planner_node.py --ros-args -p output_topic:="/planning/ml_planner/auto/trajectory"
 ```
 

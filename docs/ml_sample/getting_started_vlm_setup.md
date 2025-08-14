@@ -56,19 +56,19 @@ cd /aichallenge
 docker pull ghcr.io/autowarefoundation/autoware:universe-devel-cuda
 ```
 
-### e2e_utils_betaの環境構築
+### e2e-utils-betaの環境構築
 
-[e2e_utils_beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)をcloneしてください。
+[e2e-utils-beta](https://github.com/AutomotiveAIChallenge/e2e-utils-beta)をcloneしてください。
 
 ```sh
 git clone https://github.com/AutomotiveAIChallenge/e2e-utils-beta.git
-cd e2e_utils_beta
+cd e2e-utils-beta
 sh script/setup.sh
 ```
 
 ### docker run
 
-- `/path/to/e2e_utils_beta`には、local環境にcloneしてきた`e2e_utils_beta`のpathを埋めてください。
+- `/path/to/e2e-utils-beta`には、local環境にcloneしてきた`e2e-utils-beta`のpathを埋めてください。
 
 ```sh
 rocker \
@@ -76,7 +76,7 @@ rocker \
   --x11 \
   --network host \
   --user \
-  --volume /path/to/e2e_utils_beta:/home/e2e_utils_beta \
+  --volume /path/to/e2e-utils-beta:/home/e2e-utils-beta \
   --name aichallenge-e2e-utils \
   ghcr.io/autowarefoundation/autoware:universe-devel-cuda \
   /bin/bash
@@ -87,8 +87,8 @@ rocker \
 - 以下の手順はdockerの中で実施してください。
 
 ```sh
-cd /home/e2e_utils_beta
-rosdep update;rosdep install -y --from-paths . --ignore-src --rosdistro $ROS_DISTRO
+cd /home/e2e-utils-beta
+rosdep update;rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 ```
 
 ```sh
@@ -99,13 +99,19 @@ colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -
 
 [こちら](https://docs.astral.sh/uv/getting-started/installation/)に従って`uv`をinstallしてください。
 
+```sh
+pip install uv
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+```
+
+uvのinstall完了後、以下を実行してください。
 
 ```sh
-cd e2e-utils-beta;source install/setup.bash
+cd /home/e2e-utils-beta;source install/setup.bash;export ROS_LOCALHOST_ONLY=1
 ```
 
 ```sh
-cd src/vlm_planner;uv venv -p python3.10
+cd /home/e2e-utils-beta/src/vlm_planner;uv venv -p python3.10
 ```
 
 ```sh
