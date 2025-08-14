@@ -46,7 +46,6 @@
 - 機能概要
     - カメラから出力された画像を用いて、機械学習モデルによる推論を実行し、軌道データ（waypoint）を出力します。
     - 実装の詳細については [Design: Sample ROS Node](./ml_sample/design.md)を参照。
-    - 使用しているアルゴリズムの詳細については [Algorithms](./ml_sample/algorithms.md)を参照。
 
 ![alt text](assets/ai_image.png)
 

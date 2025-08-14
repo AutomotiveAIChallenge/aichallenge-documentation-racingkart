@@ -30,7 +30,7 @@ ros2 topic echo /planning/ml_planner/auto/trajectory
 
 ## Tips
 
-このSampleでは、`gemini-2.5-flash-lite`をそのまま使用しており、サーキット用のチューニングができておらず、ヘアピンを回ることができない状態です。以下のTipsを参考に、改善にトライしてみてください。
+このSampleでは、`gemini-2.5-flash-lite`をそのまま使用しており、サーキット用のチューニングができておらず、ヘアピンを回ることができない状態となっています。以下のTipsを参考に、改善にトライしてみてください。
 
 - [`e2e-utils-beta/src/vlm_planner/vlm_planner.py`](https://github.com/AutomotiveAIChallenge/e2e-utils-beta/blob/6244688d49e4df19672a6b5e0ded2b484a2b097b/src/vlm_planner/vlm_planner.py#L48)を更新することでモデルを変更できます
     - デフォルトでは`gemini-2.5-flash-lite`が使用されています。
