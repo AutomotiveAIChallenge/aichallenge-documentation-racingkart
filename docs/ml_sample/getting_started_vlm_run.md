@@ -16,7 +16,8 @@ python vlm_planner_node.py --ros-args -p output_topic:="/planning/ml_planner/aut
 ## AWSIMの実行
 
 - [AWSIM側の準備](./getting_started_vlm_setup.md#awsim側の準備)にて作成したdocker container内で、`./run_evaluation.bash`を実行しましょう。
-  - scaleは0.02程度に変更しましょう。(Geminiが5秒に1回しか推論できないため。)
+  - scaleは0.02程度に変更しましょう。(Geminiのfree planが5秒に1回しか推論できないため。)
+    - VLMPlannerは、Geminiが利用できない時は過去のtrajectoryをそのまま使用します。簡単な実験をしてみたい場合、直進区間では、scaleを0.20程度にしても構いません。
 
 ![camera_awsim_after](../assets/camera_awsim_after.png)
 
