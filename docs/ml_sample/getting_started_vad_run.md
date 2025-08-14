@@ -15,6 +15,7 @@
 
 - [VAD Planner環境側の準備](./getting_started_vad_setup.md#vad-planner環境側の準備)で作成したdocker container内で、以下を実行しましょう。
   - 以下のコマンドを実行し、VAD Plannerを動かしてみてください。
+  - 初回実行時は、launchの際にonnxからengine fileへの変換処理が走ります。この処理は数分かかる可能性があります。
 
 ```sh
 cd /home/e2e-utils-beta;source install/setup.bash;export ROS_LOCALHOST_ONLY=1
