@@ -47,7 +47,7 @@ cd /aichallenge
 
 ### sample model(onnx)のdownload
 
-- [nuScenes datasetで学習されたonnx file](https://tier4inc-my.sharepoint.com/personal/taiki_tanaka_tier4_jp/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ftaiki%5Ftanaka%5Ftier4%5Fjp%2FDocuments%2FAutonomousAIChallenge%2FMiscData%2FEnd2End&ga=1)をdownloadします
+- [nuScenes datasetで学習されたonnx file](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EvQZY6sIudNKnFJSAnuyS9ABpodIW_FSYk57BrenzhCtXg?e=T4RLVw)をdownloadします
   - `$HOME/autoware_data`というディレクトリを作成し、onnx fileをその中に格納してください。
 - 格納後の状態が以下のようになっているか、確認してください。
 
