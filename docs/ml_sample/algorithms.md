@@ -30,7 +30,7 @@
 - 複数の画像を、[BEVFormer](https://arxiv.org/abs/2203.17270)と呼ばれる手法で処理し、BEV特徴量(Bird-eye-view, 鳥瞰図のように交通環境を上から見たときの特徴量)を取得します。
 - Map情報はRasterで表現しており、かなり推論が遅いです(A100で1~4 FPS)
 - 論文: [Planning-oriented Autonomous Driving](https://arxiv.org/abs/2212.10156)
-- 学習・推論用code: https://github.com/OpenDriveLab/UniAD
+- [code](https://github.com/OpenDriveLab/UniAD)
 
 ![UniAD](https://opendrivelab.com/assets/publication/uniad.jpg)
 ![UniAD-poster](https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true)
@@ -40,7 +40,7 @@
 - ICCV2023で発表された手法です。
 - BEV特徴量の使用、"Query based"な思想をUniADから引き継ぎながらも、Raster mapではなくVector mapを使用することで高速化・軽量化を達成。RTX3090で16.8 Fpsで動きます。
 - 論文: [VAD: Vectorized Scene Representation for Efficient Autonomous Driving](https://arxiv.org/abs/2303.12077)
-- 学習・推論用code: https://github.com/hustvl/VAD
+- [code](https://github.com/hustvl/VAD)
 
 ![VAD Architecture](https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png)
 
