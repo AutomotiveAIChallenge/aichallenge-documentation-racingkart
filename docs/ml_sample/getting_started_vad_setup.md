@@ -118,6 +118,7 @@ colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -
 ```sh
 pip install uv
 echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
 ```
 
 uvのinstall完了後、以下を実行してください。
