@@ -1,22 +1,3 @@
-# Finals Overview
+# Overview of the Final Competition
 
-For the latest information on the semifinals and finals, please visit the following Society of Automotive Engineers of Japan website:
-<!-- [https://www.jsae.or.jp/jaaic/2025ver/](https://www.jsae.or.jp/jaaic/2025ver/) -->
-
-## Event Details
-
-### Schedule
-
-| Event                          | Date                          | Time |
-| ------------------------------ | ----------------------------- | ---- |
-| Final Practice Day             | November 1, 2025 (Postponed)  | 8:30~20:00 |
-| Semifinals                     | November 2, 2025 (Postponed)  | 8:30~20:00 |
-| Finals                         | November 3, 2025 (Postponed)  | 9:00~17:30 |
-| Awards Ceremony & Networking   | December 13, 2025             | TBD |
-
-### Venue
-
-[City Circuit Tokyo Bay](https://city-circuit.com/)
-<iframe width="704" height="396" src="https://www.youtube.com/embed/GsuCUoNrMDM?si=zoh1mL_U0yRnB2fj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-## [Next: How to Operate the Vehicle](./operation.en.md)
+Please see [here](https://tier4inc-my.sharepoint.com/personal/taiki_tanaka_tier4_jp/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ftaiki%5Ftanaka%5Ftier4%5Fjp%2FDocuments%2FAutonomousAIChallengeFinal&ga=1) for details.

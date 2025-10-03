@@ -28,8 +28,6 @@ nav:
       - preliminaries/check-results.md
   - finals:
       - finals/index.md
-      - finals/operation.md
-      - finals/agreement.md
   - setup:
       - setup/requirements.md
       - setup/workspace-setup.md
