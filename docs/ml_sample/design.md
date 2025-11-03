@@ -60,7 +60,7 @@ Trajectoryは、点列(waypoints)の形式で表現されています。
 
 というような情報が格納されています。この点を並べたものをTrajectoryとして使用しています。
 
-![](../assets/trajectory.png)
+![traj](../assets/trajectory.png)
 
 ## 自作のPlannerを結合するには
 
