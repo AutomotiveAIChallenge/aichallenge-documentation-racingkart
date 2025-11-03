@@ -51,7 +51,7 @@
 
 ## 車両（レーシングカート）
 
-車両はAWSIMにおける[EGO Vehicle](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/)の仕様に準拠しており、実際のレーシングカートに近いスペックで作成されています。
+車両はAWSIMにおける[EGO Vehicle]の仕様に準拠しており、実際のレーシングカートに近いスペックで作成されています。
 
 ![vehicle-appearance](./images/vehicle-appearance.png)
 
@@ -76,7 +76,7 @@
 
 #### Vehicleコンポーネント
 
-Vehicleコンポーネントの設定内容を以下の表にまとめています。各項目の詳細については[こちらのマニュアル](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/#vehicle-script)をご覧ください。
+Vehicleコンポーネントの設定内容を以下の表にまとめています。
 
 | **項目**                            | **値** |
 | ----------------------------------- | ------ |
@@ -91,7 +91,7 @@ Vehicleコンポーネントの設定内容を以下の表にまとめていま�
 
 #### Rigidbodyコンポーネント
 
-Rigidbodyコンポーネントの設定内容を以下の表にまとめています。詳細については[こちらのマニュアル](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/#rigidbody)をご覧ください。
+Rigidbodyコンポーネントの設定内容を以下の表にまとめています。
 
 | **項目**     | **値** |
 | ------------ | ------ |
@@ -119,7 +119,7 @@ CoM(Center of Mass)は、車両Rigidbodyの質量中心です。CoM位置は、�
 
 ![wheel-collider](./images/wheel-collider.png)
 
-ホイールコライダーは以下のように設定されています。ホイールコライダーの詳細については[こちらのマニュアル](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/#wheels-colliders)をご覧ください。
+ホイールコライダーは以下のように設定されています。
 
 | **項目**              | **値** |
 | --------------------- | ------ |

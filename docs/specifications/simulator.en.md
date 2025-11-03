@@ -52,7 +52,7 @@ The above `/aichallenge/awsim/status` has the following structure.
 
 ## Vehicle (Racing Kart)
 
-The vehicle conforms to the specifications of the [EGO Vehicle](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/) in AWSIM and is designed with specifications close to an actual racing kart.
+The vehicle conforms to the specifications of the [EGO Vehicle]in AWSIM and is designed with specifications close to an actual racing kart.
 
 ![vehicle-appearance](./images/vehicle-appearance.png)
 
@@ -76,7 +76,7 @@ The following table summarizes the vehicle parameters.
 
 #### Vehicle Component
 
-The following table summarizes the settings of the Vehicle component. For detailed information of the setting items, see [this manual](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/#vehicle-script).
+The following table summarizes the settings of the Vehicle component. For detailed information of the setting.
 
 | **Item**                            | **Value** |
 | ----------------------------------- | --------- |
@@ -92,7 +92,7 @@ The following table summarizes the settings of the Vehicle component. For detail
 
 #### Rigidbody Component
 
-The following table summarizes the settings of the Rigidbody component. For more information, see [this manual](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/#rigidbody).
+The following table summarizes the settings of the Rigidbody component. For more information, see.
 
 | **Item**     | **Value** |
 | ------------ | --------- |
@@ -120,7 +120,7 @@ The vehicle has a total of four wheel colliders - one for each wheel, simulating
 
 ![wheel-collider](./images/wheel-collider.png)
 
-The Wheel Collider is set as follows. For more details on wheel colliders, please refer to [this manual](https://tier4.github.io/AWSIM/Components/Vehicle/EgoVehicle/#wheels-colliders).
+The Wheel Collider is set as follows. For more details on wheel colliders, please refer to below.
 
 | **Item**              | **Value** |
 | --------------------- | --------- |
