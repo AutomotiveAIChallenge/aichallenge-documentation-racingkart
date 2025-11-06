@@ -67,7 +67,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 
 - [F1TENTH](https://cps2023-race.f1tenth.org/)にて使用された手法です。
 - 2D LiDARのデータから、速度とステアリング角を推定します。
-    - input: `1081`次元の配列。2D LiDARで得られたxy平面上の距離を格納。
+    - input: 長さ`1081`の1次元配列。2D LiDARで得られたxy平面上の距離を格納。
     - output: Speed, Steering Angle
 - 5層のconvolution, 4層のFully-connectedから構成されており、非常にシンプルなモデルです。そのため、1万sampleを使った学習がNVIDIA Jetson Xavier NXにて4分で終了し、int8量子化したmodelがESP32-S3にて16msで動くなど、かなり軽量です。
 - static obstacleしか含んでいないデータセットで学習させたにも関わらず、他の車のovertakeを実行できたり、実データで学習したモデルをシミュレータ上で評価しても(Real2Sim)高い走破性を誇る(論文 Table. Ⅱ)など、性能も安定しています。
