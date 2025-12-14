@@ -39,6 +39,19 @@
 本年度はEmbodied AI（実世界とインタラクションする機械学習システム）をシミュレータと結合して動作させ、推論を実行できるコードをサンプルとして提供します。
 
 - 自動運転AIチャレンジ2025の教材と結合可能な、機械学習モデルを使用して軌道生成可能なSample ROS Nodeを提供します。
+
+### LiDAR based End-to-End Sample ROS Node
+
+- LiDARから出力された点群データを用いて、機械学習モデルによる推論を実行し、軌道データ（waypoint）を出力します。
+
+- 機能概要
+    - アルゴリズムについては、[Algorithms](./ml_sample/algorithms.md#tinylidarnet)を参照ください。
+    - 実行方法については、[Getting started: TinyLiDARNet](./ml_sample/getting_started_tiny_lidar_net.md)を参照ください。
+
+<img src="assets/ai_lidar.png" alt="e2e_lidar" width="100%">
+
+### Camera based End-to-End Sample ROS Node
+
 - このSample ROS Nodeを参考に、以下のような発展的学習を進められることを期待しています。
     - 自分の使用したい機械学習モデルとシミュレータを結合し、走らせてみる
     - Sample ROS Nodeを使って走行を行い、tuningしてみる

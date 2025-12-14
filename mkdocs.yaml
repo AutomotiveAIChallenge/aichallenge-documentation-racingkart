@@ -51,7 +51,16 @@ nav:
       - course/localization.md
   - FAQ: faq.md
   - Community: community.md
-  - AI教材: ai.md
+  - ML:
+      - ai.md
+      - ml_sample/algorithms.md
+      - ml_sample/getting_started_tiny_lidar_net.md
+      - ml_sample/design.md
+      - ml_sample/getting_started_vlm_setup.md
+      - ml_sample/getting_started_vlm_run.md
+      - ml_sample/getting_started_vad_setup.md
+      - ml_sample/getting_started_vad_run.md
+      - ml_sample/faq.md
 
 extra_css:
   - stylesheets/custom.css
