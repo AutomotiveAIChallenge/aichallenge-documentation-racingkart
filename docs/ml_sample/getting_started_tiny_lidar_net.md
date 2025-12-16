@@ -66,7 +66,7 @@ cd /aichallenge/;./run_autoware.bash awsim
 
 [こちらのlink](https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle)を参考にし、initial poseを設定してください。
 
-Initial poseはうまく指定できない場合は、RvizでviewのところにThirdPersonFollowerをTopdownOrthoに取り替える必要があります。
+Initial poseを指定する際は、Rvizのviewを`ThirdPersonFollower`から`TopdownOrtho`に切り替える必要があります。
 
 設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。
 
