@@ -2,6 +2,10 @@
 
 <iframe width="960" height="540" src="https://www.youtube.com/embed/FGGTUcfV7nU?si=3OWNwnpa_utk8D31" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+## 10分で終わるセットアップ動画
+
+<iframe width="960" height="540" src="https://www.youtube.com/embed/sbVGHUj94wY?si=JF9oSo6Tmpr-fWT7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## コンセプト
 
 !!! info
