@@ -1954,6 +1954,10 @@
 </ul>
 </details>
 <details class="question">
+<summary>AWSIMを起動したところ、ブラックスクリーンになってしてしまい、<code>Ctrl + C</code>を押しても終了しません。</summary>
+<p><code>Ctrl + Z</code>でバックグラウンドにしてから、<code>kill -9 $1</code>でプロセスを終了させてください。</p>
+</details>
+<details class="question">
 <summary>AWSで環境構築したところ、AWSIMは表示されたが、Rvizがブラックスクリーンとなりました。</summary>
 <p><code>sudo apt upgrade</code>で治ったという事例がありますので、内容を確認の上、お試しください。
 また、<a href="https://github.com/ros2/rviz/issues/948">過去Issue</a>にてご質問内容と似た質問がありましたので、こちらも合わせてご確認ください。</p>
