@@ -9,7 +9,7 @@ AI Challenge 2025のドキュメントに従って、
 - [仮想環境のインストール](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/docker.html)
 - [描画ありAWSIMの起動](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/requirements.html)
     - ただし、[こちらのAWSIM](https://tier4inc-my.sharepoint.com/personal/taiki_tanaka_tier4_jp/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ftaiki%5Ftanaka%5Ftier4%5Fjp%2FDocuments%2FAutonomousAIChallengePractice2026%2FE2ESimSingleTest&viewid=f55f657e%2D78ea%2D41f1%2D8ceb%2Da70ac2d24bfc&ga=1)を使用してください。
-    - AWSIMの配置については[こちらのページ（再掲）](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/visible-simulation.html)を参考にしてください。
+    - AWSIMの配置については[こちらのページ](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/visible-simulation.html)を参考に、`aichallenge-2025/aichallenge/simulator`に配置してください。実行ファイルが`aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
 - [大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/build-docker.html)
 
 までを実施してください。
