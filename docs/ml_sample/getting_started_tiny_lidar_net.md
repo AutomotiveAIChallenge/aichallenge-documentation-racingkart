@@ -80,6 +80,16 @@ cd /aichallenge/;./record_rosbag.bash
 走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、`/aichallenge/rosbag2_autoware`に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は`rosbag2_autoware`が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
 ディレクトリの名称を`rosbag2_autoware_train_01`や`rosbag2_autoware_val_01`のように変更しておきましょう。
 
+```sh
+mkdir train
+mv /aichallenge/rosbag2_autoware /aichallenge/train/rosbag2_autoware_train_01
+```
+
+```sh
+mkdir val
+mv /aichallenge/rosbag2_autoware /aichallenge/val/rosbag2_autoware_vaL_01
+```
+
 ## Step2. Dataset conversion
 
 rosbagを学習用datasetに変換します。
@@ -89,7 +99,7 @@ cd /aichallenge/python_workspace/tiny_lidar_net/
 ```
 
 ```sh
-python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/rosbag2_autoware_train_01/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/train/
+python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/train/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/train/
 ```
 
 以下のような出力が得られたら成功です。
@@ -103,7 +113,7 @@ python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --
 trainだけでなく、validation setも変換しておきましょう。
 
 ```sh
-python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/rosbag2_autoware_val_01/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/val/
+python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/val/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/val/
 ```
 
 ## Step3. Model training
