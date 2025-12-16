@@ -40,6 +40,13 @@ cd ~/aichallenge-2025;bash docker_exec.sh
 
 #### Terminal 1: scan generation nodeの起動
 
+
+```sh
+source /opt/ros/humble/setup.bash
+source /autoware/install/setup.bash
+source /aichallenge/workspace/install/setup.bash
+```
+
 ```sh
 ros2 launch laserscan_generator laserscan_generator.launch.xml   use_sim_time:=true   csv_path:=$(ros2 pkg prefix laserscan_generator)/share/laserscan_generator/map/lane.csv
 ```
