@@ -90,6 +90,24 @@ mkdir val
 mv /aichallenge/rosbag2_autoware /aichallenge/val/rosbag2_autoware_vaL_01
 ```
 
+<details>
+<summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
+
+Terminal 3で
+
+```sh
+cd /aichallenge/;./run_autoware.bash awsim
+```
+
+の代わりに
+
+```sh
+ros2 launch teleop_manager teleop_manager.launch.xml
+```
+
+を打ってみてください。Joycon等のコントローラからの入力を使って走行できます。
+</details>
+
 ## Step2. Dataset conversion
 
 rosbagを学習用datasetに変換します。
