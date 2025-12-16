@@ -8,7 +8,7 @@ AI Challenge 2025のドキュメントに従って、
 
 - [仮想環境のインストール](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/docker.html)
 - [描画ありAWSIMの起動](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/requirements.html)
-    - ただし、[こちらのAWSIM](https://tier4inc-my.sharepoint.com/personal/taiki_tanaka_tier4_jp/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ftaiki%5Ftanaka%5Ftier4%5Fjp%2FDocuments%2FAutonomousAIChallengePractice2026%2FE2ESimSingleTest&viewid=f55f657e%2D78ea%2D41f1%2D8ceb%2Da70ac2d24bfc&ga=1)を使用してください。
+    - ただし、[こちら](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE)から、E2ESimSingleTest内のAWSIM.zipをダウンロードして使用してください。
     - AWSIMの配置については[こちらのページ](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/visible-simulation.html)を参考に、`aichallenge-2025/aichallenge/simulator`に配置してください。実行ファイルが`aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
 - [大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/build-docker.html)
 
@@ -65,6 +65,8 @@ cd /aichallenge/;./run_autoware.bash awsim
 
 [こちらのlink](https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle)を参考にし、initial poseを設定してください。
 
+Initial poseを指定する際は、Rvizのviewを`ThirdPersonFollower`から`TopdownOrtho`に切り替える必要があります。
+
 設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。
 
 <img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%">
@@ -77,6 +79,16 @@ cd /aichallenge/;./record_rosbag.bash
 
 走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、`/aichallenge/rosbag2_autoware`に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は`rosbag2_autoware`が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
 ディレクトリの名称を`rosbag2_autoware_train_01`や`rosbag2_autoware_val_01`のように変更しておきましょう。
+
+```sh
+mkdir train
+mv /aichallenge/rosbag2_autoware /aichallenge/train/rosbag2_autoware_train_01
+```
+
+```sh
+mkdir val
+mv /aichallenge/rosbag2_autoware /aichallenge/val/rosbag2_autoware_vaL_01
+```
 
 <details>
 <summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
@@ -105,7 +117,7 @@ cd /aichallenge/python_workspace/tiny_lidar_net/
 ```
 
 ```sh
-python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/rosbag2_autoware_train_01/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/train/
+python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/train/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/train/
 ```
 
 以下のような出力が得られたら成功です。
@@ -119,7 +131,7 @@ python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --
 trainだけでなく、validation setも変換しておきましょう。
 
 ```sh
-python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /output/20251211-163407/rosbag2_autoware_val_01/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/val/
+python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/val/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/val/
 ```
 
 ## Step3. Model training
