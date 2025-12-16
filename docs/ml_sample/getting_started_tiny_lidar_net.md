@@ -41,7 +41,6 @@ cd ~/aichallenge-2025;bash docker_exec.sh
 
 #### Terminal 1: scan generation nodeの起動
 
-
 ```sh
 source /opt/ros/humble/setup.bash
 source /autoware/install/setup.bash
