@@ -2451,7 +2451,7 @@
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>All<span class="w"> </span>processing<span class="w"> </span>finished<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.34<span class="w"> </span>seconds.
 </code></pre></div>
 <p>trainだけでなく、validation setも変換しておきましょう。</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/output/20251211-163407/rosbag2_autoware_val_01/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/val/
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/rosbag2_autoware_val_01/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/val/
 </code></pre></div>
 <h2 id="step3-model-training">Step3. Model training</h2>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/train.py
