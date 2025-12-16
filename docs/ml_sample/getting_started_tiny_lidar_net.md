@@ -70,6 +70,7 @@ cd /aichallenge/;./run_autoware.bash awsim
 
 <img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%">
 
+
 #### Terminal 4: rosbagの記録開始
 
 ```sh
@@ -78,6 +79,10 @@ cd /aichallenge/;./record_rosbag.bash
 
 走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、`/aichallenge/rosbag2_autoware`に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は`rosbag2_autoware`が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
 ディレクトリの名称を`rosbag2_autoware_train_01`や`rosbag2_autoware_val_01`のように変更しておきましょう。
+
+
+
+<small> ※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。Terminal 3で `cd /aichallenge/;./run_autoware.bash awsim` の代わりに`ros2 launch teleop_manager teleop_manager.launch.xml` を打ってみてください。Joycon等のコントローラからの入力を使って走行できます。　</small>
 
 ## Step2. Dataset conversion
 
