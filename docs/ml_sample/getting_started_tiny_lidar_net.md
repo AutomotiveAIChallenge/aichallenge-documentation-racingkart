@@ -38,14 +38,15 @@ cd ~/aichallenge-2025;bash docker_exec.sh
 ```
 
 をdocker環境の外で実行すれば、コンテナ内で複数のTerminalを開くことができます。3回繰り返して、合計4つのTerminalを開いてください。
-
-#### Terminal 1: scan generation nodeの起動
+また、ROS2をコンテナのシェルに認識させる必要があるので、以下のコマンドをコンテナ内で打つようにしてください。
 
 ```sh
 source /opt/ros/humble/setup.bash
 source /autoware/install/setup.bash
 source /aichallenge/workspace/install/setup.bash
 ```
+
+#### Terminal 1: scan generation nodeの起動
 
 ```sh
 ros2 launch laserscan_generator laserscan_generator.launch.xml   use_sim_time:=true   csv_path:=$(ros2 pkg prefix laserscan_generator)/share/laserscan_generator/map/lane.csv
