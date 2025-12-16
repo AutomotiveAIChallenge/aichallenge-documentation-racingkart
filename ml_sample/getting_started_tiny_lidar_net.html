@@ -2446,6 +2446,22 @@ mv<span class="w"> </span>/aichallenge/rosbag2_autoware<span class="w"> </span>/
 <div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>val
 mv<span class="w"> </span>/aichallenge/rosbag2_autoware<span class="w"> </span>/aichallenge/val/rosbag2_autoware_vaL_01
 </code></pre></div>
+<details>
+<summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
+
+Terminal 3で
+
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim
+</code></pre></div>
+
+の代わりに
+
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>teleop_manager<span class="w"> </span>teleop_manager.launch.xml
+</code></pre></div>
+
+を打ってみてください。Joycon等のコントローラからの入力を使って走行できます。
+</details>
+
 <h2 id="step2-dataset-conversion">Step2. Dataset conversion</h2>
 <p>rosbagを学習用datasetに変換します。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/
