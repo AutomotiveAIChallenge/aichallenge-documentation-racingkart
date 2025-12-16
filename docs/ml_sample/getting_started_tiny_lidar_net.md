@@ -41,7 +41,6 @@ cd ~/aichallenge-2025;bash docker_exec.sh
 
 #### Terminal 1: scan generation nodeの起動
 
-
 ```sh
 source /opt/ros/humble/setup.bash
 source /autoware/install/setup.bash
@@ -70,7 +69,6 @@ cd /aichallenge/;./run_autoware.bash awsim
 
 <img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%">
 
-
 #### Terminal 4: rosbagの記録開始
 
 ```sh
@@ -80,12 +78,10 @@ cd /aichallenge/;./record_rosbag.bash
 走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、`/aichallenge/rosbag2_autoware`に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は`rosbag2_autoware`が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
 ディレクトリの名称を`rosbag2_autoware_train_01`や`rosbag2_autoware_val_01`のように変更しておきましょう。
 
-
-
-<details> 
+<details>
 <summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
 
-Terminal 3で 
+Terminal 3で
 
 ```sh
 cd /aichallenge/;./run_autoware.bash awsim
@@ -96,7 +92,8 @@ cd /aichallenge/;./run_autoware.bash awsim
 ```sh
 ros2 launch teleop_manager teleop_manager.launch.xml
 ```
-を打ってみてください。Joycon等のコントローラからの入力を使って走行できます。　
+
+を打ってみてください。Joycon等のコントローラからの入力を使って走行できます。
 </details>
 
 ## Step2. Dataset conversion
