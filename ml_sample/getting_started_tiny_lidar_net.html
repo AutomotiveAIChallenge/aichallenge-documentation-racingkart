@@ -2440,11 +2440,17 @@
 </code></pre></div>
 <p>走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、<code>/aichallenge/rosbag2_autoware</code>に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は<code>rosbag2_autoware</code>が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
 ディレクトリの名称を<code>rosbag2_autoware_train_01</code>や<code>rosbag2_autoware_val_01</code>のように変更しておきましょう。</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>train
+mv<span class="w"> </span>/aichallenge/rosbag2_autoware<span class="w"> </span>/aichallenge/train/rosbag2_autoware_train_01
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>val
+mv<span class="w"> </span>/aichallenge/rosbag2_autoware<span class="w"> </span>/aichallenge/val/rosbag2_autoware_vaL_01
+</code></pre></div>
 <h2 id="step2-dataset-conversion">Step2. Dataset conversion</h2>
 <p>rosbagを学習用datasetに変換します。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/rosbag2_autoware_train_01/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/train/
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/train/
 </code></pre></div>
 <p>以下のような出力が得られたら成功です。</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>bags.<span class="w"> </span>Starting<span class="w"> </span>processing<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span>workers.
@@ -2452,7 +2458,7 @@
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>All<span class="w"> </span>processing<span class="w"> </span>finished<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.34<span class="w"> </span>seconds.
 </code></pre></div>
 <p>trainだけでなく、validation setも変換しておきましょう。</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/rosbag2_autoware_val_01/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/val/
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/val/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/val/
 </code></pre></div>
 <h2 id="step3-model-training">Step3. Model training</h2>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/train.py
