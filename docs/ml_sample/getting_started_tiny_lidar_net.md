@@ -101,7 +101,7 @@ python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --
 trainだけでなく、validation setも変換しておきましょう。
 
 ```sh
-python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /output/20251211-163407/rosbag2_autoware_val_01/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/val/
+python3 /aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/rosbag2_autoware_val_01/ --outdir /aichallenge/python_workspace/tiny_lidar_net/dataset/val/
 ```
 
 ## Step3. Model training
