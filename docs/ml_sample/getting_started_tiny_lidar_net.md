@@ -41,13 +41,6 @@ cd ~/aichallenge-2025;bash docker_exec.sh
 
 #### Terminal 1: scan generation nodeの起動
 
-
-```sh
-source /opt/ros/humble/setup.bash
-source /autoware/install/setup.bash
-source /aichallenge/workspace/install/setup.bash
-```
-
 ```sh
 ros2 launch laserscan_generator laserscan_generator.launch.xml   use_sim_time:=true   csv_path:=$(ros2 pkg prefix laserscan_generator)/share/laserscan_generator/map/lane.csv
 ```
@@ -76,7 +69,9 @@ cd /aichallenge/;./run_autoware.bash awsim
 cd /aichallenge/;./record_rosbag.bash
 ```
 
-走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、`/aichallenge/rosbag2_autoware`に保存されます。名称を`rosbag2_autoware_train_01`や`rosbag2_autoware_val_01`のように変更しておきましょう。
+走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、`/aichallenge/rosbag2_autoware`に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は`rosbag2_autoware`が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
+ディレクトリの名称を`rosbag2_autoware_train_01`や`rosbag2_autoware_val_01`のように変更しておきましょう。
+
 
 ## Step2. Dataset conversion
 
