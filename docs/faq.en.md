@@ -56,6 +56,16 @@ If AWSIM terminates with a core dump immediately after startup, your GPU may be 
 
 ---
 
+### <u>Unity cannot be loaded when running `./run_simulator.bash`.</u>
+
+If Unity fails to load when running the simulator (e.g., in Getting Started: TinyLiDARNet) and the simulator screen turns entirely pink as shown below, the container may not be recognizing the GPU.
+
+![Unity pink screen](https://github.com/user-attachments/assets/2e9b5b06-18a3-476d-bf32-4b17d78f322e)
+
+Please ensure that `nvidia-smi` works inside the container before running the simulator. If `nvidia-smi` does not work, check your NVIDIA driver installation and Docker GPU configuration.
+
+---
+
 ### <u>I only have a Windows PC with a GPU.</u>
 
 The official support is for the configuration listed on the HP website, so detailed guidance cannot be provided, but generally, the following methods are possible:

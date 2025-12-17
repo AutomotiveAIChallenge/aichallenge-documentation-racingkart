@@ -40,6 +40,13 @@
     AWSIMを起動した直後にcoredumpで終了する場合、GPUのメモリが不足している可能性があります。そのため、`nvidia-smi`でGPUメモリの利用率が限界に達していないか確認してください。
     なお、GPUのメモリは11GB以上を推奨しています。
 
+??? question "`./run_simulator.bash`を実行してもUnityがロードされません。"
+    シミュレータ実行時（例：Getting Started: TinyLiDARNet）に、下図のようにシミュレータ画面がピンク一色になる場合、コンテナがGPUを認識していない可能性があります。
+
+    ![Unityピンク画面](https://github.com/user-attachments/assets/2e9b5b06-18a3-476d-bf32-4b17d78f322e)
+
+    シミュレータを実行する前に、コンテナ内で`nvidia-smi`が正常に動作することを確認してください。`nvidia-smi`が動作しない場合は、NVIDIAドライバのインストール状況とDockerのGPU設定を確認してください。
+
 ??? question "GPU搭載のWindowsPCしか用意できませんでした。"
     本大会のサポート対象はHP記載の構成になりますため、詳細のご案内はできませんが、一般的に下記のような方法があると思われます。
 
