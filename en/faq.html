@@ -1619,6 +1619,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#unity-cannot-be-loaded-when-running-run_simulatorbash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unity cannot be loaded when running ./run_simulator.bash.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#i-only-have-a-windows-pc-with-a-gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2322,6 +2333,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#unity-cannot-be-loaded-when-running-run_simulatorbash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unity cannot be loaded when running ./run_simulator.bash.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#i-only-have-a-windows-pc-with-a-gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2644,6 +2666,11 @@
 <hr />
 <h3 id="awsim-terminates-with-a-core-dump"><u>AWSIM terminates with a core dump.</u></h3>
 <p>If AWSIM terminates with a core dump immediately after startup, your GPU may be out of memory. Check the GPU memory usage with <code>nvidia-smi</code> to ensure it is not at its limit. A GPU with at least 11GB of memory is recommended.</p>
+<hr />
+<h3 id="unity-cannot-be-loaded-when-running-run_simulatorbash"><u>Unity cannot be loaded when running <code>./run_simulator.bash</code>.</u></h3>
+<p>If Unity fails to load when running the simulator (e.g., in Getting Started: TinyLiDARNet) and the simulator screen turns entirely pink as shown below, the container may not be recognizing the GPU.</p>
+<p><img alt="Unity pink screen" src="https://github.com/user-attachments/assets/2e9b5b06-18a3-476d-bf32-4b17d78f322e" /></p>
+<p>Please ensure that <code>nvidia-smi</code> works inside the container before running the simulator. If <code>nvidia-smi</code> does not work, check your NVIDIA driver installation and Docker GPU configuration.</p>
 <hr />
 <h3 id="i-only-have-a-windows-pc-with-a-gpu"><u>I only have a Windows PC with a GPU.</u></h3>
 <p>The official support is for the configuration listed on the HP website, so detailed guidance cannot be provided, but generally, the following methods are possible:</p>

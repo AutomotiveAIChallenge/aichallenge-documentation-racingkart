@@ -1940,6 +1940,12 @@
 なお、GPUのメモリは11GB以上を推奨しています。</p>
 </details>
 <details class="question">
+<summary><code>./run_simulator.bash</code>を実行してもUnityがロードされません。</summary>
+<p>シミュレータ実行時（例：Getting Started: TinyLiDARNet）に、下図のようにシミュレータ画面がピンク一色になる場合、コンテナがGPUを認識していない可能性があります。</p>
+<p><img alt="Unityピンク画面" src="https://github.com/user-attachments/assets/2e9b5b06-18a3-476d-bf32-4b17d78f322e" /></p>
+<p>シミュレータを実行する前に、コンテナ内で<code>nvidia-smi</code>が正常に動作することを確認してください。<code>nvidia-smi</code>が動作しない場合は、NVIDIAドライバのインストール状況とDockerのGPU設定を確認してください。</p>
+</details>
+<details class="question">
 <summary>GPU搭載のWindowsPCしか用意できませんでした。</summary>
 <p>本大会のサポート対象はHP記載の構成になりますため、詳細のご案内はできませんが、一般的に下記のような方法があると思われます。</p>
 <p>参加するためには、Autoware環境が問題です。
