@@ -1,5 +1,31 @@
 {% extends "base.html" %}
 
+{% set is_lang = page and page.file and (page.file.src_path.endswith(".ja.md") or page.file.src_path.endswith(".en.md")) %}
+{% block extrahead %}
+  {{ super() }}
+  {% if config.extra.gtm_id and is_lang %}
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','{{ config.extra.gtm_id }}');
+    </script>
+    <!-- End Google Tag Manager -->
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if config.extra.gtm_id and is_lang %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config.extra.gtm_id }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  {% endif %}
+  {{ super() }}
+{% endblock %}
+
 {% block announce %}
   誰でも参加登録できます！　<a href="https://questant.jp/q/DNW53QLW" class="md-button md-button--primary banner-button" target="_blank">自動運転AIチャレンジの参加登録はこちら！</a>
 {% endblock %}

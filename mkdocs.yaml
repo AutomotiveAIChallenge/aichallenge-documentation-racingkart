@@ -19,6 +19,9 @@ theme:
     accent: custom
     # logo:
 
+extra:
+  gtm_id: !ENV GTM_ID
+
 nav:
   - index: index.md
   - getting-started.md
