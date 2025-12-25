@@ -6,7 +6,7 @@
 
 まずオンライン採点環境の利用を行い、その後環境構築・開発と進んでいきます。
 
-??? note  "1. 自動運転AIチャレンジ2025への参加登録"
+??? note  "1. 自動運転AIチャレンジへの参加登録"
 
     今年度の大会の参加登録は[:material-launch: 参加登録フォーム](https://questant.jp/q/DNW53QLW){ .md-button .md-button--primary target="_blank" }から
 

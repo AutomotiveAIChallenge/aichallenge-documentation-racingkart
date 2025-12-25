@@ -1,8 +1,8 @@
-site_name: 自動運転 AI チャレンジ 2025
-site_url: https://automotiveaichallenge.github.io/aichallenge-documentation-2025/
-repo_url: https://github.com/AutomotiveAIChallenge/aichallenge-documentation-2025
+site_name: 自動運転 AI チャレンジ 2026
+site_url: https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/
+repo_url: https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart
 docs_dir: docs
-copyright: "&copy; 2025 TIER IV, Inc."
+copyright: "&copy; 2026 TIER IV, Inc."
 use_directory_urls: false
 
 theme:
@@ -16,7 +16,7 @@ theme:
   palette:
     scheme: slate
     primary: custom
-    accent: green
+    accent: custom
     # logo:
 
 nav:
@@ -49,8 +49,6 @@ nav:
       - course/velocity_planning.md
       - course/avoidance.md
       - course/localization.md
-  - FAQ: faq.md
-  - Community: community.md
   - ML:
       - ai.md
       - ml_sample/algorithms.md
@@ -61,6 +59,8 @@ nav:
       - ml_sample/getting_started_vad_setup.md
       - ml_sample/getting_started_vad_run.md
       - ml_sample/faq.md
+  - FAQ: faq.md
+  - Community: community.md
 
 extra_css:
   - stylesheets/custom.css
@@ -96,8 +96,8 @@ plugins:
             development: 開発
             specifications: 仕様
             course: 入門講座
+            ML: AI講座
             Community: コミュニティ
-            AI: AI
         - locale: en
           name: English
           build: true
@@ -108,3 +108,4 @@ plugins:
             development: Development
             specifications: Specifications
             course: Course
+  - link-preview:
