@@ -8,6 +8,8 @@ on:
 jobs:
   deploy-docs:
     runs-on: ubuntu-latest
+    env:
+      GTM_ID: ${{ secrets.GTM_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
