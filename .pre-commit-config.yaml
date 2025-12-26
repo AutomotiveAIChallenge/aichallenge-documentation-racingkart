@@ -31,4 +31,5 @@ repos:
     rev: v3.12.2
     hooks:
       - id: markdown-link-check
+        exclude: ^docs/community\.ja\.md$
         args: [--quiet, --config=.markdown-link-check.json]

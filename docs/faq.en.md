@@ -88,7 +88,7 @@ There have been cases where running `sudo apt upgrade` resolved the issue. Addit
 
 ### <u>`docker_run.sh: line 35: rocker: command not found` appears.</u>
 
-Please install Rocker as described [here](../docs/setup/docker.ja.md).
+Please install Rocker as described [here](setup/docker.en.md).
 
 ---
 

@@ -68,7 +68,7 @@
     また、[過去Issue](https://github.com/ros2/rviz/issues/948)にてご質問内容と似た質問がありましたので、こちらも合わせてご確認ください。
 
 ??? question "`docker_run.sh: 行 35: rocker: コマンドが見つかりません`が出ます。"
-    [rockerのインストール](../docs/setup/docker.ja.md)をお願いします。
+    [rockerのインストール](setup/docker.ja.md)をお願いします。
 
 ??? question "`WARNING unable to detect os for base image 'aichallenge-2025-dev', maybe the base image does not exist`が出ます。"
     Dockerイメージのビルドをお願いします。

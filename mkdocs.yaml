@@ -42,6 +42,7 @@ nav:
   - development:
       - development/workspace-usage.md
       - development/main-module.md
+      - development/documentation.md
   - specifications:
       - specifications/interface.md
       - specifications/hardware.md
@@ -56,6 +57,7 @@ nav:
       - ai.md
       - ml_sample/algorithms.md
       - ml_sample/getting_started_tiny_lidar_net.md
+      - ml_sample/develop_tiny_lidar_net.md
       - ml_sample/design.md
       - ml_sample/getting_started_vlm_setup.md
       - ml_sample/getting_started_vlm_run.md
@@ -76,11 +78,10 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
-  - admonition
   - attr_list
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
   - search:
@@ -101,6 +102,7 @@ plugins:
             course: 入門講座
             ML: AI講座
             Community: コミュニティ
+            Discussions: 議論中の項目
         - locale: en
           name: English
           build: true

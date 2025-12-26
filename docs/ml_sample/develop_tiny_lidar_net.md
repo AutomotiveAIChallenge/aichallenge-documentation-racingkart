@@ -1,11 +1,10 @@
-# Getting started: TinyLiDARNet
+# Develop: Multiple Vehicle TinyLiDARNet
 
-このドキュメントでは、CPU版TinyLiDARNetのsetup方法・実行方法について説明します。
-GPU版のAWSIMを使いたい場合Develop編を参照ください。
+このドキュメントでは、2026年度のAWSIMを使ったTinyLiDARNetの複数台走行のsetup方法・実行方法について説明します。
 
 ## Setup
 
-AI Challenge 2026のドキュメントに従って、
+AI Challengeのドキュメントに従って、
 
 - [仮想環境のインストール](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/docker.html)
 - [描画ありAWSIMの起動](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/requirements.html)
@@ -15,29 +14,16 @@ AI Challenge 2026のドキュメントに従って、
 
 までを実施してください。
 
-ここから先の作業は基本的にdocker containerの中で行うことを想定しています。
-docker containerの起動は下記のコマンドで行うことができます。
-
-```sh
-cd ~/aichallenge-racingkart;./docker_run.sh dev cpu
-```
-
-また、起動中のdocker containerの再利用は下記のコマンドで行うことができます。
-
-```sh
-cd ~/aichallenge-racingkart;./docker_exec.sh
-```
-
 ## TinyLiDARNetの学習手順
 
 TinyLiDARNetの学習には、Autowareから取得したrosbagが必要です。このセクションでは、rosbagの取得方法から、TinyLiDARNetの学習・デプロイまでの手順を説明します。
 
-### Step1. rosbagの取得
+### Step1. コンテナの操作
 
 このStepでは、複数のTerminalを用います。
 
 ```sh
-cd ~/aichallenge-racingkart;bash docker_exec.sh
+cd ~/aichallenge-racingkart;./docker_run.sh dev
 ```
 
 をdocker環境の外で実行すれば、コンテナ内で複数のTerminalを開くことができます。3回繰り返して、合計4つのTerminalを開いてください。
@@ -49,36 +35,61 @@ source /autoware/install/setup.bash
 source /aichallenge/workspace/install/setup.bash
 ```
 
-#### Terminal 1: scan generation nodeの起動
+#### Terminal 1: AWSIMの起動
 
 ```sh
-ros2 launch laserscan_generator laserscan_generator.launch.xml   use_sim_time:=true   csv_path:=$(ros2 pkg prefix laserscan_generator)/share/laserscan_generator/map/lane.csv
+./docker_run.sh
+./run_simulator.bash
 ```
 
-#### Terminal 2: AWSIMの起動
+下記のような画像がでてきます。何人対戦にするか選択しましょう。
+ここでは4人プレイとしてすすめるので4を選択します。
+![../assets/start](start.png)
+
+スタートを押すと下記のようにAWSIMが起動します。
+![../assets/play](image-1.png)
+
+#### Terminal 2: Autoware1の起動
 
 ```sh
-cd /aichallenge/;./run_simulator.bash
+./docker_exec.sh
+./run_autoware.bash awsim 1
 ```
 
-#### Terminal 3: autowareの起動
-
-```sh
-cd /aichallenge/;./run_autoware.bash awsim 1
-```
-
-[こちらのlink](https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle)を参考にし、initial poseを設定してください。
+Initial poseを設定してください。
 
 Initial poseを指定する際は、Rvizのviewを`ThirdPersonFollower`から`TopdownOrtho`に切り替える必要があります。
 
-![awsim](../assets/tiny_lidar_net_awsim.png){ width="50%" }
+設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。
+
+<img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%">
+
+#### Terminal 3: ROS Topicの確認
+
+下記のコマンドでAutoware1のいるドメインIDのros topicを購読することができます。
+
+```sh
+./docker_exec.sh
+export ROS_DOMAIN_ID=1
+ros2 topic list
+```
+
+下記のコマンドでシミュレーターがやり取りしているdomain id(=0) のros topicを購読することができます。
+
+```sh
+./docker_exec.sh
+export ROS_DOMAIN_ID=0
+ros2 topic list
+```
+
+domainIDごとに見ることができるtopicが異なるため、データ取得の際は注意してください。
 
 #### Terminal 4: rosbagの記録開始
 
 ```sh
-export ROS_DOMAIN_ID=1
-ros2 topic pub --once /awsim/control_mode_request_topic std_msgs/msg/Bool '{data: true}' # 車両の自動モードスタート
-cd /aichallenge/ml_workspace;./record_data.bash
+./docker_exec.sh
+cd ml_workspace
+./record_rosbag.bash
 ```
 
 走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、`/aichallenge/ml_workspace/rawdata/$(date +%Y%m%d-%H%M%S)`に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は`$(date +%Y%m%d-%H%M%S)`が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
@@ -97,10 +108,10 @@ cp -r  /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/val
 <details>
 <summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
 
-Terminal 3で
+Terminal 2で
 
 ```sh
-cd /aichallenge/;./run_autoware.bash awsim 1
+./run_autoware.bash awsim 1
 ```
 
 の代わりに
@@ -118,6 +129,9 @@ rosbagを学習用datasetに変換します。
 
 ```sh
 cd /aichallenge/ml_workspace/tiny_lidar_net/
+```
+
+```sh
 python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/ml_workspace/train/ --outdir /aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
 ```
 
@@ -132,13 +146,14 @@ python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py --bags
 trainだけでなく、validation setも変換しておきましょう。
 
 ```sh
-python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/ml_workspace/val/ --outdir /aichallenge/ml_workspace/tiny_lidar_net/dataset/val/
+cd /aichallenge/ml_workspace/tiny_lidar_net/
+python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/ml_workspace/train/ --outdir /aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
 ```
 
 ## Step3. Model training
 
 ```sh
-cd /aichallenge/ml_workspace;python3 /aichallenge/ml_workspace/tiny_lidar_net/train.py
+python3 /aichallenge/ml_workspace/tiny_lidar_net/train.py
 ```
 
 CPUで学習を回したい場合や、RTX 50 seriesなどを用いていて、CUDAがこの環境に対応していない場合は、以下を実行してください。
@@ -170,51 +185,39 @@ cp /aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy /aicha
 
 ## Step5. Run TinyLiDARNet Sample ROS Node
 
-[`reference.launch.xml`におけるcontrol mode](https://github.com/AutomotiveAIChallenge/aichallenge-2025/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`rule_based`から`e2e`に変更しましょう。
+[`reference.launch.xml`におけるcontrol mode](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`rule_based`から`e2e`に変更しましょう。
 
 ### Terminal 1: AWSIMの起動
 
 ```sh
-cd /aichallenge/;./run_simulator.bash
+./docker_exec.sh # すでにDockerを起動している場合はSkip
+./run_simulator.bash
 ```
 
-### Terminal 2: autowareの起動
-
-Autowareの起動前にreference.launch.xmlを下記のように変更しましょう。
-
-```xml
-  <!-- E2E -->
-  <arg name="control_mode" default="e2e"
-       description="Select operation mode: rule_based (e.g. Pure Pursuit), e2e (E2E Controller, e.g. TinyLiDARNet), or joycon (Manual Teleop)"/>
-```
+### Terminal 2: Autoware1の起動
 
 ```sh
-cd /aichallenge/;./run_autoware.bash awsim 1
+./docker_exec.sh #すでにDockerを起動している場合はSkip
+./run_autoware.bash awsim 1
 ```
 
-initial poseを設定してください。
+[こちらのlink](https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle)を参考にし、initial poseを設定してください。
 
-#### Terminal 3: 走行開始
+設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。
 
-```sh
-export ROS_DOMAIN_ID=1
-ros2 topic pub --once /awsim/control_mode_request_topic std_msgs/msg/Bool '{data: true}' # 車両の自動モードスタート
-```
-
-![cpu tiny](../assets/cpu_tiny.png)
-
-![awsim](../assets/tiny_lidar_net_awsim.png){ width="50%" }
-
-## 発展的課題
-
-上記の手順で、TinyLiDARNetを用いた、サーキットでの単独走行が可能です。
+<img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%">
 
 ### アクセル制御の追加
 
-現在のdefault設定では、TinyLiDARNetはステアリング制御のみを行い、[アクセルは固定値](https://github.com/AutomotiveAIChallenge/aichallenge-2025/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13)で制御しています。`control_mode: "ai"`に変更し、アクセル制御もTinyLiDARNetに実施させてみましょう。
+現在のdefault設定では、TinyLiDARNetはステアリング制御のみを行い、[アクセルは固定値](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13)で制御しています。`control_mode: "ai"`に変更し、アクセル制御もTinyLiDARNetに実施させてみましょう。
 
 ### TinyLiDARNetでのOvertake
 
-単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。
+単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。[複数台走行用のAWSIM](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAYemytm9XUtONqpMeEBUAww?e=NU2sO0)を使用すれば、複数台走行データを収集・学習することができます。
 
-![awsim](../assets/tiny_lidar_net_awsim_multi_car.png){ width="50%" }
+<img src="../assets/tiny_lidar_net_awsim_multi_car.png" alt="awsim" width="50%">
+
+### Rvizの設定
+
+sensorモジュールはBestEffortでpublishしています。Rvizのtopicの設定をReliableからBestEffortにしてください。
+<img src="../assets/awsim-2.png" alt="awsim" width="50%">
