@@ -14,7 +14,7 @@
         <link rel="prev" href="algorithms.html">
       
       
-        <link rel="next" href="design.html">
+        <link rel="next" href="develop_tiny_lidar_net.html">
       
       
         
@@ -1143,6 +1143,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/documentation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Structure Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1819,6 +1847,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Terminal 2: autowareの起動">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminal-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminal 3: 走行開始
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1837,17 +1882,6 @@
   
     <nav class="md-nav" aria-label="発展的課題">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pitlane" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pitlane走行
-      
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
@@ -1871,17 +1905,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        画像入力の追加
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1891,6 +1914,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="develop_tiny_lidar_net.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Develop: Multiple Vehicle TinyLiDARNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2305,6 +2356,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Terminal 2: autowareの起動">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminal-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminal 3: 走行開始
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2325,17 +2393,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pitlane" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pitlane走行
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2351,17 +2408,6 @@
     <span class="md-ellipsis">
       
         TinyLiDARNetでのOvertake
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        画像入力の追加
       
     </span>
   </a>
@@ -2396,31 +2442,32 @@
 
 
 <h1 id="getting-started-tinylidarnet">Getting started: TinyLiDARNet</h1>
-<p>このドキュメントでは、TinyLiDARNetのsetup方法・実行方法について説明します。</p>
+<p>このドキュメントでは、CPU版TinyLiDARNetのsetup方法・実行方法について説明します。
+GPU版のAWSIMを使いたい場合Develop編を参照ください。</p>
 <h2 id="setup">Setup</h2>
-<p>AI Challenge 2025のドキュメントに従って、</p>
+<p>AI Challenge 2026のドキュメントに従って、</p>
 <ul>
-<li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/docker.html">仮想環境のインストール</a></li>
-<li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/requirements.html">描画ありAWSIMの起動</a><ul>
+<li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/docker.html">仮想環境のインストール</a></li>
+<li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/requirements.html">描画ありAWSIMの起動</a><ul>
 <li>ただし、<a href="https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE">こちら</a>から、E2ESimSingleTest内のAWSIM.zipをダウンロードして使用してください。</li>
-<li>AWSIMの配置については<a href="https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/visible-simulation.html">こちらのページ</a>を参考に、<code>aichallenge-2025/aichallenge/simulator</code>に配置してください。実行ファイルが<code>aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64</code>に存在していることを確認してください。</li>
+<li>AWSIMの配置については<a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/visible-simulation.html">こちらのページ</a>を参考に、<code>aichallenge-racingkart/aichallenge/simulator</code>に配置してください。実行ファイルが<code>aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64</code>に存在していることを確認してください。</li>
 </ul>
 </li>
-<li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-2025/setup/build-docker.html">大会用リポジトリのビルド・実行</a></li>
+<li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/build-docker.html">大会用リポジトリのビルド・実行</a></li>
 </ul>
 <p>までを実施してください。</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025
-./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>gpu
+<p>ここから先の作業は基本的にdocker containerの中で行うことを想定しています。
+docker containerの起動は下記のコマンドで行うことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart<span class="p">;</span>./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge
-./build_autoware.bash
-./run_evaluation.bash<span class="w"> </span>rosbag
+<p>また、起動中のdocker containerの再利用は下記のコマンドで行うことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart<span class="p">;</span>./docker_exec.sh
 </code></pre></div>
 <h2 id="tinylidarnet">TinyLiDARNetの学習手順</h2>
 <p>TinyLiDARNetの学習には、Autowareから取得したrosbagが必要です。このセクションでは、rosbagの取得方法から、TinyLiDARNetの学習・デプロイまでの手順を説明します。</p>
 <h3 id="step1-rosbag">Step1. rosbagの取得</h3>
 <p>このStepでは、複数のTerminalを用います。</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-2025<span class="p">;</span>bash<span class="w"> </span>docker_exec.sh
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart<span class="p">;</span>bash<span class="w"> </span>docker_exec.sh
 </code></pre></div>
 <p>をdocker環境の外で実行すれば、コンテナ内で複数のTerminalを開くことができます。3回繰り返して、合計4つのTerminalを開いてください。
 また、ROS2をコンテナのシェルに認識させる必要があるので、以下のコマンドをコンテナ内で打つようにしてください。</p>
@@ -2435,29 +2482,29 @@
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_simulator.bash
 </code></pre></div>
 <h4 id="terminal-3-autoware">Terminal 3: autowareの起動</h4>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 <p><a href="https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle">こちらのlink</a>を参考にし、initial poseを設定してください。</p>
 <p>Initial poseを指定する際は、Rvizのviewを<code>ThirdPersonFollower</code>から<code>TopdownOrtho</code>に切り替える必要があります。</p>
-<p>設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。</p>
-<p><img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%"></p>
+<p><img alt="awsim" src="../../assets/tiny_lidar_net_awsim.png" width="50%" /></p>
 <h4 id="terminal-4-rosbag">Terminal 4: rosbagの記録開始</h4>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./record_rosbag.bash
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/control_mode_request_topic<span class="w"> </span>std_msgs/msg/Bool<span class="w"> </span><span class="s1">&#39;{data: true}&#39;</span><span class="w"> </span><span class="c1"># 車両の自動モードスタート</span>
+<span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace<span class="p">;</span>./record_data.bash
 </code></pre></div>
-<p>走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、<code>/aichallenge/rosbag2_autoware</code>に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は<code>rosbag2_autoware</code>が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。
-ディレクトリの名称を<code>rosbag2_autoware_train_01</code>や<code>rosbag2_autoware_val_01</code>のように変更しておきましょう。</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>train
-mv<span class="w"> </span>/aichallenge/rosbag2_autoware<span class="w"> </span>/aichallenge/train/rosbag2_autoware_train_01
+<p>走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、<code>/aichallenge/ml_workspace/rawdata/$(date +%Y%m%d-%H%M%S)</code>に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は<code>$(date +%Y%m%d-%H%M%S)</code>が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。</p>
+<p>例えば20251226-233714であれば2025年12月26日23時37分14秒に作られたデータという意味になります。
+本当は訓練と検証データを別のものにする、データを選定するなどの工夫をすべきですが、一旦流れを掴むために訓練データと検証データに取得したデータを下記のコマンドでそのままいれてしまいます。</p>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/train
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>val
-mv<span class="w"> </span>/aichallenge/rosbag2_autoware<span class="w"> </span>/aichallenge/val/rosbag2_autoware_vaL_01
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w">  </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/val
 </code></pre></div>
 <details>
 <summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
 
 Terminal 3で
 
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 
 の代わりに
@@ -2470,9 +2517,8 @@ Terminal 3で
 
 <h2 id="step2-dataset-conversion">Step2. Dataset conversion</h2>
 <p>rosbagを学習用datasetに変換します。</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/train/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/
+python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
 </code></pre></div>
 <p>以下のような出力が得られたら成功です。</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>bags.<span class="w"> </span>Starting<span class="w"> </span>processing<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span>workers.
@@ -2480,26 +2526,26 @@ Terminal 3で
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>All<span class="w"> </span>processing<span class="w"> </span>finished<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.34<span class="w"> </span>seconds.
 </code></pre></div>
 <p>trainだけでなく、validation setも変換しておきましょう。</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/val/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/dataset/val/
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/val/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/val/
 </code></pre></div>
 <h2 id="step3-model-training">Step3. Model training</h2>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/train.py
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace<span class="p">;</span>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/train.py
 </code></pre></div>
 <p>CPUで学習を回したい場合や、RTX 50 seriesなどを用いていて、CUDAがこの環境に対応していない場合は、以下を実行してください。</p>
-<div class="highlight"><pre><span></span><code><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w"> </span>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/train.py
+<div class="highlight"><pre><span></span><code><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w"> </span>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/train.py
 </code></pre></div>
 <h2 id="step4-model-deployment">Step4. Model deployment</h2>
 <ul>
 <li><code>.pth</code>から<code>.npy</code>に変換します</li>
 </ul>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/convert_weight.py<span class="w"> </span>--ckpt<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/checkpoints/best_model.pth<span class="w"> </span>--output<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/weights/converted_weights.npy
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/convert_weight.py<span class="w"> </span>--ckpt<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/checkpoints/best_model.pth<span class="w"> </span>--output<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy
 </code></pre></div>
 <p>以下のような出力が得られれば成功です。</p>
-<div class="highlight"><pre><span></span><code>✅<span class="w"> </span>Loaded<span class="w"> </span>checkpoint:<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/checkpoints/best_model.pth
+<div class="highlight"><pre><span></span><code>✅<span class="w"> </span>Loaded<span class="w"> </span>checkpoint:<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/checkpoints/best_model.pth
 ✅<span class="w"> </span>Saved<span class="w"> </span>NumPy<span class="w"> </span>weights<span class="w"> </span>to:<span class="w"> </span>weights/converted_weights.npy
 </code></pre></div>
 <p>作成した<code>converted_weights.npy</code>を、ROS 2 package内のckptディレクトリに移動します。</p>
-<div class="highlight"><pre><span></span><code>mv<span class="w"> </span>/aichallenge/python_workspace/tiny_lidar_net/weights/converted_weights.npy<span class="w"> </span>/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/ckpt/tinylidarnet_weights.npy
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy<span class="w"> </span>/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/ckpt/tinylidarnet_weights.npy
 </code></pre></div>
 <h2 id="step5-run-tinylidarnet-sample-ros-node">Step5. Run TinyLiDARNet Sample ROS Node</h2>
 <p><a href="https://github.com/AutomotiveAIChallenge/aichallenge-2025/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20"><code>reference.launch.xml</code>におけるcontrol mode</a>を、<code>rule_based</code>から<code>e2e</code>に変更しましょう。</p>
@@ -2507,24 +2553,27 @@ Terminal 3で
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_simulator.bash
 </code></pre></div>
 <h3 id="terminal-2-autoware">Terminal 2: autowareの起動</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim
+<p>Autowareの起動前にreference.launch.xmlを下記のように変更しましょう。</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="cm">&lt;!-- E2E --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;e2e&quot;</span>
+<span class="w">       </span><span class="na">description=</span><span class="s">&quot;Select operation mode: rule_based (e.g. Pure Pursuit), e2e (E2E Controller, e.g. TinyLiDARNet), or joycon (Manual Teleop)&quot;</span><span class="nt">/&gt;</span>
 </code></pre></div>
-<p><a href="https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle">こちらのlink</a>を参考にし、initial poseを設定してください。</p>
-<p>設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。</p>
-<p><img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%"></p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>initial poseを設定してください。</p>
+<h4 id="terminal-3">Terminal 3: 走行開始</h4>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/control_mode_request_topic<span class="w"> </span>std_msgs/msg/Bool<span class="w"> </span><span class="s1">&#39;{data: true}&#39;</span><span class="w"> </span><span class="c1"># 車両の自動モードスタート</span>
+</code></pre></div>
+<p><img alt="cpu tiny" src="../../assets/cpu_tiny.png" /></p>
+<p><img alt="awsim" src="../../assets/tiny_lidar_net_awsim.png" width="50%" /></p>
 <h2 id="_1">発展的課題</h2>
 <p>上記の手順で、TinyLiDARNetを用いた、サーキットでの単独走行が可能です。</p>
-<h3 id="pitlane">Pitlane走行</h3>
-<p>TinyLiDARNetは、コース上での走行は可能ですが、Pitlaneのような狭いエリアでの走行は苦手です。発展的課題として、<a href="https://tier4inc-my.sharepoint.com/personal/taiki_tanaka_tier4_jp/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ftaiki%5Ftanaka%5Ftier4%5Fjp%2FDocuments%2FAutonomousAIChallenge%2FAWSIM%2Dfor%2DFinal&amp;viewid=f55f657e%2D78ea%2D41f1%2D8ceb%2Da70ac2d24bfc&amp;ga=1">PitlaneからスタートするAWSIM環境</a>を用いてPitlaneを含むrosbagを収集し、Pitlane走行が可能なTinyLiDARNetの学習に挑戦してみてください。</p>
-<p><img src="../assets/tiny_lidar_net_awsim_pitlane.png" alt="awsim" width="30%"></p>
 <h3 id="_2">アクセル制御の追加</h3>
 <p>現在のdefault設定では、TinyLiDARNetはステアリング制御のみを行い、<a href="https://github.com/AutomotiveAIChallenge/aichallenge-2025/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13">アクセルは固定値</a>で制御しています。<code>control_mode: "ai"</code>に変更し、アクセル制御もTinyLiDARNetに実施させてみましょう。</p>
 <h3 id="tinylidarnetovertake">TinyLiDARNetでのOvertake</h3>
-<p>単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。<a href="https://tier4inc-my.sharepoint.com/personal/taiki_tanaka_tier4_jp/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ftaiki%5Ftanaka%5Ftier4%5Fjp%2FDocuments%2FAutonomousAIChallengePractice2026%2FE2ESimPractice&amp;viewid=f55f657e%2D78ea%2D41f1%2D8ceb%2Da70ac2d24bfc&amp;ga=1">複数台走行用のAWSIM</a>を使用すれば、複数台走行データを収集・学習することができます。</p>
-<p><img src="../assets/tiny_lidar_net_awsim_multi_car.png" alt="awsim" width="50%"></p>
-<h3 id="_3">画像入力の追加</h3>
-<p><code>use image</code>オプションをTrueにすることで、画像入力を追加することができます。TinyLiDARNetはLiDAR情報のみを用いていますが、この画像入力も使用したmodel,つまり<strong>TinyLiDARImageNet</strong>を実装すれば、LiDARだけでなく画像も考慮して走行することが期待されます。今後、信号や黄旗などが登場した際には、画像入力を検討してみてください。</p>
-<p><img src="../assets/camera_awsim_after.png" alt="awsim" width="50%"></p>
+<p>単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。</p>
+<p><img alt="awsim" src="../../assets/tiny_lidar_net_awsim_multi_car.png" width="50%" /></p>
 
 
 

@@ -1,6 +1,6 @@
 
 <!doctype html>
-<html lang="ja" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
@@ -8,35 +8,35 @@
       
       
       
-        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/ml_sample/getting_started_tiny_lidar_net.html">
+        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/ml_sample/develop_tiny_lidar_net.html">
       
       
-        <link rel="prev" href="algorithms.html">
+        <link rel="prev" href="getting_started_tiny_lidar_net.html">
       
       
-        <link rel="next" href="develop_tiny_lidar_net.html">
+        <link rel="next" href="design.html">
       
       
         
-          <link rel="alternate" href="getting_started_tiny_lidar_net.html" hreflang="ja">
+          <link rel="alternate" href="../../ml_sample/develop_tiny_lidar_net.html" hreflang="ja">
         
-          <link rel="alternate" href="../en/ml_sample/getting_started_tiny_lidar_net.html" hreflang="en">
+          <link rel="alternate" href="develop_tiny_lidar_net.html" hreflang="en">
         
       
       
-      <link rel="icon" href="../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Getting started: TinyLiDARNet - 自動運転 AI チャレンジ 2026</title>
+        <title>Develop: Multiple Vehicle TinyLiDARNet - 自動運転 AI チャレンジ 2026</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +55,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -83,8 +83,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started-tinylidarnet" class="md-skip">
-          コンテンツにスキップ
+        <a href="#develop-multiple-vehicle-tinylidarnet" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -93,7 +93,7 @@
         <aside class="md-banner">
           <div class="md-banner__inner md-grid md-typeset">
             
-              <button class="md-banner__button md-icon" aria-label="非表示にします">
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
               </button>
@@ -115,7 +115,7 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-header__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
       
   
@@ -136,7 +136,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting started: TinyLiDARNet
+              Develop: Multiple Vehicle TinyLiDARNet
             
           </span>
         </div>
@@ -150,20 +150,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="言語切り替え">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="getting_started_tiny_lidar_net.html" hreflang="ja" class="md-select__link">
+            <a href="../../ml_sample/develop_tiny_lidar_net.html" hreflang="ja" class="md-select__link">
               日本語
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../en/ml_sample/getting_started_tiny_lidar_net.html" hreflang="en" class="md-select__link">
+            <a href="develop_tiny_lidar_net.html" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -184,16 +184,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="検索">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -204,7 +204,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            検索を初期化
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -216,7 +216,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="リポジトリへ" class="md-source" data-md-component="source">
+        <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -231,7 +231,7 @@
   
     
       
-<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -247,7 +247,7 @@
   
     
   
-  競技概要
+  Top Page
 
       </a>
     </li>
@@ -266,7 +266,7 @@
   
     
   
-  はじめ方
+  Getting Started
 
       </a>
     </li>
@@ -285,7 +285,7 @@
           
   
   
-  予選
+  Preliminaries
 
         </a>
       </li>
@@ -305,7 +305,7 @@
           
   
   
-  決勝
+  finals
 
         </a>
       </li>
@@ -325,7 +325,7 @@
           
   
   
-  環境構築
+  Setup
 
         </a>
       </li>
@@ -345,7 +345,7 @@
           
   
   
-  開発
+  Development
 
         </a>
       </li>
@@ -365,7 +365,7 @@
           
   
   
-  仕様
+  Specifications
 
         </a>
       </li>
@@ -385,7 +385,7 @@
           
   
   
-  入門講座
+  Course
 
         </a>
       </li>
@@ -407,7 +407,7 @@
           
   
   
-  AI講座
+  ML
 
         </a>
       </li>
@@ -446,7 +446,7 @@
   
     
   
-  コミュニティ
+  Community
 
       </a>
     </li>
@@ -479,7 +479,7 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-nav__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
       
@@ -491,7 +491,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="リポジトリへ" class="md-source" data-md-component="source">
+      <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -518,7 +518,7 @@
   <span class="md-ellipsis">
     
   
-    競技概要
+    Top Page
   
 
     
@@ -545,7 +545,7 @@
   <span class="md-ellipsis">
     
   
-    はじめ方
+    Getting Started
   
 
     
@@ -586,7 +586,7 @@
   <span class="md-ellipsis">
     
   
-    予選
+    Preliminaries
   
 
     
@@ -602,7 +602,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    予選
+    Preliminaries
   
 
           </label>
@@ -622,7 +622,7 @@
   <span class="md-ellipsis">
     
   
-    ルール
+    Rules
   
 
     
@@ -650,7 +650,7 @@
   <span class="md-ellipsis">
     
   
-    提出
+    Submission
   
 
     
@@ -678,7 +678,7 @@
   <span class="md-ellipsis">
     
   
-    結果の確認
+    Checking Results
   
 
     
@@ -727,7 +727,7 @@
   <span class="md-ellipsis">
     
   
-    決勝
+    finals
   
 
     
@@ -743,7 +743,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    決勝
+    finals
   
 
           </label>
@@ -763,7 +763,7 @@
   <span class="md-ellipsis">
     
   
-    決勝大会の概要
+    Overview of the Final Competition
   
 
     
@@ -812,7 +812,7 @@
   <span class="md-ellipsis">
     
   
-    環境構築
+    Setup
   
 
     
@@ -828,7 +828,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    環境構築
+    Setup
   
 
           </label>
@@ -848,7 +848,7 @@
   <span class="md-ellipsis">
     
   
-    推奨環境
+    Recommended Environment
   
 
     
@@ -876,7 +876,7 @@
   <span class="md-ellipsis">
     
   
-    ワークスペースのクローン
+    Cloning the Workspace
   
 
     
@@ -904,7 +904,7 @@
   <span class="md-ellipsis">
     
   
-    仮想環境のインストール
+    Installing the Virtual Environment
   
 
     
@@ -932,7 +932,7 @@
   <span class="md-ellipsis">
     
   
-    描画なしAWSIMのダウンロード
+    Downloading Headless AWSIM
   
 
     
@@ -960,7 +960,7 @@
   <span class="md-ellipsis">
     
   
-    描画ありAWSIMの起動 (参考)
+    Downloading AWSIM with Visualization (Reference)
   
 
     
@@ -988,7 +988,7 @@
   <span class="md-ellipsis">
     
   
-    大会用リポジトリのビルド・実行
+    Building and Running the Competition Repository
   
 
     
@@ -1016,7 +1016,7 @@
   <span class="md-ellipsis">
     
   
-    開発の参考
+    Reference
   
 
     
@@ -1065,7 +1065,7 @@
   <span class="md-ellipsis">
     
   
-    開発
+    Development
   
 
     
@@ -1081,7 +1081,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    開発
+    Development
   
 
           </label>
@@ -1101,7 +1101,7 @@
   <span class="md-ellipsis">
     
   
-    AIチャレンジの進め方
+    How to Proceed with the AI Challenge
   
 
     
@@ -1129,7 +1129,7 @@
   <span class="md-ellipsis">
     
   
-    メインモジュール
+    Main Module
   
 
     
@@ -1157,7 +1157,7 @@
   <span class="md-ellipsis">
     
   
-    ドキュメント構成ガイド
+    Documentation Structure Guide
   
 
     
@@ -1206,7 +1206,7 @@
   <span class="md-ellipsis">
     
   
-    仕様
+    Specifications
   
 
     
@@ -1222,7 +1222,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    仕様
+    Specifications
   
 
           </label>
@@ -1242,7 +1242,7 @@
   <span class="md-ellipsis">
     
   
-    インターフェース
+    Interface
   
 
     
@@ -1270,7 +1270,7 @@
   <span class="md-ellipsis">
     
   
-    ハードウェア
+    Hardware
   
 
     
@@ -1298,7 +1298,7 @@
   <span class="md-ellipsis">
     
   
-    シミュレーター
+    Simulator
   
 
     
@@ -1347,7 +1347,7 @@
   <span class="md-ellipsis">
     
   
-    入門講座
+    Course
   
 
     
@@ -1363,7 +1363,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    入門講座
+    Course
   
 
           </label>
@@ -1383,7 +1383,7 @@
   <span class="md-ellipsis">
     
   
-    Autoware 入門講座
+    Autoware Introduction Course
   
 
     
@@ -1549,7 +1549,7 @@
   <span class="md-ellipsis">
     
   
-    AI講座
+    ML
   
 
     
@@ -1565,7 +1565,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    AI講座
+    ML
   
 
           </label>
@@ -1631,6 +1631,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="getting_started_tiny_lidar_net.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started: TinyLiDARNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1650,7 +1678,7 @@
   <span class="md-ellipsis">
     
   
-    Getting started: TinyLiDARNet
+    Develop: Multiple Vehicle TinyLiDARNet
   
 
     
@@ -1661,14 +1689,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="getting_started_tiny_lidar_net.html" class="md-nav__link md-nav__link--active">
+      <a href="develop_tiny_lidar_net.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    Getting started: TinyLiDARNet
+    Develop: Multiple Vehicle TinyLiDARNet
   
 
     
@@ -1680,7 +1708,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目次">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -1689,7 +1717,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目次
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -1717,22 +1745,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step1-rosbag" class="md-nav__link">
+  <a href="#step1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step1. rosbagの取得
+        Step1. コンテナの操作
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step1. rosbagの取得">
+    <nav class="md-nav" aria-label="Step1. コンテナの操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#terminal-1-scan-generation-node" class="md-nav__link">
+  <a href="#terminal-1-awsim" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 1: scan generation nodeの起動
+        Terminal 1: AWSIMの起動
       
     </span>
   </a>
@@ -1740,10 +1768,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#terminal-2-awsim" class="md-nav__link">
+  <a href="#terminal-2-autoware1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 2: AWSIMの起動
+        Terminal 2: Autoware1の起動
       
     </span>
   </a>
@@ -1751,10 +1779,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#terminal-3-autoware" class="md-nav__link">
+  <a href="#terminal-3-ros-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 3: autowareの起動
+        Terminal 3: ROS Topicの確認
       
     </span>
   </a>
@@ -1828,7 +1856,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#terminal-1-awsim" class="md-nav__link">
+  <a href="#terminal-1-awsim_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Terminal 1: AWSIMの起動
@@ -1839,52 +1867,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#terminal-2-autoware" class="md-nav__link">
+  <a href="#terminal-2-autoware1_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 2: autowareの起動
+        Terminal 2: Autoware1の起動
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Terminal 2: autowareの起動">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#terminal-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Terminal 3: 走行開始
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        発展的課題
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="発展的課題">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         アクセル制御の追加
@@ -1905,6 +1899,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#rviz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rvizの設定
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1914,34 +1919,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="develop_tiny_lidar_net.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Develop: Multiple Vehicle TinyLiDARNet
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -2163,7 +2140,7 @@
   <span class="md-ellipsis">
     
   
-    コミュニティ
+    Community
   
 
     
@@ -2189,7 +2166,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目次">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -2198,7 +2175,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目次
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
@@ -2226,22 +2203,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#step1-rosbag" class="md-nav__link">
+  <a href="#step1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step1. rosbagの取得
+        Step1. コンテナの操作
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step1. rosbagの取得">
+    <nav class="md-nav" aria-label="Step1. コンテナの操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#terminal-1-scan-generation-node" class="md-nav__link">
+  <a href="#terminal-1-awsim" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 1: scan generation nodeの起動
+        Terminal 1: AWSIMの起動
       
     </span>
   </a>
@@ -2249,10 +2226,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#terminal-2-awsim" class="md-nav__link">
+  <a href="#terminal-2-autoware1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 2: AWSIMの起動
+        Terminal 2: Autoware1の起動
       
     </span>
   </a>
@@ -2260,10 +2237,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#terminal-3-autoware" class="md-nav__link">
+  <a href="#terminal-3-ros-topic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 3: autowareの起動
+        Terminal 3: ROS Topicの確認
       
     </span>
   </a>
@@ -2337,7 +2314,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#terminal-1-awsim" class="md-nav__link">
+  <a href="#terminal-1-awsim_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Terminal 1: AWSIMの起動
@@ -2348,52 +2325,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#terminal-2-autoware" class="md-nav__link">
+  <a href="#terminal-2-autoware1_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Terminal 2: autowareの起動
+        Terminal 2: Autoware1の起動
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Terminal 2: autowareの起動">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#terminal-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Terminal 3: 走行開始
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        発展的課題
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="発展的課題">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         アクセル制御の追加
@@ -2408,6 +2351,17 @@
     <span class="md-ellipsis">
       
         TinyLiDARNetでのOvertake
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rviz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rvizの設定
       
     </span>
   </a>
@@ -2441,11 +2395,10 @@
   
 
 
-<h1 id="getting-started-tinylidarnet">Getting started: TinyLiDARNet</h1>
-<p>このドキュメントでは、CPU版TinyLiDARNetのsetup方法・実行方法について説明します。
-GPU版のAWSIMを使いたい場合Develop編を参照ください。</p>
+<h1 id="develop-multiple-vehicle-tinylidarnet">Develop: Multiple Vehicle TinyLiDARNet</h1>
+<p>このドキュメントでは、2026年度のAWSIMを使ったTinyLiDARNetの複数台走行のsetup方法・実行方法について説明します。</p>
 <h2 id="setup">Setup</h2>
-<p>AI Challenge 2026のドキュメントに従って、</p>
+<p>AI Challengeのドキュメントに従って、</p>
 <ul>
 <li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/docker.html">仮想環境のインストール</a></li>
 <li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/requirements.html">描画ありAWSIMの起動</a><ul>
@@ -2456,18 +2409,11 @@ GPU版のAWSIMを使いたい場合Develop編を参照ください。</p>
 <li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/build-docker.html">大会用リポジトリのビルド・実行</a></li>
 </ul>
 <p>までを実施してください。</p>
-<p>ここから先の作業は基本的にdocker containerの中で行うことを想定しています。
-docker containerの起動は下記のコマンドで行うことができます。</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart<span class="p">;</span>./docker_run.sh<span class="w"> </span>dev<span class="w"> </span>cpu
-</code></pre></div>
-<p>また、起動中のdocker containerの再利用は下記のコマンドで行うことができます。</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart<span class="p">;</span>./docker_exec.sh
-</code></pre></div>
 <h2 id="tinylidarnet">TinyLiDARNetの学習手順</h2>
 <p>TinyLiDARNetの学習には、Autowareから取得したrosbagが必要です。このセクションでは、rosbagの取得方法から、TinyLiDARNetの学習・デプロイまでの手順を説明します。</p>
-<h3 id="step1-rosbag">Step1. rosbagの取得</h3>
+<h3 id="step1">Step1. コンテナの操作</h3>
 <p>このStepでは、複数のTerminalを用います。</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart<span class="p">;</span>bash<span class="w"> </span>docker_exec.sh
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart<span class="p">;</span>./docker_run.sh<span class="w"> </span>dev
 </code></pre></div>
 <p>をdocker環境の外で実行すれば、コンテナ内で複数のTerminalを開くことができます。3回繰り返して、合計4つのTerminalを開いてください。
 また、ROS2をコンテナのシェルに認識させる必要があるので、以下のコマンドをコンテナ内で打つようにしてください。</p>
@@ -2475,22 +2421,39 @@ docker containerの起動は下記のコマンドで行うことができます�
 <span class="nb">source</span><span class="w"> </span>/autoware/install/setup.bash
 <span class="nb">source</span><span class="w"> </span>/aichallenge/workspace/install/setup.bash
 </code></pre></div>
-<h4 id="terminal-1-scan-generation-node">Terminal 1: scan generation nodeの起動</h4>
-<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>laserscan_generator<span class="w"> </span>laserscan_generator.launch.xml<span class="w">   </span>use_sim_time:<span class="o">=</span><span class="nb">true</span><span class="w">   </span>csv_path:<span class="o">=</span><span class="k">$(</span>ros2<span class="w"> </span>pkg<span class="w"> </span>prefix<span class="w"> </span>laserscan_generator<span class="k">)</span>/share/laserscan_generator/map/lane.csv
+<h4 id="terminal-1-awsim">Terminal 1: AWSIMの起動</h4>
+<div class="highlight"><pre><span></span><code>./docker_run.sh
+./run_simulator.bash
 </code></pre></div>
-<h4 id="terminal-2-awsim">Terminal 2: AWSIMの起動</h4>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_simulator.bash
+<p>下記のような画像がでてきます。何人対戦にするか選択しましょう。
+ここでは4人プレイとしてすすめるので4を選択します。
+<img alt="../assets/start" src="start.png" /></p>
+<p>スタートを押すと下記のようにAWSIMが起動します。
+<img alt="../assets/play" src="image-1.png" /></p>
+<h4 id="terminal-2-autoware1">Terminal 2: Autoware1の起動</h4>
+<div class="highlight"><pre><span></span><code>./docker_exec.sh
+./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
-<h4 id="terminal-3-autoware">Terminal 3: autowareの起動</h4>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
-</code></pre></div>
-<p><a href="https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle">こちらのlink</a>を参考にし、initial poseを設定してください。</p>
+<p>Initial poseを設定してください。</p>
 <p>Initial poseを指定する際は、Rvizのviewを<code>ThirdPersonFollower</code>から<code>TopdownOrtho</code>に切り替える必要があります。</p>
-<p><img alt="awsim" src="../assets/tiny_lidar_net_awsim.png" width="50%" /></p>
+<p>設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。</p>
+<p><img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%"></p>
+<h4 id="terminal-3-ros-topic">Terminal 3: ROS Topicの確認</h4>
+<p>下記のコマンドでAutoware1のいるドメインIDのros topicを購読することができます。</p>
+<div class="highlight"><pre><span></span><code>./docker_exec.sh
+<span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>list
+</code></pre></div>
+<p>下記のコマンドでシミュレーターがやり取りしているdomain id(=0) のros topicを購読することができます。</p>
+<div class="highlight"><pre><span></span><code>./docker_exec.sh
+<span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">0</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>list
+</code></pre></div>
+<p>domainIDごとに見ることができるtopicが異なるため、データ取得の際は注意してください。</p>
 <h4 id="terminal-4-rosbag">Terminal 4: rosbagの記録開始</h4>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
-ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/control_mode_request_topic<span class="w"> </span>std_msgs/msg/Bool<span class="w"> </span><span class="s1">&#39;{data: true}&#39;</span><span class="w"> </span><span class="c1"># 車両の自動モードスタート</span>
-<span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace<span class="p">;</span>./record_data.bash
+<div class="highlight"><pre><span></span><code>./docker_exec.sh
+<span class="nb">cd</span><span class="w"> </span>ml_workspace
+./record_rosbag.bash
 </code></pre></div>
 <p>走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、<code>/aichallenge/ml_workspace/rawdata/$(date +%Y%m%d-%H%M%S)</code>に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は<code>$(date +%Y%m%d-%H%M%S)</code>が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。</p>
 <p>例えば20251226-233714であれば2025年12月26日23時37分14秒に作られたデータという意味になります。
@@ -2502,9 +2465,9 @@ ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </s
 <details>
 <summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
 
-Terminal 3で
+Terminal 2で
 
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
+<div class="highlight"><pre><span></span><code>./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
 
 の代わりに
@@ -2518,7 +2481,8 @@ Terminal 3で
 <h2 id="step2-dataset-conversion">Step2. Dataset conversion</h2>
 <p>rosbagを学習用datasetに変換します。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/
-python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
 </code></pre></div>
 <p>以下のような出力が得られたら成功です。</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>bags.<span class="w"> </span>Starting<span class="w"> </span>processing<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span>workers.
@@ -2526,10 +2490,11 @@ python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_
 <span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>All<span class="w"> </span>processing<span class="w"> </span>finished<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.34<span class="w"> </span>seconds.
 </code></pre></div>
 <p>trainだけでなく、validation setも変換しておきましょう。</p>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/val/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/val/
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/
+python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
 </code></pre></div>
 <h2 id="step3-model-training">Step3. Model training</h2>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace<span class="p">;</span>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/train.py
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/train.py
 </code></pre></div>
 <p>CPUで学習を回したい場合や、RTX 50 seriesなどを用いていて、CUDAがこの環境に対応していない場合は、以下を実行してください。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w"> </span>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/train.py
@@ -2548,32 +2513,26 @@ python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_
 <div class="highlight"><pre><span></span><code>cp<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy<span class="w"> </span>/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/ckpt/tinylidarnet_weights.npy
 </code></pre></div>
 <h2 id="step5-run-tinylidarnet-sample-ros-node">Step5. Run TinyLiDARNet Sample ROS Node</h2>
-<p><a href="https://github.com/AutomotiveAIChallenge/aichallenge-2025/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20"><code>reference.launch.xml</code>におけるcontrol mode</a>を、<code>rule_based</code>から<code>e2e</code>に変更しましょう。</p>
-<h3 id="terminal-1-awsim">Terminal 1: AWSIMの起動</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_simulator.bash
+<p><a href="https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20"><code>reference.launch.xml</code>におけるcontrol mode</a>を、<code>rule_based</code>から<code>e2e</code>に変更しましょう。</p>
+<h3 id="terminal-1-awsim_1">Terminal 1: AWSIMの起動</h3>
+<div class="highlight"><pre><span></span><code>./docker_exec.sh<span class="w"> </span><span class="c1"># すでにDockerを起動している場合はSkip</span>
+./run_simulator.bash
 </code></pre></div>
-<h3 id="terminal-2-autoware">Terminal 2: autowareの起動</h3>
-<p>Autowareの起動前にreference.launch.xmlを下記のように変更しましょう。</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="cm">&lt;!-- E2E --&gt;</span>
-<span class="w">  </span><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_mode&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;e2e&quot;</span>
-<span class="w">       </span><span class="na">description=</span><span class="s">&quot;Select operation mode: rule_based (e.g. Pure Pursuit), e2e (E2E Controller, e.g. TinyLiDARNet), or joycon (Manual Teleop)&quot;</span><span class="nt">/&gt;</span>
+<h3 id="terminal-2-autoware1_1">Terminal 2: Autoware1の起動</h3>
+<div class="highlight"><pre><span></span><code>./docker_exec.sh<span class="w"> </span><span class="c1">#すでにDockerを起動している場合はSkip</span>
+./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/<span class="p">;</span>./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
-</code></pre></div>
-<p>initial poseを設定してください。</p>
-<h4 id="terminal-3">Terminal 3: 走行開始</h4>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
-ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/control_mode_request_topic<span class="w"> </span>std_msgs/msg/Bool<span class="w"> </span><span class="s1">&#39;{data: true}&#39;</span><span class="w"> </span><span class="c1"># 車両の自動モードスタート</span>
-</code></pre></div>
-<p><img alt="cpu tiny" src="../assets/cpu_tiny.png" /></p>
-<p><img alt="awsim" src="../assets/tiny_lidar_net_awsim.png" width="50%" /></p>
-<h2 id="_1">発展的課題</h2>
-<p>上記の手順で、TinyLiDARNetを用いた、サーキットでの単独走行が可能です。</p>
-<h3 id="_2">アクセル制御の追加</h3>
-<p>現在のdefault設定では、TinyLiDARNetはステアリング制御のみを行い、<a href="https://github.com/AutomotiveAIChallenge/aichallenge-2025/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13">アクセルは固定値</a>で制御しています。<code>control_mode: "ai"</code>に変更し、アクセル制御もTinyLiDARNetに実施させてみましょう。</p>
+<p><a href="https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle">こちらのlink</a>を参考にし、initial poseを設定してください。</p>
+<p>設定できたら、AWSIMの画面右上にあるControlボタンを押し、ManualからAutonomousに切り替えます。</p>
+<p><img src="../assets/tiny_lidar_net_awsim.png" alt="awsim" width="50%"></p>
+<h3 id="_1">アクセル制御の追加</h3>
+<p>現在のdefault設定では、TinyLiDARNetはステアリング制御のみを行い、<a href="https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13">アクセルは固定値</a>で制御しています。<code>control_mode: "ai"</code>に変更し、アクセル制御もTinyLiDARNetに実施させてみましょう。</p>
 <h3 id="tinylidarnetovertake">TinyLiDARNetでのOvertake</h3>
-<p>単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。</p>
-<p><img alt="awsim" src="../assets/tiny_lidar_net_awsim_multi_car.png" width="50%" /></p>
+<p>単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。<a href="https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAYemytm9XUtONqpMeEBUAww?e=NU2sO0">複数台走行用のAWSIM</a>を使用すれば、複数台走行データを収集・学習することができます。</p>
+<p><img src="../assets/tiny_lidar_net_awsim_multi_car.png" alt="awsim" width="50%"></p>
+<h3 id="rviz">Rvizの設定</h3>
+<p>sensorモジュールはBestEffortでpublishしています。Rvizのtopicの設定をReliableからBestEffortにしてください。
+<img src="../assets/awsim-2.png" alt="awsim" width="50%"></p>
 
 
 
@@ -2628,10 +2587,10 @@ ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </s
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "announce.dismiss"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "announce.dismiss"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
