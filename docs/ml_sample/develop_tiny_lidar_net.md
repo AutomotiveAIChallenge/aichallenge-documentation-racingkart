@@ -1,6 +1,6 @@
 # Develop: Multiple Vehicle TinyLiDARNet
 
-このドキュメントでは、2026年度のAWSIMを使ったTinyLiDARNetの複数台走行のsetup方法・実行方法について説明します。
+このドキュメントでは、2026年度のシミュレーション大会をFBを元に改善しながら提供している学習教材を使ったTinyLiDARNetの複数台走行のsetup方法・実行方法について説明します。
 
 ## Setup
 
@@ -13,6 +13,8 @@ AI Challengeのドキュメントに従って、
 - [大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/build-docker.html)
 
 までを実施してください。
+
+また、2025年度大会の参加者の方は再度dockerのpullとbuildが必要になりますので仮想環境のinstallのページを再度ご参考ください。
 
 ## TinyLiDARNetの学習手順
 
@@ -44,10 +46,12 @@ source /aichallenge/workspace/install/setup.bash
 
 下記のような画像がでてきます。何人対戦にするか選択しましょう。
 ここでは4人プレイとしてすすめるので4を選択します。
-![../assets/start](start.png)
+
+<img src="../assets/start.png" alt="awsim" width="60%">
 
 スタートを押すと下記のようにAWSIMが起動します。
-![../assets/play](image-1.png)
+
+<img src="../assets/play.png" alt="awsim" width="60%">
 
 #### Terminal 2: Autoware1の起動
 
@@ -220,4 +224,5 @@ cp /aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy /aicha
 ### Rvizの設定
 
 sensorモジュールはBestEffortでpublishしています。Rvizのtopicの設定をReliableからBestEffortにしてください。
+
 <img src="../assets/awsim-2.png" alt="awsim" width="50%">

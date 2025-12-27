@@ -135,3 +135,25 @@
 .twitter-grid .twitter-tweet {
   margin: 0 auto !important;
 }
+
+/* AI講座: nav/tab highlight */
+.md-tabs__link[href$="ai.html"],
+.md-nav__link[href$="ai.html"] .md-ellipsis,
+.md-nav__link[href^="ml_sample/"] .md-ellipsis {
+  animation: ai-lecture-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes ai-lecture-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 14px rgba(69, 54, 172, 0.25);
+    filter: saturate(1);
+  }
+  50% {
+    opacity: 0.75;
+    text-shadow: 0 0 22px rgba(236, 183, 183, 0.35),
+      0 0 18px rgba(69, 54, 172, 0.45);
+    filter: saturate(1.15);
+  }
+}
