@@ -2396,7 +2396,7 @@
 
 
 <h1 id="develop-multiple-vehicle-tinylidarnet">Develop: Multiple Vehicle TinyLiDARNet</h1>
-<p>このドキュメントでは、2026年度のAWSIMを使ったTinyLiDARNetの複数台走行のsetup方法・実行方法について説明します。</p>
+<p>このドキュメントでは、2026年度のシミュレーション大会をFBを元に改善しながら提供している学習教材を使ったTinyLiDARNetの複数台走行のsetup方法・実行方法について説明します。</p>
 <h2 id="setup">Setup</h2>
 <p>AI Challengeのドキュメントに従って、</p>
 <ul>
@@ -2409,6 +2409,7 @@
 <li><a href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/build-docker.html">大会用リポジトリのビルド・実行</a></li>
 </ul>
 <p>までを実施してください。</p>
+<p>また、2025年度大会の参加者の方は再度dockerのpullとbuildが必要になりますので仮想環境のinstallのページを再度ご参考ください。</p>
 <h2 id="tinylidarnet">TinyLiDARNetの学習手順</h2>
 <p>TinyLiDARNetの学習には、Autowareから取得したrosbagが必要です。このセクションでは、rosbagの取得方法から、TinyLiDARNetの学習・デプロイまでの手順を説明します。</p>
 <h3 id="step1">Step1. コンテナの操作</h3>
@@ -2426,10 +2427,10 @@
 ./run_simulator.bash
 </code></pre></div>
 <p>下記のような画像がでてきます。何人対戦にするか選択しましょう。
-ここでは4人プレイとしてすすめるので4を選択します。
-<img alt="../assets/start" src="start.png" /></p>
-<p>スタートを押すと下記のようにAWSIMが起動します。
-<img alt="../assets/play" src="image-1.png" /></p>
+ここでは4人プレイとしてすすめるので4を選択します。</p>
+<p><img src="../assets/start.png" alt="awsim" width="60%"></p>
+<p>スタートを押すと下記のようにAWSIMが起動します。</p>
+<p><img src="../assets/play.png" alt="awsim" width="60%"></p>
 <h4 id="terminal-2-autoware1">Terminal 2: Autoware1の起動</h4>
 <div class="highlight"><pre><span></span><code>./docker_exec.sh
 ./run_autoware.bash<span class="w"> </span>awsim<span class="w"> </span><span class="m">1</span>
@@ -2531,8 +2532,8 @@ python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_
 <p>単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。<a href="https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAYemytm9XUtONqpMeEBUAww?e=NU2sO0">複数台走行用のAWSIM</a>を使用すれば、複数台走行データを収集・学習することができます。</p>
 <p><img src="../assets/tiny_lidar_net_awsim_multi_car.png" alt="awsim" width="50%"></p>
 <h3 id="rviz">Rvizの設定</h3>
-<p>sensorモジュールはBestEffortでpublishしています。Rvizのtopicの設定をReliableからBestEffortにしてください。
-<img src="../assets/awsim-2.png" alt="awsim" width="50%"></p>
+<p>sensorモジュールはBestEffortでpublishしています。Rvizのtopicの設定をReliableからBestEffortにしてください。</p>
+<p><img src="../assets/awsim-2.png" alt="awsim" width="50%"></p>
 
 
 
