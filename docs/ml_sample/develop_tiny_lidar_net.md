@@ -191,14 +191,14 @@ cp /aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy /aicha
 
 [`reference.launch.xml`におけるcontrol mode](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`rule_based`から`e2e`に変更しましょう。
 
-### Terminal 1: AWSIMの起動
+### Terminal 1: AWSIMの起動確認
 
 ```sh
 ./docker_exec.sh # すでにDockerを起動している場合はSkip
 ./run_simulator.bash
 ```
 
-### Terminal 2: Autoware1の起動
+### Terminal 2: Autoware1の起動確認
 
 ```sh
 ./docker_exec.sh #すでにDockerを起動している場合はSkip
