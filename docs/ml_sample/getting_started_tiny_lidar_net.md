@@ -106,6 +106,7 @@ cd /aichallenge/;./run_autoware.bash awsim 1
 の代わりに
 
 ```sh
+export ROS_DOMAIN_ID=1
 ros2 launch teleop_manager teleop_manager.launch.xml
 ```
 
