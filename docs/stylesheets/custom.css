@@ -34,6 +34,54 @@
   border: 2px solid #4536ac !important;
 }
 
+.aac-cookie-consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: rgba(20, 20, 20, 0.95);
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.aac-cookie-consent__inner {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.aac-cookie-consent__text {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.aac-cookie-consent__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+html[lang="ja"] .aac-cookie-consent__en,
+html[lang="en"] .aac-cookie-consent__ja {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .aac-cookie-consent__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .aac-cookie-consent__actions {
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
+
 .community-hero {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

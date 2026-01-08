@@ -4,26 +4,149 @@
 {% block extrahead %}
   {{ super() }}
   {% if config.extra.gtm_id and is_lang %}
-    <!-- Google Tag Manager -->
     <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','{{ config.extra.gtm_id }}');
+      (function () {
+        var GTM_ID = "{{ config.extra.gtm_id }}";
+        var COOKIE_NAME = "aac_cookie_consent";
+        var COOKIE_PATH = (function () {
+          try {
+            var pathname = new URL("{{ config.site_url }}").pathname || "/";
+            return pathname || "/";
+          } catch (e) {
+            return "/";
+          }
+        })();
+        var CONSENT_KEY = "aac_cookie_consent:" + COOKIE_PATH;
+
+        function getCookie(name) {
+          var match = document.cookie.match(new RegExp("(^|;\\s*)" + name + "=([^;]*)"));
+          return match ? decodeURIComponent(match[2]) : null;
+        }
+
+        function setCookie(name, value) {
+          var maxAge = 60 * 60 * 24 * 365;
+          var secure = "";
+          try {
+            if (window.location && window.location.protocol === "https:") secure = "; Secure";
+          } catch (e) {}
+          document.cookie =
+            name +
+            "=" +
+            encodeURIComponent(value) +
+            "; Max-Age=" +
+            maxAge +
+            "; Path=" +
+            COOKIE_PATH +
+            "; SameSite=Lax" +
+            secure;
+        }
+
+        function getConsent() {
+          try {
+            var stored = localStorage.getItem(CONSENT_KEY);
+            if (stored) return stored;
+          } catch (e) {}
+          return getCookie(COOKIE_NAME);
+        }
+
+        function setConsent(value) {
+          try {
+            localStorage.setItem(CONSENT_KEY, value);
+          } catch (e) {}
+          setCookie(COOKIE_NAME, value);
+        }
+
+        function ensureDataLayer() {
+          window.dataLayer = window.dataLayer || [];
+        }
+
+        function loadGTM() {
+          if (window.__aacGtmLoaded) return;
+          window.__aacGtmLoaded = true;
+
+          ensureDataLayer();
+          window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+
+          var j = document.createElement("script");
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM_ID);
+          var f = document.getElementsByTagName("script")[0];
+          f.parentNode.insertBefore(j, f);
+        }
+
+        function showBanner() {
+          var el = document.getElementById("aac-cookie-consent");
+          if (!el) return;
+          el.hidden = false;
+        }
+
+        function hideBanner() {
+          var el = document.getElementById("aac-cookie-consent");
+          if (!el) return;
+          el.hidden = true;
+        }
+
+        function bindBanner() {
+          var accept = document.getElementById("aac-cookie-accept");
+          var reject = document.getElementById("aac-cookie-reject");
+          if (accept)
+            accept.addEventListener("click", function () {
+              setConsent("granted");
+              hideBanner();
+              loadGTM();
+            });
+          if (reject)
+            reject.addEventListener("click", function () {
+              setConsent("denied");
+              hideBanner();
+            });
+        }
+
+        var consent = getConsent();
+        if (consent === "granted") {
+          loadGTM();
+          return;
+        }
+        if (consent === "denied") return;
+
+        ensureDataLayer();
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", function () {
+            bindBanner();
+            showBanner();
+          });
+        } else {
+          bindBanner();
+          showBanner();
+        }
+      })();
     </script>
-    <!-- End Google Tag Manager -->
   {% endif %}
 {% endblock %}
 
 {% block content %}
-  {% if config.extra.gtm_id and is_lang %}
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config.extra.gtm_id }}"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-  {% endif %}
   {{ super() }}
+  {% if config.extra.gtm_id and is_lang %}
+    <div id="aac-cookie-consent" class="aac-cookie-consent" hidden>
+      <div class="aac-cookie-consent__inner md-grid md-typeset">
+        <div class="aac-cookie-consent__text" lang="{{ config.theme.language or 'ja' }}">
+          <span class="aac-cookie-consent__ja">本サイトでは、利用状況の分析のためにCookieを使用します。</span>
+          <span class="aac-cookie-consent__en">We use cookies to analyze site usage.</span>
+        </div>
+        <div class="aac-cookie-consent__actions">
+          <button id="aac-cookie-reject" class="md-button">
+            <span class="aac-cookie-consent__ja">拒否</span>
+            <span class="aac-cookie-consent__en">Reject</span>
+          </button>
+          <button id="aac-cookie-accept" class="md-button md-button--primary">
+            <span class="aac-cookie-consent__ja">同意</span>
+            <span class="aac-cookie-consent__en">Accept</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}
 
 {% block announce %}
