@@ -26,7 +26,7 @@ If you want to check the simulation screen of AWSIM, follow the steps in [this g
 To develop with three terminals for debugging, open the first terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+V` and pressing `Enter`.
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 
@@ -38,7 +38,7 @@ bash run_simulator.bash
 Open the second terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+V` and pressing `Enter`.
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 
@@ -50,7 +50,7 @@ bash run_autoware.bash
 Open the third terminal using `Alt+Ctrl+T` and then execute the following commands by pasting them with `Ctrl+Shift+V` and pressing `Enter`.
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 

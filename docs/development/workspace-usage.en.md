@@ -27,7 +27,7 @@ If you are unsure where to start, we recommend starting with this [article](http
 For those who are unsure what to do after setting up the environment, try adjusting the parameters first.
 This time, let's change the parameters of the control module simple_pure_pursuit.
 
-Let's adjust the `value` values below in `$HOME/aichallenge-2025/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml`.
+Let's adjust the `value` values below in `$HOME/aichallenge-racingkart/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml`.
 
 ```xml
 <node pkg="simple_pure_pursuit" exec="simple_pure_pursuit" name="simple_pure_pursuit_node" output="screen">

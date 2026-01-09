@@ -14,7 +14,7 @@ docker pull ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
 Repositoryのupdate
 
 ```sh
-cd aichallenge2025 # path to aichallenge2025
+cd aichallenge-racingkart # path to aichallenge
 git pull origin/main
 ```
 
@@ -27,7 +27,7 @@ AWSIMのシミュレーション画面を確認したい方は、[こちら](../
 `Alt+Ctrl+T`で１つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+V`で貼り付けた後に`Enter`で実行します。
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 
@@ -39,7 +39,7 @@ bash run_simulator.bash
 `Alt+Ctrl+T`で2つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+V`で貼り付けた後に`Enter`で実行します。
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 
@@ -51,7 +51,7 @@ bash run_autoware.bash
 `Alt+Ctrl+T`で3つ目のターミナルを立ち上げてから、以下のコマンド`Ctrl+Shift+V`で貼り付けた後に`Enter`で実行します。
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 

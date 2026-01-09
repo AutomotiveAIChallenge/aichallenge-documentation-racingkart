@@ -16,7 +16,7 @@ sudo apt install -y git
 
 ```bash
 cd ~
-git clone https://github.com/AutomotiveAIChallenge/aichallenge-2025.git
+git clone https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
 ```
 
 ## [Next Step: 仮想環境のインストール](./docker.ja.md)

@@ -78,9 +78,11 @@ sudo apt install -y libvulkan1
 
 One Driveから最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
 
-[:material-launch: AWSIMのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B5M71TLlFpS6xrOE7Zfhuug){ .md-button .md-button--primary  target="_blank" }
+[:material-launch: AWSIMの練習ファイルのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE){ .md-button .md-button--primary  target="_blank" }
 
-実行ファイルが`aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
+※現在は大会期間外のため、練習用のファイルのみを提供しています。大会用のファイルは変更される可能性がありますのでご了承ください。
+
+実行ファイルが`aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
 
 パーミッションを図のように変更します。
 
@@ -91,7 +93,7 @@ One Driveから最新の `AWSIM.zip` をダウンロードし、`aichallenge-202
 描画ありのAWSIMを使用する場合は、以下のコマンドでコンテナを起動してください。
 
 ```bash
-cd aichallenge-2025
+cd aichallenge-racingkart
 ./docker_build.sh dev
 ./docker_run.sh dev gpu
 ```
@@ -117,7 +119,7 @@ cd /aichallenge
 確認が終わったら、一度シミュレータを終了し、最後に以下のコマンドを実行します。
 
 ```bash
-./run_evaluation.bash
+./run_autoware awsim 1
 ```
 
 以下のような画面が現れたら成功です。
@@ -126,6 +128,4 @@ cd /aichallenge
 
 以上で環境構築は終了となります！
 
-## Next Step: 開発をしてみる
-
-[はじめ方](../getting-started.ja.md)から開発をしてみましょう！
+## [Next Step: 大会用のリポジトリのビルド・実行](./build-docker.ja.md)

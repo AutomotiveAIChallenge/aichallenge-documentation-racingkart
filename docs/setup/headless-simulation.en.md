@@ -2,9 +2,9 @@
 
 ## Download AWSIM (The simulator distribution has ended.)
 
-1. Download the latest `AWSIM_GPU_**.zip` file from Google Drive and extract it to `aichallenge-2025/aichallenge/simulator`.
+1. Download the latest `AWSIM_GPU_**.zip` file from Google Drive and extract it to `aichallenge-racingkart/aichallenge/simulator`.
 
-2. Confirm that the executable file exists at `aichallenge-2025/aichallenge/simulator/AWSIM/AWSIM.x86_64`.
+2. Confirm that the executable file exists at `aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64`.
 
 3. Change the permissions as shown in the diagram.
 
