@@ -13,7 +13,7 @@ Open a terminal again using `Alt+Ctrl+T`. Follow the commands below by pasting t
 First, navigate to the competition repository.
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ```
 
 Build the Docker image.
@@ -39,7 +39,7 @@ aichallenge-2025-dev   latest   df2e83a20349   33 minutes ago   8.9GB
 Start the Docker container by executing the following:
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 
