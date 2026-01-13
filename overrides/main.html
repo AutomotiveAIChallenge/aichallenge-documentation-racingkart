@@ -3,6 +3,89 @@
 {% set is_lang = page and page.file and (page.file.src_path.endswith(".ja.md") or page.file.src_path.endswith(".en.md")) %}
 {% block extrahead %}
   {{ super() }}
+
+  {# Basic SEO / Social meta tags #}
+  {% set site_url = (config.site_url | default('') | trim) %}
+  {% if site_url.endswith('/') %}
+    {% set site_url = site_url[:-1] %}
+  {% endif %}
+  {% set site_name = config.site_name | default('') %}
+  {% set language = config.theme.language | default('') %}
+  {% set default_description = config.site_description | default(site_name) %}
+  {% set page_meta = page.meta if page and page.meta else {} %}
+  {% set page_title = page.title if page and page.title else site_name %}
+  {% if page_title and site_name and page_title != site_name %}
+    {% set social_title = page_title ~ " - " ~ site_name %}
+  {% else %}
+    {% set social_title = site_name %}
+  {% endif %}
+  {% set description = page_meta.get('description') | default(default_description, true) %}
+  {% set og_image_path = page_meta.get('image') | default(config.extra.default_og_image | default(''), true) %}
+  {% if og_image_path and not og_image_path.startswith('http') and site_url %}
+    {% set og_image = site_url ~ '/' ~ og_image_path.lstrip('/') %}
+  {% else %}
+    {% set og_image = og_image_path %}
+  {% endif %}
+
+  {% if page %}
+    <meta name="robots" content="index,follow">
+  {% else %}
+    <meta name="robots" content="noindex,follow">
+  {% endif %}
+  {% if page and page.canonical_url and site_url %}
+    {% set canonical_url = page.canonical_url %}
+    {% set prefix = site_url ~ '/' %}
+    {% if canonical_url.startswith(prefix) %}
+      {% set canonical_path = canonical_url[prefix | length:] %}
+    {% else %}
+      {% set canonical_path = canonical_url %}
+    {% endif %}
+    {% if canonical_path.startswith('en/') %}
+      {% set path_ja = canonical_path[3:] %}
+      {% set path_en = canonical_path %}
+    {% else %}
+      {% set path_ja = canonical_path %}
+      {% set path_en = 'en/' ~ canonical_path %}
+    {% endif %}
+    <link rel="alternate" hreflang="ja" href="{{ (prefix ~ path_ja) | e }}">
+    <link rel="alternate" hreflang="en" href="{{ (prefix ~ path_en) | e }}">
+    <link rel="alternate" hreflang="x-default" href="{{ (prefix ~ path_ja) | e }}">
+  {% endif %}
+  <meta property="og:site_name" content="{{ site_name | e }}">
+  <meta property="og:title" content="{{ social_title | e }}">
+  <meta property="og:description" content="{{ description | e }}">
+  <meta property="og:type" content="website">
+  {% if page and page.canonical_url %}
+    <meta property="og:url" content="{{ page.canonical_url | e }}">
+  {% endif %}
+  {% if language == "ja" %}
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+  {% elif language == "en" %}
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ja_JP">
+  {% endif %}
+  {% if og_image %}
+    <meta property="og:image" content="{{ og_image | e }}">
+    <meta name="twitter:image" content="{{ og_image | e }}">
+  {% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ social_title | e }}">
+  <meta name="twitter:description" content="{{ description | e }}">
+
+  <script type="application/ld+json">
+    {{
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": site_name,
+        "url": config.site_url,
+        "description": default_description,
+        "inLanguage": language
+      } | tojson
+    }}
+  </script>
+
   {% if config.extra.gtm_id and is_lang %}
     <!-- Google Tag Manager -->
     <script>

@@ -27,6 +27,9 @@ jobs:
       - name: Build the MkDocs documentation
         run: mkdocs build
 
+      - name: Generate sitemap.xml
+        run: python scripts/generate_sitemap.py
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
