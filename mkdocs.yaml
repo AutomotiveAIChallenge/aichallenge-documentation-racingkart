@@ -1,5 +1,6 @@
 site_name: 自動運転 AI チャレンジ 2026
 site_url: https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/
+site_description: "自動運転 AI チャレンジ（レーシングカート部門）の公式ドキュメント。ルール、環境構築、仕様、入門講座、AI講座を掲載しています。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): rules, setup, specs, tutorials, and AI guide."
 repo_url: https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart
 docs_dir: docs
 copyright: "&copy; 2026 TIER IV, Inc."
@@ -22,6 +23,7 @@ theme:
 
 extra:
   gtm_id: !ENV GTM_ID
+  default_og_image: assets/top_image.jpg
 
 nav:
   - index: index.md
@@ -72,6 +74,7 @@ extra_css:
   - stylesheets/custom.css
 
 markdown_extensions:
+  - meta
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:

@@ -92,6 +92,7 @@ domainIDごとに見ることができるtopicが異なるため、データ取�
 
 ```sh
 ./docker_exec.sh
+export ROS_DOMAIN_ID=1
 cd ml_workspace
 ./record_rosbag.bash
 ```
@@ -121,6 +122,7 @@ Terminal 2で
 の代わりに
 
 ```sh
+export ROS_DOMAIN_ID=1
 ros2 launch teleop_manager teleop_manager.launch.xml
 ```
 
@@ -203,6 +205,24 @@ cp /aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy /aicha
 ```sh
 ./docker_exec.sh #すでにDockerを起動している場合はSkip
 ./run_autoware.bash awsim 1
+```
+
+### Terminal 3: Autoware2の起動確認
+
+```sh
+./docker_exec.sh #すでにDockerを起動している場合はSkip
+./run_autoware.bash awsim 2
+```
+
+.
+.
+.
+
+### Terminal 4: Autoware4の起動確認
+
+```sh
+./docker_exec.sh #すでにDockerを起動している場合はSkip
+./run_autoware.bash awsim 4
 ```
 
 [こちらのlink](https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle)を参考にし、initial poseを設定してください。
