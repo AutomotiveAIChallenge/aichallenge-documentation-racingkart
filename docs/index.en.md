@@ -1,4 +1,6 @@
+---
 description: Official documentation for the Autonomous Driving AI Challenge (Racing Kart): overview, rules, setup, specs, tutorials, and AI guide.
+---
 
 # Japan Automotive AI Challenge 2026
 
@@ -46,7 +48,7 @@ For example, participants will be challenged to adjust parameters for applicatio
 
 ## Awards
 
-<!-- The total prize money is over 1 million yen. For details, please refer to the [2025 Autonomous Driving AI Challenge Overview](https://www.jsae.or.jp/jaaic/2025ver/summary/). -->
+<!-- The total prize money is over 1 million yen. For details, please refer to the [racingkart Autonomous Driving AI Challenge Overview](https://www.jsae.or.jp/jaaic/racingkartver/summary/). -->
 
 ## Course
 

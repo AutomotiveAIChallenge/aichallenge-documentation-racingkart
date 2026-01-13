@@ -14,6 +14,7 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - announce.dismiss
+    - content.code.copy
   palette:
     scheme: slate
     primary: custom

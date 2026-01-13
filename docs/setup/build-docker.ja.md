@@ -6,32 +6,6 @@
 2. Dockerコンテナ上でのAutowareのビルド
 3. Dockerコンテナ上でのAutowareとシミュレータの同時起動
 
-## 大会環境のDockerイメージのビルド
-
-再度`Alt+Ctrl+T`でターミナルを立ち上げて下さい。以下に従ってコマンドを`Ctrl+Shift+V`で貼り付け`Enter`で実行します。
-
-まず大会用リポジトリに入ります。
-
-```bash
-cd ~/aichallenge-2025
-```
-
-Dockerイメージのビルドを行います。
-
-```bash
-./docker_build.sh dev
-```
-
-```bash
-docker images
-```
-
-で以下のイメージが生成されていることを確認しましょう。
-
-```txt
-aichallenge-2025-dev   latest   df2e83a20349   33 minutes ago   8.9GB
-```
-
 ## Dockerコンテナ上でのAutowareのビルド
 
 以下を実行してDockerコンテナを立ち上げます。

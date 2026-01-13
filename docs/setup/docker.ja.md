@@ -76,6 +76,32 @@ REPOSITORY                                        TAG                       IMAG
 ghcr.io/automotiveaichallenge/autoware-universe   humble-latest             30c59f3fb415   13 days ago     8.84GB
 ```
 
+## 大会環境のDockerイメージのビルド
+
+再度`Alt+Ctrl+T`でターミナルを立ち上げて下さい。以下に従ってコマンドを`Ctrl+Shift+V`で貼り付け`Enter`で実行します。
+
+まず大会用リポジトリに入ります。
+
+```bash
+cd ~/aichallenge-racingkart
+```
+
+Dockerイメージのビルドを行います。
+
+```bash
+./docker_build.sh dev
+```
+
+```bash
+docker images
+```
+
+で以下のイメージが生成されていることを確認しましょう。
+
+```txt
+aichallenge-2025-dev   latest   df2e83a20349   33 minutes ago   8.9GB
+```
+
 ## Next Step
 
 2種類のAWSIMを提供しています。
