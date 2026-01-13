@@ -1,4 +1,6 @@
+---
 description: Official documentation for the Autonomous Driving AI Challenge (Racing Kart): overview, rules, setup, specs, tutorials, and AI guide.
+---
 
 # Japan Automotive AI Challenge 2026
 
