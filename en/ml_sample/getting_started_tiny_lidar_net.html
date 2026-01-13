@@ -2571,7 +2571,8 @@ Terminal 3で
 
 の代わりに
 
-<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>teleop_manager<span class="w"> </span>teleop_manager.launch.xml
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
+ros2<span class="w"> </span>launch<span class="w"> </span>teleop_manager<span class="w"> </span>teleop_manager.launch.xml
 </code></pre></div>
 
 を打ってみてください。Joycon等のコントローラからの入力を使って走行できます。
