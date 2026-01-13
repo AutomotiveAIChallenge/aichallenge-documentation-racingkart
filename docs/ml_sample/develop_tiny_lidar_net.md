@@ -8,7 +8,7 @@ AI Challengeのドキュメントに従って、
 
 - [仮想環境のインストール](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/docker.html)
 - [描画ありAWSIMの起動](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/requirements.html)
-    - ただし、[こちら](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE)から、E2ESimSingleTest内のAWSIM.zipをダウンロードして使用してください。
+    - ただし、[こちら](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE)から、SimPracticeFor2026内のAWSIM.zipをダウンロードして使用してください。
     - AWSIMの配置については[こちらのページ](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/visible-simulation.html)を参考に、`aichallenge-racingkart/aichallenge/simulator`に配置してください。実行ファイルが`aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64`に存在していることを確認してください。
 - [大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/build-docker.html)
 

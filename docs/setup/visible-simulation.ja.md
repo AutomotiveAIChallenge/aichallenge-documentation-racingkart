@@ -76,7 +76,7 @@ sudo apt install -y libvulkan1
 
 ## AWSIMのダウンロード（描画無しのAWSIMでダウンロードした方はスキップ）
 
-One Driveから最新の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
+One DriveからSimPracticeFor2026内の `AWSIM.zip` をダウンロードし、`aichallenge-2025/aichallenge/simulator` に展開します。
 
 [:material-launch: AWSIMの練習ファイルのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE){ .md-button .md-button--primary  target="_blank" }
 
