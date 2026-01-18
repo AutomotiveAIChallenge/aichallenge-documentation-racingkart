@@ -1,6 +1,6 @@
 site_name: 自動運転 AI チャレンジ 2026
 site_url: https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/
-site_description: "自動運転 AI チャレンジ（レーシングカート部門）の公式ドキュメント。ルール、環境構築、仕様、入門講座、AI講座を掲載しています。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): rules, setup, specs, tutorials, and AI guide."
+site_description: "自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、入門講座、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, tutorials, and AI guide."
 repo_url: https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart
 docs_dir: docs
 copyright: "&copy; 2026 TIER IV, Inc."
@@ -24,6 +24,7 @@ theme:
 extra:
   gtm_id: !ENV GTM_ID
   default_og_image: assets/top_image.jpg
+  seo_keywords: "自動運転, 自動運転AIチャレンジ, 自動運転 AI チャレンジ 2026, レーシングカート, EVレーシングカート, Autoware, ROS 2, AWSIM, シミュレーション, Docker, LiDAR, 機械学習, AI, 競技ルール, 環境構築, Autonomous Driving, Racing Kart, Autonomous Driving AI Challenge, aichallenge, racingkart, aichallenge-racingkart, aichallenge-2026, aichallenge-2025, aichallenge-2024"
 
 nav:
   - index: index.md
