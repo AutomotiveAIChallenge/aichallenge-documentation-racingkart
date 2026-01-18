@@ -26,6 +26,7 @@ repos:
     rev: v1.30.0
     hooks:
       - id: yamllint
+        exclude: ^mkdocs\.yaml$
 
   - repo: https://github.com/tcort/markdown-link-check
     rev: v3.12.2
