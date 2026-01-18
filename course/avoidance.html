@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="自動運転 AI チャレンジ（レーシングカート部門）の公式ドキュメント。ルール、環境構築、仕様、入門講座、AI講座を掲載しています。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): rules, setup, specs, tutorials, and AI guide.">
+        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、入門講座、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, tutorials, and AI guide.">
       
       
       
@@ -66,66 +66,26 @@
     
     
   
-
   
-  
-  
-    
-  
-  
-  
-  
-  
-  
-  
-    
-  
-  
-  
-  
-    
-  
-
-  
-    <meta name="robots" content="index,follow">
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WXTFJQL");
+    </script>
+    <!-- End Google Tag Manager -->
   
   
     
+      <meta name="keywords" content="自動運転, 自動運転AIチャレンジ, 自動運転 AI チャレンジ 2026, レーシングカート, EVレーシングカート, Autoware, ROS 2, AWSIM, シミュレーション, Docker, LiDAR, 機械学習, AI, 競技ルール, 環境構築, Autonomous Driving, Racing Kart, Autonomous Driving AI Challenge, aichallenge, racingkart, aichallenge-racingkart, aichallenge-2026, aichallenge-2025, aichallenge-2024" />
     
-    
-      
-    
-    
-      
-      
-    
-    <link rel="alternate" hreflang="ja" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/course/avoidance.html">
-    <link rel="alternate" hreflang="en" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/course/avoidance.html">
-    <link rel="alternate" hreflang="x-default" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/course/avoidance.html">
-  
-  <meta property="og:site_name" content="自動運転 AI チャレンジ 2026">
-  <meta property="og:title" content="03. 障害物回避 - 自動運転 AI チャレンジ 2026">
-  <meta property="og:description" content="自動運転 AI チャレンジ（レーシングカート部門）の公式ドキュメント。ルール、環境構築、仕様、入門講座、AI講座を掲載しています。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): rules, setup, specs, tutorials, and AI guide.">
-  <meta property="og:type" content="website">
-  
-    <meta property="og:url" content="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/course/avoidance.html">
-  
-  
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:locale:alternate" content="en_US">
-  
-  
-    <meta property="og:image" content="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/assets/top_image.jpg">
-    <meta name="twitter:image" content="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/assets/top_image.jpg">
-  
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="03. 障害物回避 - 自動運転 AI チャレンジ 2026">
-  <meta name="twitter:description" content="自動運転 AI チャレンジ（レーシングカート部門）の公式ドキュメント。ルール、環境構築、仕様、入門講座、AI講座を掲載しています。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): rules, setup, specs, tutorials, and AI guide.">
-
-  <script type="application/ld+json">
-    {"@context": "https://schema.org", "@type": "WebSite", "description": "\u81ea\u52d5\u904b\u8ee2 AI \u30c1\u30e3\u30ec\u30f3\u30b8\uff08\u30ec\u30fc\u30b7\u30f3\u30b0\u30ab\u30fc\u30c8\u90e8\u9580\uff09\u306e\u516c\u5f0f\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\u3002\u30eb\u30fc\u30eb\u3001\u74b0\u5883\u69cb\u7bc9\u3001\u4ed5\u69d8\u3001\u5165\u9580\u8b1b\u5ea7\u3001AI\u8b1b\u5ea7\u3092\u63b2\u8f09\u3057\u3066\u3044\u307e\u3059\u3002 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): rules, setup, specs, tutorials, and AI guide.", "inLanguage": "ja", "name": "\u81ea\u52d5\u904b\u8ee2 AI \u30c1\u30e3\u30ec\u30f3\u30b8 2026", "url": "https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/"}
-  </script>
-
   
 
   </head>
@@ -172,6 +132,19 @@
     </div>
     
     
+  
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WXTFJQL"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  
+  
       
 
   
@@ -522,6 +495,7 @@
   
 </header>
     
+
     <div class="md-container" data-md-component="container">
       
       
@@ -2238,8 +2212,6 @@
               
               <article class="md-content__inner md-typeset">
                 
-  
-  
                   
 
 
@@ -2382,7 +2354,6 @@ trajectory_plannerを起動する際に他のパラメータも指定できる�
 
 
                 
-
               </article>
             </div>
           
