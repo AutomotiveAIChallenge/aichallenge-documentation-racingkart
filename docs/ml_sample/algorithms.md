@@ -119,7 +119,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - `"Fast&Slow"`と呼ばれる、「VLMによる遅い推論」と「VADのようなmodelによる速い推論」を組み合わせたmodelです。
 - 「草木が落ちているような状況で回避軌道を生成できる」「警察の手でのジェスチャーに対応した軌道を生成できる」といった、long-tail driving scenario(珍しいシナリオ)に対応できるとの結果が得られています。
 - 論文: [DriveVLM: The Convergence of Autonomous Driving and Large Vision-Language Models](https://arxiv.org/abs/2402.12289)
-- [youtube link](https://www.youtube.com/embed/mt-SdHTTZzA)
+- [youtube link](https://www.youtube-nocookie.com/embed/mt-SdHTTZzA)
 
 ![DriveVLM Pipeline](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
 

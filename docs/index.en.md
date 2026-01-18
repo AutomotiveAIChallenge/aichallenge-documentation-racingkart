@@ -34,7 +34,7 @@ description: Official documentation for the Autonomous Driving AI Challenge (Rac
 
 The preliminary round will be conducted through online simulations. The competition aims to achieve faster lap times on the course using AWSIM, which is oriented towards digital twin simulations. Participants will not only learn the structure of Autoware but also adjust parameters for behavior and decision-making parts and develop new algorithms as needed.
 
-<iframe width="960" height="540" src="https://www.youtube.com/embed/cM3Up6fgpWI?si=S6N3wzBEgXVpl54x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/cM3Up6fgpWI?si=S6N3wzBEgXVpl54x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Final Round
 
@@ -42,7 +42,7 @@ The final competition will be conducted using an EV racing kart as the competiti
 
 For example, participants will be challenged to adjust parameters for application to real vehicles and develop algorithms for noise handling and delay countermeasures that cannot be replicated in simulations.
 
-<iframe width="960" height="540" src="https://www.youtube.com/embed/GsuCUoNrMDM?si=zoh1mL_U0yRnB2fj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/GsuCUoNrMDM?si=zoh1mL_U0yRnB2fj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Awards
 
@@ -50,7 +50,7 @@ For example, participants will be challenged to adjust parameters for applicatio
 
 ## Course
 
-<iframe width="960" height="540" src="https://www.youtube.com/embed/K-N-2nLXXF8?si=pZ2NovtO_IGwsa_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/K-N-2nLXXF8?si=pZ2NovtO_IGwsa_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Vehicle
 
