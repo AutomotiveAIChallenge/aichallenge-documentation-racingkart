@@ -13,7 +13,7 @@ docker pull ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
 Update Repository
 
 ```sh
-cd aichallenge2025 # path to aichallenge2025
+cd ~/aichallenge-racingkart # path to aichallenge
 git pull origin/main
 ```
 

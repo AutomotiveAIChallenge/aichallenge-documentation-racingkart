@@ -25,7 +25,7 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
     環境構築後何をして良いのかわからない方向けに、まずパラメータを調整してみましょう。
     今回は制御モジュールのsimple_pure_pursuitのパラメータを変更してみることにします。
 
-    `$HOME/aichallenge-2025/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml`内の以下の`value`値を調整してみましょう。
+    `$HOME/aichallenge-racingkart/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml`内の以下の`value`値を調整してみましょう。
 
     ```xml
     <node pkg="simple_pure_pursuit" exec="simple_pure_pursuit" name="simple_pure_pursuit_node" output="screen">

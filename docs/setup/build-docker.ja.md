@@ -11,7 +11,7 @@
 以下を実行してDockerコンテナを立ち上げます。
 
 ```bash
-cd ~/aichallenge-2025
+cd ~/aichallenge-racingkart
 ./docker_run.sh dev cpu
 ```
 

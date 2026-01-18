@@ -15,7 +15,7 @@
 1. ソースコードの圧縮
 
     - `./create_submit_file.bash`を実行してaichallenge_submitディレクトリを圧縮します。
-    - 圧縮したファイルはaichallenge-2025/submit/aichallenge_submit.tar.gzに保存されています。
+    - 圧縮したファイルはaichallenge-racingkart/submit/aichallenge_submit.tar.gzに保存されています。
 
 2. ローカル評価環境での動作確認
 
