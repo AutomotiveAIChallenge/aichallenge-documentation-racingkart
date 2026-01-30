@@ -22,7 +22,6 @@ theme:
     # logo:
 
 extra:
-  gtm_id: !ENV GTM_ID
   default_og_image: assets/top_image.jpg
   seo_keywords: "自動運転, 自動運転AIチャレンジ, 自動運転 AI チャレンジ 2026, レーシングカート, EVレーシングカート, Autoware, ROS 2, AWSIM, シミュレーション, Docker, LiDAR, 機械学習, AI, 競技ルール, 環境構築, Autonomous Driving, Racing Kart, Autonomous Driving AI Challenge, aichallenge, racingkart, aichallenge-racingkart, aichallenge-2026, aichallenge-2025, aichallenge-2024"
 
