@@ -64,6 +64,69 @@
     
     
   
+  <script>
+    (function () {
+      if (typeof __md_get !== "function" || typeof __md_set !== "function") {
+        return;
+      }
+
+      // Keep consent/announce state shared across nested paths.
+      var sitePath = "/";
+      try {
+        sitePath = new URL("https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/").pathname || "/";
+      } catch (error) {}
+      if (!sitePath.endsWith("/")) {
+        sitePath += "/";
+      }
+
+      var canonicalScope = { pathname: sitePath };
+      var originalGet = __md_get;
+      var originalSet = __md_set;
+
+      function sharedKey(key) {
+        return key === "__consent" || key === "__announce";
+      }
+
+      __md_get = function (key, storage, scope) {
+        var value = originalGet(key, storage, scope);
+        if ((value === null || typeof value === "undefined") && sharedKey(key)) {
+          value = originalGet(key, storage, canonicalScope);
+          if ((value !== null && typeof value !== "undefined") && !scope) {
+            originalSet(key, value, storage);
+          }
+        }
+        return value;
+      };
+
+      __md_set = function (key, value, storage, scope) {
+        originalSet(key, value, storage, scope);
+        if (sharedKey(key)) {
+          originalSet(key, value, storage, canonicalScope);
+        }
+      };
+    })();
+  </script>
+  
+    <!-- Google Tag Manager -->
+    <script>
+      function __load_gtm() {
+        if (window.__gtm_loaded) {
+          return;
+        }
+        window.__gtm_loaded = true;
+
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+        new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+        "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,"script","dataLayer","GTM-MSKVPP23");
+      }
+    </script>
+    
+      <script>__load_gtm();</script>
+    
+    <!-- End Google Tag Manager -->
+  
   
     
       <meta name="keywords" content="自動運転, 自動運転AIチャレンジ, 自動運転 AI チャレンジ 2026, レーシングカート, EVレーシングカート, Autoware, ROS 2, AWSIM, シミュレーション, Docker, LiDAR, 機械学習, AI, 競技ルール, 環境構築, Autonomous Driving, Racing Kart, Autonomous Driving AI Challenge, aichallenge, racingkart, aichallenge-racingkart, aichallenge-2026, aichallenge-2025, aichallenge-2024" />
@@ -114,6 +177,11 @@
     </div>
     
     
+  
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSKVPP23" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  
   
       
 
