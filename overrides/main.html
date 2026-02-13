@@ -2,6 +2,76 @@
 
 {% block extrahead %}
   {{ super() }}
+  <script>
+    (function () {
+      if (typeof __md_get !== "function" || typeof __md_set !== "function") {
+        return;
+      }
+
+      // Keep consent/announce state shared across nested paths.
+      var sitePath = "/";
+      try {
+        sitePath = new URL({{ config.site_url | tojson }}).pathname || "/";
+      } catch (error) {}
+      if (!sitePath.endsWith("/")) {
+        sitePath += "/";
+      }
+
+      var canonicalScope = { pathname: sitePath };
+      var originalGet = __md_get;
+      var originalSet = __md_set;
+
+      function sharedKey(key) {
+        return key === "__consent" || key === "__announce";
+      }
+
+      __md_get = function (key, storage, scope) {
+        var value = originalGet(key, storage, scope);
+        if ((value === null || typeof value === "undefined") && sharedKey(key)) {
+          value = originalGet(key, storage, canonicalScope);
+          if ((value !== null && typeof value !== "undefined") && !scope) {
+            originalSet(key, value, storage);
+          }
+        }
+        return value;
+      };
+
+      __md_set = function (key, value, storage, scope) {
+        originalSet(key, value, storage, scope);
+        if (sharedKey(key)) {
+          originalSet(key, value, storage, canonicalScope);
+        }
+      };
+    })();
+  </script>
+  {% if config.extra.gtm_id %}
+    <!-- Google Tag Manager -->
+    <script>
+      function __load_gtm() {
+        if (window.__gtm_loaded) {
+          return;
+        }
+        window.__gtm_loaded = true;
+
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+        new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+        "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,"script","dataLayer",{{ config.extra.gtm_id | tojson }});
+      }
+    </script>
+    {% if config.extra.consent %}
+      <script>
+        var consent = typeof __md_get === "function" ? __md_get("__consent") : null;
+        if (consent && consent.analytics) {
+          __load_gtm();
+        }
+      </script>
+    {% else %}
+      <script>__load_gtm();</script>
+    {% endif %}
+    <!-- End Google Tag Manager -->
+  {% endif %}
   {% if config.extra.seo_keywords %}
     {% if config.extra.seo_keywords is string %}
       <meta name="keywords" content="{{ config.extra.seo_keywords }}" />
@@ -12,6 +82,11 @@
 {% endblock %}
 
 {% block header %}
+  {% if config.extra.gtm_id %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config.extra.gtm_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  {% endif %}
   {{ super() }}
 {% endblock %}
 
