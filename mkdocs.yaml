@@ -36,6 +36,7 @@ nav:
   - finals:
       - finals/index.md
   - setup:
+      - setup/introduction.md
       - setup/requirements.md
       - setup/workspace-setup.md
       - setup/docker.md
