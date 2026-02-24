@@ -46,12 +46,40 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
     例えば、End-to-End制御を試すには、`reference.launch.xml`内の`control_mode`を`e2e`に変更してビルド・実行してください。
 
 ??? tip "評価結果を確認してみる"
-    `make eval`を実行すると、評価結果が`output/<timestamp>/d<domain_id>/`配下に保存されます。
+    `make eval`を実行すると、評価結果が`output/<timestamp>/d<domain_id>/`配下に保存されます。`output/latest/d<domain_id>/`からシンボリックリンクでもアクセスできます。
 
-    - `result-summary.json`: ラップタイムなどの結果サマリー
-    - `result-details.json`: 詳細な走行データ
-    - `autoware.log`: Autowareのログ
-    - `motion_analytics.html`: 速度・加速度のインタラクティブ可視化（ブラウザで開けます）
+    **主な出力ファイル:**
+
+    - `result-summary.json`: ラップタイムの結果サマリー（`min_time`, `total_lap_time`, `num_laps`）
+    - `d<domain_id>-result-details.json`: 詳細な走行データ（ラップごとのタイム、走行軌跡）
+    - `autoware.log`: Autowareの実行ログ
+    - `motion_analytics-<timestamp>.html`: 速度・加速度のインタラクティブ可視化（ブラウザで開けます）
+    - `rosbag2_autoware/`: ROSBag記録（MCAP形式、rosbag有効時）
+    - `capture/`: 画面キャプチャ動画（capture有効時）
+    - `ros/log/`: 各ノードの個別ログ
+
+    **評価フロー:**
+
+    ```mermaid
+    sequenceDiagram
+        participant User as ユーザー
+        participant Make as make eval
+        participant AWSIM as AWSIM
+        participant AW as Autoware
+        participant Post as 後処理
+
+        User->>Make: make eval
+        Make->>AWSIM: コンテナ起動
+        Make->>AW: コンテナ起動
+        AWSIM->>AW: センサデータ配信
+        AW->>AWSIM: 制御コマンド送信
+        Note over AWSIM,AW: 6周走行 or タイムアウト
+        AWSIM->>AWSIM: result-details.json生成
+        AWSIM->>Post: 走行終了通知
+        Post->>Post: result-summary.json生成
+        Post->>Post: motion_analytics.html生成
+        Post->>Make: 全コンテナ停止・片付け
+    ```
 
 ??? tip "新規パッケージを作成してみる"
     新たに自作パッケージを作成してみましょう。まずはオープンソースのパッケージや[autoware practice](https://github.com/AutomotiveAIChallenge/autoware-practice)をコピーしてみましょう。

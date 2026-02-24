@@ -68,6 +68,58 @@ Autoware-Microを活用することにより、本大会での課題となる：
 
 ![racing-diagram](./images/architecture/racing_simple.png)
 
+## Autoware-Microのデータフロー
+
+以下の図は、Autoware-Microの主要なデータフローを示しています。
+
+```mermaid
+graph LR
+    subgraph AWSIM["AWSIM（シミュレータ）"]
+        GNSS_S[GNSS]
+        IMU_S[IMU]
+        LiDAR_S[LiDAR]
+        VEL_S[車両速度]
+    end
+
+    subgraph Sensing["センシング"]
+        GNSS_P[racing_kart_gnss_poser]
+        IMU_C[imu_corrector]
+        VVC[vehicle_velocity_converter]
+    end
+
+    subgraph Localization["自己位置推定"]
+        GYRO[gyro_odometer]
+        IGP[imu_gnss_poser]
+        EKF[ekf_localizer]
+    end
+
+    subgraph Planning["経路生成"]
+        STG[simple_trajectory_generator]
+    end
+
+    subgraph Control["制御"]
+        SPP[simple_pure_pursuit<br/>rule_based]
+        TLN[tiny_lidar_net<br/>e2e]
+    end
+
+    GNSS_S --> GNSS_P
+    IMU_S --> IMU_C
+    VEL_S --> VVC
+
+    GNSS_P --> IGP
+    IMU_C --> GYRO
+    VVC --> GYRO
+    GYRO --> IGP
+    IGP --> EKF
+
+    EKF -->|kinematic_state| SPP
+    STG -->|trajectory| SPP
+    LiDAR_S -->|scan| TLN
+
+    SPP -->|control_cmd| AWSIM
+    TLN -->|control_cmd| AWSIM
+```
+
 ## パッケージ一覧
 
 本大会のワークスペースに含まれるパッケージの一覧です。
@@ -124,10 +176,10 @@ Autoware-Microを活用することにより、本大会での課題となる：
 
 参考までに本大会で使用しているワークスペースの構成は以下となります。
 
-docker-dev
+### 開発環境（docker-dev）
 
 ![dev](./images/docker/dev.drawio.svg)
 
-docker-eval
+### 評価環境（docker-eval）
 
 ![eval](./images/docker/eval.drawio.svg)
