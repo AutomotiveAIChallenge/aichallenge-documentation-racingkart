@@ -21,12 +21,134 @@ sudo apt install curl
 curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
 
-## 画面の見方
+この1コマンドが実施していること（仮想環境まわり）
+
+下記は `setup.bash` が対話形式で順に実施する内容です。必要な項目だけ開いて確認してください。
+
+???+ note "1. :material-package: 必要パッケージを install"
+    必要な基本パッケージを導入します。
+
+    ```bash
+    sudo apt update
+    sudo apt install -y python3-pip ca-certificates curl gnupg
+    ```
+
+??? note "2. :material-docker: Docker を install"
+    Docker公式リポジトリを追加して、Docker本体をインストールします。
+
+    ```bash
+    sudo install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    sudo chmod a+r /etc/apt/keyrings/docker.gpg
+    echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    ```
+    Dockerが正常に動作するか確認します。
+
+    ```bash
+    sudo docker run hello-world
+    ```
+　　Hello from Docker!と表示されれば正常にインストール出来ています。
+
+??? note "3. :material-account-group: Docker グループ登録"
+    `sudo` なしでDockerを使えるようにユーザーをグループへ追加します。
+
+    ```bash
+    sudo usermod -aG docker $USER
+    newgrp docker
+    ```
+
+??? note "4. :material-folder-open: リポジトリ準備"
+    大会用リポジトリを取得し、事前チェックを実行します。
+
+    ```bash
+    cd ~
+    git clone https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
+    cd ~/aichallenge-racingkart
+    ```
+
+??? note "5. :material-security: repositoryの確認"
+    ちゃんとレポジトリが存在しているかチェック
+
+    ```bash
+    ./setup.bash doctor
+    ```
+
+??? note "6. :material-cloud-download: Autoware イメージ取得"
+    実行に必要なAutowareベースイメージを取得します。
+
+    ```bash
+    docker pull ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
+    docker images
+    ```
+
+    Dockerイメージがダウンロードできていれば以下のような出力が得られます。
+
+    ```txt
+    REPOSITORY                                        TAG                       IMAGE ID       CREATED         SIZE
+    ghcr.io/automotiveaichallenge/autoware-universe   humble-latest             30c59f3fb415   13 days ago     8.84GB
+    ```
+
+??? note "7. :material-download: AWSIM データ取得/展開"
+    SharePoint から AWSIM をダウンロードし、所定ディレクトリへ展開して実行権限を付与します。
+
+    1. 以下から最新の `AWSIM.zip` をダウンロードします。
+
+    [:material-launch: AWSIMのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B5M71TLlFpS6xrOE7Zfhuug){ .md-button .md-button--primary  target="_blank" }
+
+    ```bash
+    mkdir -p ~/aichallenge-racingkart/aichallenge/simulator
+    unzip ~/Downloads/AWSIM.zip -d ~/aichallenge-racingkart/aichallenge/simulator
+    chmod +x ~/aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64
+    ```
+
+    2. 実行ファイルが以下に存在することを確認します。
+
+    ```bash
+    ls ~/aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64
+    ```
+
+    3. パーミッションは以下の図の状態を参考にしてください。
+
+    ![パーミッション変更の様子](./images/awsim-permmision.png)
+
+    GPU 利用時は `AWSIM_GPU_**.zip` を展開してください。
+
+??? note "8. :material-hammer: 開発用イメージ作成"
+    開発用Dockerイメージをビルドします。
+
+    ```bash
+    cd ~/aichallenge-racingkart
+    ./docker_build.sh dev
+    ```
+
+??? note "9. :material-book-education: ワークスペースビルド"
+    Autowareワークスペースをビルドします。
+
+    ```bash
+    cd ~/aichallenge-racingkart
+    make autoware-build
+    ```
+
+??? note "10. :material-power: AWSIM + Autoware 起動 → `make down` で停止確認"
+    シミュレータとAutowareを起動し、確認後に停止します。
+
+    ```bash
+    cd ~/aichallenge-racingkart
+    make dev
+    make down
+    ```
+
+## Setup画面の見方
 
 - `Select branch [default: main]:` が出たら `main` を選択（`Enter`でも可）
-- `[y/N]` は各処理を実行するかの確認（基本は `y`）
-- `Starting execution...` が表示されたら自動実行開始
-- `To stop: make down` が出たら起動確認完了
+- `[y/N]` は「この処理を実行するか」の確認です（通常は `y`）
+- `Starting execution...` が表示されたら、セットアップが自動実行中です
+- `To stop: make down` が表示されたら、起動確認まで完了です
 
 ```.bash
 [setup] ℹ️ Bootstrap mode (fresh host)
@@ -46,23 +168,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 [setup]  10) make dev DOMAIN_ID=1 (requires repo)
 ```
 
-以下の10ステップを自動実行します。
-途中で `[y/N]` の確認が出たら、通常は `y` を入力してください。
-
-  | ステップ | 内容 |
-   |---|---|
-  | 1 | :material-package: 必要パッケージを install |
-  | 2 | :material-docker: Docker を install |
-  | 3 | :material-security: Docker 利用可能化 |
-  | 4 | :material-account-group: Docker グループ登録 |
-  | 5 | :material-folder-open: リポジトリ準備 |
-  | 6 | :material-cloud-download: Autoware イメージ取得 |
-  | 7 | :material-download: AWSIM データ取得/展開 |
-  | 8 | :material-hammer: 開発用イメージ作成 |
-  | 9 | :material-book-education: ワークスペースビルド |
-  | 10 | :material-power: AWSIM + Autoware 起動 → `make down` で停止確認 |
-
-それぞれのパッケージをinstallして良いかどうかの同意を求められますので、問題無ければyを入力しましょう。
+途中で `[y/N]` が表示されたら、問題なければ `y` を入力してください。
 
 ```.bash
 [setup] Install base packages (apt) [y/N]: y
@@ -83,7 +189,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 
 :coffee:
 
-セットアップが終わると下記のようなコマンドがでてきてAWSIMとAutowareが勝手に立ち上がります。
+セットアップが終わると下記のような表示でAWSIMとAutowareが起動します。
 
 ```bash
 Start dev simulation (AWSIM + Autoware, DOMAIN_ID=1)
@@ -101,62 +207,18 @@ make[1]: ディレクトリ '$USER/aichallenge-racingkart/aichallenge-racingkart
 To stop: make down  (docker compose down --remove-orphans)
 ```
 
-AWSIMとAutowareが勝手に立ち上がりました。
+AWSIMとAutowareが起動しました。
 ![autoware-awsim](./images/autoware-awsim.png)
 停止する場合はmake downで停止してください。
 
 以上で環境構築と動作確認が終了しました。
 
-GPU環境がある方はcloneした環境でGPU環境用のNVIDIA Driverのinstall手順も表示していますので、試してみてください。
+GPU環境を利用する方は、追加のGPU手順を実施してください。
 
-[Docker環境でGPUをつかう](./visible-simulation.ja.md)
+[Docker環境でGPUをつかう](./gpu-simulation.ja.md)
 
-## 開発
+## Next Step
 
-このリポジトリは、make → `docker compose` で AWSIM と Autoware を動かす、という形になっています。
+開発向けのビルド・実行手順とコマンドの使い分けは、次のページに集約しています。
 
-- **AWSIM**: シミュレータ（`simulator` サービス）
-- **Autoware**: 自動運転ソフト（`autoware` サービス）
-- **`make`**: `docker compose ...` を叩くための「短い入口」
-- **出力先**: だいたい `output/` 配下（ログや結果）
-
-### 開発として起動して触りたい（おすすめ）
-
-```bash
-./docker_build.sh dev      # 開発用イメージを作る（最初に1回）
-make autoware-build        # ワークスペースをビルド（最初に1回）
-make dev                   # AWSIM + Autoware を起動
-
-# 終わったら（困ったらこれ）
-make down
-```
-
-### 評価フローを最後まで回したい（結果を残したい）
-
-```bash
-make eval      # 評価を実行（実行後に自動で停止・片付けまでやる）
-```
-
----
-
-## コマンド早見表（「何をする？」「いつ使う？」）
-
-| コマンド | 役割 | 使うタイミング | 主な出力 |
-| --- | --- | --- | --- |
-| `./docker_build.sh dev` | 開発用イメージを作成 | 初回 / Dockerfile更新後 | `output/_host/latest/docker_build.log` |
-| `make autoware-build` | ROSワークスペースをビルド | 初回 / 依存・ソース更新後 | 端末出力（必要に応じてログ確認） |
-| `make dev` | AWSIM + Autoware を起動（開発用） | 手元でデバッグするとき | `output/<timestamp>/d<domain_id>/autoware.log, etc` |
-| `make eval` | 評価を実行して結果を保存 | 評価を回したいとき | `output/<timestamp>/d<domain_id>/autoware.log, etc` |
-| `make ps` | 起動中コンテナを確認 | 動作確認したいとき | 端末出力 |
-| `make down` | コンテナ停止・片付け | 終了時 / 詰まったとき | 端末出力 |
-
----
-
-## 使い分け（迷ったらここ）
-
-- **`make dev`**: 「起動して触る」。止めるまで動き続けます。最後は `make down`。
-- **`make eval`**: 「評価を回して結果を残す」。終わったら自動で停止・片付けます（途中で `Ctrl+C` しても後片付けが走ります）。
-
----
-
-詳細な運用設定（環境変数）とトラブル時の戻し方は、[開発の参考](./reference.ja.md)を参照してください。
+[大会用のリポジトリのビルド・実行](./build-docker.ja.md)

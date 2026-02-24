@@ -36,14 +36,14 @@ nav:
   - finals:
       - finals/index.md
   - setup:
-      - setup/introduction.md
       - setup/requirements.md
-      - setup/workspace-setup.md
-      - setup/docker.md
-      - setup/headless-simulation.md
-      - setup/visible-simulation.md
+      - setup/introduction.md
+      - setup/gpu-simulation.md
       - setup/build-docker.md
       - setup/reference.md
+      - WIP:
+          - setup/docker.md
+          - setup/headless-simulation.md
   - development:
       - development/workspace-usage.md
       - development/main-module.md
@@ -74,6 +74,9 @@ nav:
 
 extra_css:
   - stylesheets/custom.css
+
+extra_javascript:
+  - javascripts/twitter-embeds.js
 
 markdown_extensions:
   - meta

@@ -28,4 +28,4 @@
 - Memory: 16 GB or more
 - Storage: SSD 60 GB or higher
 
-## [Next Step: ワークスペースのクローン](./workspace-setup.ja.md)
+## [Next Step: 環境構築の流れ](./introduction.ja.md)
