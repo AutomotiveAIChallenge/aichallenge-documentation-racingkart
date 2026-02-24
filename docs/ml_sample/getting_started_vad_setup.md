@@ -145,7 +145,3 @@ uv pip install .
 ```sh
 export GEMINI_API_KEY="YOUR_API_KEY"
 ```
-
-## Next Step
-
-[Getting started: VAD Plannerの実行](./getting_started_vad_run.md)へお進みください。

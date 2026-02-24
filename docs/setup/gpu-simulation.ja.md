@@ -131,5 +131,3 @@ make down
 ```
 
 以上で環境構築は終了となります！
-
-## [Next Step: 大会用のリポジトリのビルド・実行](./build-docker.ja.md)

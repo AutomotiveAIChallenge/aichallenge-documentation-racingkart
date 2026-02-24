@@ -216,9 +216,3 @@ AWSIMとAutowareが起動しました。
 GPU環境を利用する方は、追加のGPU手順を実施してください。
 
 [Docker環境でGPUをつかう](./gpu-simulation.ja.md)
-
-## Next Step
-
-開発向けのビルド・実行手順とコマンドの使い分けは、次のページに集約しています。
-
-[大会用のリポジトリのビルド・実行](./build-docker.ja.md)

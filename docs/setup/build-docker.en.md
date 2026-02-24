@@ -67,6 +67,4 @@ After building Autoware, run the following command:
 When the screen shown below appears, the startup is complete. To terminate, press CTRL + C in the terminal.
 ![autoware](./images/autoware.png)
 
-## [Next Step: Start Development](../development/workspace-usage.en.md)
-
 This concludes the environment setup! Next, let's proceed to actual development.

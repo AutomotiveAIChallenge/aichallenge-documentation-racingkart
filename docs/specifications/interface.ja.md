@@ -56,9 +56,9 @@ AWSIMの全体管理に使用されるトピックです。通常の開発では
 | Subscription | `/admin/awsim/start`       | `std_msgs/msg/Bool`              |
 | Subscription | `/admin/awsim/reset`       | `std_msgs/msg/Empty`             |
 
-### グラウンドトゥルース
+### グラウンドトゥルース（真値データ）
 
-デバッグ用の真値データです。提出コードでは使用できません。
+シミュレータが持つ正確な位置・姿勢などの真値データです。デバッグや検証に利用できますが、提出コードでは使用できません。
 
 | Interface | Name                                              | Type                                          |
 | --------- | ------------------------------------------------- | --------------------------------------------- |
@@ -110,11 +110,11 @@ sequenceDiagram
 | ----------------------------------- | -------------------- |
 | stamp                               | メッセージの送信時刻 |
 | lateral.stamp                       | 未使用               |
-| lateral.steering_tire_angle         | 目標操舵角           |
+| lateral.steering_tire_angle         | 目標操舵角 (rad)     |
 | lateral.steering_tire_rotation_rate | 未使用               |
 | longitudinal.stamp                  | 未使用               |
 | longitudinal.speed                  | 未使用               |
-| longitudinal.acceleration           | 目標加速度           |
+| longitudinal.acceleration           | 目標加速度 (m/s²)    |
 | longitudinal.jerk                   | 未使用               |
 
 ### `/control/command/actuation_cmd`

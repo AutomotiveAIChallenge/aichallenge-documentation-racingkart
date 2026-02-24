@@ -27,5 +27,3 @@
 - GPU: NVIDIA Geforce VRAM 8 GB
 - Memory: 16 GB or more
 - Storage: SSD 60 GB or higher
-
-## [Next Step: 環境構築の流れ](./introduction.ja.md)

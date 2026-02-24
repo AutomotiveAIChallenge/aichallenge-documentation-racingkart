@@ -13,8 +13,14 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - navigation.path
     - announce.dismiss
     - content.code.copy
+    - content.code.annotate
   palette:
     scheme: slate
     primary: custom
@@ -29,12 +35,6 @@ extra:
 nav:
   - index: index.md
   - getting-started.md
-  - preliminaries:
-      - preliminaries/rules.md
-      - preliminaries/submission.md
-      - preliminaries/check-results.md
-  - finals:
-      - finals/index.md
   - setup:
       - setup/requirements.md
       - setup/introduction.md
@@ -48,6 +48,12 @@ nav:
       - development/workspace-usage.md
       - development/main-module.md
       - development/documentation.md
+  - preliminaries:
+      - preliminaries/rules.md
+      - preliminaries/submission.md
+      - preliminaries/check-results.md
+  - finals:
+      - finals/index.md
   - specifications:
       - specifications/interface.md
       - specifications/hardware.md
@@ -102,11 +108,11 @@ plugins:
           name: 日本語
           build: true
           nav_translations:
+            setup: 環境構築
+            development: 開発
             index: 競技概要
             preliminaries: 予選
             finals: 決勝
-            setup: 環境構築
-            development: 開発
             specifications: 仕様
             course: 入門講座
             ML: AI講座
