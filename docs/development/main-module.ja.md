@@ -7,7 +7,6 @@
 
 前回のシミュレーション大会では、デフォルトのAutowareから機能を絞り、ノード数を減らした縮小構成のAutowareを起動できるLaunchファイルを提供しました．その際の、背景や用意した意図については、[前大会のドキュメント](https://automotiveaichallenge.github.io/aichallenge2023-racing/customize/index.html)をご覧ください．
 
-
 ## 縮小構成のAutowareを用意した背景
 
 ### Autowareを利用する時の課題

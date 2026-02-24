@@ -14,6 +14,7 @@
         sudo sysctl -w net.core.rmem_max=2147483647
         sudo ip link set lo multicast on
         touch /tmp/cycloneDDS_configured
+    fi
     ```
 
     なお、今回の大会ではPC2 台構成の Windows+Linux、Linux+Linuxの二台構成も考慮しています。
