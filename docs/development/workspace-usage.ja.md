@@ -10,8 +10,6 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
 既にチャレンジに参加された方々には、ご自身の経験を公開し、コミュニティに貢献して大会の発展に寄与していただければと思います。皆さんの積極的な参加が、大会をさらに充実させることに繋がります。
 
-<!-- ※AIチャレンジで開発する上でベースとなるソースコードは[大会用リポジトリ](https://github.com/AutomotiveAIChallenge/aichallenge-2025/tree/main/aichallenge/workspace/src/aichallenge_submit)内で提供されています。 -->
-
 参加者の皆様にはこちらのコードやパラメータをカスタマイズすることで開発を進めていただきますが、Autowareに不慣れな方はまずは[入門講座](../course/index.ja.md)を一通りやっていただくことをお勧めします。
 
 ※リポジトリ内のコードを使わず独自に開発する方など、各種仕様について知りたい方は[インターフェース仕様](../specifications/interface.ja.md)、[シミュレータ仕様](../specifications/simulator.ja.md)のページを参照してください。
@@ -37,6 +35,23 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
     ```
 
     調整が終わったら再び[ビルド・実行](../setup/build-docker.ja.md)してみましょう。挙動が変わったことが確認できたかと思います。
+
+??? tip "制御モードを切り替えてみる"
+    `reference.launch.xml`の`control_mode`引数を変更することで、制御方式を切り替えることができます。
+
+    - `rule_based`（デフォルト）: `simple_pure_pursuit`によるPure Pursuit制御
+    - `e2e`: `tiny_lidar_net_controller`によるEnd-to-End制御（LiDAR 1080点から加速度と操舵角を直接出力）
+    - `joycon`: 手動テレオペ操作
+
+    例えば、End-to-End制御を試すには、`reference.launch.xml`内の`control_mode`を`e2e`に変更してビルド・実行してください。
+
+??? tip "評価結果を確認してみる"
+    `make eval`を実行すると、評価結果が`output/<timestamp>/d<domain_id>/`配下に保存されます。
+
+    - `result-summary.json`: ラップタイムなどの結果サマリー
+    - `result-details.json`: 詳細な走行データ
+    - `autoware.log`: Autowareのログ
+    - `motion_analytics.html`: 速度・加速度のインタラクティブ可視化（ブラウザで開けます）
 
 ??? tip "新規パッケージを作成してみる"
     新たに自作パッケージを作成してみましょう。まずはオープンソースのパッケージや[autoware practice](https://github.com/AutomotiveAIChallenge/autoware-practice)をコピーしてみましょう。

@@ -70,7 +70,7 @@
 ??? question "`docker_run.sh: 行 35: rocker: コマンドが見つかりません`が出ます。"
     [rockerのインストール](setup/docker.ja.md)をお願いします。
 
-??? question "`WARNING unable to detect os for base image 'aichallenge-2025-dev', maybe the base image does not exist`が出ます。"
+??? question "`WARNING unable to detect os for base image 'aichallenge-racingkart-dev', maybe the base image does not exist`が出ます。"
     Dockerイメージのビルドをお願いします。
 
 ??? question "Dockerがpullできません"
@@ -124,3 +124,25 @@
 
 ??? question "センサの追加取り付けは可能ですか。"
     同一条件・難易度で課題に取り組んでいただくために、新たなセンサの取り付けは不可としています。
+
+??? question "`make dev`で起動しません。"
+    以下を確認してください。
+
+    1. GPUドライバが正しくインストールされているか確認: `nvidia-smi`でGPU情報が表示されることを確認してください。
+    2. Dockerコンテナが残っていないか確認: `make down`を実行してから再度`make dev`を試してください。
+    3. Dockerイメージがビルド済みか確認: `./docker_build.sh dev`を実行してから再度試してください。
+
+??? question "ドメインIDとは何ですか？"
+    本大会ではマルチ車両対応のため、ROS 2のドメインID機能を使用しています。
+
+    - **ドメイン0**: AWSIM（シミュレータ）が使用
+    - **ドメイン1〜4**: 各車両が使用
+
+    `domain_bridge`ノードがドメイン間のトピックを橋渡しします。通常の開発では、ドメインIDを意識する必要はありません。
+
+??? question "制御モードを変更するにはどうすればいいですか？"
+    `reference.launch.xml`の`control_mode`引数を変更することで制御モードを切り替えられます。
+
+    - `rule_based`（デフォルト）: Pure Pursuitベースの制御
+    - `e2e`: TinyLiDARNetによるEnd-to-End制御
+    - `joycon`: 手動テレオペ操作

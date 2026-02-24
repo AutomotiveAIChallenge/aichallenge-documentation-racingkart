@@ -64,10 +64,10 @@
 
 ??? note  "8. 提出したコードがうまく動かないとき"
 
-    提出したコードが動かないときは`aichallenge-2025/output/2025-$DATE-$TIME/autoware.log`をみてみましょう。
+    提出したコードが動かないときは`aichallenge-racingkart/output/$DATE-$TIME/d$DOMAIN_ID/autoware.log`をみてみましょう。
 
     ```.log
-    [INFO] [launch]: All log files can be found below $USER/.ros/log/2025-07-25-15-39-51-817891-XXX
+    [INFO] [launch]: All log files can be found below $USER/.ros/log/$DATE-$TIME-817891-XXX
     [INFO] [launch]: Default logging verbosity is set to INFO
     [INFO] [launch.user]: The arguments for aichallenge_system_launch.
     [INFO] [launch.user]:  - simulation: true

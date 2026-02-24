@@ -26,8 +26,7 @@
     2.2. Dockerコンテナの起動
 
     - 起動後、自動でAutowareが立ち上がり、自動運転が開始されます。
-    - GPU版AWSIMを使用している場合: `./docker_run.sh eval gpu`
-    - CPU版AWSIMを使用している場合: `./docker_run.sh eval cpu`
+    - `make eval`
 
     2.3. `result.json`の確認
 
@@ -77,7 +76,7 @@
 
         - 以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。
 
-        - `docker run -it aichallenge-2025-eval:latest /bin/bash`
+        - `docker run -it aichallenge-racingkart-eval:latest /bin/bash`
 
     - 確認するディレクトリ:
 

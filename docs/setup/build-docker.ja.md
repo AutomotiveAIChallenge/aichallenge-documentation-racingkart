@@ -6,39 +6,6 @@
 2. Dockerコンテナ上でのAutowareのビルド
 3. Dockerコンテナ上でのAutowareとシミュレータの同時起動
 
-## Dockerコンテナ上でのAutowareのビルド
-
-以下を実行してDockerコンテナを立ち上げます。
-
-```bash
-cd ~/aichallenge-racingkart
-./docker_run.sh dev cpu
-```
-
-特に何も変わっていないように見えますが、上記のコマンドを実行すると環境がDockerコンテナ内部に移行します。今の環境がDockerコンテナ内かどうかは以下のコマンドで何も表示されていないかを確認するのがわかりやすいです。
-
-```bash
-ls ~
-```
-
-Dockerコンテナ内で以下を実行してAutowareをビルドします。
-
-```bash
-cd /aichallenge
-./build_autoware.bash
-```
-
-## Dockerコンテナ上でのAutowareとSimulatorの実行
-
-Autowareのビルド後、以下のコマンドを実行します。
-
-```bash
-./run_evaluation.bash
-```
-
-下記の様な画面が表示されたら起動完了です。終了するにはターミナル上でCTRL + Cを入力します。
-![autoware](./images/autoware.png)
-
 ## 開発
 
 このリポジトリは、make → `docker compose` で AWSIM と Autoware を動かす、という形になっています。
