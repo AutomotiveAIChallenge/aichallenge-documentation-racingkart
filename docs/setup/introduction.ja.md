@@ -25,7 +25,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 
 下記は `setup.bash` が対話形式で順に実施する内容です。必要な項目だけ開いて確認してください。
 
-???+ note "1. :material-package: 必要パッケージを install"
+??? note "1. :material-package: 必要パッケージを install"
     必要な基本パッケージを導入します。
 
     ```bash
@@ -52,7 +52,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     ```bash
     sudo docker run hello-world
     ```
-　　Hello from Docker!と表示されれば正常にインストール出来ています。
+    Hello from Docker!と表示されれば正常にインストール出来ています。
 
 ??? note "3. :material-account-group: Docker グループ登録"
     `sudo` なしでDockerを使えるようにユーザーをグループへ追加します。
