@@ -97,6 +97,13 @@ sequenceDiagram
 
 ## トピック詳細
 
+各トピックのメッセージフィールドの詳細です。
+
+- [制御コマンド](#control-command-control_cmd): `control_cmd` / `actuation_cmd`
+- [車両ステータス](#vehicle-status-actuation_status): `actuation_status` / `velocity_status` / `steering_status` / `gear_status`
+- [センサ](#sensing-gnss-nav_sat_fix): `gnss` / `imu` / `lidar` / `camera`
+- [シミュレーション](#awsim-status): `awsim/status` / `awsim/state` / `admin/awsim/state`
+
 ### `/control/command/control_cmd`
 
 | Name                                | Description          |

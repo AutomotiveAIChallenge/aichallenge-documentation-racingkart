@@ -1,5 +1,7 @@
 # FAQ
 
+## 通信・接続
+
 ??? question "AWSIM and Autoware間の通信が安定しません。"
     local でテストする際、すべての terminal で`ROS_LOCALHOST_ONLY=1`に設定すると通信速度が向上します。
     .bashrc に以下の行を追加してください。
@@ -31,6 +33,8 @@
 ??? question "WindowsのAWSIMとUbuntuのAutowareを使用しており、$ ros2 topic list が表示されません。"
     Windows Firewallでの通信を許可してください。
     また、`ros2 daemon stop`と`ros2 daemon start`を実行して、不要なプロセスが残っていないか確認し、再起動をお願いします。
+
+## 環境構築・Docker
 
 ??? question "Rockerが起動しません。"
     まず、rockerがインストールされているかの確認をお願いします。
@@ -76,6 +80,8 @@
 ??? question "Dockerがpullできません"
     `newgrp docker`か`sudo service docker restart`でdockerの再起動またはUbuntuの再起動をお願いします。
 
+## 開発・デバッグ
+
 ??? question "pythonでパッケージを作成すると実行時 no module named * のerrorが起きます。"
     [こちら](https://zenn.dev/tasada038/articles/5d8ba66aa34b85#setup.py%E3%81%ABsubmodules%E3%81%A8%E3%81%97%E3%81%A6%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B)を参考にしてみてください。
 
@@ -111,6 +117,8 @@
 
     そのため、perceptionの構成はautoware miniが理想的ですが、このあたりを理解してノードの足し引き、取捨選択をして実装することははなかなか難しいため、center pointが問題なく動くようにすることは重要になってくるかもしれません。
     [参考](https://autowarefoundation.github.io/autoware.universe/main/perception/autoware_lidar_centerpoint/)
+
+## シミュレータ・実行
 
 ??? question "車を初期位置にリセットするにはどうすればいいでしょうか。"
     AWSIMのキーボード操作で`Space`キーを押すとリセットできます。また、`/admin/awsim/reset`トピックに`std_msgs/msg/Empty`をPublishすることでもリセットが可能です。
