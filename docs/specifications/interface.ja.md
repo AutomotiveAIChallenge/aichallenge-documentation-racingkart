@@ -39,10 +39,61 @@
 
 ### シミュレーション管理
 
+各車両ドメイン（N=1〜4）で `/d{N}/awsim/status` 等としてPublishされ、`domain_bridge`によりAutoware側のトピック名に橋渡しされます。
+
 | Interface    | Name                       | Type                             |
 | ------------ | -------------------------- | -------------------------------- |
 | Publisher    | `/awsim/status`            | `std_msgs/msg/Float32MultiArray` |
 | Publisher    | `/awsim/state`             | `std_msgs/msg/String`            |
+
+### 管理トピック（ドメイン0）
+
+AWSIMの全体管理に使用されるトピックです。通常の開発では意識する必要はありません。
+
+| Interface    | Name                       | Type                             |
+| ------------ | -------------------------- | -------------------------------- |
+| Publisher    | `/admin/awsim/state`       | `std_msgs/msg/String`            |
+| Subscription | `/admin/awsim/start`       | `std_msgs/msg/Bool`              |
+| Subscription | `/admin/awsim/reset`       | `std_msgs/msg/Empty`             |
+
+### グラウンドトゥルース
+
+デバッグ用の真値データです。提出コードでは使用できません。
+
+| Interface | Name                                              | Type                                          |
+| --------- | ------------------------------------------------- | --------------------------------------------- |
+| Publisher | `/awsim/ground_truth/localization/kinematic_state` | `nav_msgs/msg/Odometry`                       |
+| Publisher | `/awsim/ground_truth/vehicle/pose`                 | `geometry_msgs/msg/PoseStamped`               |
+| Publisher | `/awsim/ground_truth/on_collision`                 | `std_msgs/msg/Bool`                           |
+
+## トピックのドメイン橋渡し
+
+以下のシーケンス図は、AWSIMとAutoware間のトピック通信の流れを示しています。
+
+```mermaid
+sequenceDiagram
+    participant AWSIM as AWSIM<br/>(Domain 0)
+    participant Bridge as domain_bridge
+    participant Autoware as Autoware<br/>(Domain N)
+
+    Note over AWSIM,Autoware: センサデータ（AWSIM → Autoware）
+    AWSIM->>Bridge: /d{N}/sensing/gnss/nav_sat_fix
+    Bridge->>Autoware: /sensing/gnss/nav_sat_fix
+    AWSIM->>Bridge: /d{N}/sensing/imu/imu_raw
+    Bridge->>Autoware: /sensing/imu/imu_raw
+    AWSIM->>Bridge: /d{N}/sensing/lidar/scan
+    Bridge->>Autoware: /sensing/lidar/scan
+
+    Note over AWSIM,Autoware: 制御コマンド（Autoware → AWSIM）
+    Autoware->>Bridge: /control/command/control_cmd
+    Bridge->>AWSIM: /d{N}/awsim/control_cmd
+
+    Note over AWSIM,Autoware: ステータス（AWSIM → Autoware）
+    AWSIM->>Bridge: /d{N}/awsim/status
+    Bridge->>Autoware: /awsim/status
+    AWSIM->>Bridge: /d{N}/awsim/state
+    Bridge->>Autoware: /awsim/state
+```
 
 ## トピック詳細
 
@@ -190,4 +241,28 @@ GNSSセンサからの測位情報です。`racing_kart_gnss_poser`ノードがN
 
 ### `/awsim/state`
 
-シミュレーションの状態を示す文字列トピックです。シミュレーションのライフサイクル管理に使用されます。
+車両ごとのシミュレーション状態を示す文字列トピックです。以下の状態値が配信されます。
+
+| 状態値     | 説明                                 |
+| ---------- | ------------------------------------ |
+| Spawned    | 車両がスポーンされた                 |
+| Grounded   | 車両が地面に接地した                 |
+| Ready      | 車両の準備が完了した                 |
+| Start      | 走行開始                             |
+| Finish     | 走行終了（規定周回数に到達）         |
+
+### `/admin/awsim/state`
+
+シミュレーション全体の状態を示す管理用トピックです（ドメイン0）。
+
+| 状態値      | 説明                               |
+| ----------- | ---------------------------------- |
+| SelectMode  | モード選択画面                     |
+| PlayStart   | プレイ開始                         |
+| Ready       | 準備完了                           |
+| WaitStart   | 開始待ち                           |
+| Start       | シミュレーション開始               |
+| Finish      | シミュレーション終了               |
+| LapComplete | ラップ完了                         |
+| FinishAll   | 全車両完了                         |
+| Terminate   | 終了処理                           |

@@ -39,7 +39,7 @@
 
 #### 結果のログ形式
 
-結果は`./output/result-summary.json` に以下のフォーマットで出力されます。
+結果は`output/<timestamp>/d<domain_id>/result-summary.json` に以下のフォーマットで出力されます。
 
 ```json
 {

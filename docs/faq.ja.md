@@ -68,7 +68,7 @@
     また、[過去Issue](https://github.com/ros2/rviz/issues/948)にてご質問内容と似た質問がありましたので、こちらも合わせてご確認ください。
 
 ??? question "`docker_run.sh: 行 35: rocker: コマンドが見つかりません`が出ます。"
-    [rockerのインストール](setup/docker.ja.md)をお願いします。
+    現在の推奨ワークフローでは`make dev`を使用するため、通常は`docker_run.sh`を使う必要はありません。[ビルド・実行](setup/build-docker.ja.md)を参照してください。デバッグ目的で`docker_run.sh`を使用する場合は、[rockerの公式README](https://github.com/osrf/rocker?tab=readme-ov-file#debians-recommended)に従ってインストールしてください。
 
 ??? question "`WARNING unable to detect os for base image 'aichallenge-racingkart-dev', maybe the base image does not exist`が出ます。"
     Dockerイメージのビルドをお願いします。
@@ -113,7 +113,7 @@
     [参考](https://autowarefoundation.github.io/autoware.universe/main/perception/autoware_lidar_centerpoint/)
 
 ??? question "車を初期位置にリセットするにはどうすればいいでしょうか。"
-    現状、AWSIMを再起動する方法しかございません。
+    AWSIMのキーボード操作で`Space`キーを押すとリセットできます。また、`/admin/awsim/reset`トピックに`std_msgs/msg/Empty`をPublishすることでもリセットが可能です。
 
 ??? question "AWSIMの動作が安定しません。"
     GPUの性能不足が原因の一つになります。
