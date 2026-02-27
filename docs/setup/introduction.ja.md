@@ -3,7 +3,7 @@
 この章では、自動運転 AI チャレンジ 2026（Racing Kart）の開発・実行環境を構築する手順を説明します。推奨環境の確認、ワークスペース準備、Docker と AWSIMの起動までを扱います。
 
 ??? info "2025年度参加者向けの変更点"
-      - プロセス管理に不向きな `rocker` は、公式手順から除外し、docker composeを活用しました。
+      - `rocker` は GUI 転送用途に限定し、プロセス管理は docker compose を活用しています。
       - 個別セットアップ手順を廃止し、一括インストール手順に統一しました。
 
 ## 環境構築
@@ -54,7 +54,21 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     ```
     Hello from Docker!と表示されれば正常にインストール出来ています。
 
-??? note "3. :material-account-group: Docker グループ登録"
+??? note "3. :material-language-python: rocker を install"
+    GUI転送に使う rocker をインストールし、PATH を通します。
+
+    ```bash
+    pip install rocker
+    ```
+
+    `~/.local/bin` が PATH に含まれていない場合は追加します。
+
+    ```bash
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
+    ```
+
+??? note "4. :material-account-group: Docker グループ登録"
     `sudo` なしでDockerを使えるようにユーザーをグループへ追加します。
 
     ```bash
@@ -62,7 +76,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     newgrp docker
     ```
 
-??? note "4. :material-folder-open: リポジトリ準備"
+??? note "5. :material-folder-open: リポジトリ準備"
     大会用リポジトリを取得し、事前チェックを実行します。
 
     ```bash
@@ -71,14 +85,14 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     cd ~/aichallenge-racingkart
     ```
 
-??? note "5. :material-security: repositoryの確認"
+??? note "6. :material-security: repositoryの確認"
     ちゃんとレポジトリが存在しているかチェック
 
     ```bash
     ./setup.bash doctor
     ```
 
-??? note "6. :material-cloud-download: Autoware イメージ取得"
+??? note "7. :material-cloud-download: Autoware イメージ取得"
     実行に必要なAutowareベースイメージを取得します。
 
     ```bash
@@ -93,7 +107,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     ghcr.io/automotiveaichallenge/autoware-universe   humble-latest             30c59f3fb415   13 days ago     8.84GB
     ```
 
-??? note "7. :material-download: AWSIM データ取得/展開"
+??? note "8. :material-download: AWSIM データ取得/展開"
     SharePoint から AWSIM をダウンロードし、所定ディレクトリへ展開して実行権限を付与します。
 
     1. 以下から最新の `AWSIM.zip` をダウンロードします。
@@ -118,7 +132,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 
     GPU 利用時は `AWSIM_GPU_**.zip` を展開してください。
 
-??? note "8. :material-hammer: 開発用イメージ作成"
+??? note "9. :material-hammer: 開発用イメージ作成"
     開発用Dockerイメージをビルドします。
 
     ```bash
@@ -126,7 +140,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     ./docker_build.sh dev
     ```
 
-??? note "9. :material-book-education: ワークスペースビルド"
+??? note "10. :material-book-education: ワークスペースビルド"
     Autowareワークスペースをビルドします。
 
     ```bash
@@ -134,7 +148,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     make autoware-build
     ```
 
-??? note "10. :material-power: AWSIM + Autoware 起動 → `make down` で停止確認"
+??? note "11. :material-power: AWSIM + Autoware 起動 → `make down` で停止確認"
     シミュレータとAutowareを起動し、確認後に停止します。
 
     ```bash
@@ -158,14 +172,16 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 [setup] ℹ️ Planned steps (answer y/N for each, then execution starts):
 [setup]   1) Install base packages (apt)
 [setup]   2) Install Docker (if missing)
-[setup]   3) Add user to docker group (recommended)
-[setup]   4) Clone/update repository (branch=main) -> $USER/aichallenge-racingkart
-[setup]   5) Repo preflight: ./setup.bash doctor (requires repo)
-[setup]   6) Pull Autoware base image (requires repo)
-[setup]   7) Download AWSIM.zip and extract (requires repo)
-[setup]   8) Build dev image: ./docker_build.sh dev (requires repo)
-[setup]   9) make autoware-build (requires repo)
-[setup]  10) make dev DOMAIN_ID=1 (requires repo)
+[setup]   3) Install rocker (pip)
+[setup]   4) Add user to docker group (recommended)
+[setup]   5) Clone/update repository (branch=main) -> $USER/aichallenge-racingkart
+[setup]   6) Repo preflight: ./setup.bash doctor (requires repo)
+[setup]   7) Create .env (GPU/CPU auto-detect)
+[setup]   8) Pull Autoware base image (requires repo)
+[setup]   9) Download AWSIM.zip and extract (requires repo)
+[setup]  10) Build dev image: ./docker_build.sh dev (requires repo)
+[setup]  11) make autoware-build (requires repo)
+[setup]  12) make dev DOMAIN_ID=1 (requires repo)
 ```
 
 途中で `[y/N]` が表示されたら、問題なければ `y` を入力してください。
