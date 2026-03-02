@@ -1,5 +1,21 @@
 # FAQ
 
+## 参加について
+
+??? question "プログラミング経験はどの程度必要ですか？"
+    C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[入門講座](./course/index.ja.md)ではゼロからステップバイステップで学べます。
+
+??? question "Autoware / ROS 2 を触ったことがないのですが大丈夫ですか？"
+    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[入門講座](./course/index.ja.md)で基本を学び、[開発の進め方](./development/workspace-usage.ja.md)を参考に進めてください。
+
+??? question "MacやWindowsでも参加できますか？"
+    本大会のサポート対象はUbuntu 22.04です。Windowsのみをお持ちの場合は、デュアルブート、WSL2、仮想マシン（Hyper-V、VirtualBox等）、クラウド環境の利用などの方法があります。詳しくは下の「環境構築・Docker」セクションの「GPU搭載のWindowsPCしか用意できませんでした」をご覧ください。
+
+??? question "FAQに載っていない質問はどこで聞けますか？"
+    [コミュニティページ](./community.ja.md)から参加者同士の情報交換の場にアクセスできます。
+
+## 通信・接続
+
 ??? question "AWSIM and Autoware間の通信が安定しません。"
     local でテストする際、すべての terminal で`ROS_LOCALHOST_ONLY=1`に設定すると通信速度が向上します。
     .bashrc に以下の行を追加してください。
@@ -12,6 +28,7 @@
         sudo sysctl -w net.core.rmem_max=2147483647
         sudo ip link set lo multicast on
         touch /tmp/cycloneDDS_configured
+    fi
     ```
 
     なお、今回の大会ではPC2 台構成の Windows+Linux、Linux+Linuxの二台構成も考慮しています。
@@ -31,6 +48,8 @@
 ??? question "WindowsのAWSIMとUbuntuのAutowareを使用しており、$ ros2 topic list が表示されません。"
     Windows Firewallでの通信を許可してください。
     また、`ros2 daemon stop`と`ros2 daemon start`を実行して、不要なプロセスが残っていないか確認し、再起動をお願いします。
+
+## 環境構築・Docker
 
 ??? question "Rockerが起動しません。"
     まず、rockerがインストールされているかの確認をお願いします。
@@ -68,13 +87,15 @@
     また、[過去Issue](https://github.com/ros2/rviz/issues/948)にてご質問内容と似た質問がありましたので、こちらも合わせてご確認ください。
 
 ??? question "`docker_run.sh: 行 35: rocker: コマンドが見つかりません`が出ます。"
-    [rockerのインストール](setup/docker.ja.md)をお願いします。
+    現在の推奨ワークフローでは`make dev`を使用するため、通常は`docker_run.sh`を使う必要はありません。[ビルド・実行](setup/build-docker.ja.md)を参照してください。デバッグ目的で`docker_run.sh`を使用する場合は、[rockerの公式README](https://github.com/osrf/rocker?tab=readme-ov-file#debians-recommended)に従ってインストールしてください。
 
-??? question "`WARNING unable to detect os for base image 'aichallenge-2025-dev', maybe the base image does not exist`が出ます。"
+??? question "`WARNING unable to detect os for base image 'aichallenge-racingkart-dev', maybe the base image does not exist`が出ます。"
     Dockerイメージのビルドをお願いします。
 
 ??? question "Dockerがpullできません"
     `newgrp docker`か`sudo service docker restart`でdockerの再起動またはUbuntuの再起動をお願いします。
+
+## 開発・デバッグ
 
 ??? question "pythonでパッケージを作成すると実行時 no module named * のerrorが起きます。"
     [こちら](https://zenn.dev/tasada038/articles/5d8ba66aa34b85#setup.py%E3%81%ABsubmodules%E3%81%A8%E3%81%97%E3%81%A6%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B)を参考にしてみてください。
@@ -87,8 +108,12 @@
     使用しているマップデータが適切な場所に配置されいるか・正しいかを確認してください。
 
 ??? question "どのようにしてAutowareを改良して参加すればよいかが分かりません。"
-    Autowareのノードのパラメータ調整やノード改良・置き換えなどが方法としてあります。
-    Autowareの基本構成などを本サイトの別タブや[こちら](https://automotiveaichallenge.github.io/aichallenge2023-integ/customize/index.html)に少しまとめておりますので、ご活用ください。
+    段階的に以下のアプローチで進めることをお勧めします。
+
+    1. **パラメータ調整**: `reference.launch.xml` の速度やゲイン値を変更する（[開発の進め方](./development/workspace-usage.ja.md)参照）
+    2. **入門講座で学ぶ**: [入門講座](./course/index.ja.md)で車両制御や経路追従の基礎を習得する
+    3. **ノードの改良・置き換え**: [メインモジュール](./development/main-module.ja.md)を参考に、PlanningやControlのノードをカスタマイズする
+
     また、外部の方の記事ですが、[こちら](https://qiita.com/h_bog/items/86fba5b94b2148c4d9da)も参考になるかもしれません。
 
 ??? question "経路生成（Behavior Path/Motion Planner）に関して教えてください。"
@@ -112,8 +137,10 @@
     そのため、perceptionの構成はautoware miniが理想的ですが、このあたりを理解してノードの足し引き、取捨選択をして実装することははなかなか難しいため、center pointが問題なく動くようにすることは重要になってくるかもしれません。
     [参考](https://autowarefoundation.github.io/autoware.universe/main/perception/autoware_lidar_centerpoint/)
 
+## シミュレータ・実行
+
 ??? question "車を初期位置にリセットするにはどうすればいいでしょうか。"
-    現状、AWSIMを再起動する方法しかございません。
+    AWSIMのキーボード操作で`Space`キーを押すとリセットできます。また、`/admin/awsim/reset`トピックに`std_msgs/msg/Empty`をPublishすることでもリセットが可能です。
 
 ??? question "AWSIMの動作が安定しません。"
     GPUの性能不足が原因の一つになります。
@@ -124,3 +151,29 @@
 
 ??? question "センサの追加取り付けは可能ですか。"
     同一条件・難易度で課題に取り組んでいただくために、新たなセンサの取り付けは不可としています。
+
+??? question "`make dev`で起動しません。"
+    以下を確認してください。
+
+    1. GPUドライバが正しくインストールされているか確認: `nvidia-smi`でGPU情報が表示されることを確認してください。
+    2. Dockerコンテナが残っていないか確認: `make down`を実行してから再度`make dev`を試してください。
+    3. Dockerイメージがビルド済みか確認: `./docker_build.sh dev`を実行してから再度試してください。
+
+??? question "ドメインIDとは何ですか？"
+    本大会ではマルチ車両対応のため、ROS 2のドメインID機能を使用しています。
+
+    - **ドメイン0**: AWSIM（シミュレータ）が使用
+    - **ドメイン1〜4**: 各車両が使用
+
+    `domain_bridge`ノードがドメイン間のトピックを橋渡しします。通常の開発では、ドメインIDを意識する必要はありません。
+
+??? question "制御モードを変更するにはどうすればいいですか？"
+    `reference.launch.xml`の`control_mode`引数を変更することで制御モードを切り替えられます。
+
+    - `rule_based`（デフォルト）: Pure Pursuitベースの制御
+    - `e2e`: TinyLiDARNetによるEnd-to-End制御
+    - `joycon`: 手動テレオペ操作
+
+## 解決しない場合
+
+[:material-arrow-right-circle: コミュニティで情報を探す](./community.ja.md){ .md-button .md-button--primary }

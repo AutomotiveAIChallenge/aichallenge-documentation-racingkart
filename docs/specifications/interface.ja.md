@@ -1,6 +1,19 @@
 # インターフェース
 
-## 一覧
+## ドメインID名前空間
+
+本大会ではマルチ車両対応のため、ROS 2のドメインID機能を使用してトピックの名前空間を分離しています。
+
+| ドメインID | 用途 |
+| ---------- | ---- |
+| 0          | AWSIM（シミュレータ） |
+| 1〜4       | 各車両 |
+
+`domain_bridge`ノードがドメイン間のトピックを橋渡しし、シミュレータと各車両間の通信を実現しています。通常の開発（単一車両）では、ドメインIDを意識する必要はありません。
+
+## トピック一覧
+
+### 車両インターフェース
 
 | Interface    | Name                                 | Type                                                     |
 | ------------ | ------------------------------------ | -------------------------------------------------------- |
@@ -13,12 +26,83 @@
 | Publisher    | `/vehicle/status/steering_status`    | `autoware_auto_vehicle_msgs/msg/SteeringReport`          |
 | Subscription | `/control/command/gear_cmd`          | `autoware_auto_vehicle_msgs/msg/GearCommand`             |
 | Publisher    | `/vehicle/status/gear_status`        | `autoware_auto_vehicle_msgs/msg/GearReport`              |
-| Publisher    | `/sensing/gnss/pose_with_covariance` | `geometry_msgs/msg/PoseWithCovarianceStamped`            |
-| Publisher    | `/sensing/imu/imu_raw`               | `sensor_msgs/msg/Imu`                                    |
-| Publisher    | `/aichallenge/objects`               | `std_msgs/msg/Float64MultiArray`                         |
-| Publisher    | `/aichallenge/pitstop/area`          | `std_msgs/msg/Float64MultiArray`                         |
-| Publisher    | `/aichallenge/pitstop/condition`     | `std_msgs/msg/Int32`                                     |
-| Publisher    | `/aichallenge/pitstop/status`        | `std_msgs/msg/Float32`                                   |
+
+### センサ
+
+| Interface | Name                                 | Type                                          |
+| --------- | ------------------------------------ | --------------------------------------------- |
+| Publisher | `/sensing/gnss/nav_sat_fix`          | `sensor_msgs/msg/NavSatFix`                   |
+| Publisher | `/sensing/imu/imu_raw`               | `sensor_msgs/msg/Imu`                         |
+| Publisher | `/sensing/lidar/scan`                | `sensor_msgs/msg/LaserScan`                   |
+| Publisher | `/sensing/camera/image_raw`          | `sensor_msgs/msg/Image`                       |
+| Publisher | `/sensing/camera/camera_info`        | `sensor_msgs/msg/CameraInfo`                  |
+
+### シミュレーション管理
+
+各車両ドメイン（N=1〜4）で `/d{N}/awsim/status` 等としてPublishされ、`domain_bridge`によりAutoware側のトピック名に橋渡しされます。
+
+| Interface    | Name                       | Type                             |
+| ------------ | -------------------------- | -------------------------------- |
+| Publisher    | `/awsim/status`            | `std_msgs/msg/Float32MultiArray` |
+| Publisher    | `/awsim/state`             | `std_msgs/msg/String`            |
+
+### 管理トピック（ドメイン0）
+
+AWSIMの全体管理に使用されるトピックです。通常の開発では意識する必要はありません。
+
+| Interface    | Name                       | Type                             |
+| ------------ | -------------------------- | -------------------------------- |
+| Publisher    | `/admin/awsim/state`       | `std_msgs/msg/String`            |
+| Subscription | `/admin/awsim/start`       | `std_msgs/msg/Bool`              |
+| Subscription | `/admin/awsim/reset`       | `std_msgs/msg/Empty`             |
+
+### グラウンドトゥルース（真値データ）
+
+シミュレータが持つ正確な位置・姿勢などの真値データです。デバッグや検証に利用できますが、提出コードでは使用できません。
+
+| Interface | Name                                              | Type                                          |
+| --------- | ------------------------------------------------- | --------------------------------------------- |
+| Publisher | `/awsim/ground_truth/localization/kinematic_state` | `nav_msgs/msg/Odometry`                       |
+| Publisher | `/awsim/ground_truth/vehicle/pose`                 | `geometry_msgs/msg/PoseStamped`               |
+| Publisher | `/awsim/ground_truth/on_collision`                 | `std_msgs/msg/Bool`                           |
+
+## トピックのドメイン橋渡し
+
+以下のシーケンス図は、AWSIMとAutoware間のトピック通信の流れを示しています。
+
+```mermaid
+sequenceDiagram
+    participant AWSIM as AWSIM<br/>(Domain 0)
+    participant Bridge as domain_bridge
+    participant Autoware as Autoware<br/>(Domain N)
+
+    Note over AWSIM,Autoware: センサデータ（AWSIM → Autoware）
+    AWSIM->>Bridge: /d{N}/sensing/gnss/nav_sat_fix
+    Bridge->>Autoware: /sensing/gnss/nav_sat_fix
+    AWSIM->>Bridge: /d{N}/sensing/imu/imu_raw
+    Bridge->>Autoware: /sensing/imu/imu_raw
+    AWSIM->>Bridge: /d{N}/sensing/lidar/scan
+    Bridge->>Autoware: /sensing/lidar/scan
+
+    Note over AWSIM,Autoware: 制御コマンド（Autoware → AWSIM）
+    Autoware->>Bridge: /control/command/control_cmd
+    Bridge->>AWSIM: /d{N}/awsim/control_cmd
+
+    Note over AWSIM,Autoware: ステータス（AWSIM → Autoware）
+    AWSIM->>Bridge: /d{N}/awsim/status
+    Bridge->>Autoware: /awsim/status
+    AWSIM->>Bridge: /d{N}/awsim/state
+    Bridge->>Autoware: /awsim/state
+```
+
+## トピック詳細
+
+各トピックのメッセージフィールドの詳細です。
+
+- **制御コマンド**: [`control_cmd`](#controlcommandcontrol_cmd) / [`actuation_cmd`](#controlcommandactuation_cmd)
+- **車両ステータス**: [`actuation_status`](#vehiclestatusactuation_status) / [`velocity_status`](#vehiclestatusvelocity_status) / [`steering_status`](#vehiclestatussteering_status) / [`gear_status`](#vehiclestatusgear_status)
+- **センサ**: [`gnss`](#sensinggnssnav_sat_fix) / [`imu`](#sensingimuimu_raw) / [`lidar`](#sensinglidarscan) / [`camera`](#sensingcameraimage_raw)
+- **シミュレーション**: [`awsim/status`](#awsimstatus) / [`awsim/state`](#awsimstate) / [`admin/awsim/state`](#adminawsimstate)
 
 ### `/control/command/control_cmd`
 
@@ -26,11 +110,11 @@
 | ----------------------------------- | -------------------- |
 | stamp                               | メッセージの送信時刻 |
 | lateral.stamp                       | 未使用               |
-| lateral.steering_tire_angle         | 目標操舵角           |
+| lateral.steering_tire_angle         | 目標操舵角 (rad)     |
 | lateral.steering_tire_rotation_rate | 未使用               |
 | longitudinal.stamp                  | 未使用               |
 | longitudinal.speed                  | 未使用               |
-| longitudinal.acceleration           | 目標加速度           |
+| longitudinal.acceleration           | 目標加速度 (m/s²)    |
 | longitudinal.jerk                   | 未使用               |
 
 ### `/control/command/actuation_cmd`
@@ -84,15 +168,18 @@
 | stamp  | データの取得時刻 |
 | report | ギアの種類       |
 
-### `/sensing/gnss/pose_with_covariance`
+### `/sensing/gnss/nav_sat_fix`
+
+GNSSセンサからの測位情報です。`racing_kart_gnss_poser`ノードがNavSatFixメッセージを車両座標系の姿勢に変換します。
 
 | Name                  | Description                       |
 | --------------------- | --------------------------------- |
 | header.stamp          | データの取得時刻                  |
-| header.frame_id       | フレームID (`map`)                |
-| pose.pose.position    | 車両位置 (`base_link` 原点の位置) |
-| pose.pose.orientation | 未使用                            |
-| pose.covariance       | 位置精度                          |
+| header.frame_id       | フレームID                        |
+| latitude              | 緯度（度）                        |
+| longitude             | 経度（度）                        |
+| altitude              | 高度（m）                         |
+| position_covariance   | 位置の共分散                      |
 
 ### `/sensing/imu/imu_raw`
 
@@ -104,37 +191,85 @@
 | angular_velocity    | 角速度                  |
 | linear_acceleration | 加速度                  |
 
-### `/aichallenge/objects`
+### `/sensing/lidar/scan`
 
-| Name            | Description              |
-| --------------- | ------------------------ |
-| data[N * 4 + 0] | N番目の仮想障害物のX座標 |
-| data[N * 4 + 1] | N番目の仮想障害物のY座標 |
-| data[N * 4 + 2] | N番目の仮想障害物のZ座標 |
-| data[N * 4 + 3] | N番目の仮想障害物の半径  |
+2D LiDARセンサからのスキャンデータです。
 
-### `/aichallenge/pitstop/area`
+| Name                | Description                    |
+| ------------------- | ------------------------------ |
+| header.stamp        | データの取得時刻               |
+| header.frame_id     | フレームID                     |
+| angle_min           | スキャン開始角度（rad）        |
+| angle_max           | スキャン終了角度（rad）        |
+| angle_increment     | 角度分解能（rad）              |
+| range_min           | 最小検出距離（m）              |
+| range_max           | 最大検出距離（m）（最大30m）   |
+| ranges              | 距離データ配列（1080点）       |
 
-| Name    | Description                                   |
-| ------- | --------------------------------------------- |
-| data[0] | ピットストップエリア中心のX座標               |
-| data[1] | ピットストップエリア中心のY座標               |
-| data[2] | ピットストップエリア中心のZ座標               |
-| data[3] | ピットストップエリアの方向のクオータニオンX値 |
-| data[4] | ピットストップエリアの方向のクオータニオンY値 |
-| data[5] | ピットストップエリアの方向のクオータニオンZ値 |
-| data[6] | ピットストップエリアの方向のクオータニオンW値 |
-| data[7] | ピットストップエリアのX方向のサイズ           |
-| data[8] | ピットストップエリアのY方向のサイズ           |
+### `/sensing/camera/image_raw`
 
-### `/aichallenge/pitstop/condition`
+カメラからのRGB画像データです。
 
-| Name | Description            |
-| ---- | ---------------------- |
-| data | 車両のコンディション値 |
+| Name                | Description            |
+| ------------------- | ---------------------- |
+| header.stamp        | データの取得時刻       |
+| header.frame_id     | フレームID             |
+| height              | 画像の高さ（px）       |
+| width               | 画像の幅（px）         |
+| encoding            | エンコーディング形式   |
+| data                | 画像データ             |
 
-### `/aichallenge/pitstop/status`
+### `/sensing/camera/camera_info`
 
-| Name | Description                            |
-| ---- | -------------------------------------- |
-| data | ピットストップの判定が成立している秒数 |
+カメラの内部パラメータ情報です。
+
+| Name                | Description            |
+| ------------------- | ---------------------- |
+| header.stamp        | データの取得時刻       |
+| header.frame_id     | フレームID             |
+| height              | 画像の高さ（px）       |
+| width               | 画像の幅（px）         |
+| k                   | カメラ内部行列（3x3）  |
+| d                   | 歪み係数               |
+
+### `/awsim/status`
+
+シミュレーションの各種状態を取得するトピックです。`Float32MultiArray`型で、以下の7つのフィールドを持ちます。
+
+| インデックス | 値              | 説明                                       |
+| ------------ | --------------- | ------------------------------------------ |
+| 0            | sessionTime     | 残りセッション時間（秒、カウントダウン）   |
+| 1            | lapCount        | 現在のラップ数                             |
+| 2            | thisLapTime     | 現在のラップタイム（秒）                   |
+| 3            | section         | 現在のセクション番号                       |
+| 4            | timeScale       | シミュレーションのタイムスケール           |
+| 5            | boostRemaining  | 残りブースト使用回数                       |
+| 6            | isBoosting      | ブースト中フラグ (1.0=ブースト中 / 0.0)    |
+
+### `/awsim/state`
+
+車両ごとのシミュレーション状態を示す文字列トピックです。以下の状態値が配信されます。
+
+| 状態値     | 説明                                 |
+| ---------- | ------------------------------------ |
+| Spawned    | 車両がスポーンされた                 |
+| Grounded   | 車両が地面に接地した                 |
+| Ready      | 車両の準備が完了した                 |
+| Start      | 走行開始                             |
+| Finish     | 走行終了（規定周回数に到達）         |
+
+### `/admin/awsim/state`
+
+シミュレーション全体の状態を示す管理用トピックです（ドメイン0）。
+
+| 状態値      | 説明                               |
+| ----------- | ---------------------------------- |
+| SelectMode  | モード選択画面                     |
+| PlayStart   | プレイ開始                         |
+| Ready       | 準備完了                           |
+| WaitStart   | 開始待ち                           |
+| Start       | シミュレーション開始               |
+| Finish      | シミュレーション終了               |
+| LapComplete | ラップ完了                         |
+| FinishAll   | 全車両完了                         |
+| Terminate   | 終了処理                           |

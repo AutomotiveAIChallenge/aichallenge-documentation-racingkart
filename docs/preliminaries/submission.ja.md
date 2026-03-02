@@ -26,21 +26,22 @@
     2.2. Dockerコンテナの起動
 
     - 起動後、自動でAutowareが立ち上がり、自動運転が開始されます。
-    - GPU版AWSIMを使用している場合: `./docker_run.sh eval gpu`
-    - CPU版AWSIMを使用している場合: `./docker_run.sh eval cpu`
+    - `make eval`
 
-    2.3. `result.json`の確認
+    2.3. 結果の確認
 
-    - 評価完了後、`output/latest`フォルダに以下のファイルが格納されます。
-        - `autoware.log`
-        - `rosbag2_autoware`
-        - `capture`
-        - `result-summary.json`
-        - `result-details.json`
+    - 評価完了後、`output/<timestamp>/d<domain_id>/`フォルダに以下のファイルが格納されます（`output/latest/d<domain_id>/`からシンボリックリンクでもアクセス可能）。
+        - `autoware.log` — Autowareの実行ログ
+        - `d<domain_id>-result-details.json` — 詳細な走行データ
+        - `result-summary.json` — ラップタイムの結果サマリー
+        - `motion_analytics-<timestamp>.html` — 速度・加速度のインタラクティブ可視化
+        - `rosbag2_autoware/` — ROSBag記録（MCAP形式）
+        - `capture/` — 画面キャプチャ動画
 
 3. オンライン採点環境への提出
 
-    3.1. 結果の確認
+    3.1. アップロード
+
     [オンライン環境](https://aichallenge-board.jsae.or.jp)にアクセスします。
     <img src="./images/topImage.png" width="100%">
 
@@ -63,7 +64,7 @@
 
     <img src="./images/siteImage4.png" width="100%">
 
-    result.jsonとrosbagとautoware.logを確認することができます。
+    `result-summary.json`、rosbag、`autoware.log`を確認することができます。
 
     <img src="./images/siteImage5.png" width="100%">
 
@@ -77,7 +78,7 @@
 
         - 以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。
 
-        - `docker run -it aichallenge-2025-eval:latest /bin/bash`
+        - `docker run -it aichallenge-racingkart-eval:latest /bin/bash`
 
     - 確認するディレクトリ:
 

@@ -132,7 +132,3 @@ If the following screen appears, it was successful.
 ![AWSIM-Autoware](./images/awsim-and-autoware.png)
 
 This concludes the environment setup!
-
-## Next Step: Start Development
-
-Let's start development from [Getting Started](../getting-started.en.md)!

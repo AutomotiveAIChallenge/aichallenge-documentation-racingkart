@@ -69,5 +69,3 @@ Store the created lanelet2 map in `aichallenge/workspace/src/aichallenge_submit/
 ## Try submitting
 
 After customizing the workspace, refer to [this](../preliminaries/submission.en.md) to submit.
-
-## [Next Step: Learn about the Main Module](./main-module.en.md)

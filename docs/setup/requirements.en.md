@@ -26,5 +26,3 @@ For the PC used in this competition, we recommend the following specifications. 
 - GPU: NVIDIA GeForce with 8 GB VRAM
 - Memory: 16 GB or more
 - Storage: SSD 60 GB or more
-
-## [Next Step: Clone the Workspace](./workspace-setup.en.md)

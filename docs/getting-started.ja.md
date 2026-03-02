@@ -64,10 +64,10 @@
 
 ??? note  "8. 提出したコードがうまく動かないとき"
 
-    提出したコードが動かないときは`aichallenge-2025/output/2025-$DATE-$TIME/autoware.log`をみてみましょう。
+    提出したコードが動かないときは`aichallenge-racingkart/output/$DATE-$TIME/d$DOMAIN_ID/autoware.log`をみてみましょう。
 
-    ```.log
-    [INFO] [launch]: All log files can be found below $USER/.ros/log/2025-07-25-15-39-51-817891-XXX
+    ```log
+    [INFO] [launch]: All log files can be found below $USER/.ros/log/$DATE-$TIME-817891-XXX
     [INFO] [launch]: Default logging verbosity is set to INFO
     [INFO] [launch.user]: The arguments for aichallenge_system_launch.
     [INFO] [launch.user]:  - simulation: true
@@ -84,10 +84,10 @@
 
     手元でどの方法でもエラーが再現できない場合は、下記の情報と共に質問チャンネルでお問い合わせください。
 
-        1. https://aichallenge-board.jsae.or.jp/public/submissions のID、日時などの情報
-        2. 手元でやってみたことの手順の共有
-        3. もともとのサンプルコードとの差分、どのような変更を加えたのかの説明
-        4. ログの情報、その他思い当たる節がありそうな部分の共有
+    1. https://aichallenge-board.jsae.or.jp/public/submissions のID、日時などの情報
+    2. 手元でやってみたことの手順の共有
+    3. もともとのサンプルコードとの差分、どのような変更を加えたのかの説明
+    4. ログの情報、その他思い当たる節がありそうな部分の共有
 
 ??? note  "9. AIを活用した練習教材を試してみる（任意）"
 

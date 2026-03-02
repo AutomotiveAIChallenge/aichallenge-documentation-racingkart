@@ -129,7 +129,3 @@ uv pip install .
 ```sh
 export GEMINI_API_KEY="YOUR_API_KEY"
 ```
-
-## Next Step
-
-[Getting started: VLM Plannerの実行](./getting_started_vlm_run.md)へお進みください。

@@ -1,5 +1,31 @@
 # AIチャレンジの進め方
 
+## 開発ワークフロー
+
+開発は以下のサイクルで進めます。
+
+1. **コードを編集** — `aichallenge/workspace/src/aichallenge_submit/` 配下を変更
+2. **ビルド** — `make autoware-build`
+3. **動作確認** — `make dev` でシミュレータを起動し、挙動を確認
+4. **評価** — `make eval` で定量評価し、`output/latest/` の結果を確認
+5. **提出** — [提出手順](../preliminaries/submission.ja.md)に従ってアップロード
+
+### ワークスペースのディレクトリ構造
+
+```text
+aichallenge-racingkart/
+└── aichallenge/
+    └── workspace/
+        └── src/
+            └── aichallenge_submit/           # ← ここを編集します
+                ├── aichallenge_submit_launch/
+                │   └── launch/
+                │       └── reference.launch.xml  # パラメータ・起動設定
+                ├── simple_pure_pursuit/           # ルールベース制御
+                ├── simple_trajectory_generator/   # 経路生成
+                └── ...
+```
+
 ![Where-to-start](./images/where-to-start.drawio.svg)
 
 AIチャレンジではオープンソースソフトウェアを駆使しています。運営から提供されるコードとウェブプラットフォームを利用することで、初期開発フェーズをスキップし、競技のテーマに合わせた開発をすぐに開始できます。
@@ -9,8 +35,6 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 さらに、自動運転の理解を深めるために、運営が用意した「[Autoware Practice](../course/index.ja.md)」やROS 2のコミュニティが提供する「[ROS 2](https://docs.ros.org/en/humble/Tutorials.html)」の学習プログラムを活用することをお勧めします。
 
 既にチャレンジに参加された方々には、ご自身の経験を公開し、コミュニティに貢献して大会の発展に寄与していただければと思います。皆さんの積極的な参加が、大会をさらに充実させることに繋がります。
-
-<!-- ※AIチャレンジで開発する上でベースとなるソースコードは[大会用リポジトリ](https://github.com/AutomotiveAIChallenge/aichallenge-2025/tree/main/aichallenge/workspace/src/aichallenge_submit)内で提供されています。 -->
 
 参加者の皆様にはこちらのコードやパラメータをカスタマイズすることで開発を進めていただきますが、Autowareに不慣れな方はまずは[入門講座](../course/index.ja.md)を一通りやっていただくことをお勧めします。
 
@@ -38,6 +62,51 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
     調整が終わったら再び[ビルド・実行](../setup/build-docker.ja.md)してみましょう。挙動が変わったことが確認できたかと思います。
 
+??? tip "制御モードを切り替えてみる"
+    `reference.launch.xml`の`control_mode`引数を変更することで、制御方式を切り替えることができます。
+
+    - `rule_based`（デフォルト）: `simple_pure_pursuit`によるPure Pursuit制御
+    - `e2e`: `tiny_lidar_net_controller`によるEnd-to-End制御（LiDAR 1080点から加速度と操舵角を直接出力）
+    - `joycon`: 手動テレオペ操作
+
+    例えば、End-to-End制御を試すには、`reference.launch.xml`内の`control_mode`を`e2e`に変更してビルド・実行してください。
+
+??? tip "評価結果を確認してみる"
+    `make eval`を実行すると、評価結果が`output/<timestamp>/d<domain_id>/`配下に保存されます。`output/latest/d<domain_id>/`からシンボリックリンクでもアクセスできます。
+
+    **主な出力ファイル:**
+
+    - `result-summary.json`: ラップタイムの結果サマリー（`min_time`, `total_lap_time`, `num_laps`）
+    - `d<domain_id>-result-details.json`: 詳細な走行データ（ラップごとのタイム、走行軌跡）
+    - `autoware.log`: Autowareの実行ログ
+    - `motion_analytics-<timestamp>.html`: 速度・加速度のインタラクティブ可視化（ブラウザで開けます）
+    - `rosbag2_autoware/`: ROSBag記録（MCAP形式、rosbag有効時）
+    - `capture/`: 画面キャプチャ動画（capture有効時）
+    - `ros/log/`: 各ノードの個別ログ
+
+    **評価フロー:**
+
+    ```mermaid
+    sequenceDiagram
+        participant User as ユーザー
+        participant Make as make eval
+        participant AWSIM as AWSIM
+        participant AW as Autoware
+        participant Post as 後処理
+
+        User->>Make: make eval
+        Make->>AWSIM: コンテナ起動
+        Make->>AW: コンテナ起動
+        AWSIM->>AW: センサデータ配信
+        AW->>AWSIM: 制御コマンド送信
+        Note over AWSIM,AW: 6周走行 or タイムアウト
+        AWSIM->>AWSIM: result-details.json生成
+        AWSIM->>Post: 走行終了通知
+        Post->>Post: result-summary.json生成
+        Post->>Post: motion_analytics.html生成
+        Post->>Make: 全コンテナ停止・片付け
+    ```
+
 ??? tip "新規パッケージを作成してみる"
     新たに自作パッケージを作成してみましょう。まずはオープンソースのパッケージや[autoware practice](https://github.com/AutomotiveAIChallenge/autoware-practice)をコピーしてみましょう。
     以下のように進めると良いと思います。
@@ -62,5 +131,3 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
 ??? tip "提出してみる"
     ワークスペースのカスタマイズを行ったら[ここ](../preliminaries/submission.ja.md)を参考に提出をしてみましょう。
-
-## [Next Step:メインモジュールについて知る](./main-module.ja.md)
