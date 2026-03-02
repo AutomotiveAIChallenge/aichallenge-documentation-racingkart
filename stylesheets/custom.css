@@ -6,6 +6,12 @@
   --md-typeset-a-color: #4536ac;
 }
 
+.md-typeset iframe {
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
 .md-header {
   border-bottom: 2px solid #4536ac;
 }
