@@ -29,17 +29,59 @@ AI Challenge のドキュメントに従って、
 
 PilotNet の学習には Autoware から取得した rosbag が必要です。本セクションでは、rosbag の取得から学習・デプロイまでの手順を説明します。
 
-### Step 1. コンテナの操作
+### Step 1. コンテナの操作 (rocker で起動)
 
-このステップでは、複数の Terminal を使います。
+このステップでは、4 つの Terminal を使います。1つ目は **rocker で新しいコンテナを起動**し、残りは **既存コンテナに `docker exec` で入る**運用です。
+
+#### rocker と docker_run.sh の関係
+
+`./docker_run.sh dev` は内部で `rocker` を呼び出し、X11 / GPU (NVIDIA) / `/dev/dri` / `/dev/input` / PulseAudio / host network 等を passthrough した状態で開発用コンテナ (`aichallenge-2025-dev` イメージ) を起動します。`/aichallenge` がホストの作業ディレクトリに bind mount されるため、ホスト側で編集したコードが即座にコンテナから見えます。
+
+実行されるコマンドは概ね次の形:
 
 ```sh
-cd ~/aichallenge-racingkart && ./docker_run.sh dev
+rocker --x11 --devices /dev/dri --user --pulse --net host --privileged \
+    --name "aichallenge-2025-<timestamp>" \
+    --volume "<volumes>" \
+    -- aichallenge-2025-dev bash
 ```
 
-を docker 環境の外で実行すれば、コンテナ内で複数の Terminal を開けます。3 回繰り返して、合計 4 つの Terminal を開いてください。
+GPU が検出されると `--nvidia` が自動付与されます (`./docker_run.sh dev gpu` で強制指定可)。
 
-各 Terminal で次のコマンドを実行して ROS 2 を読み込みます。
+> **Note**: 競技用の `make dev` (docker compose) と異なり、`docker_run.sh dev` は GUI / USB アクセスが必要な開発・データ収集用フローです。本ドキュメントは後者を使います。
+
+#### Terminal 1: AWSIM の起動 (rocker でコンテナ起動)
+
+ホスト側で:
+
+```sh
+cd ~/aichallenge-racingkart
+./docker_run.sh dev
+```
+
+`rocker` がコンテナを起動し、コンテナ内の bash に入ります。続けてコンテナ内で:
+
+```sh
+source /opt/ros/humble/setup.bash
+source /autoware/install/setup.bash
+source /aichallenge/workspace/install/setup.bash
+./run_simulator.bash
+```
+
+PilotNet は単独走行を前提に動作確認するため、起動画面では **1人プレイ** を選択してください。
+
+#### 追加 Terminal の開き方 (Terminal 2-4)
+
+ホスト側で別の Terminal を開き (`Alt+Ctrl+T` 等)、すでに起動している rocker コンテナに `docker exec` で入ります:
+
+```sh
+cd ~/aichallenge-racingkart
+./docker_exec.sh
+```
+
+`docker_exec.sh` は実行中の `aichallenge-2025-*` コンテナを検出し、`docker exec -it <container> bash` で同じコンテナの追加シェルを開きます。Terminal 2-4 ではこちらを使ってください (rocker をもう1度叩くと別コンテナになり、`/aichallenge` が同じでも IPC が分かれてしまうので非推奨)。
+
+各 Terminal でも ROS 2 の source を実行します:
 
 ```sh
 source /opt/ros/humble/setup.bash
@@ -47,19 +89,11 @@ source /autoware/install/setup.bash
 source /aichallenge/workspace/install/setup.bash
 ```
 
-#### Terminal 1: AWSIM の起動
-
-```sh
-./docker_run.sh
-./run_simulator.bash
-```
-
-PilotNet は単独走行を前提に動作確認するため、起動画面では **1人プレイ** を選択してください。
-
 #### Terminal 2: Autoware1 の起動
 
+Terminal 2 (`docker_exec.sh` で入った状態) で:
+
 ```sh
-./docker_exec.sh
 ./run_autoware.bash awsim 1
 ```
 
@@ -69,8 +103,9 @@ Initial pose を設定します。Rviz の view を `ThirdPersonFollower` から
 
 #### Terminal 3: ROS topic の確認 (任意)
 
+Terminal 3 (`docker_exec.sh` で入った状態) で:
+
 ```sh
-./docker_exec.sh
 export ROS_DOMAIN_ID=1
 ros2 topic list
 ```
@@ -79,10 +114,11 @@ ros2 topic list
 
 #### Terminal 4: rosbag の記録開始
 
+Terminal 4 (`docker_exec.sh` で入った状態) で:
+
 ```sh
-./docker_exec.sh
 export ROS_DOMAIN_ID=1
-cd ml_workspace
+cd /aichallenge/ml_workspace
 ./record_data.bash
 ```
 
@@ -198,17 +234,27 @@ cp /aichallenge/ml_workspace/pilot_net/weights/pilotnet_weights.npy \
 
 `reference.launch.xml` の `control_method` を `rule_based` から `pilot_net` に変更します。
 
+Step 1 でコンテナを既に起動している場合は、そのまま Terminal を再利用できます。コンテナを停止していた場合はホスト側で再度 `./docker_run.sh dev` (Terminal 1) と `./docker_exec.sh` (Terminal 2 以降) で入り直してください。
+
 #### Terminal 1: AWSIM の起動
 
+コンテナ内で:
+
 ```sh
-./docker_exec.sh # すでに Docker を起動している場合は Skip
+source /opt/ros/humble/setup.bash
+source /autoware/install/setup.bash
+source /aichallenge/workspace/install/setup.bash
 ./run_simulator.bash
 ```
 
 #### Terminal 2: Autoware1 の起動
 
+別の Terminal (`docker_exec.sh` で入った状態) で:
+
 ```sh
-./docker_exec.sh # すでに Docker を起動している場合は Skip
+source /opt/ros/humble/setup.bash
+source /autoware/install/setup.bash
+source /aichallenge/workspace/install/setup.bash
 ./run_autoware.bash awsim 1
 ```
 
