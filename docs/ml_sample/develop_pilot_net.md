@@ -193,13 +193,13 @@ cp /aichallenge/ml_workspace/pilot_net/weights/pilotnet_weights.npy \
 
 Step 1 でコンテナを既に起動している場合は、そのまま Terminal を再利用できます。コンテナを停止していた場合はホスト側で再度 `./docker_run.sh dev` (Terminal 1) と `./docker_exec.sh` (Terminal 2 以降) で入り直してください。
 
-#### Terminal 1: AWSIM の起動
+#### Terminal 1: AWSIM の起動確認
 
 ```sh
 ./run_simulator.bash
 ```
 
-#### Terminal 2: Autoware1 の起動
+#### Terminal 2: Autoware1 の起動確認
 
 ```sh
 ./docker_exec.sh
