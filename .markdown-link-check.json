@@ -5,7 +5,10 @@
       "pattern": "https://tier4inc-my.sharepoint.com/"
     },
     {
-      "pattern": "https://aichallenge-board\\.jsae\\.or\\.jp/"
+      "pattern": "https://aichallenge-board\\.jsae\\.or\\.jp"
+    },
+    {
+      "pattern": "^#option-train-val-augmentation$"
     }
   ]
 }
