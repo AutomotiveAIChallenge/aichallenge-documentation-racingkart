@@ -3,6 +3,9 @@
   "ignorePatterns": [
     {
       "pattern": "https://tier4inc-my.sharepoint.com/"
+    },
+    {
+      "pattern": "https://aichallenge-board\\.jsae\\.or\\.jp/"
     }
   ]
 }
