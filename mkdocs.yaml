@@ -69,6 +69,7 @@ nav:
       - ml_sample/algorithms.md
       - ml_sample/getting_started_tiny_lidar_net.md
       - ml_sample/develop_tiny_lidar_net.md
+      - ml_sample/develop_pilot_net.md
       - ml_sample/design.md
       - ml_sample/getting_started_vlm_setup.md
       - ml_sample/getting_started_vlm_run.md
