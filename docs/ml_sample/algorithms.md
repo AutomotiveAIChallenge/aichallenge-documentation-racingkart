@@ -22,6 +22,7 @@
 - 2016年にNVIDIAから発表された手法で、CNNを用いています。
 - ALVINNよりも計算機が強力になったものの、5層のconvolution layerと3層の全結合層からなる、コンパクトな構成でした。
 - 論文: [End to End Learning for Self-Driving Cars](https://arxiv.org/abs/1604.07316)
+- 本リポジトリでの学習・デプロイ手順: [Develop: PilotNet](develop_pilot_net.md)
 
 ![DAVE-2 Architecture](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
 
@@ -74,6 +75,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 
 - 論文: [TinyLidarNet: 2D LiDAR-based End-to-End Deep Learning Model for F1TENTH Autonomous Racing](https://arxiv.org/abs/2410.07447)
 - [code](https://github.com/CSL-KU/TinyLidarNet)
+- 本リポジトリでの学習・デプロイ手順: [Develop: TinyLiDARNet](develop_tiny_lidar_net.md)
 
 ![TinyLidarNet Architecture](https://github.com/CSL-KU/TinyLidarNet/raw/main/Images/TinyLidarNet_Architecture.jpg)
 

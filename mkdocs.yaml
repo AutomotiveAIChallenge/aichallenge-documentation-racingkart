@@ -67,14 +67,18 @@ nav:
   - ML:
       - ai.md
       - ml_sample/algorithms.md
-      - ml_sample/getting_started_tiny_lidar_net.md
-      - ml_sample/develop_tiny_lidar_net.md
-      - ml_sample/develop_pilot_net.md
-      - ml_sample/design.md
-      - ml_sample/getting_started_vlm_setup.md
-      - ml_sample/getting_started_vlm_run.md
-      - ml_sample/getting_started_vad_setup.md
-      - ml_sample/getting_started_vad_run.md
+      - TinyLiDARNet:
+          - ml_sample/develop_tiny_lidar_net.md
+      - PilotNet:
+          - ml_sample/develop_pilot_net.md
+      - "Design: Sample ROS Node(VLM Planner)":
+          - ml_sample/design.md
+          - VLM:
+              - ml_sample/getting_started_vlm_setup.md
+              - ml_sample/getting_started_vlm_run.md
+          - VAD:
+              - ml_sample/getting_started_vad_setup.md
+              - ml_sample/getting_started_vad_run.md
       - ml_sample/faq.md
   - FAQ: faq.md
   - Community: community.md
