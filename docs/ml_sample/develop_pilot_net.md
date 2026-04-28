@@ -141,13 +141,7 @@ python3 extract_data_from_bag.py \
 [INFO] [PID:99328] All processing finished in 0.34 seconds.
 ```
 
-続いて train/val 分割と水平反転 augmentation を行います:
-
-```sh
-python3 prepare_data.py
-```
-
-`dataset/train/merged/` と `dataset/val/merged/` が生成されます。
+まずはこのまま Step 3 に進んでください。精度を上げたい場合は後述の [オプション: train/val 分割と augmentation](#option-train-val-augmentation) を参照。
 
 ### Step 3. Model training
 
@@ -226,6 +220,17 @@ Step 1 でコンテナを既に起動している場合は、そのまま Termin
 | `fixed` | `acceleration` パラメータ (固定値) | NN 出力 |
 
 `output_dim=1` で学習した場合 (ステアのみ学習) は自動的に `fixed` 相当の動作になります。
+
+## オプション: train/val 分割と augmentation { #option-train-val-augmentation }
+
+`extract_data_from_bag.py` の出力 (`./dataset/all/`) のままでも学習は開始できますが、汎化性能を上げたい場合は train/val 分割と水平反転 augmentation を行ってから `train.py` を実行してください:
+
+```sh
+cd /aichallenge/ml_workspace/pilot_net/
+python3 prepare_data.py
+```
+
+`dataset/train/merged/` と `dataset/val/merged/` が生成され、`train.py` がこちらを優先して読み込みます。
 
 ## ワンショット実行 (run_pipeline.bash)
 
