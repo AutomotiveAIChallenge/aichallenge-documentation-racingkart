@@ -121,9 +121,18 @@ cd /aichallenge/ml_workspace/pilot_net/
 ```
 
 ```sh
-python3 extract_data_from_bag.py \
+python3 /aichallenge/ml_workspace/pilot_net/extract_data_from_bag.py \
     --bags-dir /aichallenge/ml_workspace/train/ \
-    --outdir ./dataset/all/
+    --outdir /aichallenge/ml_workspace/pilot_net/dataset/train/
+```
+
+trainだけでなく、validation setも変換しておきましょう。
+
+```sh
+cd /aichallenge/ml_workspace/pilot_net/
+python3 /aichallenge/ml_workspace/pilot_net/extract_data_from_bag.py \
+    --bags-dir /aichallenge/ml_workspace/val/ \
+    --outdir /aichallenge/ml_workspace/pilot_net/dataset/val/
 ```
 
 このコマンドは内部で以下を実行します:
@@ -146,13 +155,13 @@ python3 extract_data_from_bag.py \
 ### Step 3. Model training
 
 ```sh
-python3 train.py
+python3 /aichallenge/ml_workspace/pilot_net/train.py
 ```
 
 CPU で学習を回したい場合や、RTX 50 シリーズなどで CUDA がこの環境に対応していない場合は次を実行してください:
 
 ```sh
-CUDA_VISIBLE_DEVICES="" python3 train.py
+CUDA_VISIBLE_DEVICES="" python3 /aichallenge/ml_workspace/pilot_net/train.py
 ```
 
 学習ログ (TensorBoard) は `logs/` 配下、checkpoint は `checkpoints/` 配下に保存されます。`best_model.pth` が val loss 最良のモデルです。
@@ -160,7 +169,7 @@ CUDA_VISIBLE_DEVICES="" python3 train.py
 ステアのみ学習したい場合 (アクセル学習が不安定なときに推奨):
 
 ```sh
-python3 train.py train.loss.accel_weight=0.0
+python3 /aichallenge/ml_workspace/pilot_net/train.py train.loss.accel_weight=0.0
 ```
 
 ### Step 4. Model deployment
@@ -189,7 +198,7 @@ cp /aichallenge/ml_workspace/pilot_net/weights/pilotnet_weights.npy \
 
 ### Step 5. Run PilotNet Sample ROS Node
 
-`reference.launch.xml` の `control_method` を `rule_based` から `pilot_net` に変更します。
+[`reference.launch.xml`におけるcontrol method](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`rule_based`から`pilot_net`に変更しましょう。
 
 Step 1 でコンテナを既に起動している場合は、そのまま Terminal を再利用できます。コンテナを停止していた場合はホスト側で再度 `./docker_run.sh dev` (Terminal 1) と `./docker_exec.sh` (Terminal 2 以降) で入り直してください。
 
@@ -206,10 +215,6 @@ Step 1 でコンテナを既に起動している場合は、そのまま Termin
 ./run_autoware.bash awsim 1
 ```
 
-[こちらのリンク](https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/#2-set-an-initial-pose-for-the-ego-vehicle) を参考に initial pose を設定してください。
-
-設定できたら、AWSIM 画面右上の Control ボタンを押し、Manual から Autonomous に切り替えます。
-
 ## アクセル制御の追加
 
 `pilot_net_node.param.yaml` の `control_mode` をデフォルトでは `"ai"` にしています。`"fixed"` に変更すると、ステアのみネットワークが推論し、アクセルは `acceleration` パラメータで指定した固定値を使います。
@@ -223,7 +228,7 @@ Step 1 でコンテナを既に起動している場合は、そのまま Termin
 
 ## オプション: train/val 分割と augmentation { #option-train-val-augmentation }
 
-`extract_data_from_bag.py` の出力 (`./dataset/all/`) のままでも学習は開始できますが、汎化性能を上げたい場合は train/val 分割と水平反転 augmentation を行ってから `train.py` を実行してください:
+`extract_data_from_bag.py` の出力 (`./dataset/train/`) のままでも学習は開始できますが、汎化性能を上げたい場合は train/val 分割と水平反転 augmentation を行ってから `train.py` を実行してください:
 
 ```sh
 cd /aichallenge/ml_workspace/pilot_net/

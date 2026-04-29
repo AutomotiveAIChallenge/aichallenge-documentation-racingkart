@@ -138,7 +138,9 @@ cd /aichallenge/ml_workspace/tiny_lidar_net/
 ```
 
 ```sh
-python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/ml_workspace/train/ --outdir /aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
+python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py \
+    --bags-dir /aichallenge/ml_workspace/train/ \
+    --outdir /aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
 ```
 
 以下のような出力が得られたら成功です。
@@ -153,7 +155,9 @@ trainだけでなく、validation setも変換しておきましょう。
 
 ```sh
 cd /aichallenge/ml_workspace/tiny_lidar_net/
-python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py --bags-dir /aichallenge/ml_workspace/train/ --outdir /aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
+python3 /aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py \
+    --bags-dir /aichallenge/ml_workspace/val/ \
+    --outdir /aichallenge/ml_workspace/tiny_lidar_net/dataset/val/
 ```
 
 ## Step3. Model training
@@ -191,7 +195,7 @@ cp /aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy /aicha
 
 ## Step5. Run TinyLiDARNet Sample ROS Node
 
-[`reference.launch.xml`におけるcontrol mode](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`rule_based`から`e2e`に変更しましょう。
+[`reference.launch.xml`におけるcontrol method](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`rule_based`から`tiny_lidar_net`に変更しましょう。
 
 ### Terminal 1: AWSIMの起動確認
 
