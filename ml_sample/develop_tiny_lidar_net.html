@@ -3019,7 +3019,9 @@ ros2<span class="w"> </span>launch<span class="w"> </span>teleop_manager<span cl
 <p>rosbagを学習用datasetに変換します。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/train/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
 </code></pre></div>
 <p>以下のような出力が得られたら成功です。</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>INFO<span class="o">]</span><span class="w"> </span><span class="o">[</span>PID:99328<span class="o">]</span><span class="w"> </span>Found<span class="w"> </span><span class="m">1</span><span class="w"> </span>bags.<span class="w"> </span>Starting<span class="w"> </span>processing<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span>workers.
@@ -3028,7 +3030,9 @@ ros2<span class="w"> </span>launch<span class="w"> </span>teleop_manager<span cl
 </code></pre></div>
 <p>trainだけでなく、validation setも変換しておきましょう。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/
-python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/train/<span class="w"> </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/train/
+python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_data_from_bag.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bags-dir<span class="w"> </span>/aichallenge/ml_workspace/val/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--outdir<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/dataset/val/
 </code></pre></div>
 <h2 id="step3-model-training">Step3. Model training</h2>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/train.py
@@ -3050,7 +3054,7 @@ python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_
 <div class="highlight"><pre><span></span><code>cp<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy<span class="w"> </span>/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/ckpt/tinylidarnet_weights.npy
 </code></pre></div>
 <h2 id="step5-run-tinylidarnet-sample-ros-node">Step5. Run TinyLiDARNet Sample ROS Node</h2>
-<p><a href="https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20"><code>reference.launch.xml</code>におけるcontrol mode</a>を、<code>rule_based</code>から<code>e2e</code>に変更しましょう。</p>
+<p><a href="https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20"><code>reference.launch.xml</code>におけるcontrol method</a>を、<code>rule_based</code>から<code>tiny_lidar_net</code>に変更しましょう。</p>
 <h3 id="terminal-1-awsim_1">Terminal 1: AWSIMの起動確認</h3>
 <div class="highlight"><pre><span></span><code>./docker_exec.sh<span class="w"> </span><span class="c1"># すでにDockerを起動している場合はSkip</span>
 ./run_simulator.bash
