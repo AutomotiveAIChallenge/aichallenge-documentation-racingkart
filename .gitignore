@@ -1,3 +1,5 @@
 site
 .env
 .cache
+.venv
+CLAUDE.md

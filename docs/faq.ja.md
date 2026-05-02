@@ -6,7 +6,7 @@
     C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[入門講座](./course/index.ja.md)ではゼロからステップバイステップで学べます。
 
 ??? question "Autoware / ROS 2 を触ったことがないのですが大丈夫ですか？"
-    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[入門講座](./course/index.ja.md)で基本を学び、[開発の進め方](./development/workspace-usage.ja.md)を参考に進めてください。
+    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[入門講座](./course/index.ja.md)で基本を学び、[開発の進め方](./development/development-guide.ja.md)を参考に進めてください。
 
 ??? question "MacやWindowsでも参加できますか？"
     本大会のサポート対象はUbuntu 22.04です。Windowsのみをお持ちの場合は、デュアルブート、WSL2、仮想マシン（Hyper-V、VirtualBox等）、クラウド環境の利用などの方法があります。詳しくは下の「環境構築・Docker」セクションの「GPU搭載のWindowsPCしか用意できませんでした」をご覧ください。
@@ -87,7 +87,7 @@
     また、[過去Issue](https://github.com/ros2/rviz/issues/948)にてご質問内容と似た質問がありましたので、こちらも合わせてご確認ください。
 
 ??? question "`docker_run.sh: 行 35: rocker: コマンドが見つかりません`が出ます。"
-    現在の推奨ワークフローでは`make dev`を使用するため、通常は`docker_run.sh`を使う必要はありません。[ビルド・実行](setup/build-docker.ja.md)を参照してください。デバッグ目的で`docker_run.sh`を使用する場合は、[rockerの公式README](https://github.com/osrf/rocker?tab=readme-ov-file#debians-recommended)に従ってインストールしてください。
+    現在の推奨ワークフローでは`make dev`を使用するため、通常は`docker_run.sh`を使う必要はありません。[開発の進め方](development/development-guide.ja.md)を参照してください。デバッグ目的で`docker_run.sh`を使用する場合は、[rockerの公式README](https://github.com/osrf/rocker?tab=readme-ov-file#debians-recommended)に従ってインストールしてください。
 
 ??? question "`WARNING unable to detect os for base image 'aichallenge-racingkart-dev', maybe the base image does not exist`が出ます。"
     Dockerイメージのビルドをお願いします。
@@ -110,7 +110,7 @@
 ??? question "どのようにしてAutowareを改良して参加すればよいかが分かりません。"
     段階的に以下のアプローチで進めることをお勧めします。
 
-    1. **パラメータ調整**: `reference.launch.xml` の速度やゲイン値を変更する（[開発の進め方](./development/workspace-usage.ja.md)参照）
+    1. **パラメータ調整**: `reference.launch.xml` の速度やゲイン値を変更する（[開発のアイデア](./development/development-ideas.ja.md)参照）
     2. **入門講座で学ぶ**: [入門講座](./course/index.ja.md)で車両制御や経路追従の基礎を習得する
     3. **ノードの改良・置き換え**: [メインモジュール](./development/main-module.ja.md)を参考に、PlanningやControlのノードをカスタマイズする
 

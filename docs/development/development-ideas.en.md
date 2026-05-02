@@ -38,7 +38,7 @@ Let's adjust the `value` values below in `$HOME/aichallenge-racingkart/aichallen
     <param name="speed_proportional_gain" value="1.0"/>
 ```
 
-After making adjustments, try [building and running](../setup/build-docker.en.md) again. You should be able to confirm that the behavior has changed.
+After making adjustments, try [building and running](development-guide.en.md) again. You should be able to confirm that the behavior has changed.
 
 ## Try creating a new package
 

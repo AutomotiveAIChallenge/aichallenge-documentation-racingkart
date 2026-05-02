@@ -39,11 +39,6 @@ nav:
       - setup/requirements.md
       - setup/introduction.md
       - setup/gpu-simulation.md
-      - setup/build-docker.md
-      - setup/reference.md
-      - WIP:
-          - setup/docker.md
-          - setup/headless-simulation.md
   - development:
       - development/development-guide.md
       - development/environment.md
@@ -51,7 +46,6 @@ nav:
       - development/development-ideas.md
       - development/update-environment.md
       - development/main-module.md
-      - development/documentation.md
   - preliminaries:
       - preliminaries/rules.md
       - preliminaries/submission.md
@@ -86,6 +80,7 @@ nav:
       - ml_sample/faq.md
   - FAQ: faq.md
   - Community: community.md
+  - Contributing: contributing.md
 
 extra_css:
   - stylesheets/custom.css

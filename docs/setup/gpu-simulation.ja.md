@@ -6,7 +6,7 @@
 
 ## GPU環境の対応状況
 
-| 環境 | 対応状況 | AWSIM起動 | センサー |
+| 環境 | 対応状況 | AWSIM描画 | センサー |
 | ---- | -------- | --------- | -------- |
 | **NVIDIA GPU あり** | 対応 | 有り | 有り |
 | **Intel 内蔵 GPU あり（NVIDIA なし）** | 対応 | 有り | 無し |
@@ -14,9 +14,9 @@
 
 - **NVIDIA GPU あり**：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` に `docker-compose.gpu.yml` が自動で追加されます。
 - **Intel 内蔵 GPU あり**：AWSIMは起動しますが、センサーシミュレーションは動作しません。最低限AWSIMが起動できることを確認したい場合に利用できます。
-- **GPU なし**：サポート外です。AWSIMを起動することができません。
+- **GPU なし**：サポート外です。AWSIMを起動することができません。必要に応じて後述のヘッドレスモードをお試しください。
 
-## .envの確認
+## .envの確認 { #env-check }
 
 `~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから `.env` を更新してください。
 
@@ -158,7 +158,7 @@ make down
 ## FAQ
 
 ??? question "AWSIMがピンク画面になります。"
-    GPUの認識に失敗している可能性があります。例えば、NVIDIA GPUのみが存在するPCで、`.env` に `docker-compose.gpu.yml` が追加されていないとピンク画面になります。[.envの確認](#envの確認)を参照してください。
+    GPUの認識に失敗している可能性があります。例えば、NVIDIA GPUのみが存在するPCで、`.env` に `docker-compose.gpu.yml` が追加されていないとピンク画面になります。[.envの確認](#env-check)を参照してください。
 
 ??? question "AWSIMが重いです。（Intel 内蔵 GPU 使用時）"
     ご使用のGPUのスペックをご確認ください。特にPC全体が重くなってしまう場合はスペックが足りていない可能性があります。例えば第10世代 Intel Coreの内蔵GPUだと、3FPS程度しか出ませんでした。
@@ -173,7 +173,7 @@ make down
 ??? question "AWSIMの起動・終了に時間がかかります。"
     現状、数秒〜10秒程度かかります。
 
-??? question "NVIDIA GPU も Intel 内蔵 GPU もないが、ヘッドレスモードで動かしたいです。"
+??? question "NVIDIA GPU も Intel 内蔵 GPU もないが、AWSIMをヘッドレスモードで動かしたいです。"
     公式としては非サポートですが、以下の手順で実行できます。この場合AWSIM画面は非表示ですが、rviz上で状況を確認できます。
 
     1. `aichallenge/run_simulator.bash` 内で、`AWSIM.x86_64` の起動オプションに `--headless` を追加する。

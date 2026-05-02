@@ -34,7 +34,7 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
         <param name="speed_proportional_gain" value="1.0"/>
     ```
 
-    調整が終わったら再び[ビルド・実行](../setup/build-docker.ja.md)してみましょう。挙動が変わったことが確認できたかと思います。
+    調整が終わったら再び[ビルド・実行](development-guide.ja.md)してみましょう。挙動が変わったことが確認できたかと思います。
 
 ??? tip "制御モードを切り替えてみる"
     `reference.launch.xml`の`control_mode`引数を変更することで、制御方式を切り替えることができます。

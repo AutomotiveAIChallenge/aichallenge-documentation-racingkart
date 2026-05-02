@@ -38,7 +38,7 @@ Please follow the link above to set up the environment.
 
     You can participate in this competition with a single PC running Ubuntu 22.04.
 
-## [How to Proceed with Development in the AI Challenge](./development/workspace-usage.en.md)
+## [How to Proceed with Development in the AI Challenge](./development/development-guide.en.md)
 
 Let's start developing by following the link above!
 

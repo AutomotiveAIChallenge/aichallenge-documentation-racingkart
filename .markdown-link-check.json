@@ -9,6 +9,9 @@
     },
     {
       "pattern": "^#option-train-val-augmentation$"
+    },
+    {
+      "pattern": "^#env-check$"
     }
   ]
 }

@@ -53,7 +53,7 @@
 
     環境構築が完了したら、実際に自動運転ソフトウェアを改良してみましょう。
 
-    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/workspace-usage.ja.md){ .md-button .md-button--primary }
+    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/development-guide.ja.md){ .md-button .md-button--primary }
 
 ??? note  "7. 開発したコードを提出"
 

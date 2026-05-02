@@ -26,3 +26,11 @@ To view the documentation in your local environment, run:
 ```bash
 mkdocs serve
 ```
+
+仮想環境を使う場合は以下を実行します。
+
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/mkdocs serve
+```

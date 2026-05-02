@@ -234,6 +234,7 @@ make down
 
 以上で環境構築と動作確認が終了しました。
 
-AWSIMが起動しなかったり描画に問題がある場合は、GPUの設定の手順を確認してください。
-
-[GPUの設定](./gpu-simulation.ja.md)
+- AWSIMが起動しなかったり描画に問題がある場合は、GPUの設定を確認してください。
+    - [GPUの設定](./gpu-simulation.ja.md)
+- 早速開発に取り掛かりたい方は、開発の進め方を確認してください。
+    - [開発の進め方](../development/development-guide.md)
