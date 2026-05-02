@@ -9,4 +9,4 @@ search:
 
 <meta http-equiv="refresh" content="0; url=development-guide.html">
 
-このページは移動しました。[開発の進め方](development-guide.html)
+このページは移動しました。[開発の進め方](development-guide.ja.md)
