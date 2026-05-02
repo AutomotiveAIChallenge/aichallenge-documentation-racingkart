@@ -3,10 +3,10 @@
 ## 参加について
 
 ??? question "プログラミング経験はどの程度必要ですか？"
-    C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[入門講座](./course/index.ja.md)ではゼロからステップバイステップで学べます。
+    C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[Autoware講座](./course/index.ja.md)ではゼロからステップバイステップで学べます。
 
 ??? question "Autoware / ROS 2 を触ったことがないのですが大丈夫ですか？"
-    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[入門講座](./course/index.ja.md)で基本を学び、[開発の進め方](./development/development-guide.ja.md)を参考に進めてください。
+    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[Autoware講座](./course/index.ja.md)で基本を学び、[開発の進め方](./development/development-guide.ja.md)を参考に進めてください。
 
 ??? question "MacやWindowsでも参加できますか？"
     本大会のサポート対象はUbuntu 22.04です。Windowsのみをお持ちの場合は、デュアルブート、WSL2、仮想マシン（Hyper-V、VirtualBox等）、クラウド環境の利用などの方法があります。詳しくは下の「環境構築・Docker」セクションの「GPU搭載のWindowsPCしか用意できませんでした」をご覧ください。
@@ -111,7 +111,7 @@
     段階的に以下のアプローチで進めることをお勧めします。
 
     1. **パラメータ調整**: `reference.launch.xml` の速度やゲイン値を変更する（[開発のアイデア](./development/development-ideas.ja.md)参照）
-    2. **入門講座で学ぶ**: [入門講座](./course/index.ja.md)で車両制御や経路追従の基礎を習得する
+    2. **Autoware講座で学ぶ**: [Autoware講座](./course/index.ja.md)で車両制御や経路追従の基礎を習得する
     3. **ノードの改良・置き換え**: [メインモジュール](./development/main-module.ja.md)を参考に、PlanningやControlのノードをカスタマイズする
 
     また、外部の方の記事ですが、[こちら](https://qiita.com/h_bog/items/86fba5b94b2148c4d9da)も参考になるかもしれません。
