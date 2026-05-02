@@ -225,10 +225,15 @@ To stop: make down  (docker compose down --remove-orphans)
 
 AWSIMとAutowareが起動しました。
 ![autoware-awsim](./images/autoware-awsim.png)
-停止する場合はmake downで停止してください。
+停止する場合は以下コマンドで停止してください。
+
+```bash
+cd ~/aichallenge-racingkart
+make down
+```
 
 以上で環境構築と動作確認が終了しました。
 
-GPU環境を利用する方は、追加のGPU手順を実施してください。
+AWSIMが起動しなかったり描画に問題がある場合は、GPUの設定の手順を確認してください。
 
-[Docker環境でGPUをつかう](./gpu-simulation.ja.md)
+[GPUの設定](./gpu-simulation.ja.md)
