@@ -1,30 +1,4 @@
-# AIチャレンジの進め方
-
-## 開発ワークフロー
-
-開発は以下のサイクルで進めます。
-
-1. **コードを編集** — `aichallenge/workspace/src/aichallenge_submit/` 配下を変更
-2. **ビルド** — `make autoware-build`
-3. **動作確認** — `make dev` でシミュレータを起動し、挙動を確認
-4. **評価** — `make eval` で定量評価し、`output/latest/` の結果を確認
-5. **提出** — [提出手順](../preliminaries/submission.ja.md)に従ってアップロード
-
-### ワークスペースのディレクトリ構造
-
-```text
-aichallenge-racingkart/
-└── aichallenge/
-    └── workspace/
-        └── src/
-            └── aichallenge_submit/           # ← ここを編集します
-                ├── aichallenge_submit_launch/
-                │   └── launch/
-                │       └── reference.launch.xml  # パラメータ・起動設定
-                ├── simple_pure_pursuit/           # ルールベース制御
-                ├── simple_trajectory_generator/   # 経路生成
-                └── ...
-```
+# 開発のアイデア
 
 ![Where-to-start](./images/where-to-start.drawio.svg)
 

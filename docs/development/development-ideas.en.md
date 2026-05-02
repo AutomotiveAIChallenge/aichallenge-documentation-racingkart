@@ -1,4 +1,4 @@
-# How to Proceed with the AI Challenge
+# Development Ideas
 
 ![Where-to-start](./images/where-to-start.drawio.svg)
 

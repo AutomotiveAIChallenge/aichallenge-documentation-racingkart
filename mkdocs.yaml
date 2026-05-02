@@ -45,7 +45,11 @@ nav:
           - setup/docker.md
           - setup/headless-simulation.md
   - development:
-      - development/workspace-usage.md
+      - development/development-guide.md
+      - development/environment.md
+      - development/commands.md
+      - development/development-ideas.md
+      - development/update-environment.md
       - development/main-module.md
       - development/documentation.md
   - preliminaries:
