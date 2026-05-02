@@ -154,27 +154,3 @@ make autoware-simulator
 ```bash
 make down
 ```
-
-## FAQ
-
-??? question "AWSIMがピンク画面になります。"
-    GPUの認識に失敗している可能性があります。例えば、NVIDIA GPUのみが存在するPCで、`.env` に `docker-compose.gpu.yml` が追加されていないとピンク画面になります。[.envの確認](#env-check)を参照してください。
-
-??? question "AWSIMが重いです。（Intel 内蔵 GPU 使用時）"
-    ご使用のGPUのスペックをご確認ください。特にPC全体が重くなってしまう場合はスペックが足りていない可能性があります。例えば第10世代 Intel Coreの内蔵GPUだと、3FPS程度しか出ませんでした。
-
-??? question "AWSIMが重い・たまに固まります。（NVIDIA GPU 使用時）"
-    NVIDIA GPU と Intel 内蔵 GPU の両方が搭載されたPCを使用している場合は、NVIDIAを優先して使用するように設定してください。
-
-    ```bash
-    sudo prime-select nvidia
-    ```
-
-??? question "AWSIMの起動・終了に時間がかかります。"
-    現状、数秒〜10秒程度かかります。
-
-??? question "NVIDIA GPU も Intel 内蔵 GPU もないが、AWSIMをヘッドレスモードで動かしたいです。"
-    公式としては非サポートですが、以下の手順で実行できます。この場合AWSIM画面は非表示ですが、rviz上で状況を確認できます。
-
-    1. `aichallenge/run_simulator.bash` 内で、`AWSIM.x86_64` の起動オプションに `--headless` を追加する。
-    2. `docker-compose.yml` から `- /dev/dri:/dev/dri` を削除する。
