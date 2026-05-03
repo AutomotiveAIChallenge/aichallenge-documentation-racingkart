@@ -1,6 +1,6 @@
 # 環境構築の流れ
 
-この章では、自動運転 AI チャレンジ 2026（Racing Kart）の開発・実行環境を構築する手順を説明します。推奨環境の確認、ワークスペース準備、Docker と AWSIMの起動までを扱います。
+この章では、自動運転 AI チャレンジ 2026（Racing Kart）の開発・実行環境を構築する手順を説明します。パッケージのインストール、仮想環境の構築、ワークスペース準備、Docker と AWSIMの起動までを、セットアップスクリプト一つで行います。
 
 ??? info "2025年度参加者向けの変更点"
       - `rocker` は GUI 転送用途に限定し、プロセス管理は docker compose を活用しています。
@@ -20,8 +20,6 @@ sudo apt install curl
 ```bash
 curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
-
-この1コマンドが実施していること（仮想環境まわり）
 
 下記は `setup.bash` が対話形式で順に実施する内容です。必要な項目だけ開いて確認してください。
 

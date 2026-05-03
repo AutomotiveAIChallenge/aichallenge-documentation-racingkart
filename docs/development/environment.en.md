@@ -1,6 +1,6 @@
 # Environment Overview
 
-In the competition repository, the entire runtime environment runs inside Docker containers. Each container is defined as a service in `docker-compose.yml`, and the operations participants use day-to-day are wrapped in `make` commands — so you can develop without needing to know the details of Docker Compose. For details on Autoware modules, see [Main Module](main-module.en.md).
+In the competition repository, the entire build and runtime environment runs inside Docker containers. Each container is defined as a service in `docker-compose.yml`, and the operations participants use day-to-day are wrapped in `make` commands — so you can develop without needing to know the details of Docker Compose. For details on Autoware modules, see [Main Module](main-module.en.md).
 
 ## Directory Structure
 
@@ -31,8 +31,8 @@ Services defined in `docker-compose.yml`:
 | Service | Corresponding make command | Description |
 |---|---|---|
 | `autoware-build` | `make autoware-build` | Builds the ROS workspace |
-| `simulator` | `make simulator` | Starts AWSIM |
-| `autoware` | `make autoware-simulator` / `make autoware-vehicle` | Starts Autoware (switches between simulation and real-vehicle mode via `RUN_MODE`) |
+| `simulator` | `make dev` / `make simulator` | Starts AWSIM |
+| `autoware` | `make dev` / `make autoware-simulator` / `make autoware-vehicle` | Starts Autoware (switches between simulation and real-vehicle mode via `RUN_MODE`) |
 | `autoware-simulator-evaluation` | `make eval` | Starts AWSIM + Autoware for evaluation; stops automatically when the run completes |
 | `autoware-command` | — | Runs arbitrary commands inside the Autoware container (e.g. ROS service calls) |
 | `zenoh` | `make zenoh` | Starts the Zenoh bridge for remote real-vehicle connectivity |

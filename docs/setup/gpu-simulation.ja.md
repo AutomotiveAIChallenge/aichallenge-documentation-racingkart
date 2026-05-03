@@ -1,8 +1,7 @@
 # GPUの設定
 
-??? info "導線の案内"
-    標準のセットアップ導線は [環境構築の流れ](./introduction.ja.md) を参照してください。
-    このページは、GPU利用時に必要な追加手順（ドライバ/Toolkit/検証）をまとめた詳細参照用です。
+まず [環境構築の流れ](./introduction.ja.md) に沿ってセットアップを進めてください。
+AWSIMの描画やGPUの設定に問題が生じた場合は、本ページを参照してください。
 
 ## GPU環境の対応状況
 
@@ -10,15 +9,15 @@
 | ---- | -------- | --------- | -------- |
 | **NVIDIA GPU あり** | 対応 | 有り | 有り |
 | **Intel 内蔵 GPU あり（NVIDIA なし）** | 対応 | 有り | 無し |
-| **GPU なし** | 未対応 | 無し | 無し |
+| **GPU なし** | 非サポート | 無し | 無し |
 
-- **NVIDIA GPU あり**：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` に `docker-compose.gpu.yml` が自動で追加されます。
+- **NVIDIA GPU あり**：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。
 - **Intel 内蔵 GPU あり**：AWSIMは起動しますが、センサーシミュレーションは動作しません。最低限AWSIMが起動できることを確認したい場合に利用できます。
 - **GPU なし**：サポート外です。AWSIMを起動することができません。必要に応じて後述のヘッドレスモードをお試しください。
 
 ## .envの確認 { #env-check }
 
-`~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから `.env` を更新してください。
+`~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` に `docker-compose.gpu.yml` が自動で追加されます。もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから `.env` を更新してください。
 
 ```bash
 # NVIDIA GPU 利用時（docker-compose.gpu.yml を有効にする）
@@ -154,3 +153,10 @@ make autoware-simulator
 ```bash
 make down
 ```
+
+## GPU未搭載環境でのヘッドレス実行（非サポート）
+
+公式としては非サポートですが、GPU未搭載環境でも以下の手順でAWSIMをヘッドレスモードで実行できます。この場合AWSIM画面は非表示ですが、RViz上で状況を確認できます。
+
+1. `aichallenge/run_simulator.bash` 内で、`AWSIM.x86_64` の起動オプションに `--headless` を追加する。
+2. `docker-compose.yml` から `- /dev/dri:/dev/dri` を削除する。

@@ -76,7 +76,7 @@ cp submit/aichallenge_submit.tar.gz submit/other_submit.tar.gz
 
 ## 結果の出力
 
-### ワークスペースのビルド結果
+### ワークスペースのビルド生成物
 
 - `make autoware-build` の生成物は `aichallenge/workspace/build` に出力され、 `make dev` 実行時にマウントされ使用されます。
 - `make eval` の場合は、`./docker_build.sh eval` でDockerイメージ作成時にワークスペースもビルドされ、ビルド生成物はDockerイメージ内に保存されます。
@@ -109,11 +109,46 @@ output/
 
 ## Tips
 
-### Debug用に追加のTerminalを用意して開発したい場合
+### `make dev` と `make eval` の違い
 
-`make dev`で起動した状態で、Autowareコンテナに追加のターミナルを接続できます。
+| | `make dev` | `make eval` |
+| --- | --- | --- |
+| **Autowareイメージ** | `aichallenge-2025-dev` | `aichallenge-2025-eval` |
+| **ワークスペース** | `./aichallenge` をマウント | イメージに焼き込み済み |
+| **ビルド** | `make autoware-build` で即反映 | `./docker_build.sh eval` でイメージ再作成が必要 |
+| **周回数** | 600周（実質無制限） | 6周 |
+| **タイムアウト** | 実質無制限 | 600秒 |
+| **終了** | `make down` で手動終了 | 走行完了で自動終了 |
+| **結果出力** | ログのみ | スコアや走行データも出力 |
 
-`Alt+Ctrl+T`で新しいターミナルを開き、以下のコマンドで起動中のAutowareコンテナに入ります。
+開発中は `make dev` で素早く動作確認し、提出前に `make eval` で提出環境に近い評価を行うのが基本的な流れです。
+
+**`make eval` による評価フロー:**
+
+```mermaid
+sequenceDiagram
+    participant User as ユーザー
+    participant Make as make eval
+    participant AWSIM as AWSIM
+    participant AW as Autoware
+    participant Post as 後処理
+
+    User->>Make: make eval
+    Make->>AWSIM: コンテナ起動
+    Make->>AW: コンテナ起動
+    AWSIM->>AW: センサデータ配信
+    AW->>AWSIM: 制御コマンド送信
+    Note over AWSIM,AW: 6周走行 or タイムアウト
+    AWSIM->>AWSIM: result-details.json生成
+    AWSIM->>Post: 走行終了通知
+    Post->>Post: result-summary.json生成
+    Post->>Post: motion_analytics.html生成
+    Post->>Make: 全コンテナ停止・片付け
+```
+
+### Dockerコンテナに入ってデバッグしたい場合
+
+`make dev`で起動した状態で、以下のコマンドで起動中のAutowareコンテナに入れます。
 
 ```bash
 cd ~/aichallenge-racingkart
@@ -130,5 +165,5 @@ export ROS_DOMAIN_ID=1
 ros2 topic list
 
 # 特定トピックの監視
-ros2 topic echo /awsim/status
+ros2 topic echo /localization/kinematic_state
 ```

@@ -1,8 +1,7 @@
 # GPU Settings
 
-??? info "Navigation guide"
-    For the standard setup flow, see [Setting Up the Environment](./introduction.en.md).
-    This page is a detailed reference for the additional steps required when using a GPU (driver, Toolkit, and verification).
+First, follow [Setting Up the Environment](./introduction.en.md) to complete the setup.
+If you encounter issues with AWSIM rendering or GPU configuration, refer to this page.
 
 ## GPU Environment Support
 
@@ -12,13 +11,13 @@
 | **Intel integrated GPU only (no NVIDIA)** | Supported | Yes | No |
 | **No GPU** | Not supported | No | No |
 
-- **NVIDIA GPU present**: AWSIM and Autoware can run with GPU acceleration. When `setup.bash` detects `/dev/nvidia0`, it automatically adds `docker-compose.gpu.yml` to `COMPOSE_FILE` in `.env`.
+- **NVIDIA GPU present**: AWSIM and Autoware can run with GPU acceleration.
 - **Intel integrated GPU only**: AWSIM will launch, but sensor simulation does not work. This can be used to verify that AWSIM at least starts.
 - **No GPU**: Not supported. AWSIM cannot be launched. If needed, try the headless mode described below.
 
 ## Checking .env { #env-check }
 
-Check `~/aichallenge-racingkart/.env` and confirm it has the following settings. This is configured automatically by `setup.bash`. If you are using an NVIDIA GPU but the settings differ, complete the NVIDIA GPU setup described below and then update `.env`.
+Check `~/aichallenge-racingkart/.env` and confirm it has the following settings. This is configured automatically by `setup.bash`. When `setup.bash` detects `/dev/nvidia0`, it automatically adds `docker-compose.gpu.yml` to `COMPOSE_FILE` in `.env`. If you are using an NVIDIA GPU but the settings differ, complete the NVIDIA GPU setup described below and then update `.env`.
 
 ```bash
 # When using NVIDIA GPU (enable docker-compose.gpu.yml)
@@ -154,3 +153,10 @@ Once you have confirmed, run the following command.
 ```bash
 make down
 ```
+
+## Headless Execution Without GPU (Not Officially Supported)
+
+This is not officially supported, but AWSIM can be run in headless mode on a GPU-less environment with the following steps. The AWSIM window will not be displayed, but you can monitor the status in RViz.
+
+1. In `aichallenge/run_simulator.bash`, add `--headless` to the `AWSIM.x86_64` launch options.
+2. Remove `- /dev/dri:/dev/dri` from `docker-compose.yml`.

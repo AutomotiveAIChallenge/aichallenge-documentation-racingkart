@@ -2,12 +2,6 @@
 
 ## 参加について
 
-??? question "プログラミング経験はどの程度必要ですか？"
-    C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[Autoware講座](./course/index.ja.md)ではゼロからステップバイステップで学べます。
-
-??? question "Autoware / ROS 2 を触ったことがないのですが大丈夫ですか？"
-    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[開発の進め方](./development/development-guide.ja.md)を参考にまずはコマンドを打つところから始めてみましょう。その後、[Autoware講座](./course/index.ja.md)等で学んでいきましょう。
-
 ??? question "GPU未搭載のUbuntuPCでも参加できますか？"
     Intel内蔵GPUでもご参加いただけます。GPUが完全に未搭載PCの場合は、非サポートとなりますがAWSIMをヘッドレスモードで実行すれば、最低限の動作確認はできます。
 
@@ -20,6 +14,12 @@
     - Windows上にdocker環境を用意（直接、Autowareのイメージを入れる）
     - クラウドに環境を構築 (過去の大会ではAWSを利用して参加されている方もいらっしゃいました)
 
+??? question "プログラミング経験はどの程度必要ですか？"
+    C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[Autoware講座](./course/index.ja.md)ではゼロからステップバイステップで学べます。
+
+??? question "Autoware / ROS 2 を触ったことがないのですが大丈夫ですか？"
+    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[開発の進め方](./development/development-guide.ja.md)を参考にまずはコマンドを打つところから始めてみましょう。その後、[Autoware講座](./course/index.ja.md)等で学んでいきましょう。
+
 ??? question "どのようにしてAutowareを改良して参加すればよいかが分かりません。"
     段階的に以下のアプローチで進めることをお勧めします。
 
@@ -31,6 +31,8 @@
 
 ??? question "FAQに載っていない質問はどこで聞けますか？"
     [コミュニティページ](./community.ja.md)から参加者同士の情報交換の場にアクセスできます。
+
+    環境構築について質問する場合は、症状に加えてご自身の環境と`./setup.bash doctor`の結果もご共有いただけると、よりスムーズにアドバイスできます。
 
 ## 環境構築
 
@@ -52,7 +54,7 @@
     なお、GPUのメモリは11GB以上を推奨しています。
 
 ??? question "AWSIMがピンク画面になります。"
-    GPUの認識に失敗している可能性があります。例えば、NVIDIA GPUのみが存在するPCで、`.env` に `docker-compose.gpu.yml` が追加されていないとピンク画面になります。[.envの確認](#env-check)を参照してください。また、コンテナ内で `nvidia-smi` が正常に動作することを確認してください。NVIDIAドライバのインストール状況とDockerのGPU設定も確認してください。
+    GPUの認識に失敗している可能性があります。例えば、NVIDIA GPUのみが存在するPCで、`.env` に `docker-compose.gpu.yml` が追加されていないとピンク画面になります。[.envの確認](#env-check)を参照してください。まずはコンテナ内で `nvidia-smi` が正常に動作することを確認してください。NVIDIAドライバのインストール状況とDockerのGPU設定も確認してください。
     ![Unityピンク画面](https://github.com/user-attachments/assets/2e9b5b06-18a3-476d-bf32-4b17d78f322e)
 
 ??? question "AWSIMが重いです。（Intel 内蔵 GPU 使用時）"
@@ -67,12 +69,6 @@
 
 ??? question "AWSIMの起動・終了に時間がかかります。"
     現状、数秒〜10秒程度かかります。
-
-??? question "NVIDIA GPU も Intel 内蔵 GPU もないが、AWSIMをヘッドレスモードで動かしたいです。"
-    公式としては非サポートですが、以下の手順で実行できます。この場合AWSIM画面は非表示ですが、rviz上で状況を確認できます。
-
-    1. `aichallenge/run_simulator.bash` 内で、`AWSIM.x86_64` の起動オプションに `--headless` を追加する。
-    2. `docker-compose.yml` から `- /dev/dri:/dev/dri` を削除する。
 
 ??? question "AWSで環境構築したところ、AWSIMは表示されたが、Rvizがブラックスクリーンとなりました。"
     `sudo apt upgrade`で治ったという事例がありますので、内容を確認の上、お試しください。

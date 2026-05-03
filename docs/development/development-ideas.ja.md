@@ -14,72 +14,36 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
 ※リポジトリ内のコードを使わず独自に開発する方など、各種仕様について知りたい方は[インターフェース仕様](../specifications/interface.ja.md)、[シミュレータ仕様](../specifications/simulator.ja.md)のページを参照してください。
 
-??? tip "参加者有志の参考記事を読んでみる"
-    参加者有志が取り組んでくださった取り組みは[Advent Calendar](https://qiita.com/advent-calendar/2023/jidounten-ai)にまとめられていますので参考にしてみてください。
+??? tip "制御モードを切り替えてみる"
+    `reference.launch.xml`の`control_method`引数を変更することで、制御方式を切り替えることができます。環境構築後何をして良いのかわからない方は、様々な制御方式を試して車両の挙動がどのように変わるかを体験してみましょう。
 
-    どれから読もうか迷った方は2023年度コミュニティ貢献賞を受賞した田中新太さんが記載してくれた[こちらの記事](https://qiita.com/Arata-stu/items/4b03772348dca4f7ef89)から読み進めると良いと思います。
+    - `mpc`（デフォルト）：MPCベースの制御
+    - `pure_pursuit`：Pure Pursuitベースの制御
+    - `tiny_lidar_net`：TinyLiDARNetによるEnd-to-End制御（LiDAR 1080点から加速度と操舵角を直接出力）
+    - `pilot_net`：PilotNetによるEnd-to-End制御
+    - `joycon`：手動テレオペ操作
 
-??? tip "パラメータを変更してみる"
-    環境構築後何をして良いのかわからない方向けに、まずパラメータを調整してみましょう。
-    今回は制御モジュールのsimple_pure_pursuitのパラメータを変更してみることにします。
+    例えば、End-to-End制御を試すには、`reference.launch.xml`内の`control_method`の`default`値を`pilot_net`に変更して[実行](development-guide.ja.md)してください。
 
-    `$HOME/aichallenge-racingkart/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml`内の以下の`value`値を調整してみましょう。
+??? tip "制御パラメータを変更してみる"
+    次に、制御パラメータがどのような影響を与えるかを試してみましょう。今回は制御モジュールのsimple_pure_pursuitのパラメータを変更してみることにします。
+
+    まず`reference.launch.xml`内の`control_method`の`default`値を`pure_pursuit`に変更します。
+
+    次に`$HOME/aichallenge-racingkart/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/control/pure_pursuit.launch.xml`内の以下の`value`値を調整してみましょう。
 
     ```xml
     <node pkg="simple_pure_pursuit" exec="simple_pure_pursuit" name="simple_pure_pursuit_node" output="screen">
-        <param name="use_external_target_vel" value="true"/>
-        <param name="external_target_vel" value="8.0"/>
-        <param name="lookahead_gain" value="0.4"/>
-        <param name="lookahead_min_distance" value="5.0"/>
+        <param name="use_external_target_vel" value="false"/>
+        <param name="external_target_vel" value="10.0"/>
+        <param name="lookahead_gain" value="0.5"/>
+        <param name="lookahead_min_distance" value="3.5"/>
         <param name="speed_proportional_gain" value="1.0"/>
     ```
 
-    調整が終わったら再び[ビルド・実行](development-guide.ja.md)してみましょう。挙動が変わったことが確認できたかと思います。
+    調整が終わったら再び[実行](development-guide.ja.md)してみましょう。挙動が変わったことが確認できたかと思います。
 
-??? tip "制御モードを切り替えてみる"
-    `reference.launch.xml`の`control_mode`引数を変更することで、制御方式を切り替えることができます。
-
-    - `rule_based`（デフォルト）: `simple_pure_pursuit`によるPure Pursuit制御
-    - `e2e`: `tiny_lidar_net_controller`によるEnd-to-End制御（LiDAR 1080点から加速度と操舵角を直接出力）
-    - `joycon`: 手動テレオペ操作
-
-    例えば、End-to-End制御を試すには、`reference.launch.xml`内の`control_mode`を`e2e`に変更してビルド・実行してください。
-
-??? tip "評価結果を確認してみる"
-    `make eval`を実行すると、評価結果が`output/<timestamp>/d<domain_id>/`配下に保存されます。`output/latest/d<domain_id>/`からシンボリックリンクでもアクセスできます。
-
-    **主な出力ファイル:**
-
-    - `result-summary.json`: ラップタイムの結果サマリー（`min_time`, `total_lap_time`, `num_laps`）
-    - `d<domain_id>-result-details.json`: 詳細な走行データ（ラップごとのタイム、走行軌跡）
-    - `autoware.log`: Autowareの実行ログ
-    - `motion_analytics-<timestamp>.html`: 速度・加速度のインタラクティブ可視化（ブラウザで開けます）
-    - `rosbag2_autoware/`: ROSBag記録（MCAP形式、rosbag有効時）
-    - `capture/`: 画面キャプチャ動画（capture有効時）
-    - `ros/log/`: 各ノードの個別ログ
-
-    **評価フロー:**
-
-    ```mermaid
-    sequenceDiagram
-        participant User as ユーザー
-        participant Make as make eval
-        participant AWSIM as AWSIM
-        participant AW as Autoware
-        participant Post as 後処理
-
-        User->>Make: make eval
-        Make->>AWSIM: コンテナ起動
-        Make->>AW: コンテナ起動
-        AWSIM->>AW: センサデータ配信
-        AW->>AWSIM: 制御コマンド送信
-        Note over AWSIM,AW: 6周走行 or タイムアウト
-        AWSIM->>AWSIM: result-details.json生成
-        AWSIM->>Post: 走行終了通知
-        Post->>Post: result-summary.json生成
-        Post->>Post: motion_analytics.html生成
-        Post->>Make: 全コンテナ停止・片付け
-    ```
+    例えば、`lookahead_gain`を`0.1`、`lookahead_min_distance`を`0.5`に設定すると、先読み距離が極端に短くなり、車両がジグザグしながら直線走行が苦手になります。パラメータが走行挙動に与える影響を体感できます。
 
 ??? tip "新規パッケージを作成してみる"
     新たに自作パッケージを作成してみましょう。まずはオープンソースのパッケージや[autoware practice](https://github.com/AutomotiveAIChallenge/autoware-practice)をコピーしてみましょう。
@@ -103,5 +67,13 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
     作成したlanelet2 mapは`aichallenge/workspace/src/aichallenge_submit/simple_trajectory_generator/data`に格納してください。
 
+??? tip "評価結果を確認してみる"
+    `make eval`を実行し、規定の6周の走行が完了すると、評価結果が自動的に`output/<timestamp>/d<domain_id>/`配下に保存されます。`output/latest/d<domain_id>/`からシンボリックリンクでもアクセスできます。現時点での実力を把握してみましょう。
+
 ??? tip "提出してみる"
     ワークスペースのカスタマイズを行ったら[ここ](../preliminaries/submission.ja.md)を参考に提出をしてみましょう。
+
+??? tip "参加者有志の参考記事を読んでみる"
+    参加者有志が取り組んでくださった取り組みは[Advent Calendar](https://qiita.com/advent-calendar/2023/jidounten-ai)にまとめられていますので参考にしてみてください。
+
+    どれから読もうか迷った方は2023年度コミュニティ貢献賞を受賞した田中新太さんが記載してくれた[こちらの記事](https://qiita.com/Arata-stu/items/4b03772348dca4f7ef89)から読み進めると良いと思います。

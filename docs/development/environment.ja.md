@@ -1,6 +1,6 @@
 # 環境の説明
 
-大会用リポジトリでは、実際の動作環境はすべて Docker コンテナ内で完結しています。
+大会用リポジトリでは、ビルド・実行環境はすべて Docker コンテナ内で完結しています。
 各コンテナは `docker-compose.yml` でサービスとして定義されており、参加者が日常的に使う操作は `make` コマンドでラップされています。そのため、Docker Compose の詳細を意識せずに開発を進められます。
 
 Autoware構成の詳細については、[メインモジュール](main-module.ja.md)を参照してください。
@@ -34,8 +34,8 @@ aichallenge-racingkart/
 | サービス名 | 対応する make コマンド | 説明 |
 |---|---|---|
 | `autoware-build` | `make autoware-build` | ROS ワークスペースをビルドします |
-| `simulator` | `make simulator` | AWSIM を起動します |
-| `autoware` | `make autoware-simulator` / `make autoware-vehicle` | Autoware を起動します（`RUN_MODE` でシミュレータ向け／実車向けを切り替え） |
+| `simulator` | `make dev` / `make simulator` | AWSIM を起動します |
+| `autoware` | `make dev` / `make autoware-simulator` / `make autoware-vehicle` | Autoware を起動します（`RUN_MODE` でシミュレータ向け／実車向けを切り替え） |
 | `autoware-simulator-evaluation` | `make eval` | 評価用に AWSIM + Autoware を起動し、走行完了後に自動終了します |
 | `autoware-command` | — | Autoware コンテナ内で任意のコマンドを実行します（ROS サービス呼び出しなど） |
 | `zenoh` | `make zenoh` | 実車との遠隔接続に使う Zenoh ブリッジを起動します |

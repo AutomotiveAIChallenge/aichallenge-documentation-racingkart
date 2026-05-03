@@ -16,56 +16,66 @@ Participants will proceed with development by customizing this code and paramete
 
 * For those who want to know the specifications, such as those developing independently without using the repository's code, refer to the [interface specifications](../specifications/interface.en.md) and [simulator specifications](../specifications/simulator.en.md) pages.
 
-## Read the reference articles by voluntary participants
+??? tip "Try switching the control mode"
+    You can switch the control method by changing the `control_method` argument in `reference.launch.xml`. If you are unsure what to do after setting up the environment, try the various control methods to experience how the vehicle behavior changes.
 
-The efforts of voluntary participants are summarized in the [Advent Calendar](https://qiita.com/advent-calendar/2023/jidounten-ai) , so please refer to them.
+    - `mpc` (default): MPC-based control
+    - `pure_pursuit`: Pure Pursuit-based control
+    - `tiny_lidar_net`: TinyLiDARNet End-to-End control (outputs acceleration and steering angle directly from 1080 LiDAR points)
+    - `pilot_net`: PilotNet End-to-End control
+    - `joycon`: Manual teleoperation
 
-If you are unsure where to start, we recommend starting with this [article](https://qiita.com/Arata-stu/items/4b03772348dca4f7ef89) written by Mr. Arata Tanaka, who won the Community Contribution Award in 2023.
+    For example, to try End-to-End control, change the `default` value of `control_method` in `reference.launch.xml` to `pilot_net` and [run](development-guide.en.md) it.
 
-## Try changing the parameters
+??? tip "Try changing the control parameters"
+    Next, let's see how control parameters affect behavior. We'll change the parameters of the `simple_pure_pursuit` control module.
 
-For those who are unsure what to do after setting up the environment, try adjusting the parameters first.
-This time, let's change the parameters of the control module simple_pure_pursuit.
+    First, change the `default` value of `control_method` in `reference.launch.xml` to `pure_pursuit`.
 
-Let's adjust the `value` values below in `$HOME/aichallenge-racingkart/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml`.
+    Then adjust the `value` entries in `$HOME/aichallenge-racingkart/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/control/pure_pursuit.launch.xml`:
 
-```xml
-<node pkg="simple_pure_pursuit" exec="simple_pure_pursuit" name="simple_pure_pursuit_node" output="screen">
-    <param name="use_external_target_vel" value="true"/>
-    <param name="external_target_vel" value="8.0"/>
-    <param name="lookahead_gain" value="0.4"/>
-    <param name="lookahead_min_distance" value="5.0"/>
-    <param name="speed_proportional_gain" value="1.0"/>
-```
+    ```xml
+    <node pkg="simple_pure_pursuit" exec="simple_pure_pursuit" name="simple_pure_pursuit_node" output="screen">
+        <param name="use_external_target_vel" value="false"/>
+        <param name="external_target_vel" value="10.0"/>
+        <param name="lookahead_gain" value="0.5"/>
+        <param name="lookahead_min_distance" value="3.5"/>
+        <param name="speed_proportional_gain" value="1.0"/>
+    ```
 
-After making adjustments, try [building and running](development-guide.en.md) again. You should be able to confirm that the behavior has changed.
+    After making adjustments, try [running](development-guide.en.md) again. You should be able to confirm that the behavior has changed.
 
-## Try creating a new package
+    For example, setting `lookahead_gain` to `0.1` and `lookahead_min_distance` to `0.5` makes the lookahead distance extremely short, causing the vehicle to zigzag and struggle to drive straight. This is a good way to feel the impact parameters have on driving behavior.
 
-Try creating a new custom package. First, copy open-source packages or the [autoware practice](https://github.com/AutomotiveAIChallenge/autoware-practice).
-It would be best if you proceed as follows.
+??? tip "Try creating a new package"
+    Try creating a new custom package. First, copy open-source packages or the [autoware practice](https://github.com/AutomotiveAIChallenge/autoware-practice).
+    It would be best if you proceed as follows.
 
-1. Copy the original package and change the following
-    * Package name
-    * Folder name
-    * Code
-    * package.xml
-    * CMakeLists.txt
-2. Place it in aichallenge_submit
-3. Change the launch file (reference.launch.xml) in aichallenge_submit_launch
+    1. Copy the original package and change the following
+        * Package name
+        * Folder name
+        * Code
+        * package.xml
+        * CMakeLists.txt
+    2. Place it in aichallenge_submit
+    3. Change the launch file (reference.launch.xml) in aichallenge_submit_launch
 
-* Please ensure that you do not violate the license of the copied package.
+    * Please ensure that you do not violate the license of the copied package.
 
-## [Optional] Try editing the map
+??? tip "[Optional] Try editing the map"
+    For the 2025 AI Challenge, we recommend editing maps such as point cloud maps and lanelet2 maps using tools like the [Trajectory Editor](https://github.com/AutomotiveAIChallenge/aichallenge-trajectory-editor) created by the Gifu University team.
 
-For the 2025 AI Challenge, we recommend editing maps such as point cloud maps and lanelet2 maps using tools like [VectorMapBuilder](https://tools.tier4.jp/feature/vector_map_builder_ll2/) .
+    See the [Readme](https://github.com/iASL-Gifu/aichallenge-trajectory-editor) for step-by-step instructions.
 
-Download and edit the point cloud map, lanelet2 map, etc., from the Map file storage! (The map distribution has ended.)
+    Store the created lanelet2 map in `aichallenge/workspace/src/aichallenge_submit/simple_trajectory_generator/data`.
 
-Refer to the [VectorMapBuilder usage video](https://www.youtube.com/watch?v=GvZr707TmuM) for step-by-step instructions.
+??? tip "Check the evaluation results"
+    When you run `make eval` and the required 6 laps are completed, the evaluation results are automatically saved under `output/<timestamp>/d<domain_id>/`. You can also access them via symlink at `output/latest/d<domain_id>/`. Try running it with the default code first to understand your current baseline.
 
-Store the created lanelet2 map in `aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/map`.
+??? tip "Try submitting"
+    After customizing the workspace, refer to [this](../preliminaries/submission.en.md) to submit.
 
-## Try submitting
+??? tip "Read reference articles by voluntary participants"
+    The efforts of voluntary participants are summarized in the [Advent Calendar](https://qiita.com/advent-calendar/2023/jidounten-ai), so please refer to them.
 
-After customizing the workspace, refer to [this](../preliminaries/submission.en.md) to submit.
+    If you are unsure where to start, we recommend starting with this [article](https://qiita.com/Arata-stu/items/4b03772348dca4f7ef89) written by Mr. Arata Tanaka, who won the Community Contribution Award in 2023.
