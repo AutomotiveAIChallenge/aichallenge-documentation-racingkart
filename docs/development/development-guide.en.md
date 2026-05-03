@@ -9,7 +9,7 @@ Development follows this cycle:
 1. **Edit code** — Modify files under `aichallenge/workspace/src/aichallenge_submit/`
 2. **Build** — Build the ROS workspace with `make autoware-build`
 3. **Test** — Start the simulator with `make dev` and check behavior
-4. **Evaluate** — Run `make eval` for quantitative evaluation and check results under `output/latest/`
+4. **Local Evaluation** — Run `make eval` for quantitative evaluation and check results under `output/latest/`
 5. **Submit** — Upload following the [submission instructions](../preliminaries/submission.en.md)
 
 ## Development and Debugging
@@ -91,12 +91,19 @@ output/
 │       ├── autoware.log                          # Autoware execution log
 │       ├── awsim.log                             # AWSIM execution log (make dev only)
 │       ├── ros/log/                              # Per-node logs
-│       ├── capture/                              # Drive video and images
+│       ├── capture/                              # Capture video
 │       ├── rosbag2_autoware/                     # ROS bag files
 │       ├── d1-result-details.json                # Detailed drive data (make eval only)
 │       ├── result-summary.json                   # Lap time summary (make eval only)
 │       └── motion_analytics-<timestamp>.html     # Speed/acceleration visualization (make eval only)
 ├── latest/                                       # Symlink to the latest evaluation result (make eval only)
+│   └── d1/                                       # Symlink to output/<timestamp>/d1/
+│       ├── autoware.log                          # Autoware execution log
+│       ├── capture/                              # Capture video
+│       ├── rosbag2_autoware/                     # ROS bag files (MCAP format)
+│       ├── d1-result-details.json                # Detailed drive data
+│       ├── result-summary.json                   # Lap time summary
+│       └── motion_analytics-<timestamp>.html     # Speed/acceleration visualization
 └── docker/
     └── <timestamp>-docker_build-<pid>.log        # docker_build.sh build log
 ```
@@ -119,9 +126,9 @@ The archive created by `./create_submit_file.bash` is saved at `aichallenge-raci
 | **Termination** | Manual with `make down` | Stops automatically when the run completes |
 | **Output** | Logs only | Scores and drive data included |
 
-The typical workflow is to use `make dev` for rapid iteration during development, then run `make eval` before submission to evaluate in an environment close to the actual scoring environment.
+The typical workflow is to use `make dev` for rapid iteration during development, then run `make eval` before submission for a local evaluation in an environment close to the actual scoring environment.
 
-**`make eval` evaluation flow:**
+**`make eval` local evaluation flow:**
 
 ```mermaid
 sequenceDiagram

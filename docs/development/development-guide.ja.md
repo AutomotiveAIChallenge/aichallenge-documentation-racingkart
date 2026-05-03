@@ -11,7 +11,7 @@
 1. **コードを編集** — `aichallenge/workspace/src/aichallenge_submit/` 配下を変更します
 2. **ビルド** — `make autoware-build` でROSワークスペースをビルドします
 3. **動作確認** — `make dev` でシミュレータを起動し、挙動を確認します
-4. **評価** — `make eval` で定量評価し、`output/latest/` の結果を確認します
+4. **ローカル評価** — `make eval` で定量評価し、`output/latest/` の結果を確認します
 5. **提出** — [提出手順](../preliminaries/submission.ja.md)に従ってアップロードします
 
 ### 開発・デバッグの手順
@@ -93,12 +93,19 @@ output/
 │       ├── autoware.log                          # Autoware の実行ログ
 │       ├── awsim.log                             # AWSIM の実行ログ（make devのみ）
 │       ├── ros/log/                              # 各ノードの個別ログ
-│       ├── capture/                              # 走行動画、画像
+│       ├── capture/                              # キャプチャ動画
 │       ├── rosbag2_autoware/                     # ROSBagファイル
 │       ├── d1-result-details.json                # 詳細な走行データ (make evalのみ)
 │       ├── result-summary.json                   # ラップタイムの結果サマリー (make evalのみ)
 │       └── motion_analytics-<timestamp>.html     # 速度・加速度の可視化 (make evalのみ)
 ├── latest/                                       # 最新の評価結果へのシンボリックリンク (make evalのみ)
+│   └── d1/                                       # output/<実行日時>/d1/ へのシンボリックリンク
+│       ├── autoware.log                          # Autoware の実行ログ
+│       ├── capture/                              # キャプチャ動画
+│       ├── rosbag2_autoware/                     # ROSBag記録（MCAP形式）
+│       ├── d1-result-details.json                # 詳細な走行データ
+│       ├── result-summary.json                   # ラップタイムの結果サマリー
+│       └── motion_analytics-<timestamp>.html     # 速度・加速度のインタラクティブ可視化
 └── docker/
     └── <実行日時>-docker_build-<pid>.log          # docker_build.sh のビルドログ
 ```
@@ -121,9 +128,9 @@ output/
 | **終了** | `make down` で手動終了 | 走行完了で自動終了 |
 | **結果出力** | ログのみ | スコアや走行データも出力 |
 
-開発中は `make dev` で素早く動作確認し、提出前に `make eval` で提出環境に近い評価を行うのが基本的な流れです。
+開発中は `make dev` で素早く動作確認し、提出前に `make eval` で提出環境に近いローカル評価を行うのが基本的な流れです。
 
-**`make eval` による評価フロー:**
+**`make eval` によるローカル評価フロー:**
 
 ```mermaid
 sequenceDiagram
