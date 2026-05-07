@@ -39,6 +39,8 @@ COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
 - Install NVIDIA Container Toolkit
 
 ??? note "Vulkan installation steps"
+    Run the following commands.
+
     ```bash
     sudo apt update
     sudo apt install -y libvulkan1
