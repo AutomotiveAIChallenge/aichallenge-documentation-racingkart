@@ -54,7 +54,7 @@
     なお、GPUのメモリは11GB以上を推奨しています。
 
 ??? question "AWSIMがピンク画面になります。"
-    GPUの認識に失敗している可能性があります。例えば、NVIDIA GPUのみが存在するPCで、`.env` に `docker-compose.gpu.yml` が追加されていないとピンク画面になります。[.envの確認](#env-check)を参照してください。まずはコンテナ内で `nvidia-smi` が正常に動作することを確認してください。NVIDIAドライバのインストール状況とDockerのGPU設定も確認してください。
+    GPUの認識に失敗している可能性があります。例えば、NVIDIA GPUのみが存在するPCで、`.env` に `docker-compose.gpu.yml` が追加されていないとピンク画面になります。[.envの確認](./setup/gpu-simulation.ja.md#env-check)を参照してください。まずはコンテナ内で `nvidia-smi` が正常に動作することを確認してください。NVIDIAドライバのインストール状況とDockerのGPU設定も確認してください。
     ![Unityピンク画面](https://github.com/user-attachments/assets/2e9b5b06-18a3-476d-bf32-4b17d78f322e)
 
 ??? question "AWSIMが重いです。（Intel 内蔵 GPU 使用時）"
