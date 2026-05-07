@@ -21,6 +21,14 @@ Then run the following command, which performs everything from environment setup
 curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
 
+!!! tip "Re-running the setup"
+    If you already have the repository, you can run the script directly instead of using `curl`.
+
+    ```bash
+    cd ~/aichallenge-racingkart
+    ./setup.bash bootstrap
+    ```
+
 What this single command does (regarding the virtual environment)
 
 The following describes what `setup.bash` performs interactively, step by step. Open only the steps you need to review.

@@ -28,8 +28,8 @@ Builds Docker images. Build logs are saved under `output/docker/`.
 | Command | Description |
 |---|---|
 | `./docker_build.sh dev` | Builds the development image (`aichallenge-2025-dev`) |
-| `./docker_build.sh eval` | Builds the evaluation image (`aichallenge-2025-eval`) — always a full rebuild with `--no-cache` |
-| `./docker_build.sh eval --submit <path>` | Builds the evaluation image with a submission archive embedded |
+| `./docker_build.sh eval` | Builds the evaluation image (`aichallenge-2025-eval`) with the submission archive embedded — always a full rebuild with `--no-cache` |
+| `./docker_build.sh eval --submit <path>` | Builds the evaluation image using the submission archive at `<path>` (default: `submit/aichallenge_submit.tar.gz`) |
 
 ## run_parallel_submissions.bash
 

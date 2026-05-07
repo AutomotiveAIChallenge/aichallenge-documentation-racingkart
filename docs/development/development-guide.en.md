@@ -35,7 +35,7 @@ make dev
 make down
 ```
 
-!!! info
+!!! tip "Checking and force-stopping containers"
     Use `make ps` to list running containers. If a container cannot be stopped, use `make down_all` to force-remove all containers.
 
 ## Local Evaluation

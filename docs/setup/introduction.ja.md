@@ -21,6 +21,14 @@ sudo apt install curl
 curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
 
+!!! tip "再度環境構築を行う場合"
+    リポジトリを取得済みの場合は、リポジトリ内のスクリプトを直接実行できます。
+
+    ```bash
+    cd ~/aichallenge-racingkart
+    ./setup.bash bootstrap
+    ```
+
 下記は `setup.bash` が対話形式で順に実施する内容です。必要な項目だけ開いて確認してください。
 
 ??? note "1. :material-package: 必要パッケージを install"
