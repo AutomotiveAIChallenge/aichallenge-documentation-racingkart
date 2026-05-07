@@ -245,4 +245,4 @@ This completes the environment setup and operation check.
 - If AWSIM does not launch or has rendering issues, check your GPU settings.
     - [GPU Settings](./gpu-simulation.en.md)
 - If you are ready to start developing, see the development guide.
-    - [Development Guide](../development/development-guide.md)
+    - [Development Guide](../development/development-guide.en.md)
