@@ -18,7 +18,7 @@
 - 環境構築: `docs/setup/`
 - 開発: `docs/development/`
 - 仕様: `docs/specifications/`
-- Autoware講座: `docs/course/`
+- 基礎演習: `docs/course/`
 - AI講座: `docs/ai.*.md` と `docs/ml_sample/`
 - FAQ/コミュニティ: `docs/faq.*.md`, `docs/community.*.md`
 - 議論中の項目: `docs/discussions.*.md`

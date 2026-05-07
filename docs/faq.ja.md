@@ -15,16 +15,16 @@
     - クラウドに環境を構築 (過去の大会ではAWSを利用して参加されている方もいらっしゃいました)
 
 ??? question "プログラミング経験はどの程度必要ですか？"
-    C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[Autoware講座](./course/index.ja.md)ではゼロからステップバイステップで学べます。
+    C++またはPythonの基礎的な知識があれば参加できます。まずはパラメータ調整から始めて、慣れてきたらコードの変更に挑戦してみてください。[基礎演習](./course/index.ja.md)ではゼロからステップバイステップで学べます。
 
 ??? question "Autoware / ROS 2 を触ったことがないのですが大丈夫ですか？"
-    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[開発の進め方](./development/development-guide.ja.md)を参考にまずはコマンドを打つところから始めてみましょう。その後、[Autoware講座](./course/index.ja.md)等で学んでいきましょう。
+    大丈夫です。多くの参加者がAutowareやROS 2に初めて触れる方です。[開発の進め方](./development/development-guide.ja.md)を参考にまずはコマンドを打つところから始めてみましょう。その後、[基礎演習](./course/index.ja.md)等で学んでいきましょう。
 
 ??? question "どのようにしてAutowareを改良して参加すればよいかが分かりません。"
     段階的に以下のアプローチで進めることをお勧めします。
 
     1. **パラメータ調整**: `reference.launch.xml` の速度やゲイン値を変更する（[開発のアイデア](./development/development-ideas.ja.md)参照）
-    2. **Autoware講座で学ぶ**: [Autoware講座](./course/index.ja.md)で車両制御や経路追従の基礎を習得する
+    2. **基礎演習で学ぶ**: [基礎演習](./course/index.ja.md)で車両制御や経路追従の基礎を習得する
     3. **ノードの改良・置き換え**: [メインモジュール](./development/main-module.ja.md)を参考に、PlanningやControlのノードをカスタマイズする
 
     また、外部の方の記事ですが、[こちら](https://qiita.com/h_bog/items/86fba5b94b2148c4d9da)も参考になるかもしれません。
