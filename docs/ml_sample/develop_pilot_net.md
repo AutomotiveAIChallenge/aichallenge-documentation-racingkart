@@ -86,10 +86,12 @@ cd /aichallenge/ml_workspace
 検証データを別に取るのが理想ですが、まずは動作を掴むために訓練・検証ともに同じデータを使います:
 
 ```sh
+mkdir -p /aichallenge/ml_workspace/train # if there are no train directory
 cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/train
 ```
 
 ```sh
+mkdir -p /aichallenge/ml_workspace/val # if there are no train directory
 cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/val
 ```
 
