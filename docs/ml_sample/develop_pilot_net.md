@@ -91,7 +91,7 @@ cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/train
 ```
 
 ```sh
-mkdir -p /aichallenge/ml_workspace/val # if there are no train directory
+mkdir -p /aichallenge/ml_workspace/val # if there are no val directory
 cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/val
 ```
 
