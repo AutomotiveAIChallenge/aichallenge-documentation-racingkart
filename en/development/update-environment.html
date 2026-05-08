@@ -1,44 +1,44 @@
 
 <!doctype html>
-<html lang="ja" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、入門講座、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, tutorials, and AI guide.">
+        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、基礎演習、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, basic exercises, and AI guide.">
       
       
       
-        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/build-docker.html">
+        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/development/update-environment.html">
       
       
-        <link rel="prev" href="gpu-simulation.html">
+        <link rel="prev" href="development-ideas.html">
       
       
-        <link rel="next" href="reference.html">
+        <link rel="next" href="main-module.html">
       
       
         
-          <link rel="alternate" href="build-docker.html" hreflang="ja">
+          <link rel="alternate" href="../../development/update-environment.html" hreflang="ja">
         
-          <link rel="alternate" href="../en/setup/build-docker.html" hreflang="en">
+          <link rel="alternate" href="update-environment.html" hreflang="en">
         
       
       
-      <link rel="icon" href="../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>ビルド・実行 - 自動運転 AI チャレンジ 2026</title>
+        <title>Environment Updates - 自動運転 AI チャレンジ 2026</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -57,9 +57,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -152,8 +152,8 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
-          コンテンツにスキップ
+        <a href="#environment-updates" class="md-skip">
+          Skip to content
         </a>
       
     </div>
@@ -162,7 +162,7 @@
         <aside class="md-banner">
           <div class="md-banner__inner md-grid md-typeset">
             
-              <button class="md-banner__button md-icon" aria-label="非表示にします">
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
                 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
               </button>
@@ -190,7 +190,7 @@
   
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+  <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-header__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
       
   
@@ -211,7 +211,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ビルド・実行
+              Environment Updates
             
           </span>
         </div>
@@ -225,20 +225,20 @@
       <div class="md-header__option">
   <div class="md-select">
     
-    <button class="md-header__button md-icon" aria-label="言語切り替え">
+    <button class="md-header__button md-icon" aria-label="Select language">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
     </button>
     <div class="md-select__inner">
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="build-docker.html" hreflang="ja" class="md-select__link">
+            <a href="../../development/update-environment.html" hreflang="ja" class="md-select__link">
               日本語
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="../en/setup/build-docker.html" hreflang="en" class="md-select__link">
+            <a href="update-environment.html" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -259,16 +259,16 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="検索">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -279,7 +279,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            検索を初期化
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -291,7 +291,7 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="リポジトリへ" class="md-source" data-md-component="source">
+        <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -306,7 +306,7 @@
   
     
       
-<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -322,7 +322,7 @@
   
     
   
-  競技概要
+  Top Page
 
       </a>
     </li>
@@ -341,10 +341,30 @@
   
     
   
-  はじめ方
+  Getting Started
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../setup/requirements.html" class="md-tabs__link">
+          
+  
+  
+  Setup
+
+        </a>
+      </li>
+    
   
 
       
@@ -358,31 +378,11 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="requirements.html" class="md-tabs__link">
+        <a href="development-guide.html" class="md-tabs__link">
           
   
   
-  環境構築
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../development/workspace-usage.html" class="md-tabs__link">
-          
-  
-  
-  開発
+  Development
 
         </a>
       </li>
@@ -402,7 +402,7 @@
           
   
   
-  予選
+  Preliminaries
 
         </a>
       </li>
@@ -422,7 +422,7 @@
           
   
   
-  決勝
+  finals
 
         </a>
       </li>
@@ -442,7 +442,7 @@
           
   
   
-  仕様
+  Specifications
 
         </a>
       </li>
@@ -462,7 +462,7 @@
           
   
   
-  入門講座
+  Course
 
         </a>
       </li>
@@ -482,7 +482,7 @@
           
   
   
-  AI講座
+  ML
 
         </a>
       </li>
@@ -521,7 +521,26 @@
   
     
   
-  コミュニティ
+  Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
 
       </a>
     </li>
@@ -555,7 +574,7 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-nav__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
       
@@ -567,7 +586,7 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="リポジトリへ" class="md-source" data-md-component="source">
+      <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
@@ -594,7 +613,7 @@
   <span class="md-ellipsis">
     
   
-    競技概要
+    Top Page
   
 
     
@@ -621,7 +640,7 @@
   <span class="md-ellipsis">
     
   
-    はじめ方
+    Getting Started
   
 
     
@@ -630,6 +649,147 @@
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recommended Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting Up the Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/gpu-simulation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPU Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -657,17 +817,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    環境構築
+    Development
   
 
     
@@ -678,12 +838,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
-    環境構築
+    Development
   
 
           </label>
@@ -696,14 +856,14 @@
   
   
     <li class="md-nav__item">
-      <a href="requirements.html" class="md-nav__link">
+      <a href="development-guide.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    推奨環境
+    Development Guide
   
 
     
@@ -724,14 +884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="introduction.html" class="md-nav__link">
+      <a href="environment.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    環境構築の流れ
+    Environment Overview
   
 
     
@@ -752,14 +912,42 @@
   
   
     <li class="md-nav__item">
-      <a href="gpu-simulation.html" class="md-nav__link">
+      <a href="commands.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    GPUの活用
+    Command Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="development-ideas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Ideas
   
 
     
@@ -796,7 +984,7 @@
   <span class="md-ellipsis">
     
   
-    ビルド・実行
+    Environment Updates
   
 
     
@@ -807,14 +995,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="build-docker.html" class="md-nav__link md-nav__link--active">
+      <a href="update-environment.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    ビルド・実行
+    Environment Updates
   
 
     
@@ -826,7 +1014,7 @@
       
         
 
-<nav class="md-nav md-nav--secondary" aria-label="目次">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -835,54 +1023,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目次
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#updating-docker" class="md-nav__link">
     <span class="md-ellipsis">
       
-        開発
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="開発">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        開発として起動して触りたい（おすすめ）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        評価フローを最後まで回したい（結果を残したい）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コマンド早見表（「何をする？」「いつ使う？」）
+        Updating Docker
       
     </span>
   </a>
@@ -890,10 +1039,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#updating-autoware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        使い分け（迷ったらここ）
+        Updating Autoware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-awsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating AWSIM
       
     </span>
   </a>
@@ -916,269 +1076,14 @@
   
   
     <li class="md-nav__item">
-      <a href="reference.html" class="md-nav__link">
+      <a href="main-module.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    開発の参考
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WIP
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    WIP
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="docker.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    検討中
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="headless-simulation.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    検討中
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    開発
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    開発
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/workspace-usage.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AIチャレンジの進め方
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/main-module.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    メインモジュール
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/documentation.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ドキュメント構成ガイド
+    Main Module
   
 
     
@@ -1227,7 +1132,7 @@
   <span class="md-ellipsis">
     
   
-    予選
+    Preliminaries
   
 
     
@@ -1243,7 +1148,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    予選
+    Preliminaries
   
 
           </label>
@@ -1263,7 +1168,7 @@
   <span class="md-ellipsis">
     
   
-    ルール
+    Rules
   
 
     
@@ -1291,7 +1196,7 @@
   <span class="md-ellipsis">
     
   
-    提出
+    Submission
   
 
     
@@ -1319,7 +1224,7 @@
   <span class="md-ellipsis">
     
   
-    結果の確認
+    Checking Results
   
 
     
@@ -1368,7 +1273,7 @@
   <span class="md-ellipsis">
     
   
-    決勝
+    finals
   
 
     
@@ -1384,7 +1289,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    決勝
+    finals
   
 
           </label>
@@ -1404,7 +1309,7 @@
   <span class="md-ellipsis">
     
   
-    決勝大会の概要
+    Overview of the Final Competition
   
 
     
@@ -1453,7 +1358,7 @@
   <span class="md-ellipsis">
     
   
-    仕様
+    Specifications
   
 
     
@@ -1469,7 +1374,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    仕様
+    Specifications
   
 
           </label>
@@ -1489,7 +1394,7 @@
   <span class="md-ellipsis">
     
   
-    インターフェース
+    Interface
   
 
     
@@ -1517,7 +1422,7 @@
   <span class="md-ellipsis">
     
   
-    ハードウェア
+    Hardware
   
 
     
@@ -1545,7 +1450,7 @@
   <span class="md-ellipsis">
     
   
-    シミュレーター
+    Simulator
   
 
     
@@ -1594,7 +1499,7 @@
   <span class="md-ellipsis">
     
   
-    入門講座
+    Course
   
 
     
@@ -1610,7 +1515,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    入門講座
+    Course
   
 
           </label>
@@ -1630,7 +1535,7 @@
   <span class="md-ellipsis">
     
   
-    Autoware 入門講座
+    Autoware Introduction Course
   
 
     
@@ -1791,7 +1696,7 @@
   <span class="md-ellipsis">
     
   
-    AI講座
+    ML
   
 
     
@@ -1807,7 +1712,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    AI講座
+    ML
   
 
           </label>
@@ -2431,7 +2336,34 @@
   <span class="md-ellipsis">
     
   
-    コミュニティ
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
   
 
     
@@ -2457,7 +2389,7 @@
                   <div class="md-sidebar__inner">
                     
 
-<nav class="md-nav md-nav--secondary" aria-label="目次">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -2466,54 +2398,15 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目次
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#updating-docker" class="md-nav__link">
     <span class="md-ellipsis">
       
-        開発
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="開発">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        開発として起動して触りたい（おすすめ）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        評価フローを最後まで回したい（結果を残したい）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        コマンド早見表（「何をする？」「いつ使う？」）
+        Updating Docker
       
     </span>
   </a>
@@ -2521,10 +2414,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#updating-autoware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        使い分け（迷ったらここ）
+        Updating Autoware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updating-awsim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updating AWSIM
       
     </span>
   </a>
@@ -2549,7 +2453,7 @@
   
 
 
-  <nav class="md-path" aria-label="ナビゲーション" >
+  <nav class="md-path" aria-label="Navigation" >
     <ol class="md-path__list">
       
         
@@ -2559,7 +2463,7 @@
       <a href="../index.html" class="md-path__link">
         
   <span class="md-ellipsis">
-    競技概要
+    Top Page
   </span>
 
       </a>
@@ -2574,10 +2478,10 @@
     
     
       <li class="md-path__item">
-        <a href="requirements.html" class="md-path__link">
+        <a href="development-guide.html" class="md-path__link">
           
   <span class="md-ellipsis">
-    環境構築
+    Development
   </span>
 
         </a>
@@ -2599,88 +2503,29 @@
   
 
 
-<h1 id="_1">ビルド・実行</h1>
-<p>大会用リポジトリでは、実際の動作環境はすべてDocker内で完結して提供されています。リポジトリの利用は以下の流れで行います。</p>
-<ol>
-<li>大会環境のDockerイメージのビルド</li>
-<li>Dockerコンテナ上でのAutowareのビルド</li>
-<li>Dockerコンテナ上でのAutowareとシミュレータの同時起動</li>
-</ol>
-<h2 id="_2">開発</h2>
-<p>このリポジトリは、make → <code>docker compose</code> で AWSIM と Autoware を動かす、という形になっています。</p>
-<ul>
-<li><strong>AWSIM</strong>: シミュレータ（<code>simulator</code> サービス）</li>
-<li><strong>Autoware</strong>: 自動運転ソフト（<code>autoware</code> サービス）</li>
-<li><strong><code>make</code></strong>: <code>docker compose ...</code> を叩くための「短い入口」</li>
-<li><strong>出力先</strong>: だいたい <code>output/</code> 配下（ログや結果）</li>
-</ul>
-<h3 id="_3">開発として起動して触りたい（おすすめ）</h3>
-<div class="highlight"><pre><span></span><code>./docker_build.sh<span class="w"> </span>dev<span class="w">      </span><span class="c1"># 開発用イメージを作る（最初に1回）</span>
-make<span class="w"> </span>autoware-build<span class="w">        </span><span class="c1"># ワークスペースをビルド（最初に1回）</span>
-make<span class="w"> </span>dev<span class="w">                   </span><span class="c1"># AWSIM + Autoware を起動</span>
-
-<span class="c1"># 終わったら（困ったらこれ）</span>
-make<span class="w"> </span>down
+<h1 id="environment-updates">Environment Updates</h1>
+<p>Announcements will be made whenever there is a significant update to the competition environment. Required steps will be included in each announcement, but the general procedures are described here for reference.</p>
+<h2 id="updating-docker">Updating Docker</h2>
+<div class="highlight"><pre><span></span><code>./setup.bash<span class="w"> </span>pull<span class="w"> </span>image
+<span class="c1"># or</span>
+docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
 </code></pre></div>
-<h3 id="_4">評価フローを最後まで回したい（結果を残したい）</h3>
-<div class="highlight"><pre><span></span><code>make<span class="w"> </span><span class="nb">eval</span><span class="w">      </span><span class="c1"># 評価を実行（実行後に自動で停止・片付けまでやる）</span>
+<h2 id="updating-autoware">Updating Autoware</h2>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-racingkart<span class="w"> </span><span class="c1"># path to aichallenge</span>
+git<span class="w"> </span>pull<span class="w"> </span>origin/main
 </code></pre></div>
-<h2 id="_5">コマンド早見表（「何をする？」「いつ使う？」）</h2>
-<table>
-<thead>
-<tr>
-<th>コマンド</th>
-<th>役割</th>
-<th>使うタイミング</th>
-<th>主な出力</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>./docker_build.sh dev</code></td>
-<td>開発用イメージを作成</td>
-<td>初回 / Dockerfile更新後</td>
-<td><code>output/_host/latest/docker_build.log</code></td>
-</tr>
-<tr>
-<td><code>make autoware-build</code></td>
-<td>ROSワークスペースをビルド</td>
-<td>初回 / 依存・ソース更新後</td>
-<td>端末出力（必要に応じてログ確認）</td>
-</tr>
-<tr>
-<td><code>make dev</code></td>
-<td>AWSIM + Autoware を起動（開発用）</td>
-<td>手元でデバッグするとき</td>
-<td><code>output/&lt;timestamp&gt;/d&lt;domain_id&gt;/autoware.log, etc</code></td>
-</tr>
-<tr>
-<td><code>make eval</code></td>
-<td>評価を実行して結果を保存</td>
-<td>評価を回したいとき</td>
-<td><code>output/&lt;timestamp&gt;/d&lt;domain_id&gt;/autoware.log, etc</code></td>
-</tr>
-<tr>
-<td><code>make ps</code></td>
-<td>起動中コンテナを確認</td>
-<td>動作確認したいとき</td>
-<td>端末出力</td>
-</tr>
-<tr>
-<td><code>make down</code></td>
-<td>コンテナ停止・片付け</td>
-<td>終了時 / 詰まったとき</td>
-<td>端末出力</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_6">使い分け（迷ったらここ）</h2>
-<ul>
-<li><strong><code>make dev</code></strong>: 「起動して触る」。止めるまで動き続けます。最後は <code>make down</code>。</li>
-<li><strong><code>make eval</code></strong>: 「評価を回して結果を残す」。終わったら自動で停止・片付けます（途中で <code>Ctrl+C</code> しても後片付けが走ります）。</li>
-</ul>
-<p>詳細な運用設定（環境変数）とトラブル時の戻し方は、<a href="reference.html">開発の参考</a>を参照してください。</p>
-<p>以上で環境構築は終了です！次は実際に開発を行ってみましょう。</p>
+<h2 id="updating-awsim">Updating AWSIM</h2>
+<div class="highlight"><pre><span></span><code>./setup.bash<span class="w"> </span>download<span class="w"> </span>awsim
+</code></pre></div>
+<details class="note">
+<summary>Manual download</summary>
+<p>Download <code>AWSIM.zip</code> from the SimPracticeFor2026 folder on OneDrive and extract it to <code>aichallenge-racingkart/aichallenge/simulator</code>.</p>
+<p><a class="md-button md-button--primary" href="https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2z"/></svg></span> Download AWSIM practice files</a></p>
+<p>Note: Only practice files are provided outside of the official competition period. Competition files may differ.</p>
+<p>Confirm that the executable exists at <code>aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64</code>.</p>
+<p>Set the file permissions as shown in the image below.</p>
+<p><img alt="Changing permissions" src="../../development/images/awsim-permmision.png" /></p>
+</details>
 
 
 
@@ -2704,7 +2549,7 @@ make<span class="w"> </span>down
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  ページトップへ戻る
+  Back to top
 </button>
         
       </main>
@@ -2713,33 +2558,33 @@ make<span class="w"> </span>down
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="gpu-simulation.html" class="md-footer__link md-footer__link--prev" aria-label="前: GPUの活用">
+          <a href="development-ideas.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Development Ideas">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                前
+                Previous
               </span>
               <div class="md-ellipsis">
-                GPUの活用
+                Development Ideas
               </div>
             </div>
           </a>
         
         
           
-          <a href="reference.html" class="md-footer__link md-footer__link--next" aria-label="次: 開発の参考">
+          <a href="main-module.html" class="md-footer__link md-footer__link--next" aria-label="Next: Main Module">
             <div class="md-footer__title">
               <span class="md-footer__direction">
-                次
+                Next
               </span>
               <div class="md-ellipsis">
-                開発の参考
+                Main Module
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2780,12 +2625,12 @@ make<span class="w"> </span>down
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "announce.dismiss", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "announce.dismiss", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../javascripts/twitter-embeds.js"></script>
+        <script src="../../javascripts/twitter-embeds.js"></script>
       
     
   </body>

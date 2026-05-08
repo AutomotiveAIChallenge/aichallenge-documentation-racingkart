@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、入門講座、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, tutorials, and AI guide.">
+        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、基礎演習、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, basic exercises, and AI guide.">
       
       
       
@@ -16,7 +16,7 @@
         <link rel="prev" href="introduction.html">
       
       
-        <link rel="next" href="build-docker.html">
+        <link rel="next" href="../development/development-guide.html">
       
       
         
@@ -31,7 +31,7 @@
     
     
       
-        <title>GPUの活用 - 自動運転 AI チャレンジ 2026</title>
+        <title>GPU Settings - 自動運転 AI チャレンジ 2026</title>
       
     
     
@@ -152,7 +152,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gpu" class="md-skip">
+        <a href="#gpu-settings" class="md-skip">
           Skip to content
         </a>
       
@@ -211,7 +211,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GPUの活用
+              GPU Settings
             
           </span>
         </div>
@@ -378,7 +378,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../development/workspace-usage.html" class="md-tabs__link">
+        <a href="../development/development-guide.html" class="md-tabs__link">
           
   
   
@@ -522,6 +522,25 @@
     
   
   Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
 
       </a>
     </li>
@@ -731,7 +750,7 @@
   <span class="md-ellipsis">
     
   
-    環境構築の流れ
+    Setting Up the Environment
   
 
     
@@ -768,7 +787,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの活用
+    GPU Settings
   
 
     
@@ -786,7 +805,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの活用
+    GPU Settings
   
 
     
@@ -812,10 +831,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#awsim" class="md-nav__link">
+  <a href="#gpu-environment-support" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AWSIMの起動確認
+        GPU Environment Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-gpu-drivers-and-toolkits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing GPU Drivers and Toolkits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-awsim-launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying AWSIM Launch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headless-execution-without-gpu-not-officially-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Headless Execution Without GPU (Not Officially Supported)
       
     </span>
   </a>
@@ -825,176 +888,6 @@
     </ul>
   
 </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build-docker.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Building and Running the Competition Repository
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="reference.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WIP
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    WIP
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="docker.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WIP
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="headless-simulation.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WIP
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
       
     </li>
   
@@ -1065,14 +958,126 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/workspace-usage.html" class="md-nav__link">
+      <a href="../development/development-guide.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    How to Proceed with the AI Challenge
+    Development Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/commands.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/development-ideas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Ideas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/update-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Updates
   
 
     
@@ -1101,34 +1106,6 @@
     
   
     Main Module
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/documentation.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Documentation Structure Guide
   
 
     
@@ -2394,6 +2371,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2421,10 +2425,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#awsim" class="md-nav__link">
+  <a href="#gpu-environment-support" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AWSIMの起動確認
+        GPU Environment Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking .env
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-gpu-drivers-and-toolkits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing GPU Drivers and Toolkits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-awsim-launch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying AWSIM Launch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#headless-execution-without-gpu-not-officially-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Headless Execution Without GPU (Not Officially Supported)
       
     </span>
   </a>
@@ -2499,76 +2547,120 @@
   
 
 
-<h1 id="gpu">GPUの活用</h1>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>GPUによるアクセラレーションありを希望される方の環境構築方法も記載しております。GPUを使用する環境構築では詰まって進まなくなる事例が多々ありましたので、<a href="./requirements.ja.md">推奨環境</a>を満たすのスペックのPCが用意できない方や初めてのご参加の方はあくまでも参考程度としてください。</p>
-</div>
-<details class="info">
-<summary>導線の案内</summary>
-<p>標準のセットアップ導線は <a href="introduction.html">環境構築の流れ</a> を参照してください。
-このページは、GPU利用時に必要な追加手順（ドライバ/Toolkit/検証）をまとめた詳細参照用です。</p>
-</details>
-<details class="note" open="open">
-<summary>GPUオプションで追加すること</summary>
-<p>GPU利用時は、追加で下記を行います。</p>
+<h1 id="gpu-settings">GPU Settings</h1>
+<p>First, follow <a href="introduction.html">Setting Up the Environment</a> to complete the setup.
+If you encounter issues with AWSIM rendering or GPU configuration, refer to this page.</p>
+<h2 id="gpu-environment-support">GPU Environment Support</h2>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Support</th>
+<th>AWSIM Rendering</th>
+<th>Sensors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NVIDIA GPU present</strong></td>
+<td>Supported</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Intel integrated GPU only (no NVIDIA)</strong></td>
+<td>Supported</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>No GPU</strong></td>
+<td>Not supported</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>NVIDIAドライバ導入（原則再起動推奨）</li>
-<li>NVIDIA Container Toolkit導入</li>
-<li>GPU対応コンテナ実行テスト（<code>nvidia-smi</code>）</li>
-<li>Vulkan導入とシミュレータ起動確認</li>
+<li><strong>NVIDIA GPU present</strong>: AWSIM and Autoware can run with GPU acceleration.</li>
+<li><strong>Intel integrated GPU only</strong>: AWSIM will launch, but sensor simulation does not work. This can be used to verify that AWSIM at least starts.</li>
+<li><strong>No GPU</strong>: Not supported. AWSIM cannot be launched. If needed, try the headless mode described below.</li>
 </ul>
+<h2 id="env-check">Checking .env</h2>
+<p>Check <code>~/aichallenge-racingkart/.env</code> and confirm it has the following settings. This is configured automatically by <code>setup.bash</code>. When <code>setup.bash</code> detects <code>/dev/nvidia0</code>, it automatically adds <code>docker-compose.gpu.yml</code> to <code>COMPOSE_FILE</code> in <code>.env</code>. If you are using an NVIDIA GPU but the settings differ, complete the NVIDIA GPU setup described below and then update <code>.env</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># When using NVIDIA GPU (enable docker-compose.gpu.yml)</span>
+<span class="nv">COMPOSE_FILE</span><span class="o">=</span>docker-compose.yml:docker-compose.gpu.yml
+
+<span class="c1"># Intel integrated GPU only (leave the above line commented out)</span>
+<span class="c1"># COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml</span>
+</code></pre></div>
+<h2 id="installing-gpu-drivers-and-toolkits">Installing GPU Drivers and Toolkits</h2>
+<p><strong>Common to all environments (NVIDIA GPU and Intel integrated GPU):</strong></p>
+<ul>
+<li>Install Vulkan</li>
+</ul>
+<p><strong>NVIDIA GPU only:</strong></p>
+<ul>
+<li>Install NVIDIA driver (reboot recommended after installation)</li>
+<li>Install NVIDIA Container Toolkit</li>
+</ul>
+<details class="note">
+<summary>Vulkan installation steps</summary>
+<p>Run the following commands.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvulkan1
+</code></pre></div>
 </details>
 <details class="note">
-<summary>GPUオプション: NVIDIAドライバのインストール手順</summary>
-<div class="highlight"><pre><span></span><code><span class="c1"># リポジトリの追加</span>
+<summary>NVIDIA driver installation steps</summary>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add repository</span>
 sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:graphics-drivers/ppa
 
-<span class="c1"># パッケージリストの更新</span>
+<span class="c1"># Update package list</span>
 sudo<span class="w"> </span>apt<span class="w"> </span>update
 
-<span class="c1"># インストール</span>
+<span class="c1"># Install</span>
 sudo<span class="w"> </span>ubuntu-drivers<span class="w"> </span>install
 
-<span class="c1"># パッケージリストの更新</span>
+<span class="c1"># Update package list</span>
 sudo<span class="w"> </span>apt<span class="w"> </span>update
 
-<span class="c1"># 下記のコマンドでインストールできていることを確認</span>
-<span class="c1"># 99%反映されないので、下記のrebootコマンドで再起動することを推奨します。</span>
+<span class="c1"># Verify installation with the command below.</span>
+<span class="c1"># The change is almost never reflected immediately, so a reboot (see below) is recommended.</span>
 nvidia-smi
 </code></pre></div>
-<p>下記のコマンドでPCを再起動しますので、このタイミングで電源を落としたくない方は注意！
-<div class="highlight"><pre><span></span><code><span class="c1"># 再起動</span>
+<p>The following command will reboot your PC — be careful if you do not want to power off at this point!
+<div class="highlight"><pre><span></span><code><span class="c1"># Reboot</span>
 reboot
 </code></pre></div></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 再起動の後、インストールできていることを確認</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># After reboot, verify the installation</span>
 nvidia-smi
 </code></pre></div>
 <p><img alt="nvidia-smi" src="../../setup/images/nvidia-smi.png" /></p>
 </details>
 <details class="note">
-<summary>GPUオプション: NVIDIA Container Toolkit のインストール手順</summary>
-<p>NVIDIA Container Toolkit の公式手順
-（<code>https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html</code>）
-を参考にインストールを行います。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># インストールの下準備</span>
+<summary>NVIDIA Container Toolkit installation steps</summary>
+<p>Follow the official NVIDIA Container Toolkit instructions
+(<code>https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html</code>)
+to perform the installation.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Preparation</span>
 <span class="nv">distribution</span><span class="o">=</span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="p">;</span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ID$VERSION_ID</span><span class="k">)</span><span class="w"> </span><span class="se">\</span>
 <span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://nvidia.github.io/libnvidia-container/gpgkey<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span><span class="o">&amp;&amp;</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-L<span class="w"> </span>https://nvidia.github.io/libnvidia-container/<span class="nv">$distribution</span>/libnvidia-container.list<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 <span class="w">            </span>sed<span class="w"> </span><span class="s1">&#39;s#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
 <span class="w">            </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/nvidia-container-toolkit.list
 
-<span class="c1"># インストール</span>
+<span class="c1"># Install</span>
 sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nvidia-container-toolkit
 sudo<span class="w"> </span>nvidia-ctk<span class="w"> </span>runtime<span class="w"> </span>configure<span class="w"> </span>--runtime<span class="o">=</span>docker
 sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
 
-<span class="c1"># インストールできているかをテスト</span>
+<span class="c1"># Test the installation</span>
 sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="o">=</span>nvidia<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>nvidia/cuda:11.6.2-base-ubuntu20.04<span class="w"> </span>nvidia-smi
 
-<span class="c1"># 最後のコマンドで以下のように出力されれば成功です。</span>
-<span class="c1"># （下記はNVIDIAウェブサイトからの引用です）</span>
+<span class="c1"># If the last command outputs something like the following, the installation was successful.</span>
+<span class="c1"># (The example below is quoted from the NVIDIA website)</span>
 <span class="c1">#</span>
 <span class="c1"># +-----------------------------------------------------------------------------+</span>
 <span class="c1"># | NVIDIA-SMI 450.51.06    Driver Version: 450.51.06    CUDA Version: 11.0     |</span>
@@ -2590,30 +2682,33 @@ sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </
 <span class="c1"># +-----------------------------------------------------------------------------+</span>
 </code></pre></div>
 </details>
-<details class="note">
-<summary>Vulkanのインストール手順</summary>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvulkan1
-</code></pre></div>
-</details>
-<h2 id="awsim">AWSIMの起動確認</h2>
-<p>以下のコマンドでBuildして起動してください。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You do not need to follow steps that are already completed. The NVIDIA setup steps here are provided as a reference only — please refer to the official NVIDIA documentation for details.</p>
+</div>
+<h2 id="verifying-awsim-launch">Verifying AWSIM Launch</h2>
+<p>Build and launch with the following commands.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-racingkart
 make<span class="w"> </span>simulator
 </code></pre></div>
-<p>下記のようにシミュレータが現れたら成功です。
+<p>If the simulator appears as shown below, the launch was successful.
 <img alt="AWSIM-Autoware" src="../../setup/images/awsim.png" /></p>
-<p>Autowareも起動してみましょう。</p>
+<p>Try launching Autoware as well.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>aichallenge-racingkart
-make<span class="w"> </span>autoware-build<span class="w"> </span><span class="c1"># 一度もbuildしてない方のみでOK</span>
+make<span class="w"> </span>autoware-build<span class="w"> </span><span class="c1"># Only needed if you have never built before</span>
 make<span class="w"> </span>autoware-simulator
 </code></pre></div>
-<p>以下のような画面が現れたら成功です。</p>
+<p>If the following screen appears, the launch was successful.</p>
 <p><img alt="AWSIM-Autoware" src="../../setup/images/awsim-and-autoware.png" /></p>
-<p>確認が終わったら、以下のコマンドを実行します。</p>
+<p>Once you have confirmed, run the following command.</p>
 <div class="highlight"><pre><span></span><code>make<span class="w"> </span>down
 </code></pre></div>
-<p>以上で環境構築は終了となります！</p>
+<h2 id="headless-execution-without-gpu-not-officially-supported">Headless Execution Without GPU (Not Officially Supported)</h2>
+<p>This is not officially supported, but AWSIM can be run in headless mode on a GPU-less environment with the following steps. The AWSIM window will not be displayed, but you can monitor the status in RViz.</p>
+<ol>
+<li>In <code>aichallenge/run_simulator.bash</code>, add <code>--headless</code> to the <code>AWSIM.x86_64</code> launch options.</li>
+<li>Remove <code>- /dev/dri:/dev/dri</code> from <code>docker-compose.yml</code>.</li>
+</ol>
 
 
 
@@ -2649,7 +2744,7 @@ make<span class="w"> </span>autoware-simulator
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="introduction.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: 環境構築の流れ">
+          <a href="introduction.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setting Up the Environment">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2659,20 +2754,20 @@ make<span class="w"> </span>autoware-simulator
                 Previous
               </span>
               <div class="md-ellipsis">
-                環境構築の流れ
+                Setting Up the Environment
               </div>
             </div>
           </a>
         
         
           
-          <a href="build-docker.html" class="md-footer__link md-footer__link--next" aria-label="Next: Building and Running the Competition Repository">
+          <a href="../development/development-guide.html" class="md-footer__link md-footer__link--next" aria-label="Next: Development Guide">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Building and Running the Competition Repository
+                Development Guide
               </div>
             </div>
             <div class="md-footer__button md-icon">

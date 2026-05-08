@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、入門講座、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, tutorials, and AI guide.">
+        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、基礎演習、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, basic exercises, and AI guide.">
       
       
       
@@ -378,7 +378,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../development/workspace-usage.html" class="md-tabs__link">
+        <a href="../development/development-guide.html" class="md-tabs__link">
           
   
   
@@ -522,6 +522,25 @@
     
   
   Community
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
 
       </a>
     </li>
@@ -756,10 +775,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-headless-awsim" class="md-nav__link">
+  <a href="#for-pcs-with-an-nvidia-gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using Headless AWSIM
+        For PCs with an NVIDIA GPU
       
     </span>
   </a>
@@ -767,10 +786,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-awsim-with-visualization" class="md-nav__link">
+  <a href="#for-pcs-with-intel-integrated-gpu-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using AWSIM with Visualization
+        For PCs with Intel Integrated GPU Only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-pcs-without-a-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For PCs without a GPU
       
     </span>
   </a>
@@ -800,7 +830,7 @@
   <span class="md-ellipsis">
     
   
-    環境構築の流れ
+    Setting Up the Environment
   
 
     
@@ -828,7 +858,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの活用
+    GPU Settings
   
 
     
@@ -837,176 +867,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="build-docker.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Building and Running the Competition Repository
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="reference.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Reference
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WIP
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    WIP
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="docker.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WIP
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="headless-simulation.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WIP
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -1076,14 +936,126 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/workspace-usage.html" class="md-nav__link">
+      <a href="../development/development-guide.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    How to Proceed with the AI Challenge
+    Development Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/commands.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/development-ideas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Ideas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/update-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Updates
   
 
     
@@ -1112,34 +1084,6 @@
     
   
     Main Module
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/documentation.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Documentation Structure Guide
   
 
     
@@ -2405,6 +2349,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -2432,10 +2403,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-headless-awsim" class="md-nav__link">
+  <a href="#for-pcs-with-an-nvidia-gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using Headless AWSIM
+        For PCs with an NVIDIA GPU
       
     </span>
   </a>
@@ -2443,10 +2414,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#using-awsim-with-visualization" class="md-nav__link">
+  <a href="#for-pcs-with-intel-integrated-gpu-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Using AWSIM with Visualization
+        For PCs with Intel Integrated GPU Only
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#for-pcs-without-a-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        For PCs without a GPU
       
     </span>
   </a>
@@ -2525,28 +2507,41 @@
 <p>For the PC used in this competition, we recommend the following specifications. While it is possible to run with lower specifications, it may result in unstable execution speeds on the ROS 2 side, causing significant variations in behavior during simulations.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
+<p>Running AWSIM in headless mode is required for environments without a GPU, but this is not officially supported.</p>
 <p>If you only have a Windows environment, please install Ubuntu 22.04. While it is possible to install Ubuntu on the same disk as your Windows environment, if you are not familiar with the process, you may accidentally damage your Windows environment. Therefore, we strongly recommend purchasing a new external or internal SSD and installing Ubuntu there.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>For guidance on installing Ubuntu, <a href="https://qiita.com/kiwsdiv/items/1fa6cf451225492b33d8">this article</a> may be helpful.</p>
 </div>
-<h2 id="using-headless-awsim">Using Headless AWSIM</h2>
+<h2 id="for-pcs-with-an-nvidia-gpu">For PCs with an NVIDIA GPU</h2>
+<ul>
+<li>OS: Ubuntu 22.04</li>
+<li>CPU: Intel Core i7 (8 cores) or higher (recommended)</li>
+<li>GPU: NVIDIA GeForce with 8 GB VRAM or more (recommended)</li>
+<li>Memory: 16 GB or more</li>
+<li>SSD: 60 GB or more</li>
+</ul>
+<h2 id="for-pcs-with-intel-integrated-gpu-only">For PCs with Intel Integrated GPU Only</h2>
+<ul>
+<li>OS: Ubuntu 22.04</li>
+<li>CPU: 13th Gen Intel Core i7 (8 cores) or higher (recommended)</li>
+<li>GPU: Integrated GPU of the above CPU</li>
+<li>Memory: 16 GB or more</li>
+<li>SSD: 60 GB or more</li>
+<li>Limitation: Sensor simulation is not available.</li>
+</ul>
+<h2 id="for-pcs-without-a-gpu">For PCs without a GPU</h2>
 <ul>
 <li>OS: Ubuntu 22.04</li>
 <li>CPU: Intel Core i5 (4 cores) or higher (recommended)</li>
-<li>Memory:</li>
+<li>Memory:<ul>
 <li>Minimum: 8 GB</li>
 <li>Recommended: 16 GB or more</li>
-<li>SSD: 60 GB or more</li>
 </ul>
-<h2 id="using-awsim-with-visualization">Using AWSIM with Visualization</h2>
-<ul>
-<li>OS: Ubuntu 22.04</li>
-<li>CPU: Intel Core i7 (8 cores) or higher</li>
-<li>GPU: NVIDIA GeForce with 8 GB VRAM</li>
-<li>Memory: 16 GB or more</li>
-<li>Storage: SSD 60 GB or more</li>
+</li>
+<li>SSD: 60 GB or more</li>
+<li>Limitation: Sensor simulation is not available. AWSIM runs in headless mode without visualization. This is not an officially supported environment.</li>
 </ul>
 
 
@@ -2600,13 +2595,13 @@
         
         
           
-          <a href="introduction.html" class="md-footer__link md-footer__link--next" aria-label="Next: 環境構築の流れ">
+          <a href="introduction.html" class="md-footer__link md-footer__link--next" aria-label="Next: Setting Up the Environment">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                環境構築の流れ
+                Setting Up the Environment
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -10,19 +10,19 @@
       
       
       
-        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/ml_sample/faq.html">
+        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/development/development-guide.html">
       
       
-        <link rel="prev" href="getting_started_vad_run.html">
+        <link rel="prev" href="../setup/gpu-simulation.html">
       
       
-        <link rel="next" href="../faq.html">
+        <link rel="next" href="environment.html">
       
       
         
-          <link rel="alternate" href="../../ml_sample/faq.html" hreflang="ja">
+          <link rel="alternate" href="../../development/development-guide.html" hreflang="ja">
         
-          <link rel="alternate" href="faq.html" hreflang="en">
+          <link rel="alternate" href="development-guide.html" hreflang="en">
         
       
       
@@ -31,7 +31,7 @@
     
     
       
-        <title>FAQ - 自動運転 AI チャレンジ 2026</title>
+        <title>Development Guide - 自動運転 AI チャレンジ 2026</title>
       
     
     
@@ -152,7 +152,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#faq" class="md-skip">
+        <a href="#development-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -211,7 +211,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FAQ
+              Development Guide
             
           </span>
         </div>
@@ -232,13 +232,13 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../../ml_sample/faq.html" hreflang="ja" class="md-select__link">
+            <a href="../../development/development-guide.html" hreflang="ja" class="md-select__link">
               日本語
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="faq.html" hreflang="en" class="md-select__link">
+            <a href="development-guide.html" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -372,11 +372,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../development/development-guide.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="development-guide.html" class="md-tabs__link">
           
   
   
@@ -472,12 +474,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../ai.html" class="md-tabs__link">
           
   
@@ -798,24 +798,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   
@@ -833,7 +838,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -848,10 +853,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../development/development-guide.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="development-guide.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -867,6 +899,159 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#development-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development Cycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development and Debugging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-evaluation-multiple-vehicles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Evaluation (Multiple Vehicles)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workspace-build-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace Build Artifacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission-archive-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submission Archive Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#differences-between-make-dev-and-make-eval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differences between make dev and make eval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entering-the-docker-container-for-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entering the Docker Container for Debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -879,7 +1064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/environment.html" class="md-nav__link">
+      <a href="environment.html" class="md-nav__link">
         
   
   
@@ -907,7 +1092,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/commands.html" class="md-nav__link">
+      <a href="commands.html" class="md-nav__link">
         
   
   
@@ -935,7 +1120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/development-ideas.html" class="md-nav__link">
+      <a href="development-ideas.html" class="md-nav__link">
         
   
   
@@ -963,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/update-environment.html" class="md-nav__link">
+      <a href="update-environment.html" class="md-nav__link">
         
   
   
@@ -991,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/main-module.html" class="md-nav__link">
+      <a href="main-module.html" class="md-nav__link">
         
   
   
@@ -1587,29 +1772,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
   
@@ -1627,7 +1807,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1673,7 +1853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="algorithms.html" class="md-nav__link">
+      <a href="../ml_sample/algorithms.html" class="md-nav__link">
         
   
   
@@ -1751,7 +1931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="develop_tiny_lidar_net.html" class="md-nav__link">
+      <a href="../ml_sample/develop_tiny_lidar_net.html" class="md-nav__link">
         
   
   
@@ -1837,7 +2017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="develop_pilot_net.html" class="md-nav__link">
+      <a href="../ml_sample/develop_pilot_net.html" class="md-nav__link">
         
   
   
@@ -1923,7 +2103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="design.html" class="md-nav__link">
+      <a href="../ml_sample/design.html" class="md-nav__link">
         
   
   
@@ -2001,7 +2181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started_vlm_setup.html" class="md-nav__link">
+      <a href="../ml_sample/getting_started_vlm_setup.html" class="md-nav__link">
         
   
   
@@ -2029,7 +2209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started_vlm_run.html" class="md-nav__link">
+      <a href="../ml_sample/getting_started_vlm_run.html" class="md-nav__link">
         
   
   
@@ -2115,7 +2295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started_vad_setup.html" class="md-nav__link">
+      <a href="../ml_sample/getting_started_vad_setup.html" class="md-nav__link">
         
   
   
@@ -2143,7 +2323,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting_started_vad_run.html" class="md-nav__link">
+      <a href="../ml_sample/getting_started_vad_run.html" class="md-nav__link">
         
   
   
@@ -2184,37 +2364,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    FAQ
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="faq.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ml_sample/faq.html" class="md-nav__link">
         
   
   
@@ -2230,48 +2383,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#sample-ros-nodeonnx" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sample ROS Nodeで使用されているonnx(重みファイル)はどのようなデータで学習されているのでしょうか？
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        学習したい場合はどうすれば良いでしょうか？
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2392,10 +2503,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#sample-ros-nodeonnx" class="md-nav__link">
+  <a href="#development-cycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Sample ROS Nodeで使用されているonnx(重みファイル)はどのようなデータで学習されているのでしょうか？
+        Development Cycle
       
     </span>
   </a>
@@ -2403,13 +2514,124 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#development-and-debugging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        学習したい場合はどうすれば良いでしょうか？
+        Development and Debugging
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-evaluation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Evaluation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#local-evaluation-multiple-vehicles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Evaluation (Multiple Vehicles)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workspace-build-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace Build Artifacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submission-archive-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submission Archive Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#differences-between-make-dev-and-make-eval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differences between make dev and make eval
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entering-the-docker-container-for-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entering the Docker Container for Debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2456,10 +2678,10 @@
     
     
       <li class="md-path__item">
-        <a href="../ai.html" class="md-path__link">
+        <a href="development-guide.html" class="md-path__link">
           
   <span class="md-ellipsis">
-    ML
+    Development
   </span>
 
         </a>
@@ -2481,17 +2703,188 @@
   
 
 
-<h1 id="faq">FAQ</h1>
-<h2 id="sample-ros-nodeonnx">Sample ROS Nodeで使用されているonnx(重みファイル)はどのようなデータで学習されているのでしょうか？</h2>
+<h1 id="development-guide">Development Guide</h1>
+<p>This page covers procedures only. For details on individual commands and the environment structure, see <a href="environment.html">Environment Overview</a> and <a href="commands.html">Command Reference</a>. Once you understand the development workflow, head to <a href="development-ideas.html">Development Ideas</a> and start building your own solution.</p>
+<h2 id="development-cycle">Development Cycle</h2>
+<p>Development follows this cycle:</p>
+<ol>
+<li><strong>Edit code</strong> — Modify files under <code>aichallenge/workspace/src/aichallenge_submit/</code></li>
+<li><strong>Build</strong> — Build the ROS workspace with <code>make autoware-build</code></li>
+<li><strong>Test</strong> — Start the simulator with <code>make dev</code> and check behavior</li>
+<li><strong>Local Evaluation</strong> — Run <code>make eval</code> for quantitative evaluation and check results under <code>output/latest/</code></li>
+<li><strong>Submit</strong> — Upload following the <a href="../preliminaries/submission.html">submission instructions</a></li>
+</ol>
+<h2 id="development-and-debugging">Development and Debugging</h2>
 <ul>
-<li>nuScenes datasetのみで学習されています。</li>
-<li>この重みファイルを用いると、公道走行を想定したtrajectoryが生成されます。きついカーブを含むサーキットでの学習を行う際は、学習が必要です。</li>
+<li>The development Docker image is built when you run <code>setup.bash</code>. Re-run it as needed when updating the environment.</li>
+<li>The basic loop is: edit code → build → verify behavior, repeated as needed.</li>
 </ul>
-<h2 id="_1">学習したい場合はどうすれば良いでしょうか？</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Build the development Docker image (first time, or when updating the environment)</span>
+./docker_build.sh<span class="w"> </span>dev
+
+<span class="c1"># Edit files under aichallenge/workspace/src/aichallenge_submit/</span>
+
+<span class="c1"># Build the workspace</span>
+make<span class="w"> </span>autoware-build
+
+<span class="c1"># Start AWSIM + Autoware</span>
+make<span class="w"> </span>dev
+
+<span class="c1"># Verify behavior</span>
+
+<span class="c1"># Stop AWSIM + Autoware</span>
+make<span class="w"> </span>down
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Checking and force-stopping containers</p>
+<p>Use <code>make ps</code> to list running containers. If a container cannot be stopped, use <code>make down_all</code> to force-remove all containers.</p>
+</div>
+<h2 id="local-evaluation">Local Evaluation</h2>
 <ul>
-<li><a href="https://github.com/hustvl/VAD/blob/main/docs/train_eval.md">こちら</a>を参考にして学習することが可能です。</li>
-<li>本年度の教材には学習コード、学習環境の提供は含まれておらず、ROSとの結合方法の提供のみ行っています。そのため、学習コードに関してはサポート外になりますことに注意してください。</li>
+<li>After development, run a local evaluation.</li>
+<li>The evaluation Docker image must be rebuilt each time. The workspace build is done automatically as part of the image build.</li>
+<li>Execution stops automatically once the run completes.</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Compress aichallenge_submit/ and create the submission archive</span>
+./create_submit_file.bash
+
+<span class="c1"># Build the evaluation Docker image</span>
+./docker_build.sh<span class="w"> </span><span class="nb">eval</span>
+
+<span class="c1"># Start AWSIM + Autoware and run the evaluation</span>
+make<span class="w"> </span><span class="nb">eval</span>
+</code></pre></div>
+<h2 id="local-evaluation-multiple-vehicles">Local Evaluation (Multiple Vehicles)</h2>
+<ul>
+<li>Use <code>run_parallel_submissions.bash</code> to evaluate multiple vehicles at the same time.</li>
+<li>Accepts 1–4 submission archives, each running on a separate Domain ID (<code>d1</code>–<code>d4</code>).</li>
+<li>A separate evaluation Docker image is built for each archive.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Prepare the submission archives (example: 2 vehicles)</span>
+./create_submit_file.bash<span class="w">  </span><span class="c1"># your code → submit/aichallenge_submit.tar.gz</span>
+
+<span class="c1"># Prepare a rival vehicle archive (here we copy our own)</span>
+cp<span class="w"> </span>submit/aichallenge_submit.tar.gz<span class="w"> </span>submit/other_submit.tar.gz
+
+<span class="c1"># Run parallel evaluation with multiple archives</span>
+./run_parallel_submissions.bash<span class="w"> </span>--submit<span class="w"> </span>submit/aichallenge_submit.tar.gz<span class="w"> </span>submit/other_submit.tar.gz
+</code></pre></div>
+<h2 id="output">Output</h2>
+<h3 id="workspace-build-artifacts">Workspace Build Artifacts</h3>
+<ul>
+<li><code>make autoware-build</code> outputs build artifacts to <code>aichallenge/workspace/build/</code>, which is mounted when running <code>make dev</code>.</li>
+<li>For <code>make eval</code>, the workspace is built inside the Docker image during <code>./docker_build.sh eval</code> and the artifacts are stored in the image.</li>
+<li>Check terminal output for build logs.</li>
+</ul>
+<h3 id="execution-output">Execution Output</h3>
+<p>Results are saved under <code>output/&lt;timestamp&gt;/d&lt;domain_id&gt;/</code>. The latest evaluation results (<code>make eval</code>) are also accessible via symlinks from <code>output/latest/d&lt;domain_id&gt;/</code>.</p>
+<div class="highlight"><pre><span></span><code>output/
+├── &lt;timestamp&gt;/
+│   └── d1/
+│       ├── autoware.log                          # Autoware execution log
+│       ├── awsim.log                             # AWSIM execution log (make dev only)
+│       ├── ros/log/                              # Per-node logs
+│       ├── capture/                              # Capture video
+│       ├── rosbag2_autoware/                     # ROS bag files
+│       ├── d1-result-details.json                # Detailed drive data (make eval only)
+│       ├── result-summary.json                   # Lap time summary (make eval only)
+│       └── motion_analytics-&lt;timestamp&gt;.html     # Speed/acceleration visualization (make eval only)
+├── latest/                                       # Symlink to the latest evaluation result (make eval only)
+│   └── d1/                                       # Symlink to output/&lt;timestamp&gt;/d1/
+│       ├── autoware.log                          # Autoware execution log
+│       ├── capture/                              # Capture video
+│       ├── rosbag2_autoware/                     # ROS bag files (MCAP format)
+│       ├── d1-result-details.json                # Detailed drive data
+│       ├── result-summary.json                   # Lap time summary
+│       └── motion_analytics-&lt;timestamp&gt;.html     # Speed/acceleration visualization
+└── docker/
+    └── &lt;timestamp&gt;-docker_build-&lt;pid&gt;.log        # docker_build.sh build log
+</code></pre></div>
+<h3 id="submission-archive-output">Submission Archive Output</h3>
+<p>The archive created by <code>./create_submit_file.bash</code> is saved at <code>aichallenge-racingkart/submit/aichallenge_submit.tar.gz</code>.</p>
+<h2 id="tips">Tips</h2>
+<h3 id="differences-between-make-dev-and-make-eval">Differences between <code>make dev</code> and <code>make eval</code></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>make dev</code></th>
+<th><code>make eval</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Autoware image</strong></td>
+<td><code>aichallenge-2025-dev</code></td>
+<td><code>aichallenge-2025-eval</code></td>
+</tr>
+<tr>
+<td><strong>Workspace</strong></td>
+<td><code>./aichallenge</code> mounted</td>
+<td>Baked into the image</td>
+</tr>
+<tr>
+<td><strong>Build</strong></td>
+<td><code>make autoware-build</code> reflects changes immediately</td>
+<td><code>./docker_build.sh eval</code> must be re-run</td>
+</tr>
+<tr>
+<td><strong>Laps</strong></td>
+<td>600 (effectively unlimited)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>Timeout</strong></td>
+<td>Effectively unlimited</td>
+<td>600 seconds</td>
+</tr>
+<tr>
+<td><strong>Termination</strong></td>
+<td>Manual with <code>make down</code></td>
+<td>Stops automatically when the run completes</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>Logs only</td>
+<td>Scores and drive data included</td>
+</tr>
+</tbody>
+</table>
+<p>The typical workflow is to use <code>make dev</code> for rapid iteration during development, then run <code>make eval</code> before submission for a local evaluation in an environment close to the actual scoring environment.</p>
+<p><strong><code>make eval</code> local evaluation flow:</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant User as User
+    participant Make as make eval
+    participant AWSIM as AWSIM
+    participant AW as Autoware
+    participant Post as Post-process
+
+    User-&gt;&gt;Make: make eval
+    Make-&gt;&gt;AWSIM: Start container
+    Make-&gt;&gt;AW: Start container
+    AWSIM-&gt;&gt;AW: Publish sensor data
+    AW-&gt;&gt;AWSIM: Send control commands
+    Note over AWSIM,AW: 6 laps or timeout
+    AWSIM-&gt;&gt;AWSIM: Generate result-details.json
+    AWSIM-&gt;&gt;Post: Notify run complete
+    Post-&gt;&gt;Post: Generate result-summary.json
+    Post-&gt;&gt;Post: Generate motion_analytics.html
+    Post-&gt;&gt;Make: Stop and clean up all containers</code></pre>
+<h3 id="entering-the-docker-container-for-debugging">Entering the Docker Container for Debugging</h3>
+<p>While <code>make dev</code> is running, you can enter the Autoware container with the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart
+docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>autoware<span class="w"> </span>bash
+</code></pre></div>
+<p>Inside the container you can inspect ROS topics and run debug commands:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Set domain for vehicle 1</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
+
+<span class="c1"># List topics</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>list
+
+<span class="c1"># Monitor a specific topic</span>
+ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/localization/kinematic_state
+</code></pre></div>
 
 
 
@@ -2527,7 +2920,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="getting_started_vad_run.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting started: VAD Plannerの実行">
+          <a href="../setup/gpu-simulation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: GPU Settings">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2537,20 +2930,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Getting started: VAD Plannerの実行
+                GPU Settings
               </div>
             </div>
           </a>
         
         
           
-          <a href="../faq.html" class="md-footer__link md-footer__link--next" aria-label="Next: FAQ">
+          <a href="environment.html" class="md-footer__link md-footer__link--next" aria-label="Next: Environment Overview">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                FAQ
+                Environment Overview
               </div>
             </div>
             <div class="md-footer__button md-icon">
