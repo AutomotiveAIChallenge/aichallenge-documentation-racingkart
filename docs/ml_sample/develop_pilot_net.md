@@ -17,13 +17,7 @@ tiny_lidar_net との主な違い:
 
 ## Setup
 
-AI Challenge のドキュメントに従って、
-
-- [仮想環境のインストール](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/docker.html)
-- [描画あり AWSIM の起動](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/requirements.html)
-- [大会用リポジトリのビルド・実行](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/setup/build-docker.html)
-
-までを実施してください。
+[環境構築](../setup/introduction.ja.md)を実施してください。
 
 ## PilotNet の学習手順
 

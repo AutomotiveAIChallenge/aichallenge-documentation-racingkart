@@ -1,22 +1,52 @@
-# GPUの活用
+# GPUの設定
 
-!!! warning
-    GPUによるアクセラレーションありを希望される方の環境構築方法も記載しております。GPUを使用する環境構築では詰まって進まなくなる事例が多々ありましたので、[推奨環境](./requirements.ja.md)を満たすのスペックのPCが用意できない方や初めてのご参加の方はあくまでも参考程度としてください。
+まず [環境構築の流れ](./introduction.ja.md) に沿ってセットアップを進めてください。
+AWSIMの描画やGPUの設定に問題が生じた場合は、本ページを参照してください。
 
-??? info "導線の案内"
-    標準のセットアップ導線は [環境構築の流れ](./introduction.ja.md) を参照してください。
-    このページは、GPU利用時に必要な追加手順（ドライバ/Toolkit/検証）をまとめた詳細参照用です。
+## GPU環境の対応状況
 
-???+ note "GPUオプションで追加すること"
+| 環境 | 対応状況 | AWSIM描画 | センサー |
+| ---- | -------- | --------- | -------- |
+| **NVIDIA GPU あり** | 対応 | 有り | 有り |
+| **Intel 内蔵 GPU あり（NVIDIA なし）** | 対応 | 有り | 無し |
+| **GPU なし** | 非サポート | 無し | 無し |
 
-    GPU利用時は、追加で下記を行います。
+- **NVIDIA GPU あり**：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。
+- **Intel 内蔵 GPU あり**：AWSIMは起動しますが、センサーシミュレーションは動作しません。最低限AWSIMが起動できることを確認したい場合に利用できます。
+- **GPU なし**：サポート外です。AWSIMを起動することができません。必要に応じて後述のヘッドレスモードをお試しください。
 
-    - NVIDIAドライバ導入（原則再起動推奨）
-    - NVIDIA Container Toolkit導入
-    - GPU対応コンテナ実行テスト（`nvidia-smi`）
-    - Vulkan導入とシミュレータ起動確認
+## .envの確認 { #env-check }
 
-??? note "GPUオプション: NVIDIAドライバのインストール手順"
+`~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` に `docker-compose.gpu.yml` が自動で追加されます。もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから `.env` を更新してください。
+
+```bash
+# NVIDIA GPU 利用時（docker-compose.gpu.yml を有効にする）
+COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
+
+# Intel 内蔵 GPU のみの場合（上記行はコメントアウトのまま）
+# COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
+```
+
+## GPUドライバなどのインストール
+
+**全環境共通（NVIDIA GPU・Intel 内蔵 GPU）：**
+
+- Vulkan導入
+
+**NVIDIA GPU のみ：**
+
+- NVIDIAドライバ導入（原則再起動推奨）
+- NVIDIA Container Toolkit導入
+
+??? note "Vulkanのインストール手順"
+    以下のコマンドを実行します。
+
+    ```bash
+    sudo apt update
+    sudo apt install -y libvulkan1
+    ```
+
+??? note "NVIDIAドライバのインストール手順"
     ```bash
     # リポジトリの追加
     sudo add-apt-repository ppa:graphics-drivers/ppa
@@ -48,7 +78,7 @@
 
     ![nvidia-smi](./images/nvidia-smi.png)
 
-??? note "GPUオプション: NVIDIA Container Toolkit のインストール手順"
+??? note "NVIDIA Container Toolkit のインストール手順"
     NVIDIA Container Toolkit の公式手順
     （`https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html`）
     を参考にインストールを行います。
@@ -93,12 +123,8 @@
     # +-----------------------------------------------------------------------------+
     ```
 
-??? note "Vulkanのインストール手順"
-    ```bash
-    sudo apt update
-    sudo apt install -y libvulkan1
-
-    ```
+!!! warning
+    既に導入済みの手順は実施不要です。また、NVIDIA関係のセットアップ手順はあくまで参考程度としてください。詳細はNVIDIA公式の手順をご確認ください。
 
 ## AWSIMの起動確認
 
@@ -130,4 +156,9 @@ make autoware-simulator
 make down
 ```
 
-以上で環境構築は終了となります！
+## GPU未搭載環境でのヘッドレス実行（非サポート）
+
+公式としては非サポートですが、GPU未搭載環境でも以下の手順でAWSIMをヘッドレスモードで実行できます。この場合AWSIM画面は非表示ですが、RViz上で状況を確認できます。
+
+1. `aichallenge/run_simulator.bash` 内で、`AWSIM.x86_64` の起動オプションに `--headless` を追加する。
+2. `docker-compose.yml` から `- /dev/dri:/dev/dri` を削除する。

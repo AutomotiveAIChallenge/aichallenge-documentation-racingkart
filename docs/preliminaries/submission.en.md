@@ -19,24 +19,7 @@ Submit your work by following these steps:
     - Compress `aichallenge_submit` and generate a folder for result output.
     - Run: `./create_submit_file.bash`
 
-    1.2. Build Docker Image
-
-    - Run: `./docker_build.sh eval`
-
-    1.3. Start Docker Container
-
-    - After startup, Autoware will automatically launch, and autonomous driving will begin.
-    - For GPU version of AWSIM: `./docker_run.sh eval gpu`
-    - For CPU version of AWSIM: `./docker_run.sh eval cpu`
-
-    1.4. Check `result.json`
-
-    - After evaluation is complete, the following files will be stored in the `output/latest` folder:
-        - `autoware.log`
-        - `rosbag2_autoware`
-        - `capture`
-        - `result-summary.json`
-        - `result-details.json`
+    See [Development Guide — Local Evaluation](../development/development-guide.en.md#local-evaluation) for details.
 
 2. Upload to the Online Environment
 

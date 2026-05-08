@@ -4,7 +4,7 @@ This page outlines the steps to participate in the AI Challenge.
 
 You can participate in this competition with a single PC running Ubuntu 22.04.
 
-First, use the online scoring environment, then proceed with environment setup and development.
+First, use the online scoring environment, then proceed with [environment setup](./setup/requirements.en.md) and [development](./development/development-guide.en.md).
 
 ## Register for the Autonomous Driving AI Challenge 2025
 
@@ -38,7 +38,7 @@ Please follow the link above to set up the environment.
 
     You can participate in this competition with a single PC running Ubuntu 22.04.
 
-## [How to Proceed with Development in the AI Challenge](./development/workspace-usage.en.md)
+## [How to Proceed with Development in the AI Challenge](./development/development-guide.en.md)
 
 Let's start developing by following the link above!
 

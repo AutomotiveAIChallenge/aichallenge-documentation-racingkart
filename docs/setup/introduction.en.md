@@ -1,46 +1,48 @@
-# 環境構築の流れ
+# Setting Up the Environment
 
-この章では、自動運転 AI チャレンジ 2026（Racing Kart）の開発・実行環境を構築する手順を説明します。パッケージのインストール、仮想環境の構築、ワークスペース準備、Docker と AWSIMの起動までを、セットアップスクリプト一つで行います。
+This chapter explains how to set up the development and execution environment for the Autonomous Driving AI Challenge 2026 (Racing Kart). It covers verifying the recommended environment, preparing the workspace, and launching Docker and AWSIM.
 
-??? info "2025年度参加者向けの変更点"
-      - `rocker` は GUI 転送用途に限定し、プロセス管理は docker compose を活用しています。
-      - 個別セットアップ手順を廃止し、一括インストール手順に統一しました。
+??? info "Changes for 2025 participants"
+      - `rocker` is now limited to GUI forwarding; process management uses docker compose.
+      - Individual setup steps have been consolidated into a single batch installation procedure.
 
-## 環境構築
+## Environment Setup
 
-curlのパッケージをinstallしましょう。
+First, install the curl package.
 
 ```bash
 sudo apt update
 sudo apt install curl
 ```
 
-次に環境からシミュレーターの実行テストまでを一気通貫で行うコマンドを叩きます。
+Then run the following command, which performs everything from environment setup to a simulator launch test in one shot.
 
 ```bash
 curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
 
-!!! tip "再度環境構築を行う場合"
-    リポジトリを取得済みの場合は、リポジトリ内のスクリプトを直接実行できます。
+!!! tip "Re-running the setup"
+    If you already have the repository, you can run the script directly instead of using `curl`.
 
     ```bash
     cd ~/aichallenge-racingkart
     ./setup.bash bootstrap
     ```
 
-下記は `setup.bash` が対話形式で順に実施する内容です。必要な項目だけ開いて確認してください。
+What this single command does (regarding the virtual environment)
 
-??? note "1. :material-package: 必要パッケージを install"
-    必要な基本パッケージを導入します。
+The following describes what `setup.bash` performs interactively, step by step. Open only the steps you need to review.
+
+??? note "1. :material-package: Install required packages"
+    Installs the essential base packages.
 
     ```bash
     sudo apt update
     sudo apt install -y python3-pip ca-certificates curl gnupg
     ```
 
-??? note "2. :material-docker: Docker を install"
-    Docker公式リポジトリを追加して、Docker本体をインストールします。
+??? note "2. :material-docker: Install Docker"
+    Adds the official Docker repository and installs Docker itself.
 
     ```bash
     sudo install -m 0755 -d /etc/apt/keyrings
@@ -53,37 +55,37 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     sudo apt-get update
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     ```
-    Dockerが正常に動作するか確認します。
+    Verify that Docker is working correctly.
 
     ```bash
     sudo docker run hello-world
     ```
-    Hello from Docker!と表示されれば正常にインストール出来ています。
+    If you see "Hello from Docker!", the installation was successful.
 
-??? note "3. :material-language-python: rocker を install"
-    GUI転送に使う rocker をインストールし、PATH を通します。
+??? note "3. :material-language-python: Install rocker"
+    Installs rocker (used for GUI forwarding) and adds it to PATH.
 
     ```bash
     pip install rocker
     ```
 
-    `~/.local/bin` が PATH に含まれていない場合は追加します。
+    If `~/.local/bin` is not in your PATH, add it.
 
     ```bash
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
     source ~/.bashrc
     ```
 
-??? note "4. :material-account-group: Docker グループ登録"
-    `sudo` なしでDockerを使えるようにユーザーをグループへ追加します。
+??? note "4. :material-account-group: Register Docker group"
+    Adds your user to the Docker group so you can run Docker without `sudo`.
 
     ```bash
     sudo usermod -aG docker $USER
     newgrp docker
     ```
 
-??? note "5. :material-folder-open: リポジトリ準備"
-    大会用リポジトリを取得し、事前チェックを実行します。
+??? note "5. :material-folder-open: Prepare repository"
+    Clones the competition repository and runs a pre-check.
 
     ```bash
     cd ~
@@ -91,34 +93,34 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     cd ~/aichallenge-racingkart
     ```
 
-??? note "6. :material-security: repositoryの確認"
-    ちゃんとレポジトリが存在しているかチェック
+??? note "6. :material-security: Verify repository"
+    Checks that the repository exists correctly.
 
     ```bash
     ./setup.bash doctor
     ```
 
-??? note "7. :material-cloud-download: Autoware イメージ取得"
-    実行に必要なAutowareベースイメージを取得します。
+??? note "7. :material-cloud-download: Pull Autoware image"
+    Pulls the Autoware base image required for execution.
 
     ```bash
     docker pull ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
     docker images
     ```
 
-    Dockerイメージがダウンロードできていれば以下のような出力が得られます。
+    If the Docker image was downloaded successfully, you will see output like this:
 
     ```txt
     REPOSITORY                                        TAG                       IMAGE ID       CREATED         SIZE
     ghcr.io/automotiveaichallenge/autoware-universe   humble-latest             30c59f3fb415   13 days ago     8.84GB
     ```
 
-??? note "8. :material-download: AWSIM データ取得/展開"
-    SharePoint から AWSIM をダウンロードし、所定ディレクトリへ展開して実行権限を付与します。
+??? note "8. :material-download: Download/extract AWSIM data"
+    Downloads AWSIM from SharePoint and extracts it to the designated directory with execute permission.
 
-    1. 以下から最新の `AWSIM.zip` をダウンロードします。
+    1. Download the latest `AWSIM.zip` from the link below.
 
-    [:material-launch: AWSIMのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B5M71TLlFpS6xrOE7Zfhuug){ .md-button .md-button--primary  target="_blank" }
+    [:material-launch: Download AWSIM](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B5M71TLlFpS6xrOE7Zfhuug){ .md-button .md-button--primary  target="_blank" }
 
     ```bash
     mkdir -p ~/aichallenge-racingkart/aichallenge/simulator
@@ -126,36 +128,36 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     chmod +x ~/aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64
     ```
 
-    2. 実行ファイルが以下に存在することを確認します。
+    2. Confirm the executable exists at the following path.
 
     ```bash
     ls ~/aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM.x86_64
     ```
 
-    3. パーミッションは以下の図の状態を参考にしてください。
+    3. Refer to the figure below for the expected permissions.
 
-    ![パーミッション変更の様子](./images/awsim-permmision.png)
+    ![Permission change](./images/awsim-permmision.png)
 
-    GPU 利用時は `AWSIM_GPU_**.zip` を展開してください。
+    For GPU use, extract `AWSIM_GPU_**.zip` instead.
 
-??? note "9. :material-hammer: 開発用イメージ作成"
-    開発用Dockerイメージをビルドします。
+??? note "9. :material-hammer: Build development image"
+    Builds the Docker image for development.
 
     ```bash
     cd ~/aichallenge-racingkart
     ./docker_build.sh dev
     ```
 
-??? note "10. :material-book-education: ワークスペースビルド"
-    Autowareワークスペースをビルドします。
+??? note "10. :material-book-education: Build workspace"
+    Builds the Autoware workspace.
 
     ```bash
     cd ~/aichallenge-racingkart
     make autoware-build
     ```
 
-??? note "11. :material-power: AWSIM + Autoware 起動 → `make down` で停止確認"
-    シミュレータとAutowareを起動し、確認後に停止します。
+??? note "11. :material-power: Launch AWSIM + Autoware → confirm stop with `make down`"
+    Launches the simulator and Autoware, then stops them after confirming.
 
     ```bash
     cd ~/aichallenge-racingkart
@@ -163,12 +165,12 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     make down
     ```
 
-## Setup画面の見方
+## Reading the Setup Screen
 
-- `Select branch [default: main]:` が出たら `main` を選択（`Enter`でも可）
-- `[y/N]` は「この処理を実行するか」の確認です（通常は `y`）
-- `Starting execution...` が表示されたら、セットアップが自動実行中です
-- `To stop: make down` が表示されたら、起動確認まで完了です
+- When `Select branch [default: main]:` appears, select `main` (or just press `Enter`)
+- `[y/N]` confirms whether to run each step (normally answer `y`)
+- `Starting execution...` means setup is running automatically
+- `To stop: make down` means the launch check is complete
 
 ```.bash
 [setup] ℹ️ Bootstrap mode (fresh host)
@@ -190,7 +192,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 [setup]  12) make dev DOMAIN_ID=1 (requires repo)
 ```
 
-途中で `[y/N]` が表示されたら、問題なければ `y` を入力してください。
+When `[y/N]` appears, enter `y` if there are no issues.
 
 ```.bash
 [setup] Install base packages (apt) [y/N]: y
@@ -207,11 +209,11 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 [setup] ℹ️ Running: Install base packages (apt)
 ```
 
-ここから先は5分程度待つだけです。コーヒーでも入れながら待ちましょう。
+After this, just wait about 5 minutes. Grab a coffee while you wait.
 
 :coffee:
 
-セットアップが終わると下記のような表示でAWSIMとAutowareが起動します。
+When setup is complete, AWSIM and Autoware will launch with output like the following.
 
 ```bash
 Start dev simulation (AWSIM + Autoware, DOMAIN_ID=1)
@@ -229,18 +231,18 @@ make[1]: ディレクトリ '$USER/aichallenge-racingkart/aichallenge-racingkart
 To stop: make down  (docker compose down --remove-orphans)
 ```
 
-AWSIMとAutowareが起動しました。
+AWSIM and Autoware are now running.
 ![autoware-awsim](./images/autoware-awsim.png)
-停止する場合は以下コマンドで停止してください。
+To stop, run the following command.
 
 ```bash
 cd ~/aichallenge-racingkart
 make down
 ```
 
-以上で環境構築と動作確認が終了しました。
+This completes the environment setup and operation check.
 
-- AWSIMが起動しなかったり描画に問題がある場合は、GPUの設定を確認してください。
-    - [GPUの設定](./gpu-simulation.ja.md)
-- 早速開発に取り掛かりたい方は、開発の進め方を確認してください。
-    - [開発の進め方](../development/development-guide.ja.md)
+- If AWSIM does not launch or has rendering issues, check your GPU settings.
+    - [GPU Settings](./gpu-simulation.en.md)
+- If you are ready to start developing, see the development guide.
+    - [Development Guide](../development/development-guide.en.md)

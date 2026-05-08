@@ -4,7 +4,7 @@
 
 本大会ではUbuntu 22.04を搭載したPC一台のみで参加ができます。
 
-まずオンライン採点環境の利用を行い、その後環境構築・開発と進んでいきます。
+まずオンライン採点環境の利用を行い、その後[環境構築](./setup/requirements.ja.md)・[開発](./development/development-guide.ja.md)と進んでいきます。
 
 ??? note  "1. 自動運転AIチャレンジへの参加登録"
 
@@ -53,7 +53,7 @@
 
     環境構築が完了したら、実際に自動運転ソフトウェアを改良してみましょう。
 
-    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/workspace-usage.ja.md){ .md-button .md-button--primary }
+    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/development-guide.ja.md){ .md-button .md-button--primary }
 
 ??? note  "7. 開発したコードを提出"
 

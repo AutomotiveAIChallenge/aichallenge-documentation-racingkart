@@ -19,24 +19,7 @@
 
 2. ローカル評価環境での動作確認
 
-    2.1. Dockerイメージのビルド
-
-    - `./docker_build.sh eval`
-
-    2.2. Dockerコンテナの起動
-
-    - 起動後、自動でAutowareが立ち上がり、自動運転が開始されます。
-    - `make eval`
-
-    2.3. 結果の確認
-
-    - 評価完了後、`output/<timestamp>/d<domain_id>/`フォルダに以下のファイルが格納されます（`output/latest/d<domain_id>/`からシンボリックリンクでもアクセス可能）。
-        - `autoware.log` — Autowareの実行ログ
-        - `d<domain_id>-result-details.json` — 詳細な走行データ
-        - `result-summary.json` — ラップタイムの結果サマリー
-        - `motion_analytics-<timestamp>.html` — 速度・加速度のインタラクティブ可視化
-        - `rosbag2_autoware/` — ROSBag記録（MCAP形式）
-        - `capture/` — 画面キャプチャ動画
+    詳細は[開発の進め方 — ローカル評価の手順](../development/development-guide.ja.md#ローカル評価の手順)を参照してください。
 
 3. オンライン採点環境への提出
 
