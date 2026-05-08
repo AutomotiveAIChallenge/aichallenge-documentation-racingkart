@@ -2944,9 +2944,11 @@ ros2<span class="w"> </span>topic<span class="w"> </span>list
 <p>走行が終わったら、Ctrl+Cでrosbagの記録を停止します。記録されたrosbagは、<code>/aichallenge/ml_workspace/rawdata/$(date +%Y%m%d-%H%M%S)</code>に保存されます。rosbagはディレクトリ単位で管理されるものなので、この場合は<code>$(date +%Y%m%d-%H%M%S)</code>が一つの記録の単位となります（内部に.mcap形式のファイルが蓄積されていきます）。</p>
 <p>例えば20251226-233714であれば2025年12月26日23時37分14秒に作られたデータという意味になります。
 本当は訓練と検証データを別のものにする、データを選定するなどの工夫をすべきですが、一旦流れを掴むために訓練データと検証データに取得したデータを下記のコマンドでそのままいれてしまいます。</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/train
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/aichallenge/ml_workspace/train<span class="w"> </span><span class="c1"># if there are no train directory</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/train
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w">  </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/val
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/aichallenge/ml_workspace/val<span class="w"> </span><span class="c1"># if there are no val directory</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/val
 </code></pre></div>
 <details>
 <summary>※ちなみに、autowareの経路追従を使わず手動でデータを収集することもできます。</summary>
