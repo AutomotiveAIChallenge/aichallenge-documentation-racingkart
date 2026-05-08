@@ -2946,9 +2946,11 @@ ros2<span class="w"> </span>topic<span class="w"> </span>list
 <p><code>record_data.bash</code> は <code>/sensing/camera/image_raw</code> と <code>/control/command/control_cmd</code> を含む形で <code>record_data.bash</code> 内に定義されているので、tiny_lidar_net と同じスクリプトでカメラデータも収集できます。</p>
 <p>走行が終わったら Ctrl+C で記録を停止します。記録された rosbag は <code>/aichallenge/ml_workspace/rawdata/$(date +%Y%m%d-%H%M%S)</code> に保存されます。</p>
 <p>検証データを別に取るのが理想ですが、まずは動作を掴むために訓練・検証ともに同じデータを使います:</p>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/train
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/aichallenge/ml_workspace/train<span class="w"> </span><span class="c1"># if there are no train directory</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/train
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/val
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>/aichallenge/ml_workspace/val<span class="w"> </span><span class="c1"># if there are no train directory</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/aichallenge/ml_workspace/rawdata/*<span class="w"> </span>/aichallenge/ml_workspace/val
 </code></pre></div>
 <details>
 <summary>※ teleop で手動収集する場合</summary>
