@@ -95,11 +95,13 @@ cd ml_workspace
 本当は訓練と検証データを別のものにする、データを選定するなどの工夫をすべきですが、一旦流れを掴むために訓練データと検証データに取得したデータを下記のコマンドでそのままいれてしまいます。
 
 ```sh
+mkdir -p /aichallenge/ml_workspace/train # if there are no train directory
 cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/train
 ```
 
 ```sh
-cp -r  /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/val
+mkdir -p /aichallenge/ml_workspace/val # if there are no val directory
+cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/val
 ```
 
 <details>
