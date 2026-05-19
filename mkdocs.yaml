@@ -46,12 +46,13 @@ nav:
       - development/development-ideas.md
       - development/update-environment.md
       - development/main-module.md
-  - preliminaries:
-      - preliminaries/rules.md
-      - preliminaries/submission.md
-      - preliminaries/check-results.md
-  - finals:
-      - finals/index.md
+  - competition:
+      - competition/index.md
+      - SW部門:
+          - competition/sw-class.md
+          - competition/submission.md
+          - competition/check-results.md
+      - competition/ai-class.md
   - specifications:
       - specifications/interface.md
       - specifications/hardware.md
@@ -115,8 +116,7 @@ plugins:
             setup: 環境構築
             development: 開発
             index: 競技概要
-            preliminaries: 予選
-            finals: 決勝
+            competition: 大会説明
             specifications: 仕様
             course: 基礎演習
             ML: AI講座
@@ -127,7 +127,7 @@ plugins:
           build: true
           nav_translations:
             index: Top Page
-            preliminaries: Preliminaries
+            competition: Competition
             setup: Setup
             development: Development
             specifications: Specifications

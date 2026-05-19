@@ -32,7 +32,7 @@
 
     [:material-launch: サンプルコードの圧縮ファイルのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B4aNBsc0aygEdqNPsmm_J8g){ .md-button .md-button--primary  target="_blank" }
 
-    ![submit](./preliminaries/images/siteImage2.png)
+    ![submit](./competition/images/siteImage2.png)
 
 ??? note  "4. チームのアイコンを設定する"
     チームのアイコンの設定をお願いいたします。アイコンの作成においては、ChatGPTなどの生成AIを活用するのも効果的です。
@@ -60,7 +60,7 @@
     完成したコードの提出は[オンライン採点環境](https://aichallenge-board.jsae.or.jp/live)から行います。
     下記リンクより再度提出してみましょう。
 
-    [:material-launch: ソースコードの提出](./preliminaries/submission.ja.md){ .md-button .md-button--primary}
+    [:material-launch: ソースコードの提出](./competition/submission.ja.md){ .md-button .md-button--primary}
 
 ??? note  "8. 提出したコードがうまく動かないとき"
 

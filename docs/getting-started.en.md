@@ -29,7 +29,7 @@ Let's try using the online scoring environment with these four steps!
 
 <!-- [Download the sample code compressed file](https://drive.google.com/file/d/19LU70cgeg48R6stEXjvwDp1pTT25OjeN){ .md-button .md-button--primary .banner-button } -->
 
-![submit](./preliminaries/images/submit.png)
+![submit](./competition/images/submit.png)
 
 ## [Setting Up the AI Challenge Environment](./setup/requirements.en.md)
 
@@ -42,7 +42,7 @@ Please follow the link above to set up the environment.
 
 Let's start developing by following the link above!
 
-## [Submitting Your Source Code](./preliminaries/submission.en.md)
+## [Submitting Your Source Code](./competition/submission.en.md)
 
 Submit your completed code via the [online scoring environment](https://aichallenge-board.jsae.or.jp/live).
 Set up your submission using the link above.

@@ -71,7 +71,7 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
     `make eval`を実行し、規定の6周の走行が完了すると、評価結果が自動的に`output/<timestamp>/d<domain_id>/`配下に保存されます。`output/latest/d<domain_id>/`からシンボリックリンクでもアクセスできます。現時点での実力を把握してみましょう。
 
 ??? tip "提出してみる"
-    ワークスペースのカスタマイズを行ったら[ここ](../preliminaries/submission.ja.md)を参考に提出をしてみましょう。
+    ワークスペースのカスタマイズを行ったら[ここ](../competition/submission.ja.md)を参考に提出をしてみましょう。
 
 ??? tip "参加者有志の参考記事を読んでみる"
     参加者有志が取り組んでくださった取り組みは[Advent Calendar](https://qiita.com/advent-calendar/2023/jidounten-ai)にまとめられていますので参考にしてみてください。

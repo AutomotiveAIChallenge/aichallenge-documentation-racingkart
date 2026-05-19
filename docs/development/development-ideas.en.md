@@ -73,7 +73,7 @@ Participants will proceed with development by customizing this code and paramete
     When you run `make eval` and the required 6 laps are completed, the evaluation results are automatically saved under `output/<timestamp>/d<domain_id>/`. You can also access them via symlink at `output/latest/d<domain_id>/`. Try running it with the default code first to understand your current baseline.
 
 ??? tip "Try submitting"
-    After customizing the workspace, refer to [this](../preliminaries/submission.en.md) to submit.
+    After customizing the workspace, refer to [this](../competition/submission.en.md) to submit.
 
 ??? tip "Read reference articles by voluntary participants"
     The efforts of voluntary participants are summarized in the [Advent Calendar](https://qiita.com/advent-calendar/2023/jidounten-ai), so please refer to them.
