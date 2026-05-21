@@ -48,7 +48,7 @@ nav:
       - development/main-module.md
   - competition:
       - competition/index.md
-      - SW部門:
+      - Sim to Real SW部門:
           - competition/sw-class.md
           - competition/submission.md
           - competition/check-results.md
