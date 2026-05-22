@@ -35,7 +35,6 @@ Submit to the online environment using the following steps:
 
     <img src="./images/siteImage3.png" width="100%">
 
-
 ## Checking Results
 
 - After the race finishes in the online environment, you can check the latest rankings.
