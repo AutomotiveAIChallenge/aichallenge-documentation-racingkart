@@ -1,4 +1,4 @@
-# End to End AI部門
+# AI部門 ルール
 
 ## AI部門概要
 
