@@ -1,16 +1,14 @@
-# 提出
+# 提出手順（SW部門 SIM予選）
 
 ## オンライン環境
 
-本大会では、シミュレーターと自動採点機能を備えたオンライン環境を使用して採点が行われます。以下の手順に従って、作成したパッケージ群をオンライン環境にアップロードしてください。アップロード後、シミュレーションが自動で開始され、結果が表示されます。
+Sim to Real SW部門 SIM予選では、シミュレーターと自動採点機能を備えたオンライン環境を使用して採点が行われます。以下の手順に従って、作成したパッケージ群をオンライン環境にアップロードしてください。アップロード後、シミュレーションが自動で開始され、結果が表示されます。
 
-提出は以下の手順で行います。
+※本ページのスクリーンショットは2025のものです
 
-1. ソースコードの圧縮
-2. ローカル評価環境での動作確認
-3. オンライン採点環境への提出
+## 提出手順
 
-### オンライン環境への提出手順
+オンライン環境への提出は以下の手順で行います。
 
 1. ソースコードの圧縮
 
@@ -23,15 +21,13 @@
 
 3. オンライン採点環境への提出
 
-    3.1. アップロード
-
     [オンライン環境](https://aichallenge-board.jsae.or.jp)にアクセスします。
     <img src="./images/topImage.png" width="100%">
 
     右上の「Login」 ボタンからログインします。
     <img src="./images/siteImage1.png" width="100%">
 
-    ログインが完了したら緑色の「Submit Code」ボタンから`aichallenge_submit.tar.gz`をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
+    ログインが完了したら「Submit Code」ボタンから`aichallenge_submit.tar.gz`をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
     <img src="./images/siteImage2.png" width="100%">
 
     正常に終了した場合、「Success」と表示されます。
@@ -39,31 +35,30 @@
 
     <img src="./images/siteImage3.png" width="100%">
 
-    ランキングはこれまでの採点での最高点が適用されます。
 
-    3.2. 結果の確認
+## 結果の確認手順
 
-    オンライン環境で評価が終わると、提出履歴の右端のボタンで結果を確認することができます。
+- オンライン環境での走行が終わると、最新の順位を確認できます。
+- ラップタイムやログなどの走行時の詳細データを提出履歴の右端のボタンから確認することができます。
+    - `result-summary.json`、rosbag、`autoware.log`を確認することができます。
 
     <img src="./images/siteImage4.png" width="100%">
 
-    `result-summary.json`、rosbag、`autoware.log`を確認することができます。
-
     <img src="./images/siteImage5.png" width="100%">
 
-    3.3. Failedの場合
+## Failedの場合
 
-    - packageの依存関係に問題がないか確認
+- packageの依存関係に問題がないか確認
 
-        - 使用言語に応じて、`package.xml`、`setup.py`、または`CMakeLists.txt`に依存関係の漏れがないか確認してください。
+    - 使用言語に応じて、`package.xml`、`setup.py`、または`CMakeLists.txt`に依存関係の漏れがないか確認してください。
 
-    - dockerの確認
+- dockerの確認
 
-        - 以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。
+    - 以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。
 
-        - `docker run -it aichallenge-racingkart-eval:latest /bin/bash`
+    - `docker run -it aichallenge-racingkart-eval:latest /bin/bash`
 
-    - 確認するディレクトリ:
+- 確認するディレクトリ:
 
-        - `/aichallenge/workspace/*`
-        - `/autoware/install/*`
+    - `/aichallenge/workspace/*`
+    - `/autoware/install/*`

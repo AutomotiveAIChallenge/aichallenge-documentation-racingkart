@@ -48,10 +48,8 @@ nav:
       - development/main-module.md
   - competition:
       - competition/index.md
-      - Sim to Real SW部門:
-          - competition/sw-class.md
-          - competition/submission.md
-          - competition/check-results.md
+      - competition/sw-class.md
+      - competition/submission.md
       - competition/ai-class.md
   - specifications:
       - specifications/interface.md
