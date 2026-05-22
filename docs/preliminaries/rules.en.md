@@ -1,3 +1,12 @@
-<script>window.location.replace('../competition/index.html');</script>
+---
+hide:
+  - navigation
+  - toc
+search:
+  exclude: true
+---
+<!-- This file is kept to prevent broken links from external sites (jsae.or.jp). Do not delete. -->
 
-This page has moved. Please see [Competition](../competition/index.html).
+<meta http-equiv="refresh" content="0; url=../competition/index.html">
+
+This page has moved. Please see [Competition](../competition/index.en.md).

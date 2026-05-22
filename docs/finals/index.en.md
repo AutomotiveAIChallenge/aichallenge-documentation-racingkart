@@ -1,3 +1,12 @@
-# Overview of the Final Competition
+---
+hide:
+  - navigation
+  - toc
+search:
+  exclude: true
+---
+<!-- This file is kept to prevent broken links from external sites (jsae.or.jp). Do not delete. -->
 
-Please see [here](https://tier4inc-my.sharepoint.com/personal/taiki_tanaka_tier4_jp/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Ftaiki%5Ftanaka%5Ftier4%5Fjp%2FDocuments%2FAutonomousAIChallengeFinal&ga=1) for details.
+<meta http-equiv="refresh" content="0; url=../competition/index.html">
+
+This page has moved. Please see [Competition](../competition/index.en.md).
