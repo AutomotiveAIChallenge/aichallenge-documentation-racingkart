@@ -62,7 +62,7 @@ Code checks will be performed from the Finals onwards.
 - Participating teams only need to submit their code. After submission, building, racing, and ranking are performed automatically.
 - There is a daily limit on the number of code submissions.
 
-### Ranking System
+### Ranking System (SIM Qualifying)
 
 When code is submitted, an online race is automatically run with the following 3 vehicles simultaneously:
 
@@ -84,7 +84,7 @@ Ranking changes based on race results are as follows:
 - Participants cannot use their own PCs.
 - If a vehicle becomes stuck due to a crash, manual recovery is permitted. (TBD)
 
-### Ranking System
+### Ranking System (SIM Finals)
 
 There are no NPCs; races are run simultaneously with 4 teams' vehicles. Tournament-style competition between groups of 4 teams is planned.
 
