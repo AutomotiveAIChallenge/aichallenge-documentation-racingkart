@@ -13,8 +13,7 @@
 
 - 競技概要: `docs/index.*.md`
 - はじめに: `docs/getting-started.*.md`
-- 予選: `docs/preliminaries/`
-- 決勝: `docs/finals/`
+- 大会説明: `docs/competition/`
 - 環境構築: `docs/setup/`
 - 開発: `docs/development/`
 - 仕様: `docs/specifications/`

@@ -10,7 +10,7 @@ Development follows this cycle:
 2. **Build** — Build the ROS workspace with `make autoware-build`
 3. **Test** — Start the simulator with `make dev` and check behavior
 4. **Local Evaluation** — Run `make eval` for quantitative evaluation and check results under `output/latest/`
-5. **Submit** — Upload following the [submission instructions](../preliminaries/submission.en.md)
+5. **Submit** — Upload following the [submission instructions](../competition/submission.en.md)
 
 ## Development and Debugging
 

@@ -2,6 +2,15 @@
 
 Announcements will be made whenever there is a significant update to the competition environment. Required steps will be included in each announcement, but the general procedures are described here for reference.
 
+!!! warning "Simulator Updates"
+    The simulator "AWSIM" is planned to be updated multiple times during the competition period.
+
+    Updates will be announced, but the content of updates will not be disclosed as it relates to the difficulty of the competition tasks. Participants are expected to investigate the update contents themselves.
+
+    Note that even if you submit the same code, scores may differ before and after an update. At any stage, the ranking is determined by the highest score from all submissions made.
+
+    Please wait for announcements from the organizers regarding updates.
+
 ## Updating Docker
 
 ```bash

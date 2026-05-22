@@ -1,13 +1,12 @@
-# 決勝大会の概要
+---
+hide:
+  - navigation
+  - toc
+search:
+  exclude: true
+---
+<!-- このファイルは外部サイト（jsae.or.jp）からのリンク切れを防ぐために残しています。削除しないでください。 -->
 
-## 決勝大会映像
+<meta http-equiv="refresh" content="0; url=../competition/index.html">
 
-<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/_wvVNh3_Axo?si=Pm8_VC6r_O2Oogr3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-## 決勝大会ダイジェスト動画
-
-<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/G07HQNn1_tU?si=BSatdTndfv-CeS9P" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-## 決勝大会エキシビジョン動画
-
-<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/yjgMUAnJHKw?si=Uj3UrOpDSyMmhzWd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+このページは移動しました。[大会説明](../competition/index.ja.md)をご覧ください。

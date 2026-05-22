@@ -12,7 +12,7 @@
 2. **ビルド** — `make autoware-build` でROSワークスペースをビルドします
 3. **動作確認** — `make dev` でシミュレータを起動し、挙動を確認します
 4. **ローカル評価** — `make eval` で定量評価し、`output/latest/` の結果を確認します
-5. **提出** — [提出手順](../preliminaries/submission.ja.md)に従ってアップロードします
+5. **提出** — [提出手順](../competition/submission.ja.md)に従ってアップロードします
 
 ### 開発・デバッグの手順
 
