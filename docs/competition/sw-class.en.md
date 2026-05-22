@@ -30,7 +30,7 @@ The SW Division progresses from qualifying to finals as follows:
 - Handicaps may be applied to acceleration and speed based on race position.
 - If a collision with course walls or other vehicles occurs, or if invalid acceleration is input, the vehicle's speed will be restricted for a certain time as a penalty.
 - Boost items that temporarily increase acceleration are available. (SIM environment only, planned)
-- When colliding with a wall, automatic attitude correction is performed. However, this does not guarantee 100% that the vehicle will not become stuck after a wall collision. (SIM environment only)
+- When colliding with a wall, automatic attitude correction is performed. However, this does not 100% prevent the vehicle from becoming stuck after a wall collision. (SIM environment only)
 
 ### Available Sensors
 
@@ -80,8 +80,8 @@ Ranking changes based on race results are as follows:
 
 ## SW Division SIM Finals Rules
 
-- Real-time simultaneous battles are held on PCs provided by the organizers at the finals venue.
-    - Participants cannot use their own PCs.
+- Real-time simultaneous battles are held in the simulation environment on PCs provided by the organizers at the finals venue.
+- Participants cannot use their own PCs.
 - If a vehicle becomes stuck due to a crash, manual recovery is permitted. (TBD)
 
 ### Ranking System
