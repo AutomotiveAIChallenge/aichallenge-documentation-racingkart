@@ -1,5 +1,8 @@
 # Competition Overview
 
+!!! info
+    Please check the official website and announcements from the organizers for details and the latest information.
+
 ## Schedule
 
 ※ All dates are in 2026
@@ -53,7 +56,8 @@ This competition has two divisions. SW Division participation is mandatory for a
 
 | Item | Sim to Real SW Division | End to End AI Division |
 | --- | --- | --- |
-| Approach | V2X data + rule-based | Sensor data + machine learning |
+| Approach | Rule-based | Machine learning |
+| Primary Input Data | Vehicle state sensors + V2X data | External sensors |
 | Class | Professional / Student (2 classes) | Unified class |
 | Final stage | Real Vehicle Finals | SIM Finals |
 | Competition environment | Online · organizer-provided PC | Participant's own PC |
