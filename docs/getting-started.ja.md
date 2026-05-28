@@ -8,7 +8,7 @@
 
 ??? note  "1. 自動運転AIチャレンジへの参加登録"
 
-    今年度の大会の参加登録は[:material-launch: 参加登録フォーム](https://questant.jp/q/DNW53QLW){ .md-button .md-button--primary target="_blank" }から
+    今年度の大会の参加登録は[:material-launch: 参加登録フォーム](https://questant.jp/q/QUHU0GNO){ .md-button .md-button--primary target="_blank" }から
 
 ??? note  "2. オンライン採点環境へのアクセス"
 
