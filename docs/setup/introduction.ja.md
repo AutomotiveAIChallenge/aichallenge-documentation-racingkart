@@ -6,6 +6,8 @@
       - `rocker` は GUI 転送用途に限定し、プロセス管理は docker compose を活用しています。
       - 個別セットアップ手順を廃止し、一括インストール手順に統一しました。
 
+<iframe width="960" height="540" src="https://www.youtube.com/embed/K_ToeWGitbk?si=Chop0CTjs0rx-itt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## 環境構築
 
 curlのパッケージをinstallしましょう。

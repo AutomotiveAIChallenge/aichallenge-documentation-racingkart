@@ -36,4 +36,4 @@ EVレーシングカートを使用した実車大会を開催します。シミ
 
     大会の日程などの詳細情報は公式サイトでご確認ください。
 
-    [:material-launch: 大会公式サイトを見る ](https://www.jsae.or.jp/jaaic2025/){ .md-button .md-button--primary target="_blank" }
+    [:material-launch: 大会公式サイトを見る ](https://www.jsae.or.jp/jaaic/){ .md-button .md-button--primary target="_blank" }
