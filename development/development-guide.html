@@ -753,7 +753,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの設定
+    GPUの設定・動作設定
   
 
     
@@ -929,24 +929,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ローカル評価の手順（複数車両）
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         結果の出力
@@ -958,7 +947,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         ワークスペースのビルド生成物
@@ -969,7 +958,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         実行結果の出力
@@ -980,7 +969,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         提出用ファイルの出力
@@ -1023,6 +1012,28 @@
     <span class="md-ellipsis">
       
         Dockerコンテナに入ってデバッグしたい場合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        複数車両の同時走行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全ゲートシナリオの実行
       
     </span>
   </a>
@@ -2465,24 +2476,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ローカル評価の手順（複数車両）
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         結果の出力
@@ -2494,7 +2494,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         ワークスペースのビルド生成物
@@ -2505,7 +2505,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       
         実行結果の出力
@@ -2516,7 +2516,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
       
         提出用ファイルの出力
@@ -2559,6 +2559,28 @@
     <span class="md-ellipsis">
       
         Dockerコンテナに入ってデバッグしたい場合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        複数車両の同時走行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安全ゲートシナリオの実行
       
     </span>
   </a>
@@ -2672,14 +2694,18 @@ make<span class="w"> </span>dev
 make<span class="w"> </span>down
 </code></pre></div>
 <div class="admonition tip">
+<p class="admonition-title">終了方法</p>
+<p>RvizやAWSIMの画面を閉じても終了しません。必ず、 <code>make down</code> または <code>make down_all</code> コマンドで終了してください。</p>
+</div>
+<div class="admonition tip">
 <p class="admonition-title">コンテナの確認と強制終了</p>
 <p>起動中のコンテナ一覧は <code>make ps</code> で確認できます。コンテナが終了できない場合は <code>make down_all</code> で強制終了してください。</p>
 </div>
 <h3 id="_4">ローカル評価の手順</h3>
 <ul>
 <li>開発ができたら、ローカル環境での評価を行います。</li>
-<li>評価用Dockerイメージは毎回作成が必要です。ワークスペースのビルドはDockerイメージビルド時に自動で行われます</li>
-<li>走行が完了すると実行は自動的に終了します。</li>
+<li>評価用Dockerイメージは毎回作成が必要です。ワークスペースのビルドはDockerイメージビルド時に自動で行われます。</li>
+<li>本手順の目的は、実際の評価環境に近い環境でエラーなく実行できることを確認することです。本手順では単独走行のタイムアタックが実行されますが、本大会は複数台走行のレース形式になります。</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="c1"># aichallenge_submit ディレクトリを圧縮し、提出用ファイルを作成</span>
 ./create_submit_file.bash
@@ -2690,29 +2716,14 @@ make<span class="w"> </span>down
 <span class="c1"># AWSIM + Autoware を起動して評価を実行</span>
 make<span class="w"> </span><span class="nb">eval</span>
 </code></pre></div>
-<h3 id="_5">ローカル評価の手順（複数車両）</h3>
-<ul>
-<li>複数車両を同時に評価したい場合は、<code>run_parallel_submissions.bash</code> を使います。</li>
-<li>1〜4 つの提出ファイルを指定でき、それぞれ別の Domain ID（<code>d1</code>〜<code>d4</code>）で並列走行します。</li>
-<li>各提出ファイルに対して評価用Dockerイメージが個別にビルドされます。</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># 評価したい提出ファイルを用意する（例: 2台）</span>
-./create_submit_file.bash<span class="w">  </span><span class="c1"># 自分のコード → submit/aichallenge_submit.tar.gz</span>
-
-<span class="c1"># ライバル車両コードを準備する（ここでは自分のコードをコピーする）</span>
-cp<span class="w"> </span>submit/aichallenge_submit.tar.gz<span class="w"> </span>submit/other_submit.tar.gz
-
-<span class="c1"># 複数の提出ファイルを指定して並列評価を実行</span>
-./run_parallel_submissions.bash<span class="w"> </span>--submit<span class="w"> </span>submit/aichallenge_submit.tar.gz<span class="w"> </span>submit/other_submit.tar.gz
-</code></pre></div>
-<h2 id="_6">結果の出力</h2>
-<h3 id="_7">ワークスペースのビルド生成物</h3>
+<h2 id="_5">結果の出力</h2>
+<h3 id="_6">ワークスペースのビルド生成物</h3>
 <ul>
 <li><code>make autoware-build</code> の生成物は <code>aichallenge/workspace/build</code> に出力され、 <code>make dev</code> 実行時にマウントされ使用されます。</li>
 <li><code>make eval</code> の場合は、<code>./docker_build.sh eval</code> でDockerイメージ作成時にワークスペースもビルドされ、ビルド生成物はDockerイメージ内に保存されます。</li>
 <li>ビルドログはターミナル出力を確認してください。</li>
 </ul>
-<h3 id="_8">実行結果の出力</h3>
+<h3 id="_7">実行結果の出力</h3>
 <p>実行結果は <code>output/&lt;timestamp&gt;/d&lt;domain_id&gt;/</code> 配下に保存されます。最新の評価結果（<code>make eval</code> 実行結果）については <code>output/latest/d&lt;domain_id&gt;/</code> からシンボリックリンクでもアクセス可能です。</p>
 <div class="highlight"><pre><span></span><code>output/
 ├── &lt;実行日時&gt;/
@@ -2736,7 +2747,7 @@ cp<span class="w"> </span>submit/aichallenge_submit.tar.gz<span class="w"> </spa
 └── docker/
     └── &lt;実行日時&gt;-docker_build-&lt;pid&gt;.log          # docker_build.sh のビルドログ
 </code></pre></div>
-<h3 id="_9">提出用ファイルの出力</h3>
+<h3 id="_8">提出用ファイルの出力</h3>
 <p><code>./create_submit_file.bash</code> によって圧縮されたファイルは、 <code>aichallenge-racingkart/submit/aichallenge_submit.tar.gz</code> に保存されています。</p>
 <h2 id="tips">Tips</h2>
 <h3 id="make-dev-make-eval"><code>make dev</code> と <code>make eval</code> の違い</h3>
@@ -2809,7 +2820,11 @@ cp<span class="w"> </span>submit/aichallenge_submit.tar.gz<span class="w"> </spa
 <h3 id="docker">Dockerコンテナに入ってデバッグしたい場合</h3>
 <p><code>make dev</code>で起動した状態で、以下のコマンドで起動中のAutowareコンテナに入れます。</p>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart
-docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>autoware<span class="w"> </span>bash
+make<span class="w"> </span>autoware-bash
+<span class="c1"># または、docker compose exec autoware bash</span>
+
+<span class="c1"># 複数台起動時（dev2/3/4）に特定の車両のコンテナに接続する場合（例：2台目）</span>
+<span class="c1"># make autoware-bash VEHICLE_NUM=2</span>
 </code></pre></div>
 <p>コンテナ内でROSトピックの確認やデバッグコマンドを実行できます。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 車両ID1のドメインを確認する</span>
@@ -2821,6 +2836,39 @@ ros2<span class="w"> </span>topic<span class="w"> </span>list
 <span class="c1"># 特定トピックの監視</span>
 ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/localization/kinematic_state
 </code></pre></div>
+<h3 id="_9">複数車両の同時走行</h3>
+<ul>
+<li>本大会では、複数車両の同時走行によるレース形式を採用しています。</li>
+<li>以下のコマンドによって1台〜4台までの同時走行を行います。実行すると、1つのAWSIM画面上に複数車両が画面分割されて表示されます。Autowareは複数車両分起動します。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1台走行（デフォルト）</span>
+make<span class="w"> </span>dev
+
+<span class="c1"># 2台走行</span>
+make<span class="w"> </span>dev2
+
+<span class="c1"># 3台走行（SIM予選の台数）</span>
+make<span class="w"> </span>dev3
+
+<span class="c1"># 4台走行（SIM決勝の台数）</span>
+make<span class="w"> </span>dev4
+</code></pre></div>
+<p><img alt="autoware-dev3" src="images/autoware-dev3.jpg" /></p>
+<h3 id="_10">安全ゲートシナリオの実行</h3>
+<ul>
+<li>本大会では、定められた安全ゲートシナリオをクリアすることが期待されています。</li>
+<li>以下のコマンドによって、各安全ゲートを再現したシナリオを実行することができます。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 障害物停止</span>
+make<span class="w"> </span>gate1
+
+<span class="c1"># 追い越し</span>
+make<span class="w"> </span>gate2
+
+<span class="c1"># 車線維持</span>
+make<span class="w"> </span>gate3
+</code></pre></div>
+<p><img alt="autoware-gate1" src="images/autoware-gate1.jpg" /></p>
 
 
 
@@ -2856,7 +2904,7 @@ ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</
       <nav class="md-footer__inner md-grid" aria-label="フッター" >
         
           
-          <a href="../setup/gpu-simulation.html" class="md-footer__link md-footer__link--prev" aria-label="前: GPUの設定">
+          <a href="../setup/gpu-simulation.html" class="md-footer__link md-footer__link--prev" aria-label="前: GPUの設定・動作設定">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2866,7 +2914,7 @@ ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</
                 前
               </span>
               <div class="md-ellipsis">
-                GPUの設定
+                GPUの設定・動作設定
               </div>
             </div>
           </a>

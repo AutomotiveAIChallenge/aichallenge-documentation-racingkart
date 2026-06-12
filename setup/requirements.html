@@ -755,10 +755,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#nvidia-gpupc" class="md-nav__link">
+  <a href="#gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        NVIDIA GPU搭載PCの場合
+        GPU環境の対応状況
       
     </span>
   </a>
@@ -766,10 +766,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#intel-gpupc" class="md-nav__link">
+  <a href="#pc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Intel 内蔵 GPUのみ搭載PCの場合
+        PCスペック
       
     </span>
   </a>
@@ -777,10 +777,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpupc" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU未搭載PCの場合
+        環境の確認方法
       
     </span>
   </a>
@@ -838,7 +838,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの設定
+    GPUの設定・動作設定
   
 
     
@@ -2326,10 +2326,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#nvidia-gpupc" class="md-nav__link">
+  <a href="#gpu" class="md-nav__link">
     <span class="md-ellipsis">
       
-        NVIDIA GPU搭載PCの場合
+        GPU環境の対応状況
       
     </span>
   </a>
@@ -2337,10 +2337,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#intel-gpupc" class="md-nav__link">
+  <a href="#pc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Intel 内蔵 GPUのみ搭載PCの場合
+        PCスペック
       
     </span>
   </a>
@@ -2348,10 +2348,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpupc" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU未搭載PCの場合
+        環境の確認方法
       
     </span>
   </a>
@@ -2431,42 +2431,83 @@
 推奨と書かれているものに関しては満たしていなくても動作することは可能です。ただし、推奨よりも低いスペックで動作させる場合ROS 2側での実行速度が安定せずシミュレーションの実行の度に挙動が大きく変わってしまう可能性があります。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>GPUがない環境ではAWSIMをヘッドレスモードで動かすことになりますが、公式としては非サポートです。</p>
 <p>Windows環境しかお持ちでない方は、Ubuntu 22.04のインストールをお願いいたします。Windows環境と同じディスクにUbuntu環境を入れることもできますが、不慣れな場合Windows環境を破壊してしまう可能性があるため、新しく外付けまたは内蔵SSDを購入したうえでそちらへのインストールをすることを強くお勧めします。</p>
+<p>Ubuntu 24.04でも動作する可能性はありますが、公式としては非サポートです。</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Ubuntuのインストール方法については<a href="https://qiita.com/kiwsdiv/items/1fa6cf451225492b33d8">こちらの記事</a>が参考になります。</p>
 </div>
-<h2 id="nvidia-gpupc">NVIDIA GPU搭載PCの場合</h2>
+<h2 id="gpu">GPU環境の対応状況</h2>
+<table>
+<thead>
+<tr>
+<th>環境</th>
+<th>AWSIM描画</th>
+<th>Camera/LiDAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NVIDIA GPU搭載</strong></td>
+<td>有り</td>
+<td>有り</td>
+</tr>
+<tr>
+<td><strong>Intel内蔵GPUのみ搭載</strong></td>
+<td>有り</td>
+<td>無し</td>
+</tr>
+<tr>
+<td><strong>GPU未搭載</strong></td>
+<td>無し</td>
+<td>無し</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>OS: Ubuntu 22.04</li>
-<li>CPU: Intel Core i7（8コア）以上（推奨）</li>
-<li>GPU: NVIDIA GeForce VRAM 8GB以上（推奨）</li>
-<li>メモリ: 16GB以上</li>
-<li>SSD: 60GB以上</li>
+<li><strong>NVIDIA GPU搭載</strong>：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。End to End AI 部門の場合は本環境が必要です。</li>
+<li><strong>Intel 内蔵 GPUのみ搭載</strong>：AWSIMは起動しますが、Camera/LiDARセンサーは使用できません。Sim to Real SW 部門の場合は本環境があれば十分です。</li>
+<li><strong>GPU未搭載</strong>：AWSIMを起動することができません。rviz上で最低限の動作確認はできます。</li>
 </ul>
-<h2 id="intel-gpupc">Intel 内蔵 GPUのみ搭載PCの場合</h2>
+<h2 id="pc">PCスペック</h2>
 <ul>
 <li>OS: Ubuntu 22.04</li>
-<li>CPU: 第13世代 Intel Core i7（8コア）以上（推奨）</li>
-<li>GPU: 上記CPUに内蔵のGPU</li>
-<li>メモリ: 16GB以上</li>
-<li>SSD: 60GB以上</li>
-<li>制限：CameraとLiDARのセンサーシミュレーションは動作しません。</li>
+<li>CPU:<ul>
+<li>第11世代 Intel Core i5（8コア）以上（最低）</li>
+<li>第13世代 Intel Core i7（8コア）以上（推奨）</li>
 </ul>
-<h2 id="gpupc">GPU未搭載PCの場合</h2>
-<ul>
-<li>OS: Ubuntu 22.04</li>
-<li>CPU: Intel Core i5（4コア）以上（推奨）</li>
+</li>
+<li>GPU:<ul>
+<li>NVIDIA GPU搭載の場合<ul>
+<li>GTX 1650以上 （最低）</li>
+<li>RTX 3060以上 （推奨）</li>
+</ul>
+</li>
+<li>Intel内蔵GPUのみ搭載の場合<ul>
+<li>Iris Xe Graphics以上</li>
+</ul>
+</li>
+<li>GPU未搭載の場合<ul>
+<li>なし</li>
+</ul>
+</li>
+</ul>
+</li>
 <li>メモリ:<ul>
-<li>8GB以上（最低）</li>
-<li>16GB以上（推奨）</li>
+<li>4GB以上（最低）</li>
+<li>8GB以上（推奨）</li>
 </ul>
 </li>
 <li>SSD: 60GB以上</li>
-<li>制限：センサーシミュレーションは動作しません。AWSIMは描画なしのヘッドレスモードとなります。公式としては非サポート環境です。</li>
 </ul>
+<p>End to End AI 部門において機械学習を行う場合には、更に以下の性能のNVIDIA GPUを推奨いたします。</p>
+<ul>
+<li>VRAM 4GB以上（例：GTX 1650、RTX 3050など）（最低）</li>
+<li>VRAM 8GB以上（例：RTX 3060、RTX 4060など）（推奨）</li>
+</ul>
+<h2 id="_2">環境の確認方法</h2>
+<p>ご自身の環境で実行できるかどうかを確認するには、<a href="introduction.html">環境構築の流れ</a> の手順に沿って実際にお試しください。</p>
 
 
 

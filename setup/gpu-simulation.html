@@ -31,7 +31,7 @@
     
     
       
-        <title>GPUの設定 - 自動運転 AI チャレンジ 2026</title>
+        <title>GPUの設定・動作設定 - 自動運転 AI チャレンジ 2026</title>
       
     
     
@@ -211,7 +211,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              GPUの設定
+              GPUの設定・動作設定
             
           </span>
         </div>
@@ -767,7 +767,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの設定
+    GPUの設定・動作設定
   
 
     
@@ -785,7 +785,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの設定
+    GPUの設定・動作設定
   
 
     
@@ -811,17 +811,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gpu_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GPU環境の対応状況
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#env-check" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -833,7 +822,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpu_2" class="md-nav__link">
+  <a href="#gpu_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         GPUドライバなどのインストール
@@ -855,10 +844,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpu_3" class="md-nav__link">
+  <a href="#gpu_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU未搭載環境でのヘッドレス実行（非サポート）
+        GPU未搭載環境でのヘッドレス実行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera-lidar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camera/LiDAR設定の切り替え
       
     </span>
   </a>
@@ -2348,17 +2348,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#gpu_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GPU環境の対応状況
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#env-check" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2370,7 +2359,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpu_2" class="md-nav__link">
+  <a href="#gpu_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         GPUドライバなどのインストール
@@ -2392,10 +2381,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gpu_3" class="md-nav__link">
+  <a href="#gpu_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GPU未搭載環境でのヘッドレス実行（非サポート）
+        GPU未搭載環境でのヘッドレス実行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera-lidar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camera/LiDAR設定の切り替え
       
     </span>
   </a>
@@ -2470,54 +2470,19 @@
   
 
 
-<h1 id="gpu">GPUの設定</h1>
-<p>まず <a href="introduction.html">環境構築の流れ</a> に沿ってセットアップを進めてください。
-AWSIMの描画やGPUの設定に問題が生じた場合は、本ページを参照してください。</p>
-<h2 id="gpu_1">GPU環境の対応状況</h2>
-<table>
-<thead>
-<tr>
-<th>環境</th>
-<th>対応状況</th>
-<th>AWSIM描画</th>
-<th>センサー</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>NVIDIA GPU あり</strong></td>
-<td>対応</td>
-<td>有り</td>
-<td>有り</td>
-</tr>
-<tr>
-<td><strong>Intel 内蔵 GPU あり（NVIDIA なし）</strong></td>
-<td>対応</td>
-<td>有り</td>
-<td>無し</td>
-</tr>
-<tr>
-<td><strong>GPU なし</strong></td>
-<td>非サポート</td>
-<td>無し</td>
-<td>無し</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><strong>NVIDIA GPU あり</strong>：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。</li>
-<li><strong>Intel 内蔵 GPU あり</strong>：AWSIMは起動しますが、センサーシミュレーションは動作しません。最低限AWSIMが起動できることを確認したい場合に利用できます。</li>
-<li><strong>GPU なし</strong>：サポート外です。AWSIMを起動することができません。必要に応じて後述のヘッドレスモードをお試しください。</li>
-</ul>
+<h1 id="gpu">GPUの設定・動作設定</h1>
+<p>まず <a href="introduction.html">環境構築の流れ</a> に沿ってセットアップを進めてください。AWSIMの描画やGPUの設定に問題が生じた場合は、本ページを参照してください。
+また、Camera/LiDARはデフォルト無効です。AI 部門に参加する場合は<a href="#camera-lidar">Camera/LiDAR設定の切り替え</a>の手順を参考にして設定してください。</p>
 <h2 id="env-check">.envの確認</h2>
-<p><code>~/aichallenge-racingkart/.env</code> を確認して、以下の設定になっていることを確認します。本設定は <code>setup.bash</code> で自動的に行われます。<code>setup.bash</code> が <code>/dev/nvidia0</code> を検出した場合、<code>.env</code> の <code>COMPOSE_FILE</code> に <code>docker-compose.gpu.yml</code> が自動で追加されます。もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから <code>.env</code> を更新してください。</p>
+<p><code>~/aichallenge-racingkart/.env</code> を確認して、以下の設定になっていることを確認します。本設定は <code>setup.bash</code> で自動的に行われます。<code>setup.bash</code> が <code>/dev/nvidia0</code> を検出した場合、<code>.env</code> の <code>COMPOSE_FILE</code> に <code>docker-compose.gpu.yml</code> が自動で追加されます。</p>
+<p>もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから <code>.env</code> を更新してください。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># NVIDIA GPU 利用時（docker-compose.gpu.yml を有効にする）</span>
 <span class="nv">COMPOSE_FILE</span><span class="o">=</span>docker-compose.yml:docker-compose.gpu.yml
 
-<span class="c1"># Intel 内蔵 GPU のみの場合（上記行はコメントアウトのまま）</span>
+<span class="c1"># Intel 内蔵 GPU のみの場合・GPU未搭載の場合（上記行はコメントアウトのまま）</span>
 <span class="c1"># COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml</span>
 </code></pre></div>
-<h2 id="gpu_2">GPUドライバなどのインストール</h2>
+<h2 id="gpu_1">GPUドライバなどのインストール</h2>
 <p><strong>全環境共通（NVIDIA GPU・Intel 内蔵 GPU）：</strong></p>
 <ul>
 <li>Vulkan導入</li>
@@ -2626,12 +2591,45 @@ make<span class="w"> </span>autoware-simulator
 <p>確認が終わったら、以下のコマンドを実行します。</p>
 <div class="highlight"><pre><span></span><code>make<span class="w"> </span>down
 </code></pre></div>
-<h2 id="gpu_3">GPU未搭載環境でのヘッドレス実行（非サポート）</h2>
-<p>公式としては非サポートですが、GPU未搭載環境でも以下の手順でAWSIMをヘッドレスモードで実行できます。この場合AWSIM画面は非表示ですが、RViz上で状況を確認できます。</p>
+<h2 id="gpu_2">GPU未搭載環境でのヘッドレス実行</h2>
+<p>GPU未搭載の場合には、以下の手順でAWSIMをヘッドレスモードで実行する必要があります。この場合AWSIM画面は非表示ですが、RViz上で状況を確認できます。</p>
 <ol>
-<li><code>aichallenge/run_simulator.bash</code> 内で、<code>AWSIM.x86_64</code> の起動オプションに <code>--headless</code> を追加する。</li>
-<li><code>docker-compose.yml</code> から <code>- /dev/dri:/dev/dri</code> を削除する。</li>
+<li><code>aichallenge-racingkart/aichallenge/simulator_scripts/dev.sh</code> 内で、<code>AWSIM.x86_64</code> の起動オプションに <code>-headless</code> を追加してください。<ul>
+<li>注意：末尾に追加する場合は、直前の既存オプションの行末に「<code>\</code>」を忘れずにつけてください。</li>
+</ul>
+</li>
+<li><code>aichallenge-racingkart/docker-compose.yml</code> から <code>- /dev/dri:/dev/dri</code> の記載を削除してください。</li>
 </ol>
+<h2 id="camera-lidar">Camera/LiDAR設定の切り替え</h2>
+<ul>
+<li>デフォルトでは、CameraとLiDARは無効状態です。End to End AI 部門参加者はCameraとLiDARを有効にする必要があります。</li>
+<li>AI 部門参加者はNVIDIA GPU搭載パソコンを想定しています。そのため、 <code>gpu</code> に設定することを推奨します。</li>
+<li><code>aichallenge-racingkart/aichallenge/simulator_scripts/dev.sh</code> 内で、<code>AWSIM.x86_64</code> の起動オプションの修正をしてください。<ul>
+<li>ローカル評価実行の場合には、 <code>eval.sh</code> を同様に編集してください。</li>
+<li>安全ゲートシナリオ実行の場合には、 <code>gate.sh</code> を同様に編集してください。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Cameraの設定</span>
+<span class="c1">## 無効 (デフォルト)</span>
+--camera<span class="w"> </span>off
+
+<span class="c1">## 有効 (CPU処理)</span>
+--camera<span class="w"> </span>cpu
+
+<span class="c1">## 有効 (GPU処理)</span>
+--camera<span class="w"> </span>gpu
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># LiDARの設定</span>
+<span class="c1">## 無効 (デフォルト)</span>
+--lidar<span class="w"> </span>off
+
+<span class="c1">## 有効 (CPU処理)</span>
+--lidar<span class="w"> </span>cpu
+
+<span class="c1">## 有効 (GPU処理)</span>
+--lidar<span class="w"> </span>gpu
+</code></pre></div>
 
 
 

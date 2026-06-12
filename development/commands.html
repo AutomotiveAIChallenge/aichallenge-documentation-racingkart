@@ -753,7 +753,7 @@
   <span class="md-ellipsis">
     
   
-    GPUの設定
+    GPUの設定・動作設定
   
 
     
@@ -978,17 +978,6 @@
     <span class="md-ellipsis">
       
         docker_build.sh
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#run_parallel_submissionsbash" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        run_parallel_submissions.bash
       
     </span>
   </a>
@@ -2431,17 +2420,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#run_parallel_submissionsbash" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        run_parallel_submissions.bash
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#make" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2635,27 +2613,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="run_parallel_submissionsbash">run_parallel_submissions.bash</h2>
-<p>複数の提出ファイルを同時に評価します。1〜4 つの提出ファイル（<code>aichallenge_submit.tar.gz</code>）を受け取り、それぞれ別の Domain ID（<code>d1</code>〜<code>d4</code>）で並列走行させます。</p>
-<table>
-<thead>
-<tr>
-<th>コマンド</th>
-<th>説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>./run_parallel_submissions.bash --submit &lt;tar1&gt; [&lt;tar2&gt; ...]</code></td>
-<td>1〜4 つの提出ファイルを並列評価します</td>
-</tr>
-<tr>
-<td><code>./run_parallel_submissions.bash down</code></td>
-<td>起動中のコンテナをすべて停止します</td>
-</tr>
-</tbody>
-</table>
-<p>実行ログと結果は <code>output/&lt;実行日時&gt;/d&lt;domain_id&gt;/</code> 配下に保存されます。</p>
 <h2 id="make">make コマンド</h2>
 <h3 id="_2">ビルド・起動・停止</h3>
 <table>
@@ -2675,8 +2632,32 @@
 <td>AWSIM + Autoware を開発用に起動します（<code>simulator</code> + <code>autoware-simulator</code> の短縮形）</td>
 </tr>
 <tr>
+<td><code>make dev2</code></td>
+<td>AWSIM + Autoware x 2 を開発用に起動します</td>
+</tr>
+<tr>
+<td><code>make dev3</code></td>
+<td>AWSIM + Autoware x 3 を開発用に起動します</td>
+</tr>
+<tr>
+<td><code>make dev4</code></td>
+<td>AWSIM + Autoware x 4 を開発用に起動します</td>
+</tr>
+<tr>
 <td><code>make eval</code></td>
 <td>AWSIM + Autoware を評価用に起動します</td>
+</tr>
+<tr>
+<td><code>make gate1</code></td>
+<td>安全ゲートシナリオ（障害物停止）を起動します</td>
+</tr>
+<tr>
+<td><code>make gate2</code></td>
+<td>安全ゲートシナリオ（追い越し）を起動します</td>
+</tr>
+<tr>
+<td><code>make gate3</code></td>
+<td>安全ゲートシナリオ（車線維持）を起動します</td>
 </tr>
 <tr>
 <td><code>make down</code></td>
@@ -2689,6 +2670,10 @@
 <tr>
 <td><code>make ps</code></td>
 <td>起動中のコンテナ一覧を表示します</td>
+</tr>
+<tr>
+<td><code>make autoware-bash</code></td>
+<td>Autowareコンテナのbashに入ります</td>
 </tr>
 </tbody>
 </table>
@@ -2704,6 +2689,18 @@
 <tr>
 <td><code>make simulator</code></td>
 <td>AWSIM のみ起動します</td>
+</tr>
+<tr>
+<td><code>make simulator-dev2</code></td>
+<td>AWSIM のみ起動します (2台走行用)</td>
+</tr>
+<tr>
+<td><code>make simulator-dev3</code></td>
+<td>AWSIM のみ起動します (3台走行用)</td>
+</tr>
+<tr>
+<td><code>make simulator-dev4</code></td>
+<td>AWSIM のみ起動します (4台走行用)</td>
 </tr>
 <tr>
 <td><code>make autoware-simulator</code></td>
@@ -2741,16 +2738,20 @@
 </thead>
 <tbody>
 <tr>
-<td><code>make autoware-request-initialpose</code></td>
-<td>初期姿勢の設定リクエストを送信します</td>
-</tr>
-<tr>
 <td><code>make autoware-request-control</code></td>
 <td>自動走行の制御モードリクエストを送信します</td>
 </tr>
 <tr>
-<td><code>make simulator-reset</code></td>
+<td><code>make autoware-request-initialpose</code></td>
+<td>初期姿勢の設定リクエストを送信します</td>
+</tr>
+<tr>
+<td><code>make awsim-request-reset</code></td>
 <td>シミュレータをリセットします</td>
+</tr>
+<tr>
+<td><code>make awsim-request-start</code></td>
+<td>シミュレータに対してレース開始指示を送ります</td>
 </tr>
 </tbody>
 </table>
