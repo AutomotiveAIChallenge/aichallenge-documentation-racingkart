@@ -37,14 +37,17 @@ make dev
 make down
 ```
 
+!!! tip "終了方法"
+    RvizやAWSIMの画面を閉じても終了しません。必ず、 `make down` または `make down_all` コマンドで終了してください。
+
 !!! tip "コンテナの確認と強制終了"
     起動中のコンテナ一覧は `make ps` で確認できます。コンテナが終了できない場合は `make down_all` で強制終了してください。
 
 ### ローカル評価の手順
 
 - 開発ができたら、ローカル環境での評価を行います。
-- 評価用Dockerイメージは毎回作成が必要です。ワークスペースのビルドはDockerイメージビルド時に自動で行われます
-- 走行が完了すると実行は自動的に終了します。
+- 評価用Dockerイメージは毎回作成が必要です。ワークスペースのビルドはDockerイメージビルド時に自動で行われます。
+- 本手順の目的は、実際の評価環境に近い環境でエラーなく実行できることを確認することです。本手順では単独走行のタイムアタックが実行されますが、本大会は複数台走行のレース形式になります。
 
 ```bash
 # aichallenge_submit ディレクトリを圧縮し、提出用ファイルを作成
@@ -55,23 +58,6 @@ make down
 
 # AWSIM + Autoware を起動して評価を実行
 make eval
-```
-
-### ローカル評価の手順（複数車両）
-
-- 複数車両を同時に評価したい場合は、`run_parallel_submissions.bash` を使います。
-- 1〜4 つの提出ファイルを指定でき、それぞれ別の Domain ID（`d1`〜`d4`）で並列走行します。
-- 各提出ファイルに対して評価用Dockerイメージが個別にビルドされます。
-
-```bash
-# 評価したい提出ファイルを用意する（例: 2台）
-./create_submit_file.bash  # 自分のコード → submit/aichallenge_submit.tar.gz
-
-# ライバル車両コードを準備する（ここでは自分のコードをコピーする）
-cp submit/aichallenge_submit.tar.gz submit/other_submit.tar.gz
-
-# 複数の提出ファイルを指定して並列評価を実行
-./run_parallel_submissions.bash --submit submit/aichallenge_submit.tar.gz submit/other_submit.tar.gz
 ```
 
 ## 結果の出力
@@ -159,7 +145,11 @@ sequenceDiagram
 
 ```bash
 cd ~/aichallenge-racingkart
-docker compose exec autoware bash
+make autoware-bash
+# または、docker compose exec autoware bash
+
+# 複数台起動時（dev2/3/4）に特定の車両のコンテナに接続する場合（例：2台目）
+# make autoware-bash VEHICLE_NUM=2
 ```
 
 コンテナ内でROSトピックの確認やデバッグコマンドを実行できます。
@@ -174,3 +164,42 @@ ros2 topic list
 # 特定トピックの監視
 ros2 topic echo /localization/kinematic_state
 ```
+
+### 複数車両の同時走行
+
+- 本大会では、複数車両の同時走行によるレース形式を採用しています。
+- 以下のコマンドによって1台〜4台までの同時走行を行います。実行すると、1つのAWSIM画面上に複数車両が画面分割されて表示されます。Autowareは複数車両分起動します。
+
+```bash
+# 1台走行（デフォルト）
+make dev
+
+# 2台走行
+make dev2
+
+# 3台走行（SIM予選の台数）
+make dev3
+
+# 4台走行（SIM決勝の台数）
+make dev4
+```
+
+![autoware-dev3](./images/autoware-dev3.jpg)
+
+### 安全ゲートシナリオの実行
+
+- 本大会では、定められた安全ゲートシナリオをクリアすることが期待されています。
+- 以下のコマンドによって、各安全ゲートを再現したシナリオを実行することができます。
+
+```bash
+# 障害物停止
+make gate1
+
+# 追い越し
+make gate2
+
+# 車線維持
+make gate3
+```
+
+![autoware-gate1](./images/autoware-gate1.jpg)

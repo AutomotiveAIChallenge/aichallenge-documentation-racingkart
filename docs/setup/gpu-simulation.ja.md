@@ -1,29 +1,19 @@
-# GPUの設定
+# GPUの設定・動作設定
 
-まず [環境構築の流れ](./introduction.ja.md) に沿ってセットアップを進めてください。
-AWSIMの描画やGPUの設定に問題が生じた場合は、本ページを参照してください。
-
-## GPU環境の対応状況
-
-| 環境 | 対応状況 | AWSIM描画 | センサー |
-| ---- | -------- | --------- | -------- |
-| **NVIDIA GPU あり** | 対応 | 有り | 有り |
-| **Intel 内蔵 GPU あり（NVIDIA なし）** | 対応 | 有り | 無し |
-| **GPU なし** | 非サポート | 無し | 無し |
-
-- **NVIDIA GPU あり**：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。
-- **Intel 内蔵 GPU あり**：AWSIMは起動しますが、センサーシミュレーションは動作しません。最低限AWSIMが起動できることを確認したい場合に利用できます。
-- **GPU なし**：サポート外です。AWSIMを起動することができません。必要に応じて後述のヘッドレスモードをお試しください。
+まず [環境構築の流れ](./introduction.ja.md) に沿ってセットアップを進めてください。AWSIMの描画やGPUの設定に問題が生じた場合は、本ページを参照してください。
+また、Camera/LiDARはデフォルト無効です。AI 部門に参加する場合は[Camera/LiDAR設定の切り替え](#camera-lidar)の手順を参考にして設定してください。
 
 ## .envの確認 { #env-check }
 
-`~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` に `docker-compose.gpu.yml` が自動で追加されます。もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから `.env` を更新してください。
+`~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` に `docker-compose.gpu.yml` が自動で追加されます。
+
+もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから `.env` を更新してください。
 
 ```bash
 # NVIDIA GPU 利用時（docker-compose.gpu.yml を有効にする）
 COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
 
-# Intel 内蔵 GPU のみの場合（上記行はコメントアウトのまま）
+# Intel 内蔵 GPU のみの場合・GPU未搭載の場合（上記行はコメントアウトのまま）
 # COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
 ```
 
@@ -156,9 +146,42 @@ make autoware-simulator
 make down
 ```
 
-## GPU未搭載環境でのヘッドレス実行（非サポート）
+## GPU未搭載環境でのヘッドレス実行
 
-公式としては非サポートですが、GPU未搭載環境でも以下の手順でAWSIMをヘッドレスモードで実行できます。この場合AWSIM画面は非表示ですが、RViz上で状況を確認できます。
+GPU未搭載の場合には、以下の手順でAWSIMをヘッドレスモードで実行する必要があります。この場合AWSIM画面は非表示ですが、RViz上で状況を確認できます。
 
-1. `aichallenge/run_simulator.bash` 内で、`AWSIM.x86_64` の起動オプションに `--headless` を追加する。
-2. `docker-compose.yml` から `- /dev/dri:/dev/dri` を削除する。
+1. `aichallenge-racingkart/aichallenge/simulator_scripts/dev.sh` 内で、`AWSIM.x86_64` の起動オプションに `-headless` を追加してください。
+    - 注意：末尾に追加する場合は、直前の既存オプションの行末に「`\`」を忘れずにつけてください。
+2. `aichallenge-racingkart/docker-compose.yml` から `- /dev/dri:/dev/dri` の記載を削除してください。
+
+## Camera/LiDAR設定の切り替え { #camera-lidar }
+
+- デフォルトでは、CameraとLiDARは無効状態です。End to End AI 部門参加者はCameraとLiDARを有効にする必要があります。
+  - AI 部門参加者はNVIDIA GPU搭載パソコンを想定しています。そのため、 `gpu` に設定することを推奨します。
+- `aichallenge-racingkart/aichallenge/simulator_scripts/dev.sh` 内で、`AWSIM.x86_64` の起動オプションの修正をしてください。
+    - ローカル評価実行の場合には、 `eval.sh` を同様に編集してください。
+    - 安全ゲートシナリオ実行の場合には、 `gate.sh` を同様に編集してください。
+
+```bash
+# Cameraの設定
+## 無効 (デフォルト)
+--camera off
+
+## 有効 (CPU処理)
+--camera cpu
+
+## 有効 (GPU処理)
+--camera gpu
+```
+
+```bash
+# LiDARの設定
+## 無効 (デフォルト)
+--lidar off
+
+## 有効 (CPU処理)
+--lidar cpu
+
+## 有効 (GPU処理)
+--lidar gpu
+```

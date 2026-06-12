@@ -5,37 +5,50 @@
 
 !!! warning
 
-    GPUがない環境ではAWSIMをヘッドレスモードで動かすことになりますが、公式としては非サポートです。
-
     Windows環境しかお持ちでない方は、Ubuntu 22.04のインストールをお願いいたします。Windows環境と同じディスクにUbuntu環境を入れることもできますが、不慣れな場合Windows環境を破壊してしまう可能性があるため、新しく外付けまたは内蔵SSDを購入したうえでそちらへのインストールをすることを強くお勧めします。
+
+    Ubuntu 24.04でも動作する可能性はありますが、公式としては非サポートです。
 
 !!! info
 
     Ubuntuのインストール方法については[こちらの記事](https://qiita.com/kiwsdiv/items/1fa6cf451225492b33d8)が参考になります。
 
-## NVIDIA GPU搭載PCの場合
+## GPU環境の対応状況
+
+| 環境 | AWSIM描画 | Camera/LiDAR |
+| ---- |  --------- | -------- |
+| **NVIDIA GPU搭載** |  有り | 有り |
+| **Intel内蔵GPUのみ搭載** |  有り | 無し |
+| **GPU未搭載** |  無し | 無し |
+
+- **NVIDIA GPU搭載**：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。End to End AI 部門の場合は本環境が必要です。
+- **Intel 内蔵 GPUのみ搭載**：AWSIMは起動しますが、Camera/LiDARセンサーは使用できません。Sim to Real SW 部門の場合は本環境があれば十分です。
+- **GPU未搭載**：AWSIMを起動することができません。rviz上で最低限の動作確認はできます。
+
+## PCスペック
 
 - OS: Ubuntu 22.04
-- CPU: Intel Core i7（8コア）以上（推奨）
-- GPU: NVIDIA GeForce VRAM 8GB以上（推奨）
-- メモリ: 16GB以上
-- SSD: 60GB以上
-
-## Intel 内蔵 GPUのみ搭載PCの場合
-
-- OS: Ubuntu 22.04
-- CPU: 第13世代 Intel Core i7（8コア）以上（推奨）
-- GPU: 上記CPUに内蔵のGPU
-- メモリ: 16GB以上
-- SSD: 60GB以上
-- 制限：CameraとLiDARのセンサーシミュレーションは動作しません。
-
-## GPU未搭載PCの場合
-
-- OS: Ubuntu 22.04
-- CPU: Intel Core i5（4コア）以上（推奨）
+- CPU:
+    - 第11世代 Intel Core i5（8コア）以上（最低）
+    - 第13世代 Intel Core i7（8コア）以上（推奨）
+- GPU:
+    - NVIDIA GPU搭載の場合
+        - GTX 1650以上 （最低）
+        - RTX 3060以上 （推奨）
+    - Intel内蔵GPUのみ搭載の場合
+        - Iris Xe Graphics以上
+    - GPU未搭載の場合
+        - なし
 - メモリ:
-    - 8GB以上（最低）
-    - 16GB以上（推奨）
+    - 4GB以上（最低）
+    - 8GB以上（推奨）
 - SSD: 60GB以上
-- 制限：センサーシミュレーションは動作しません。AWSIMは描画なしのヘッドレスモードとなります。公式としては非サポート環境です。
+
+End to End AI 部門において機械学習を行う場合には、更に以下の性能のNVIDIA GPUを推奨いたします。
+
+- VRAM 4GB以上（例：GTX 1650、RTX 3050など）（最低）
+- VRAM 8GB以上（例：RTX 3060、RTX 4060など）（推奨）
+
+## 環境の確認方法
+
+ご自身の環境で実行できるかどうかを確認するには、[環境構築の流れ](./introduction.ja.md) の手順に沿って実際にお試しください。
