@@ -242,7 +242,7 @@ make down
 
 以上で環境構築と動作確認が終了しました。
 
-- AWSIMが起動しなかったり描画に問題がある場合は、GPUの設定を確認してください。
-    - [GPUの設定](./gpu-simulation.ja.md)
+- AWSIMが起動しなかったり描画に問題がある場合は、GPUの設定を確認してください。また、AI 部門に参加する場合はCamera/LiDARを有効にする必要があります。下記ページの手順をご確認ください。
+    - [GPUの設定・動作設定](./gpu-simulation.ja.md)
 - 早速開発に取り掛かりたい方は、開発の進め方を確認してください。
     - [開発の進め方](../development/development-guide.ja.md)

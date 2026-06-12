@@ -12,6 +12,9 @@
     },
     {
       "pattern": "^#env-check$"
+    },
+    {
+      "pattern": "^#camera-lidar$"
     }
   ]
 }
