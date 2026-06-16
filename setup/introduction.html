@@ -804,6 +804,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        うまくいかない場合
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2336,6 +2347,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        うまくいかない場合
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2604,14 +2626,13 @@ To<span class="w"> </span>stop:<span class="w"> </span>make<span class="w"> </sp
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart
 make<span class="w"> </span>down
 </code></pre></div>
-<p>以上で環境構築と動作確認が終了しました。</p>
+<h2 id="_3">うまくいかない場合</h2>
 <ul>
-<li>AWSIMが起動しなかったり描画に問題がある場合は、GPUの設定を確認してください。また、AI 部門に参加する場合はCamera/LiDARを有効にする必要があります。下記ページの手順をご確認ください。<ul>
-<li><a href="gpu-simulation.html">GPUの設定・動作設定</a></li>
-</ul>
-</li>
-<li>早速開発に取り掛かりたい方は、開発の進め方を確認してください。<ul>
-<li><a href="../development/development-guide.html">開発の進め方</a></li>
+<li>まずはログアウト・ログインしてから再度セットアップを試してください。Docker 関連の権限設定や各種パラメータ設定が反映されていない可能性があります</li>
+<li>ターミナルを上に遡ってエラーや警告が出ていないかを確認してください</li>
+<li><code>./setup.bash doctor</code> コマンドで環境チェックを実行できます。警告（warning）や情報（info）が表示された場合は、それぞれに示された対策をお試しください</li>
+<li>NVIDIA 関連のエラーが出ていた場合・AWSIM が起動しない場合・描画に問題がある場合は、<a href="gpu-simulation.html">GPU の設定・動作設定</a>をご確認ください<ul>
+<li>AI 部門に参加する場合は Camera/LiDAR を有効にする必要があります。同ページの手順をご確認ください</li>
 </ul>
 </li>
 </ul>
