@@ -235,7 +235,7 @@ cp /aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy /aicha
 
 ### TinyLiDARNetでのOvertake
 
-単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。[複数台走行用のAWSIM](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAYemytm9XUtONqpMeEBUAww?e=NU2sO0)を使用すれば、複数台走行データを収集・学習することができます。
+単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。[複数台走行用のAWSIM](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAXjc1xEl2O5u4PMQdmOJWXg)を使用すれば、複数台走行データを収集・学習することができます。
 
 <img src="../assets/tiny_lidar_net_awsim_multi_car.png" alt="awsim" width="50%">
 

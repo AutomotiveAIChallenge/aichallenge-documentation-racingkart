@@ -120,7 +120,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 
     1. 以下から最新の `AWSIM.zip` をダウンロードします。
 
-    [:material-launch: AWSIMのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B5M71TLlFpS6xrOE7Zfhuug){ .md-button .md-button--primary  target="_blank" }
+    [:material-launch: AWSIMのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAXjc1xEl2O5u4PMQdmOJWXg){ .md-button .md-button--primary  target="_blank" }
 
     ```bash
     mkdir -p ~/aichallenge-racingkart/aichallenge/simulator

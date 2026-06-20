@@ -35,7 +35,7 @@ git pull origin/main
 ??? note "Manual download"
     Download `AWSIM.zip` from the SimPracticeFor2026 folder on OneDrive and extract it to `aichallenge-racingkart/aichallenge/simulator`.
 
-    [:material-launch: Download AWSIM practice files](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgCivzVKr4HDSbS1BpXObYmGASNQ6uv7iVjKc6ysyBMernE){ .md-button .md-button--primary  target="_blank" }
+    [:material-launch: Download AWSIM practice files](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAXjc1xEl2O5u4PMQdmOJWXg){ .md-button .md-button--primary  target="_blank" }
 
     Note: Only practice files are provided outside of the official competition period. Competition files may differ.
 
