@@ -2955,7 +2955,7 @@ python3<span class="w"> </span>/aichallenge/ml_workspace/tiny_lidar_net/extract_
 <h3 id="_1">アクセル制御の追加</h3>
 <p>現在のdefault設定では、TinyLiDARNetはステアリング制御のみを行い、<a href="https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13">アクセルは固定値</a>で制御しています。<code>control_mode: "ai"</code>に変更し、アクセル制御もTinyLiDARNetに実施させてみましょう。</p>
 <h3 id="tinylidarnetovertake">TinyLiDARNetでのOvertake</h3>
-<p>単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。<a href="https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAYemytm9XUtONqpMeEBUAww?e=NU2sO0">複数台走行用のAWSIM</a>を使用すれば、複数台走行データを収集・学習することができます。</p>
+<p>単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。<a href="https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/IgAJY4bpq-zpRquKA3ghS1yLAXjc1xEl2O5u4PMQdmOJWXg">複数台走行用のAWSIM</a>を使用すれば、複数台走行データを収集・学習することができます。</p>
 <p><img src="../assets/tiny_lidar_net_awsim_multi_car.png" alt="awsim" width="50%"></p>
 <h3 id="rviz">Rvizの設定</h3>
 <p>sensorモジュールはBestEffortでpublishしています。Rvizのtopicの設定をReliableからBestEffortにしてください。</p>
