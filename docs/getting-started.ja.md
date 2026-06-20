@@ -4,7 +4,7 @@
 
 本大会ではUbuntu 22.04を搭載したPC一台のみで参加ができます。
 
-まずオンライン採点環境の利用を行い、その後[環境構築](./setup/requirements.ja.md)・[開発](./development/development-guide.ja.md)と進んでいきます。
+まずオンライン採点環境の利用を行い、その後環境構築・開発と進んでいきます。
 
 ??? note  "1. 自動運転AIチャレンジへの参加登録"
 
@@ -30,9 +30,9 @@
 
     2. オンライン採点環境の「Submit Code」ボタンからそのままアップロードすることで提出ができます。
 
-    [:material-launch: サンプルコードの圧縮ファイルのダウンロード](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EopMoY32mnNLhPVHWZkkow4B4aNBsc0aygEdqNPsmm_J8g){ .md-button .md-button--primary  target="_blank" }
+    [:material-launch: サンプルコードの圧縮ファイルのダウンロード](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/releases){ .md-button .md-button--primary  target="_blank" }
 
-    ![submit](./competition/images/siteImage2.png)
+    ![submit](./preliminaries/images/siteImage2.png)
 
 ??? note  "4. チームのアイコンを設定する"
     チームのアイコンの設定をお願いいたします。アイコンの作成においては、ChatGPTなどの生成AIを活用するのも効果的です。
@@ -53,14 +53,14 @@
 
     環境構築が完了したら、実際に自動運転ソフトウェアを改良してみましょう。
 
-    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/development-guide.ja.md){ .md-button .md-button--primary }
+    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/workspace-usage.ja.md){ .md-button .md-button--primary }
 
 ??? note  "7. 開発したコードを提出"
 
     完成したコードの提出は[オンライン採点環境](https://aichallenge-board.jsae.or.jp/live)から行います。
     下記リンクより再度提出してみましょう。
 
-    [:material-launch: ソースコードの提出](./competition/submission.ja.md){ .md-button .md-button--primary}
+    [:material-launch: ソースコードの提出](./preliminaries/submission.ja.md){ .md-button .md-button--primary}
 
 ??? note  "8. 提出したコードがうまく動かないとき"
 
