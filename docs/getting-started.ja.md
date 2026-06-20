@@ -32,7 +32,9 @@
 
     [:material-launch: サンプルコードの圧縮ファイルのダウンロード](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/releases){ .md-button .md-button--primary  target="_blank" }
 
-    ![submit](./preliminaries/images/siteImage2.png)
+    ![submit](./competition/images/siteImage2.png)
+
+    ![submit](./competition/images/submit.png)
 
 ??? note  "4. チームのアイコンを設定する"
     チームのアイコンの設定をお願いいたします。アイコンの作成においては、ChatGPTなどの生成AIを活用するのも効果的です。
