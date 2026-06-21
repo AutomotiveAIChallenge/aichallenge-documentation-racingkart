@@ -4,6 +4,11 @@
 
     - sample nodeが使用する入出力形式を知って、自分自身でML plannerのnodeを作成したい方
     - sample nodeの入力画像データはどういうものか、出力する軌道データはどういうものか知って勉強したい方
+    - 2025年度大会で構造を完璧にマスターした方
+
+!!! warning "未対応項目"
+    - 複数台のros domain id 対応
+    - 2026年度のアーキテクチャとの結合
 
 このページでは、Sampleとして提供している[VLM Planner](https://github.com/AutomotiveAIChallenge/e2e-utils-beta/tree/main/src/vlm_planner)の構成について解説します。これを参考に、自分自身で作成したplannerをautowareに結合してみてください。
 
