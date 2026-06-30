@@ -62,7 +62,7 @@
     完成したコードの提出は[オンライン採点環境](https://aichallenge-board.jsae.or.jp/live)から行います。
     下記リンクより再度提出してみましょう。
 
-    [:material-launch: ソースコードの提出](./preliminaries/submission.ja.md){ .md-button .md-button--primary}
+    [:material-launch: ソースコードの提出](./competition/submission.ja.md){ .md-button .md-button--primary}
 
 ??? note  "8. 提出したコードがうまく動かないとき"
 
