@@ -9,7 +9,30 @@
 | 0          | AWSIM（シミュレータ） |
 | 1〜4       | 各車両 |
 
-`domain_bridge`ノードがドメイン間のトピックを橋渡しし、シミュレータと各車両間の通信を実現しています。通常の開発（単一車両）では、ドメインIDを意識する必要はありません。
+AWSIMは各車両のドメイン（1〜4）に直接接続し、それぞれのドメインでセンサデータや車両ステータスをPublishし、制御コマンドをSubscribeします。これによりシミュレータと各車両間の通信を実現しています。通常の開発（単一車両）では、ドメインIDを意識する必要はありません。
+
+## AWSIMとAutoware間の主要トピック通信
+
+以下のシーケンス図は、AWSIMとAutoware間のトピック通信の流れを示しています。AWSIMは各車両のドメイン（Domain N）に直接接続し、Autoware側のトピック名でセンサデータ・ステータスをPublish、制御コマンドをSubscribeします。
+
+```mermaid
+sequenceDiagram
+    participant AWSIM as AWSIM
+    participant Autoware as Autoware<br/>(Domain N)
+
+    Note over AWSIM,Autoware: センサデータ（AWSIM → Autoware）
+    AWSIM->>Autoware: /sensing/gnss/nav_sat_fix
+    AWSIM->>Autoware: /sensing/imu/imu_raw
+    AWSIM->>Autoware: /sensing/lidar/scan
+
+    Note over AWSIM,Autoware: 制御コマンド（AWSIM ← Autoware）
+    Autoware->>AWSIM: /control/command/control_cmd
+
+    Note over AWSIM,Autoware: AWSIMステータス・コマンド
+    AWSIM->>Autoware: /awsim/status
+    AWSIM->>Autoware: /awsim/state
+    Autoware->>AWSIM: /awsim/cmd
+```
 
 ## トピック一覧
 
@@ -17,7 +40,6 @@
 
 | Interface    | Name                                 | Type                                                     |
 | ------------ | ------------------------------------ | -------------------------------------------------------- |
-| Service      | `/control/control_mode_request`      | `autoware_auto_vehicle_msgs/srv/ControlModeCommand`      |
 | Publisher    | `/vehicle/status/control_mode`       | `autoware_auto_vehicle_msgs/msg/ControlModeReport`       |
 | Subscription | `/control/command/control_cmd`       | `autoware_auto_control_msgs/msg/AckermannControlCommand` |
 | Subscription | `/control/command/actuation_cmd`     | `tier4_vehicle_msgs/msg/ActuationCommandStamped`         |
@@ -39,12 +61,14 @@
 
 ### シミュレーション管理
 
-各車両ドメイン（N=1〜4）で `/d{N}/awsim/status` 等としてPublishされ、`domain_bridge`によりAutoware側のトピック名に橋渡しされます。
+AWSIMが各車両のドメイン（N=1〜4）で直接やり取りするトピックです。
 
-| Interface    | Name                       | Type                             |
-| ------------ | -------------------------- | -------------------------------- |
-| Publisher    | `/awsim/status`            | `std_msgs/msg/Float32MultiArray` |
-| Publisher    | `/awsim/state`             | `std_msgs/msg/String`            |
+| Interface    | Name                                | Type                             |
+| ------------ | ----------------------------------- | -------------------------------- |
+| Publisher    | `/awsim/status`                     | `std_msgs/msg/Float32MultiArray` |
+| Publisher    | `/awsim/state`                      | `std_msgs/msg/String`            |
+| Subscription | `/awsim/control_mode_request_topic` | `std_msgs/msg/Bool`              |
+| Subscription | `/awsim/cmd`                        | `std_msgs/msg/Float32MultiArray` |
 
 ### 管理トピック（ドメイン0）
 
@@ -56,45 +80,6 @@ AWSIMの全体管理に使用されるトピックです。通常の開発では
 | Subscription | `/admin/awsim/start`       | `std_msgs/msg/Bool`              |
 | Subscription | `/admin/awsim/reset`       | `std_msgs/msg/Empty`             |
 
-### グラウンドトゥルース（真値データ）
-
-シミュレータが持つ正確な位置・姿勢などの真値データです。デバッグや検証に利用できますが、提出コードでは使用できません。
-
-| Interface | Name                                              | Type                                          |
-| --------- | ------------------------------------------------- | --------------------------------------------- |
-| Publisher | `/awsim/ground_truth/localization/kinematic_state` | `nav_msgs/msg/Odometry`                       |
-| Publisher | `/awsim/ground_truth/vehicle/pose`                 | `geometry_msgs/msg/PoseStamped`               |
-| Publisher | `/awsim/ground_truth/on_collision`                 | `std_msgs/msg/Bool`                           |
-
-## トピックのドメイン橋渡し
-
-以下のシーケンス図は、AWSIMとAutoware間のトピック通信の流れを示しています。
-
-```mermaid
-sequenceDiagram
-    participant AWSIM as AWSIM<br/>(Domain 0)
-    participant Bridge as domain_bridge
-    participant Autoware as Autoware<br/>(Domain N)
-
-    Note over AWSIM,Autoware: センサデータ（AWSIM → Autoware）
-    AWSIM->>Bridge: /d{N}/sensing/gnss/nav_sat_fix
-    Bridge->>Autoware: /sensing/gnss/nav_sat_fix
-    AWSIM->>Bridge: /d{N}/sensing/imu/imu_raw
-    Bridge->>Autoware: /sensing/imu/imu_raw
-    AWSIM->>Bridge: /d{N}/sensing/lidar/scan
-    Bridge->>Autoware: /sensing/lidar/scan
-
-    Note over AWSIM,Autoware: 制御コマンド（Autoware → AWSIM）
-    Autoware->>Bridge: /control/command/control_cmd
-    Bridge->>AWSIM: /d{N}/awsim/control_cmd
-
-    Note over AWSIM,Autoware: ステータス（AWSIM → Autoware）
-    AWSIM->>Bridge: /d{N}/awsim/status
-    Bridge->>Autoware: /awsim/status
-    AWSIM->>Bridge: /d{N}/awsim/state
-    Bridge->>Autoware: /awsim/state
-```
-
 ## トピック詳細
 
 各トピックのメッセージフィールドの詳細です。
@@ -102,7 +87,7 @@ sequenceDiagram
 - **制御コマンド**: [`control_cmd`](#controlcommandcontrol_cmd) / [`actuation_cmd`](#controlcommandactuation_cmd)
 - **車両ステータス**: [`actuation_status`](#vehiclestatusactuation_status) / [`velocity_status`](#vehiclestatusvelocity_status) / [`steering_status`](#vehiclestatussteering_status) / [`gear_status`](#vehiclestatusgear_status)
 - **センサ**: [`gnss`](#sensinggnssnav_sat_fix) / [`imu`](#sensingimuimu_raw) / [`lidar`](#sensinglidarscan) / [`camera`](#sensingcameraimage_raw)
-- **シミュレーション**: [`awsim/status`](#awsimstatus) / [`awsim/state`](#awsimstate) / [`admin/awsim/state`](#adminawsimstate)
+- **シミュレーション**: [`awsim/status`](#awsimstatus) / [`awsim/state`](#awsimstate) / [`awsim/cmd`](#awsimcmd) / [`admin/awsim/state`](#adminawsimstate)
 
 ### `/control/command/control_cmd`
 
@@ -119,6 +104,8 @@ sequenceDiagram
 
 ### `/control/command/actuation_cmd`
 
+AWSIM環境ではAWSIMが `/control/command/control_cmd` を直接受信するため未使用です。実車では `raw_vehicle_cmd_converter` ノードが自動的に `/control/command/control_cmd` を `/control/command/actuation_cmd` に変換します
+
 | Name                  | Description                 |
 | --------------------- | --------------------------- |
 | header.stamp          | メッセージの送信時刻        |
@@ -128,6 +115,8 @@ sequenceDiagram
 | actuation.steer_cmd   | タイヤ角指示値 (rad)        |
 
 ### `/vehicle/status/actuation_status`
+
+実車のみで使用されるステータスです。AWSIM環境ではpublishされません。実車では `raw_vehicle_cmd_converter` ノードがアクチュエータの現在値として入力に使用します
 
 | Name                  | Description                 |
 | --------------------- | --------------------------- |
@@ -159,7 +148,7 @@ sequenceDiagram
 | Name    | Description          |
 | ------- | -------------------- |
 | stamp   | メッセージの送信時刻 |
-| command | ギアの種類           |
+| command | ギアの種類 (1: NEUTRAL、2: DRIVE、20: REVERSE) |
 
 ### `/vehicle/status/gear_status`
 
@@ -257,6 +246,14 @@ GNSSセンサからの測位情報です。`racing_kart_gnss_poser`ノードがN
 | Ready      | 車両の準備が完了した                 |
 | Start      | 走行開始                             |
 | Finish     | 走行終了（規定周回数に到達）         |
+
+### `/awsim/cmd`
+
+AWSIMへコマンドを送るトピックです。`Float32MultiArray`型で、以下のフィールドを持ちます。
+
+| インデックス | 値           | 説明                                                 |
+| ------------ | ------------ | ---------------------------------------------------- |
+| 0            | boostCommand | `1.0`以上に立ち上げるとターボブーストを発動。再発動するためには、一度`0.0`にしてから再度`1.0`に立ち上げてください。 |
 
 ### `/admin/awsim/state`
 
