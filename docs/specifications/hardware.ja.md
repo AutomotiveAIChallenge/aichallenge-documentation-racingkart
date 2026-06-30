@@ -23,4 +23,4 @@
 | --- | --- |
 | CPU | 16 vCPU Intel Xeon Scalable (Cascade Lake) |
 | Mem | 64 GB |
-| 備考 | Autoware用には3 vCPUが割り当てられます |
+| 備考 | Autoware用には3 vCPUと12 GiBが割り当てられます |
