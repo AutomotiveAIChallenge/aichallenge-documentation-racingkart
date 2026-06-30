@@ -1318,10 +1318,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pc" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        推奨PC構成
+        センサ構成
       
     </span>
   </a>
@@ -1329,10 +1329,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#pc-pc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        センサ構成
+        PC構成 (車両搭載PC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pc-sim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC構成 (SIM予選環境)
       
     </span>
   </a>
@@ -2315,10 +2326,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pc" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        推奨PC構成
+        センサ構成
       
     </span>
   </a>
@@ -2326,10 +2337,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#pc-pc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        センサ構成
+        PC構成 (車両搭載PC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pc-sim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC構成 (SIM予選環境)
       
     </span>
   </a>
@@ -2405,33 +2427,6 @@
 
 
 <h1 id="_1">ハードウェア</h1>
-<div class="admonition note">
-<p class="admonition-title">シミュレーション環境</p>
-<p>本大会の予選ではシミュレータ（AWSIM）上の仮想センサを使用します。以下のスペックは、シミュレーションを快適に実行するためのPC構成と、シミュレータ上に再現されたセンサの仕様です。</p>
-</div>
-<h2 id="pc">推奨PC構成</h2>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>スペック</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU</td>
-<td>Intel Core i9-11900H</td>
-</tr>
-<tr>
-<td>Mem</td>
-<td>16 GB</td>
-</tr>
-<tr>
-<td>SSD</td>
-<td>512 GB</td>
-</tr>
-</tbody>
-</table>
 <h2 id="_2">センサ構成</h2>
 <table>
 <thead>
@@ -2451,6 +2446,53 @@
 <td>IMU</td>
 <td>ICM-20948</td>
 <td>加速度・角速度の計測（車両の姿勢や回転の検出）</td>
+</tr>
+</tbody>
+</table>
+<p>予選では AWSIM 上の仮想センサとして再現されます。</p>
+<h2 id="pc-pc">PC構成 (車両搭載PC)</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>スペック</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>Intel Core i9-11900H</td>
+</tr>
+<tr>
+<td>Mem</td>
+<td>32 GB</td>
+</tr>
+<tr>
+<td>備考</td>
+<td>車両制御ソフトウェアも同じECU上で動きます</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pc-sim">PC構成 (SIM予選環境)</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>スペック</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>16 vCPU Intel Xeon Scalable (Cascade Lake)</td>
+</tr>
+<tr>
+<td>Mem</td>
+<td>64 GB</td>
+</tr>
+<tr>
+<td>備考</td>
+<td>Autoware用には3 vCPUと12 GiBが割り当てられます</td>
 </tr>
 </tbody>
 </table>

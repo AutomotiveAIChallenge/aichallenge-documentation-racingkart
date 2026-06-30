@@ -2474,13 +2474,15 @@
 <p>まず <a href="introduction.html">環境構築の流れ</a> に沿ってセットアップを進めてください。AWSIMの描画やGPUの設定に問題が生じた場合は、本ページを参照してください。
 また、Camera/LiDARはデフォルト無効です。AI 部門に参加する場合は<a href="#camera-lidar">Camera/LiDAR設定の切り替え</a>の手順を参考にして設定してください。</p>
 <h2 id="env-check">.envの確認</h2>
-<p><code>~/aichallenge-racingkart/.env</code> を確認して、以下の設定になっていることを確認します。本設定は <code>setup.bash</code> で自動的に行われます。<code>setup.bash</code> が <code>/dev/nvidia0</code> を検出した場合、<code>.env</code> の <code>COMPOSE_FILE</code> に <code>docker-compose.gpu.yml</code> が自動で追加されます。</p>
+<p><code>~/aichallenge-racingkart/.env</code> を確認して、以下の設定になっていることを確認します。本設定は <code>setup.bash</code> で自動的に行われます。<code>setup.bash</code> が <code>/dev/nvidia0</code> を検出した場合、<code>.env</code> の <code>COMPOSE_FILE</code> が自動的に設定されます。</p>
 <p>もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから <code>.env</code> を更新してください。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># NVIDIA GPU 利用時（docker-compose.gpu.yml を有効にする）</span>
-<span class="nv">COMPOSE_FILE</span><span class="o">=</span>docker-compose.yml:docker-compose.gpu.yml
+<div class="highlight"><pre><span></span><code><span class="c1"># ご自身の環境に合う行を有効にして、他の行はコメントアウトしてください</span>
 
-<span class="c1"># Intel 内蔵 GPU のみの場合・GPU未搭載の場合（上記行はコメントアウトのまま）</span>
-<span class="c1"># COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml</span>
+<span class="c1"># Intel 内蔵 GPU のみの場合・GPU未搭載の場合</span>
+<span class="nv">COMPOSE_FILE</span><span class="o">=</span>docker-compose.yml
+
+<span class="c1"># NVIDIA GPU 利用時</span>
+<span class="c1"># COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml:docker-compose.sound.yml</span>
 </code></pre></div>
 <h2 id="gpu_1">GPUドライバなどのインストール</h2>
 <p><strong>全環境共通（NVIDIA GPU・Intel 内蔵 GPU）：</strong></p>

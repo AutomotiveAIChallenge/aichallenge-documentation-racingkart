@@ -1301,6 +1301,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#awsimautoware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWSIMとAutoware間の主要トピック通信
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1356,35 +1367,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        グラウンドトゥルース（真値データ）
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        トピックのドメイン橋渡し
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         トピック詳細
@@ -1543,6 +1532,17 @@
     <span class="md-ellipsis">
       
         /awsim/state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#awsimcmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /awsim/cmd
       
     </span>
   </a>
@@ -2580,6 +2580,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#awsimautoware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWSIMとAutoware間の主要トピック通信
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2635,35 +2646,13 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        グラウンドトゥルース（真値データ）
-      
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        トピックのドメイン橋渡し
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         トピック詳細
@@ -2829,6 +2818,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#awsimcmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /awsim/cmd
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#adminawsimstate" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2933,7 +2933,25 @@
 </tr>
 </tbody>
 </table>
-<p><code>domain_bridge</code>ノードがドメイン間のトピックを橋渡しし、シミュレータと各車両間の通信を実現しています。通常の開発（単一車両）では、ドメインIDを意識する必要はありません。</p>
+<p>AWSIMは各車両のドメイン（1〜4）に直接接続し、それぞれのドメインでセンサデータや車両ステータスをPublishし、制御コマンドをSubscribeします。これによりシミュレータと各車両間の通信を実現しています。通常の開発（単一車両）では、ドメインIDを意識する必要はありません。</p>
+<h2 id="awsimautoware">AWSIMとAutoware間の主要トピック通信</h2>
+<p>以下のシーケンス図は、AWSIMとAutoware間のトピック通信の流れを示しています。AWSIMは各車両のドメイン（Domain N）に直接接続し、Autoware側のトピック名でセンサデータ・ステータスをPublish、制御コマンドをSubscribeします。</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant AWSIM as AWSIM
+    participant Autoware as Autoware&lt;br/&gt;(Domain N)
+
+    Note over AWSIM,Autoware: センサデータ（AWSIM → Autoware）
+    AWSIM-&gt;&gt;Autoware: /sensing/gnss/nav_sat_fix
+    AWSIM-&gt;&gt;Autoware: /sensing/imu/imu_raw
+    AWSIM-&gt;&gt;Autoware: /sensing/lidar/scan
+
+    Note over AWSIM,Autoware: 制御コマンド（AWSIM ← Autoware）
+    Autoware-&gt;&gt;AWSIM: /control/command/control_cmd
+
+    Note over AWSIM,Autoware: AWSIMステータス・コマンド
+    AWSIM-&gt;&gt;Autoware: /awsim/status
+    AWSIM-&gt;&gt;Autoware: /awsim/state
+    Autoware-&gt;&gt;AWSIM: /awsim/cmd</code></pre>
 <h2 id="_2">トピック一覧</h2>
 <h3 id="_3">車両インターフェース</h3>
 <table>
@@ -2945,11 +2963,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Service</td>
-<td><code>/control/control_mode_request</code></td>
-<td><code>autoware_auto_vehicle_msgs/srv/ControlModeCommand</code></td>
-</tr>
 <tr>
 <td>Publisher</td>
 <td><code>/vehicle/status/control_mode</code></td>
@@ -3030,7 +3043,7 @@
 </tbody>
 </table>
 <h3 id="_5">シミュレーション管理</h3>
-<p>各車両ドメイン（N=1〜4）で <code>/d{N}/awsim/status</code> 等としてPublishされ、<code>domain_bridge</code>によりAutoware側のトピック名に橋渡しされます。</p>
+<p>AWSIMが各車両のドメイン（N=1〜4）で直接やり取りするトピックです。</p>
 <table>
 <thead>
 <tr>
@@ -3049,6 +3062,16 @@
 <td>Publisher</td>
 <td><code>/awsim/state</code></td>
 <td><code>std_msgs/msg/String</code></td>
+</tr>
+<tr>
+<td>Subscription</td>
+<td><code>/awsim/control_mode_request_topic</code></td>
+<td><code>std_msgs/msg/Bool</code></td>
+</tr>
+<tr>
+<td>Subscription</td>
+<td><code>/awsim/cmd</code></td>
+<td><code>std_msgs/msg/Float32MultiArray</code></td>
 </tr>
 </tbody>
 </table>
@@ -3080,65 +3103,13 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_6">グラウンドトゥルース（真値データ）</h3>
-<p>シミュレータが持つ正確な位置・姿勢などの真値データです。デバッグや検証に利用できますが、提出コードでは使用できません。</p>
-<table>
-<thead>
-<tr>
-<th>Interface</th>
-<th>Name</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Publisher</td>
-<td><code>/awsim/ground_truth/localization/kinematic_state</code></td>
-<td><code>nav_msgs/msg/Odometry</code></td>
-</tr>
-<tr>
-<td>Publisher</td>
-<td><code>/awsim/ground_truth/vehicle/pose</code></td>
-<td><code>geometry_msgs/msg/PoseStamped</code></td>
-</tr>
-<tr>
-<td>Publisher</td>
-<td><code>/awsim/ground_truth/on_collision</code></td>
-<td><code>std_msgs/msg/Bool</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="_7">トピックのドメイン橋渡し</h2>
-<p>以下のシーケンス図は、AWSIMとAutoware間のトピック通信の流れを示しています。</p>
-<pre class="mermaid"><code>sequenceDiagram
-    participant AWSIM as AWSIM&lt;br/&gt;(Domain 0)
-    participant Bridge as domain_bridge
-    participant Autoware as Autoware&lt;br/&gt;(Domain N)
-
-    Note over AWSIM,Autoware: センサデータ（AWSIM → Autoware）
-    AWSIM-&gt;&gt;Bridge: /d{N}/sensing/gnss/nav_sat_fix
-    Bridge-&gt;&gt;Autoware: /sensing/gnss/nav_sat_fix
-    AWSIM-&gt;&gt;Bridge: /d{N}/sensing/imu/imu_raw
-    Bridge-&gt;&gt;Autoware: /sensing/imu/imu_raw
-    AWSIM-&gt;&gt;Bridge: /d{N}/sensing/lidar/scan
-    Bridge-&gt;&gt;Autoware: /sensing/lidar/scan
-
-    Note over AWSIM,Autoware: 制御コマンド（Autoware → AWSIM）
-    Autoware-&gt;&gt;Bridge: /control/command/control_cmd
-    Bridge-&gt;&gt;AWSIM: /d{N}/awsim/control_cmd
-
-    Note over AWSIM,Autoware: ステータス（AWSIM → Autoware）
-    AWSIM-&gt;&gt;Bridge: /d{N}/awsim/status
-    Bridge-&gt;&gt;Autoware: /awsim/status
-    AWSIM-&gt;&gt;Bridge: /d{N}/awsim/state
-    Bridge-&gt;&gt;Autoware: /awsim/state</code></pre>
-<h2 id="_8">トピック詳細</h2>
+<h2 id="_6">トピック詳細</h2>
 <p>各トピックのメッセージフィールドの詳細です。</p>
 <ul>
 <li><strong>制御コマンド</strong>: <a href="#controlcommandcontrol_cmd"><code>control_cmd</code></a> / <a href="#controlcommandactuation_cmd"><code>actuation_cmd</code></a></li>
 <li><strong>車両ステータス</strong>: <a href="#vehiclestatusactuation_status"><code>actuation_status</code></a> / <a href="#vehiclestatusvelocity_status"><code>velocity_status</code></a> / <a href="#vehiclestatussteering_status"><code>steering_status</code></a> / <a href="#vehiclestatusgear_status"><code>gear_status</code></a></li>
 <li><strong>センサ</strong>: <a href="#sensinggnssnav_sat_fix"><code>gnss</code></a> / <a href="#sensingimuimu_raw"><code>imu</code></a> / <a href="#sensinglidarscan"><code>lidar</code></a> / <a href="#sensingcameraimage_raw"><code>camera</code></a></li>
-<li><strong>シミュレーション</strong>: <a href="#awsimstatus"><code>awsim/status</code></a> / <a href="#awsimstate"><code>awsim/state</code></a> / <a href="#adminawsimstate"><code>admin/awsim/state</code></a></li>
+<li><strong>シミュレーション</strong>: <a href="#awsimstatus"><code>awsim/status</code></a> / <a href="#awsimstate"><code>awsim/state</code></a> / <a href="#awsimcmd"><code>awsim/cmd</code></a> / <a href="#adminawsimstate"><code>admin/awsim/state</code></a></li>
 </ul>
 <h3 id="controlcommandcontrol_cmd"><code>/control/command/control_cmd</code></h3>
 <table>
@@ -3184,6 +3155,7 @@
 </tbody>
 </table>
 <h3 id="controlcommandactuation_cmd"><code>/control/command/actuation_cmd</code></h3>
+<p>AWSIM環境ではAWSIMが <code>/control/command/control_cmd</code> を直接受信するため未使用です。実車では <code>raw_vehicle_cmd_converter</code> ノードが自動的に <code>/control/command/control_cmd</code> を <code>/control/command/actuation_cmd</code> に変換します</p>
 <table>
 <thead>
 <tr>
@@ -3215,6 +3187,7 @@
 </tbody>
 </table>
 <h3 id="vehiclestatusactuation_status"><code>/vehicle/status/actuation_status</code></h3>
+<p>実車のみで使用されるステータスです。AWSIM環境ではpublishされません。実車では <code>raw_vehicle_cmd_converter</code> ノードがアクチュエータの現在値として入力に使用します</p>
 <table>
 <thead>
 <tr>
@@ -3310,7 +3283,7 @@
 </tr>
 <tr>
 <td>command</td>
-<td>ギアの種類</td>
+<td>ギアの種類 (1: NEUTRAL、2: DRIVE、20: REVERSE)</td>
 </tr>
 </tbody>
 </table>
@@ -3593,6 +3566,24 @@
 <tr>
 <td>Finish</td>
 <td>走行終了（規定周回数に到達）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="awsimcmd"><code>/awsim/cmd</code></h3>
+<p>AWSIMへコマンドを送るトピックです。<code>Float32MultiArray</code>型で、以下のフィールドを持ちます。</p>
+<table>
+<thead>
+<tr>
+<th>インデックス</th>
+<th>値</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>boostCommand</td>
+<td><code>1.0</code>以上に立ち上げるとターボブーストを発動。再発動するためには、一度<code>0.0</code>にしてから再度<code>1.0</code>に立ち上げてください。</td>
 </tr>
 </tbody>
 </table>

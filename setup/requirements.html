@@ -769,7 +769,7 @@
   <a href="#pc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PCスペック
+        PCスペック (目安)
       
     </span>
   </a>
@@ -2340,7 +2340,7 @@
   <a href="#pc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PCスペック
+        PCスペック (目安)
       
     </span>
   </a>
@@ -2433,6 +2433,7 @@
 <p class="admonition-title">Warning</p>
 <p>Windows環境しかお持ちでない方は、Ubuntu 22.04のインストールをお願いいたします。Windows環境と同じディスクにUbuntu環境を入れることもできますが、不慣れな場合Windows環境を破壊してしまう可能性があるため、新しく外付けまたは内蔵SSDを購入したうえでそちらへのインストールをすることを強くお勧めします。</p>
 <p>Ubuntu 24.04でも動作する可能性はありますが、公式としては非サポートです。</p>
+<p>WSLでもヘッドレスモード（シミュレータ画面表示無し）で動かすことが出来ますが、公式としては非サポートです。</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2468,9 +2469,9 @@
 <ul>
 <li><strong>NVIDIA GPU搭載</strong>：GPUアクセラレーションを利用してAWSIMとAutowareを実行できます。End to End AI 部門の場合は本環境が必要です。</li>
 <li><strong>Intel 内蔵 GPUのみ搭載</strong>：AWSIMは起動しますが、Camera/LiDARセンサーは使用できません。Sim to Real SW 部門の場合は本環境があれば十分です。</li>
-<li><strong>GPU未搭載</strong>：AWSIMを起動することができません。rviz上で最低限の動作確認はできます。</li>
+<li><strong>GPU未搭載</strong>：AWSIM画面が非表示となるヘッドレスモードで動かすことは可能です。rviz上で最低限の動作確認はできます。</li>
 </ul>
-<h2 id="pc">PCスペック</h2>
+<h2 id="pc">PCスペック (目安)</h2>
 <ul>
 <li>OS: Ubuntu 22.04</li>
 <li>CPU:<ul>
@@ -2507,7 +2508,14 @@
 <li>VRAM 8GB以上（例：RTX 3060、RTX 4060など）（推奨）</li>
 </ul>
 <h2 id="_2">環境の確認方法</h2>
-<p>ご自身の環境で実行できるかどうかを確認するには、<a href="introduction.html">環境構築の流れ</a> の手順に沿って実際にお試しください。</p>
+<ul>
+<li>上記スペックは目安です。ご自身の環境で実行できるかどうかを確認するには、<a href="introduction.html">環境構築の流れ</a> の手順に沿って実際にお試しください。</li>
+<li>各処理が期待通りの速度で動いていることをご確認ください。<ul>
+<li>AWSIMが30FPS以上（画面右上のFPS表示を確認）</li>
+<li><code>/control/command/control_cmd</code> トピックの周波数が約 40 Hz (制御アルゴリズムがMPCの場合（デフォルト設定）。制御アルゴリズムがSimplePurePursuitの場合は約100 Hz)</li>
+</ul>
+</li>
+</ul>
 
 
 

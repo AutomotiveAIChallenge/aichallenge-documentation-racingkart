@@ -1220,6 +1220,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        オンライン環境のページ概要
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2380,6 +2391,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        オンライン環境のページ概要
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2451,7 +2473,6 @@
 <h1 id="sw">SW部門 提出手順</h1>
 <h2 id="_1">オンライン環境</h2>
 <p>Sim to Real SW部門 SIM予選では、シミュレーターと自動採点機能を備えたオンライン環境を使用して採点が行われます。以下の手順に従って、作成したパッケージ群をオンライン環境にアップロードしてください。アップロード後、シミュレーションが自動で開始され、結果が表示されます。</p>
-<p>※本ページのスクリーンショットは2025のものです</p>
 <h2 id="_2">提出手順</h2>
 <p>オンライン環境への提出は以下の手順で行います。</p>
 <ol>
@@ -2464,7 +2485,7 @@
 </li>
 <li>
 <p>ローカル評価環境での動作確認</p>
-<p>詳細は<a href="../development/development-guide.html#ローカル評価の手順">開発の進め方 — ローカル評価の手順</a>を参照してください。</p>
+<p>詳細は<a href="../development/development-guide.html#local-evaluation">開発の進め方 — ローカル評価の手順</a>を参照してください。</p>
 </li>
 <li>
 <p>オンライン採点環境への提出</p>
@@ -2472,20 +2493,21 @@
 <img src="./images/topImage.png" width="100%"></p>
 <p>右上の「Login」 ボタンからログインします。
 <img src="./images/siteImage1.png" width="100%"></p>
-<p>ログインが完了したら「Submit Code」ボタンから<code>aichallenge_submit.tar.gz</code>をアップロードしてください。アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。
+<p>ログインが完了したら「Submit Code」ボタンでアップロードを行います。
 <img src="./images/siteImage2.png" width="100%"></p>
-<p>正常に終了した場合、「Success」と表示されます。
-ビルドに失敗したり、launchに失敗した等でスコアが出力されていない場合は「Failed」と表示されます。この場合、サーバーサイドでの内部エラーの可能性があるため、再アップロードをお願いします。問題が続く場合はslackでお問い合わせください。</p>
-<p><img src="./images/siteImage3.png" width="100%"></p>
+<p>アップロード画面では、アップロードする<code>aichallenge_submit.tar.gz</code> を選択します。任意でコメントを記載出来ます。また、対戦相手のレートの範囲を変更することが出来ます。デフォルトはランクが1つ上のチームと対戦します。範囲を広げることで、より上位ランクのチームと対戦する可能性がありますが、勝利したときのレートの上がり幅が大きくなります。戦略を練って設定しましょう。
+<img src="./images/siteImage3.png" width="100%"></p>
 </li>
 </ol>
 <h2 id="_3">結果の確認手順</h2>
 <ul>
-<li>オンライン環境での走行が終わると、最新の順位を確認できます。</li>
+<li>アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。画面下部の「Your Submissions」で、今回提出したソースコードのSTATUSを確認できます。正常に処理が進むと、Queued → Building → Running → Successとなります。全ての処理が完了するまで、30分程度かかります。万が一ビルドに失敗したり、launchに失敗した場合は「Failed」と表示されます。ログや提出物をご確認ください。</li>
+<li>オンライン環境での走行が終わると、Activity Timelineや動画で結果を確認出来ます。試合結果によって、レートが増減します。</li>
 <li>
-<p>ラップタイムやログなどの走行時の詳細データを提出履歴の右端のボタンから確認することができます。</p>
+<p>ページ下部の「Your Submissions」の右側のアイコンクリックによって、ラップタイムやログなどの走行時の詳細データを確認・取得できます。</p>
 <ul>
-<li><code>result-summary.json</code>、rosbag、<code>autoware.log</code>を確認することができます。</li>
+<li><code>result-summary.json</code>、rosbag、<code>autoware.log</code>を確認することができます</li>
+<li>画面右上の「Copy Public Link」によってSNSでの共有用リンクを取得できます</li>
 </ul>
 <p><img src="./images/siteImage4.png" width="100%"></p>
 <p><img src="./images/siteImage5.png" width="100%"></p>
@@ -2502,12 +2524,7 @@
 <li>
 <p>dockerの確認</p>
 <ul>
-<li>
-<p>以下のコマンドでDocker内を確認し、必要なディレクトリに正しくインストール・ビルドされているか確認してください。</p>
-</li>
-<li>
-<p><code>docker run -it aichallenge-racingkart-eval:latest /bin/bash</code></p>
-</li>
+<li><code>make eval</code>実行中に、<code>make autoware-attach</code>でコンテナに入れます</li>
 </ul>
 </li>
 <li>
@@ -2518,6 +2535,54 @@
 </ul>
 </li>
 </ul>
+<h2 id="_4">オンライン環境のページ概要</h2>
+<ul>
+<li>「Overview」ページ（ログイン後のみ）<ul>
+<li>自チームのランク情報や提出履歴を確認できます</li>
+</ul>
+</li>
+<li>「Live」ページ<ul>
+<li>全チーム混在のランク情報などを確認できます</li>
+</ul>
+</li>
+<li>
+<p>「Student Live」ページ</p>
+<ul>
+<li>学生クラス内のチームのランク情報などを確認できます</li>
+</ul>
+</li>
+<li>
+<p>各コンテンツの説明</p>
+<ul>
+<li>左側の動画<ul>
+<li>コード提出者（CHALLENGER、P1）が上位ランカー（P2）に勝利した試合のリプレイです</li>
+</ul>
+</li>
+<li>右側の動画<ul>
+<li>上位ランカー（防衛チーム、P2）がコード提出者（P1）に勝利した試合のリプレイです</li>
+</ul>
+</li>
+<li>Ranking Table<ul>
+<li>全チームのランクが表示されます</li>
+</ul>
+</li>
+<li>Activity Timeline<ul>
+<li>勝敗履歴が表示されます</li>
+<li>剣のアイコンはコード提出者（CHALLENGER）が勝利した試合、盾のアイコンは上位ランカー（防衛チーム）が勝利した試合です</li>
+</ul>
+</li>
+<li>Rate Transition<ul>
+<li>レート変動が表示されます</li>
+</ul>
+</li>
+<li>Submissions<ul>
+<li>コードの提出履歴が表示されます。ログの確認やROSBAGダウンロードはここで行えます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="./images/siteImage6.png" width="100%"></p>
 
 
 
