@@ -5,16 +5,18 @@
 
 ## .envの確認 { #env-check }
 
-`~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` に `docker-compose.gpu.yml` が自動で追加されます。
+`~/aichallenge-racingkart/.env` を確認して、以下の設定になっていることを確認します。本設定は `setup.bash` で自動的に行われます。`setup.bash` が `/dev/nvidia0` を検出した場合、`.env` の `COMPOSE_FILE` が自動的に設定されます。
 
 もし NVIDIA GPU を使用しているにも関わらず設定が異なる場合は、後述のNVIDIA GPU 用の設定をしてから `.env` を更新してください。
 
 ```bash
-# NVIDIA GPU 利用時（docker-compose.gpu.yml を有効にする）
-COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
+# ご自身の環境に合う行を有効にして、他の行はコメントアウトしてください
 
-# Intel 内蔵 GPU のみの場合・GPU未搭載の場合（上記行はコメントアウトのまま）
-# COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
+# Intel 内蔵 GPU のみの場合・GPU未搭載の場合
+COMPOSE_FILE=docker-compose.yml
+
+# NVIDIA GPU 利用時
+# COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml:docker-compose.sound.yml
 ```
 
 ## GPUドライバなどのインストール
