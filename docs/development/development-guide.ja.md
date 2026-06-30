@@ -109,12 +109,14 @@ output/
 | **Autowareイメージ** | `aichallenge-2025-dev` | `aichallenge-2025-eval` |
 | **ワークスペース** | `./aichallenge` をマウント | イメージに焼き込み済み |
 | **ビルド** | `make autoware-build` で即反映 | `./docker_build.sh eval` でイメージ再作成が必要 |
-| **周回数** | 600周（実質無制限） | 6周 |
-| **タイムアウト** | 実質無制限 | 600秒 |
+| **周回数** | 無制限 | 6周 |
+| **タイムアウト** | 無制限 | 600秒 |
 | **終了** | `make down` で手動終了 | 走行完了で自動終了 |
 | **結果出力** | ログのみ | スコアや走行データも出力 |
 
 開発中は `make dev` で素早く動作確認し、提出前に `make eval` で提出環境に近いローカル評価を行うのが基本的な流れです。
+
+実際の走行は複数台で行われるため `make eval` でも本番と完全に同じ走行ではありませんが、本番と同じ評価環境で実行することで、外部のソースコードへの参照や本番環境に存在しないライブラリへの依存などにより本番で動かなくなる事態を、提出前に検出することを目的としています。
 
 **`make eval` によるローカル評価フロー:**
 
@@ -141,15 +143,24 @@ sequenceDiagram
 
 ### Dockerコンテナに入ってデバッグしたい場合
 
-`make dev`で起動した状態で、以下のコマンドで起動中のAutowareコンテナに入れます。
+- デバッグするためにはROSとAutowareの実行環境が整った状態になる必要があります。そのためには、Dockerコンテナに入る必要があります。以下の2つの方法があります。
+- 方法1) 既存のAutowareコンテナにアタッチする
+    - `make autoware-attach` コマンドによって、起動中のAutowareコンテナに入れます。
+        - コマンド実行後、入りたいコンテナの番号を入力してください。通常は `autoware` と名前のついたコンテナを選んでください
+        - `docker compose exec autoware bash` と同等の操作になります
+    - 注意：`make dev` などでAutowareコンテナが起動している必要があります
+- 方法2) 新規コンテナを作成する
+    - `make autoware-bash` コマンドによって、実行環境が整った新規コンテナを作成できます。
+    - 本操作はAutowareが起動していない状態でも実行可能です。そのため、機械学習など、仮想環境だけを使いたい場合に活用できます
 
 ```bash
 cd ~/aichallenge-racingkart
-make autoware-bash
-# または、docker compose exec autoware bash
 
-# 複数台起動時（dev2/3/4）に特定の車両のコンテナに接続する場合（例：2台目）
-# make autoware-bash VEHICLE_NUM=2
+# 方法1) 既存のAutowareコンテナにアタッチする場合
+make autoware-attach
+# または
+# 方法2) 新規コンテナを作成する場合
+make autoware-bash
 ```
 
 コンテナ内でROSトピックの確認やデバッグコマンドを実行できます。
@@ -162,7 +173,7 @@ export ROS_DOMAIN_ID=1
 ros2 topic list
 
 # 特定トピックの監視
-ros2 topic echo /localization/kinematic_state
+ros2 topic hz /control/command/control_cmd -w 10
 ```
 
 ### 複数車両の同時走行
