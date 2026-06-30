@@ -16,7 +16,7 @@
 COMPOSE_FILE=docker-compose.yml
 
 # NVIDIA GPU 利用時
-COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml:docker-compose.sound.yml
+# COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml:docker-compose.sound.yml
 ```
 
 ## GPUドライバなどのインストール
