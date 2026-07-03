@@ -42,6 +42,7 @@ SW部門では予選から決勝まで以下のように進みます。
 - GNSS
 - Steer Angle
 - Wheel Odometry
+- Gear Status
 - V2X 情報（他車両の位置情報）
 
 ### 安全ゲート

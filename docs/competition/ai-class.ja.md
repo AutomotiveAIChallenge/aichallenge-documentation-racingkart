@@ -32,7 +32,9 @@ AI部門では予選から決勝まで以下のように進みます。
 
 - Camera
 - LiDAR
+- Steer Angle
 - Wheel Odometry
+- Gear Status
 
 !!! warning "使用可能なセンサーについて"
     End to End AIの取り組みが重視されるため、GNSS など SW部門で使えていたセンサーは使用できません。
