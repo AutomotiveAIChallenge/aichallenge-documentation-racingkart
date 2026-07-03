@@ -29,6 +29,8 @@
 
 ## PCスペック (目安)
 
+下記は開発・実行に必要なPCスペックになります。大会で実際に使用されるPCのスペックは[仕様/ハードウェア](../specifications/hardware.ja.md)をご確認ください。
+
 - OS: Ubuntu 22.04
 - CPU:
     - 第11世代 Intel Core i5（8コア）以上（最低）

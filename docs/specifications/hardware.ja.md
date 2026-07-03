@@ -24,3 +24,15 @@
 | CPU | 16 vCPU Intel Xeon Scalable (Cascade Lake) |
 | Mem | 64 GB |
 | 備考 | Autoware用には3 vCPUと12 GiBが割り当てられます |
+
+SIM 予選では、オンライン環境のインスタンス上で AWSIM と 3 チーム分の Autoware を同時に起動しています。1 インスタンスを複数チームで共有するため、他チームのプログラムからの干渉を防ぐよう、ROS_DOMAIN_ID の分離とリソースの割り当てを行っています。
+
+## PC構成 (SIM決勝環境)
+
+| 項目 | スペック |
+| --- | --- |
+| CPU | Intel Core i7-8700 |
+| Mem | 16 GB |
+| 備考 | 推奨環境より低スペックです（後述の理由による） |
+
+SIM 決勝では、Autoware を単体で動かし AWSIM は別 PC で動かす構成のため、上記スペックの PC を使用します。具体的には、AWSIM 用の PC 1 台に Autoware 用の PC 4 台を接続して対戦を行う予定です。
