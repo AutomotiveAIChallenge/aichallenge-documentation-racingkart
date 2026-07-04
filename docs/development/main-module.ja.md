@@ -1,123 +1,46 @@
-# メインモジュール
+# Autowareの構成
 
-## Autowareのカスタマイズ
+## 本大会で使用するAutowareについて
 
-本大会では、自動運転ソフトウェアAutowareをベースとした実装を用意しております．
-本ページでは、その背景と説明に加えて、どのように本実装を活用できるかの紹介を行います．
-
-前回のシミュレーション大会では、デフォルトのAutowareから機能を絞り、ノード数を減らした縮小構成のAutowareを起動できるLaunchファイルを提供しました．その際の、背景や用意した意図については、[前大会のドキュメント](https://automotiveaichallenge.github.io/aichallenge2023-racing/customize/index.html)をご覧ください．
-
-## 縮小構成のAutowareを用意した背景
-
-### Autowareを利用する時の課題
-
-デフォルトのAutowareでは様々な走行環境に対応するため、たくさんのノードから構成されています．
-
-Autowareの公式ドキュメンテーションでは、[Autowareを構成するROSノードの構成図](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/node-diagram/)を見ることもできます．以下に現時点の図を示します．
-
-![node-diagram](./images/architecture/autoware-node-diagram.png)
-
-自動運転に関わる各コンポーネントで多種多様な機能を揃えており、難易度の高い走行環境にも対応できるように作られています．
-
-一方、その複雑な構成を理解し、各パラメータの意味や調整の仕方、モジュールの切り替え・入れ替えなどを行うことが必ずしも容易ではなくなっています．
-
-### 縮小構成のAutoware-Microの用意
-
-そのため、前回のシミュレーション大会では、デフォルトのAutowareから機能を絞り、ノード数を減らしたAutowareを用意しました．
-
-Autoware-Microのノード図を以下に示します．ノード数が格段と減り、基本的な自動走行を可能とする機能のみが揃っていることが分かります．
-
-![micro-node-diagram](./images/architecture/reference-autoware.png)
-
-Autoware-Microの特徴としては、以下が挙げられます．
-
-- ほぼ全てのノードの起動を直接1つのLaunchファイルから行っている．
-- パラメータを直接ノード起動時に書き込んでいるため、どのパラメータがどのノードで必要なのかを簡単に追うことができる．
-- 各ノードの入出力となるROSトピック名も直接ノード起動時に`remap`しているため、トピック名も簡単に変えられる．
-
-このAutowareをベースに自動運転ソフトを書くことで、以下のようなことができます．
+本大会では、自動運転ソフトウェア[Autoware](https://github.com/autowarefoundation/autoware)をベースとした実装を用意しています。デフォルトのAutowareから機能を絞り、ノード数を減らした縮小構成となっています。これによって以下のようなことができます。
 
 - シンプルな構成となっているため、Autowareの中身をより深く理解できる
 - 自作のモジュールをAutowareのものと簡単に入れ替えることができ、機能の改善に取り組める
 - パラメータを変更した場合のシステム全体の動作への影響が分かりやすい
 - 今回のAutowareには含まれていない既存のAutowareのノードを追加することもできる
 
-各コンポーネントの変更点・特徴としては、以下が挙げられます．
+縮小構成のAutowareを用意した背景の詳細については、[過去大会のドキュメント](https://automotiveaichallenge.github.io/aichallenge2023-racing/customize/index.html)をご覧ください。
 
-- Localization：GNSS、IMU及び車輪速による自己位置推定
-- Planning：behavior_velocity_plannerやobstacle_stop_plannerなどを省略し、出力経路から走行trajectoryを直接出力するように変更．
-- Control：制御の1つの実装例としてsimple_pure_pursuitを用意．
+## 全体像
 
-## Autoware-Microの活用方法
+本大会は、シミュレータ環境（AWSIM）上で実装したコードをそのまま実機で動かすSim to Realを特徴としています。そのため、AWSIMと実機で共通のインターフェイスを用いています。Autoware側では決められたインターフェイスのトピックを受信・送信するような実装をすればよく、AWSIMと実機の差分を意識する必要はありません。
 
-Autoware-Microを活用することにより、本大会での課題となる：
+インターフェイスと主要なコンポーネントの図を以下に示します。Sim to Real SW部門では以下のように、車両インターフェイスから取得できる情報とGNSSセンサー、IMUセンサー、V2X情報を用いて、自己位置推定や経路計画などを行い、制御信号であるcontrol_cmdトピックを出力します。
 
-1. カーブなどの戦略的な経路計画
-2. 高速での車両制御
+![component](./images/architecture/component.png)
 
-に集中して取り組むことができるようになります．
+End to End AI部門では以下のように、LiDARセンサーとCameraセンサーを用いて制御信号であるcontrol_cmdトピックを出力することが期待されています。なお、図では「E2E Model」と記載していますが、処理を分離したり、一部にロジックを入れたりすることは許容されます。また、本部門ではGNSSセンサー情報などを使うことは出来ませんが、RViz表示等のために関連するノード・トピックが残っています。
 
-また、Autoware-Microの実装例を参考にしながら、Autowareのアーキテクチャとは少し異なる実装方法を試したり、新しくカスタムのノードを作成・導入したりすることができます．
+![component_e2e](./images/architecture/component_e2e.png)
 
-独自のノードの実装を取り入れることにより、走行性能を向上させ点数を伸ばすことができます．
+## ノード構成
 
-例えば、以下のような構成を考え、「Planning」と「Control」をそれぞれ実装して取り組んだり、「Planning & Control」を両方担うノードを実装できます．
+本大会で運営からサンプルとして提供されるAutowareの構成図を以下に示します。デフォルト設定では制御にMPCを使うSim to Real SW部門用の構成となっています。Planningに相当するノードはsimple_trajectory_generatorという、あらかじめCSVファイルに用意された軌道情報を出力するだけのノードです。実際の自動運転では、地図情報から軌道情報を計算したり、V2X情報を用いて障害物や他車両を避けたり停止したりする処理が必要となります。
 
-ルートの入力と車両インターフェイス出力のROSトピックさえ合っていれば自由にカスタマイズして頂けます．
+自己位置推定はGNSSセンサー、IMUセンサー、車両情報を用いて、EKFによって高精度で行われます。これらの実装は動く形で提供されていますが、自己位置推定の精度に課題があると感じた場合は変更可能です。ただし、vehicle_velocity_converterはAutoware標準の処理を使っているため変更出来ません。
 
-![racing-diagram](./images/architecture/racing_simple.png)
+![node_diagram](./images/architecture/node_diagram.png)
 
-## Autoware-Microのデータフロー
+## 制御モードの切り替え
 
-以下の図は、Autoware-Microの主要なデータフローを示しています。
+`reference.launch.xml`の`control_method`引数を変更することで、制御モードを切り替えられます。
 
-```mermaid
-graph LR
-    subgraph AWSIM["AWSIM（シミュレータ）"]
-        GNSS_S[GNSS]
-        IMU_S[IMU]
-        LiDAR_S[LiDAR]
-        VEL_S[車両速度]
-    end
-
-    subgraph Sensing["センシング"]
-        GNSS_P[racing_kart_gnss_poser]
-        IMU_C[imu_corrector]
-        VVC[vehicle_velocity_converter]
-    end
-
-    subgraph Localization["自己位置推定"]
-        GYRO[gyro_odometer]
-        IGP[imu_gnss_poser]
-        EKF[ekf_localizer]
-    end
-
-    subgraph Planning["経路生成"]
-        STG[simple_trajectory_generator]
-    end
-
-    subgraph Control["制御"]
-        SPP[simple_pure_pursuit<br/>rule_based]
-        TLN[tiny_lidar_net<br/>e2e]
-    end
-
-    GNSS_S --> GNSS_P
-    IMU_S --> IMU_C
-    VEL_S --> VVC
-
-    GNSS_P --> IGP
-    IMU_C --> GYRO
-    VVC --> GYRO
-    GYRO --> IGP
-    IGP --> EKF
-
-    EKF -->|kinematic_state| SPP
-    STG -->|trajectory| SPP
-    LiDAR_S -->|scan| TLN
-
-    SPP -->|control_cmd| AWSIM
-    TLN -->|control_cmd| AWSIM
-```
+- `mpc`（デフォルト）：MPCベースの制御
+- `pure_pursuit`: Pure Pursuitベースの制御
+- `tiny_lidar_net`: TinyLiDARNetによるEnd-to-End制御
+- `pilot_net`: PilotNetによるEnd-to-End制御
+- `rl_train`: 強化学習の学習用モード
+- `joycon`: 手動テレオペ操作
 
 ## パッケージ一覧
 
@@ -127,8 +50,10 @@ graph LR
 
 | パッケージ名 | 説明 |
 | ------------ | ---- |
+| multi_purpose_mpc_ros | ルールベース制御（MPC） |
 | simple_pure_pursuit | ルールベース制御（Pure Pursuit） |
 | tiny_lidar_net_controller | End-to-End制御（TinyLiDARNet: LiDARスキャン→加速度+操舵角） |
+| pilot_net_controller | End-to-End制御（PilotNet: Camera画像→加速度+操舵角） |
 
 ### 経路生成
 
@@ -136,7 +61,6 @@ graph LR
 | ------------ | ---- |
 | simple_trajectory_generator | CSVファイルからTrajectoryを生成 |
 | path_to_trajectory | PathメッセージからTrajectoryに変換 |
-| goal_pose_setter | 初期ゴール姿勢の設定 |
 
 ### 自己位置推定
 
@@ -160,25 +84,3 @@ graph LR
 | パッケージ名 | 説明 |
 | ------------ | ---- |
 | aichallenge_submit_launch | メインLaunchファイル |
-
-## 制御モードの切り替え
-
-`reference.launch.xml`の`control_mode`引数を変更することで、制御モードを切り替えられます。
-
-| モード | 説明 |
-| ------ | ---- |
-| `rule_based`（デフォルト） | `simple_pure_pursuit`によるPure Pursuit制御 |
-| `e2e` | `tiny_lidar_net_controller`によるEnd-to-End制御（LiDAR 1080点→加速度+操舵角） |
-| `joycon` | 手動テレオペ操作 |
-
-## ワークスペースの構成
-
-参考までに本大会で使用しているワークスペースの構成は以下となります。
-
-### 開発環境（docker-dev）
-
-![dev](./images/docker/dev.drawio.svg)
-
-### 評価環境（docker-eval）
-
-![eval](./images/docker/eval.drawio.svg)

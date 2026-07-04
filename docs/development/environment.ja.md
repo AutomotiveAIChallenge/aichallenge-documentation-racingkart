@@ -3,7 +3,7 @@
 大会用リポジトリでは、ビルド・実行環境はすべて Docker コンテナ内で完結しています。
 各コンテナは `docker-compose.yml` でサービスとして定義されており、参加者が日常的に使う操作は `make` コマンドでラップされています。そのため、Docker Compose の詳細を意識せずに開発を進められます。
 
-Autoware構成の詳細については、[メインモジュール](main-module.ja.md)を参照してください。
+参加者が編集するパッケージ群は `aichallenge_submit/` です。詳細は[Autowareの構成](main-module.ja.md)を参照してください。
 
 ## ディレクトリ構成
 
@@ -27,9 +27,9 @@ aichallenge-racingkart/
 
 `make dev` 実行時、 `aichallenge/workspace/` と `output/` はコンテナにマウントされるため、ホスト側での編集内容や実行結果にコンテナ内から直接アクセスできます。
 
-## サービス一覧
+## Docker Compose サービス一覧
 
-`docker-compose.yml` で定義されているサービスの一覧です。
+`docker-compose.yml` で定義されている Docker Compose サービスの一覧です（ROS 2 のサービスとは異なります）。
 
 | サービス名 | 対応する make コマンド | 説明 |
 |---|---|---|
@@ -42,23 +42,17 @@ aichallenge-racingkart/
 | `driver` | `make driver` | 実車インターフェース（`racing_kart_interface`）を起動します |
 | `rviz2` | `make rviz2` | リモート可視化用の RViz2 を起動します |
 
-### aichallenge_submit の構成
+## ワークスペースの構成
 
-参加者が変更できるパッケージが `aichallenge_submit/` にまとめられています。
+参考までに本大会で使用しているワークスペースの構成は以下となります。
 
-| パッケージ | 概要 |
-|---|---|
-| `aichallenge_submit_launch/` | 起動設定・パラメータ・マップ・データを管理するランチパッケージ |
-| `simple_pure_pursuit/` | Pure Pursuit ベースのルールベース制御 |
-| `simple_trajectory_generator/` | 経路（Trajectory）生成 |
-| `path_to_trajectory/` | Path メッセージを Trajectory に変換 |
-| `multi_purpose_mpc_ros/` | MPC（モデル予測制御）ベースの制御 |
-| `tiny_lidar_net_controller/` | TinyLiDARNet による End-to-End 制御 |
-| `pilot_net_controller/` | PilotNet による End-to-End 制御 |
-| `gyro_odometer/` | ジャイロセンサを使ったオドメトリ推定 |
-| `imu_corrector/` | IMU データの補正 |
-| `imu_gnss_poser/` | IMU と GNSS を組み合わせた位置推定 |
-| `racing_kart_gnss_poser/` | レーシングカート向け GNSS 位置推定 |
-| `laserscan_generator/` | 点群から LaserScan を生成 |
-| `racing_kart_description/` | 車両モデル（URDF・メッシュ） |
-| `racing_kart_sensor_kit_description/` | センサキット構成（URDF） |
+!!! warning
+    大会で提出するフォルダは `/aichallenge/workspace/src/aichallenge_submit` になります。このフォルダ以外で実装を追加・変更しても、提出物に含めることはできません。
+
+### 開発環境（docker-dev）
+
+![dev](./images/docker/dev.drawio.svg)
+
+### 評価環境（docker-eval）
+
+![eval](./images/docker/eval.drawio.svg)

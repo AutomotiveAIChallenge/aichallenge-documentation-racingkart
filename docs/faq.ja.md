@@ -103,15 +103,6 @@
 
 ## Autoware
 
-??? question "制御モードを変更するにはどうすればいいですか？"
-    `reference.launch.xml`の`control_mode`引数を変更することで制御モードを切り替えられます。
-
-    - `mpc`（デフォルト）：MPCベースの制御
-    - `pure_pursuit`: Pure Pursuitベースの制御
-    - `tiny_lidar_net`: TinyLiDARNetによるEnd-to-End制御
-    - `pilot_net`: PilotNetによるEnd-to-End制御
-    - `joycon`: 手動テレオペ操作
-
 ??? question "経路生成（Behavior Path/Motion Planner）に関して教えてください。"
     behavior plannerは、主にODD3以上のいわゆる一般道での走行を行うのに必要な機能（一時停止線、横断歩道、信号停止）など破ってはいけない交通ルールを加味したplanningを行うものとなっています。
     それ故、回避機能もルールベースの回避で最適化を行っていません。
