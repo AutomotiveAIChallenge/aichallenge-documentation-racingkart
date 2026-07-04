@@ -56,6 +56,11 @@ End to End AI 部門において機械学習を行う場合には、更に以下
 ## 環境の確認方法
 
 - 上記スペックは目安です。ご自身の環境で実行できるかどうかを確認するには、[環境構築の流れ](./introduction.ja.md) の手順に沿って実際にお試しください。
-- 各処理が期待通りの速度で動いていることをご確認ください。
-    - AWSIMが30FPS以上（画面右上のFPS表示を確認）
-    - `/control/command/control_cmd` トピックの周波数が約 40 Hz (制御アルゴリズムがMPCの場合（デフォルト設定）。制御アルゴリズムがSimplePurePursuitの場合は約100 Hz)
+- Autoware実行中に各処理が期待通りの速度で動いていることをご確認ください。
+    - AWSIMの画面右上に表示されるFPSが30FPS以上（理想は60FPS）
+    - 下記コマンドで表示される、 `/control/command/control_cmd` トピックの周波数が約 40 Hz (制御アルゴリズムがMPCの場合（デフォルト設定）。制御アルゴリズムがSimplePurePursuitの場合は約100 Hz)
+
+        ```bash
+        make autoware-bash
+        ros2 topic hz /control/command/control_cmd -w 10
+        ```
