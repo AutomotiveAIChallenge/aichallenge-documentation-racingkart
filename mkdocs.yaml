@@ -39,13 +39,15 @@ nav:
       - setup/requirements.md
       - setup/introduction.md
       - setup/gpu-simulation.md
+      - setup/update-environment.md
+
   - development:
       - development/development-guide.md
       - development/environment.md
       - development/commands.md
-      - development/development-ideas.md
-      - development/update-environment.md
       - development/main-module.md
+      - development/development-ideas.md
+
   - competition:
       - competition/index.md
       - competition/sw-class.md
