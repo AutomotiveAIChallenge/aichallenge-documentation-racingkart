@@ -103,15 +103,6 @@
 
 ## Autoware
 
-??? question "制御モードを変更するにはどうすればいいですか？"
-    `reference.launch.xml`の`control_mode`引数を変更することで制御モードを切り替えられます。
-
-    - `mpc`（デフォルト）：MPCベースの制御
-    - `pure_pursuit`: Pure Pursuitベースの制御
-    - `tiny_lidar_net`: TinyLiDARNetによるEnd-to-End制御
-    - `pilot_net`: PilotNetによるEnd-to-End制御
-    - `joycon`: 手動テレオペ操作
-
 ??? question "経路生成（Behavior Path/Motion Planner）に関して教えてください。"
     behavior plannerは、主にODD3以上のいわゆる一般道での走行を行うのに必要な機能（一時停止線、横断歩道、信号停止）など破ってはいけない交通ルールを加味したplanningを行うものとなっています。
     それ故、回避機能もルールベースの回避で最適化を行っていません。
@@ -136,18 +127,8 @@
 ??? question "mpcのチューニングをしたいのですが，今回AWSIMで使用されているモデルパラメータ（遅れや時定数など）は公開されていないでしょうか．"
     遅れや時定数については計測も公開もされていませんが、基本的な仕様については[こちら](./specifications/simulator.ja.md)に公開されています。
 
-## シミュレータ・実行
-
-??? question "車を初期位置にリセットするにはどうすればいいでしょうか。"
-    AWSIMのキーボード操作で`Space`キーを押すとリセットできます。また、`/admin/awsim/reset`トピックに`std_msgs/msg/Empty`をPublishすることでもリセットが可能です。
-
-??? question "AWSIMの動作が安定しません。"
-    GPUの性能不足が原因の一つになります。
-    高性能GPUの利用が難しい場合は、awsimの画面の下部にスライドバーでtime scaleを0.5くらいに設定すると安定して動作する可能性があります。
-
-??? question "センサの追加取り付けは可能ですか。"
-    同一条件・難易度で課題に取り組んでいただくために、新たなセンサの取り付けは不可としています。
-
 ## 解決しない場合
 
 [:material-arrow-right-circle: コミュニティで情報を探す](./community.ja.md){ .md-button .md-button--primary }
+
+Slackの質問チャンネルもご活用ください。
