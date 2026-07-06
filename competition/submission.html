@@ -1191,7 +1191,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        提出手順
+        採点と順位決定の仕組み
       
     </span>
   </a>
@@ -1200,6 +1200,28 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提出のライフサイクル
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提出手順
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         結果の確認手順
@@ -1221,7 +1243,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         オンライン環境のページ概要
@@ -2448,7 +2470,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        提出手順
+        採点と順位決定の仕組み
       
     </span>
   </a>
@@ -2457,6 +2479,28 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提出のライフサイクル
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提出手順
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         結果の確認手順
@@ -2478,7 +2522,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
         オンライン環境のページ概要
@@ -2559,7 +2603,28 @@
 <h1 id="sw">SW部門 提出手順</h1>
 <h2 id="_1">オンライン環境</h2>
 <p>Sim to Real SW部門 SIM予選では、シミュレーターと自動採点機能を備えたオンライン環境を使用して採点が行われます。以下の手順に従って、作成したパッケージ群をオンライン環境にアップロードしてください。アップロード後、シミュレーションが自動で開始され、結果が表示されます。</p>
-<h2 id="_2">提出手順</h2>
+<h2 id="_2">採点と順位決定の仕組み</h2>
+<p>オンライン環境の採点は、単純なラップタイム競争ではなく<strong>対戦形式</strong>です。仕組みを理解しておくと、提出戦略を立てやすくなります。</p>
+<ul>
+<li><strong>対戦形式</strong>: 提出したコード（CHALLENGER）は、自分より上位のチーム（防衛側）の提出済みコードと同一レースで走行し、<strong>着順</strong>で勝敗が決まります。</li>
+<li><strong>レーティング</strong>: 勝敗に応じてチームのレート（Rate）が増減し、レートの高い順にランキングが決まります。勝てば上がり、負ければ下がります。同着の場合は防衛側の防衛成功として扱われ、レートは変動しません。</li>
+<li><strong>対戦相手の選択（マッチメイキング）</strong>: 提出時に、どのくらい上位のチームに挑戦するかを選べます。上位に挑むほど、勝利したときのレートの上がり幅が大きくなります。<ul>
+<li>ランキング1位のチームが提出した場合はNPCとの対戦（防衛戦）になります。</li>
+<li>未ランクのチームは、初回提出の結果からランキングに掲載されます。</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>レーティングの計算式や係数、対戦相手として選べる範囲などの具体的な値は、大会運営により調整されることがあります。最新の挙動はオンライン環境上の表示を正としてください。</p>
+</div>
+<h2 id="_3">提出のライフサイクル</h2>
+<p>提出後の処理は「<strong>ビルド</strong>（提出コードからDockerイメージを作成）」と「<strong>実行</strong>（シミュレーションでの対戦）」の2段階に分かれています。STATUSはこの2段階を反映して遷移します。</p>
+<div class="highlight"><pre><span></span><code>Queued（受付済み） → Building（ビルド中） → Running（シミュレーション実行中） → Success（採点完了）
+                             └─ ビルド失敗 ─┴─ 実行失敗 → Failed
+</code></pre></div>
+<p>ビルド失敗と実行失敗は原因も確認先も異なります。切り分け方は後述の<a href="#failed">Failedの場合</a>を参照してください。</p>
+<h2 id="_4">提出手順</h2>
 <p>オンライン環境への提出は以下の手順で行います。</p>
 <ol>
 <li>
@@ -2567,6 +2632,7 @@
 <ul>
 <li><code>./create_submit_file.bash</code>を実行してaichallenge_submitディレクトリを圧縮します。</li>
 <li>圧縮したファイルはaichallenge-racingkart/submit/aichallenge_submit.tar.gzに保存されています。</li>
+<li>提出物が満たすべき構造・インターフェースは<a href="../specifications/submission-contract.ja.md">提出物の契約</a>を参照してください。</li>
 </ul>
 </li>
 <li>
@@ -2585,7 +2651,7 @@
 <img src="./images/siteImage3.png" width="100%"></p>
 </li>
 </ol>
-<h2 id="_3">結果の確認手順</h2>
+<h2 id="_5">結果の確認手順</h2>
 <ul>
 <li>アップロード後、ソースコードのビルドとシミュレーションが順に実施されます。画面下部の「Your Submissions」で、今回提出したソースコードのSTATUSを確認できます。正常に処理が進むと、Queued → Building → Running → Successとなります。全ての処理が完了するまで、30分程度かかります。万が一ビルドに失敗したり、launchに失敗した場合は「Failed」と表示されます。ログや提出物をご確認ください。</li>
 <li>オンライン環境での走行が終わると、Activity Timelineや動画で結果を確認出来ます。試合結果によって、レートが増減します。</li>
@@ -2600,7 +2666,12 @@
 </li>
 </ul>
 <h2 id="failed">Failedの場合</h2>
+<p>まず「ビルド失敗」か「実行失敗」かを切り分けます。</p>
 <ul>
+<li><strong>ビルドまで到達せずFailed</strong>（Buildingで失敗）: 依存関係やビルドエラーが原因です。オンラインのビルドでは、<code>rosdep</code>で解決できない依存関係は<strong>エラーにならず読み飛ばされる</strong>ため、依存不足はビルド時ではなく実行時に発覚することもあります。ローカルの<code>make eval</code>でエラーなくビルド・起動できることを必ず確認してください。</li>
+<li>
+<p><strong>Runningまで進んでFailed</strong>（実行で失敗）: launchの失敗やノードの異常終了が原因です。提出詳細からダウンロードできる<code>autoware.log</code>やrosbagを確認してください。</p>
+</li>
 <li>
 <p>packageの依存関係に問題がないか確認</p>
 <ul>
@@ -2621,7 +2692,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="_4">オンライン環境のページ概要</h2>
+<h2 id="_6">オンライン環境のページ概要</h2>
 <ul>
 <li>「Overview」ページ（ログイン後のみ）<ul>
 <li>自チームのランク情報や提出履歴を確認できます</li>

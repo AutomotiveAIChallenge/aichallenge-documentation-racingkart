@@ -1188,6 +1188,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-scoring-and-ranking-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Scoring and Ranking Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submission Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#submission-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2434,6 +2456,28 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-scoring-and-ranking-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Scoring and Ranking Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submission-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submission Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#submission-steps" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2540,6 +2584,27 @@
 <blockquote>
 <p>Note: Screenshots on this page are from 2025.</p>
 </blockquote>
+<h2 id="how-scoring-and-ranking-work">How Scoring and Ranking Work</h2>
+<p>Online scoring is not a simple lap-time ladder — it is a <strong>head-to-head battle format</strong>. Understanding the mechanism helps you plan your submission strategy.</p>
+<ul>
+<li><strong>Battle format</strong>: Your submitted code (the CHALLENGER) races in the same session against the submitted code of a higher-ranked team (the defender), and the <strong>finishing order</strong> decides the winner.</li>
+<li><strong>Rating</strong>: Your team's rating (Rate) goes up when you win and down when you lose, and the leaderboard is ordered by rating. A tie counts as a successful defense for the defender, and no rating changes.</li>
+<li><strong>Opponent selection (matchmaking)</strong>: When submitting, you can choose how far above your own rank to challenge. Challenging a higher-ranked team yields a larger rating gain when you win.<ul>
+<li>A submission by the 1st-ranked team becomes a defense battle against an NPC.</li>
+<li>Unranked teams enter the leaderboard after their first submission.</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The exact rating formula, coefficients, and selectable opponent range may be adjusted by the organizers. Treat the online environment's own display as the source of truth for current behavior.</p>
+</div>
+<h2 id="submission-lifecycle">Submission Lifecycle</h2>
+<p>Processing after upload has two stages: <strong>build</strong> (a Docker image is created from your code) and <strong>execution</strong> (the simulation battle runs). The STATUS shown for your submission follows these stages:</p>
+<div class="highlight"><pre><span></span><code>Queued → Building → Running → Success
+              └─ build failure ─┴─ run failure → Failed
+</code></pre></div>
+<p>Build failures and run failures have different causes and different places to look — see <a href="#if-failed">If Failed</a> below.</p>
 <h2 id="submission-steps">Submission Steps</h2>
 <p>Submit to the online environment using the following steps:</p>
 <ol>
@@ -2548,6 +2613,7 @@
 <ul>
 <li>Run <code>./create_submit_file.bash</code> to compress the <code>aichallenge_submit</code> directory.</li>
 <li>The compressed file is saved at <code>aichallenge-racingkart/submit/aichallenge_submit.tar.gz</code>.</li>
+<li>See the <a href="../specifications/submission-contract.en.md">Submission Contract</a> for the structure and interfaces your submission must satisfy.</li>
 </ul>
 </li>
 <li>
@@ -2562,6 +2628,7 @@
 <img src="./images/siteImage1.png" width="100%"></p>
 <p>Once logged in, upload <code>aichallenge_submit.tar.gz</code> using the "Submit Code" button. After uploading, the source code will be built and simulation will be run in sequence.
 <img src="./images/siteImage2.png" width="100%"></p>
+<p>On the upload screen, select the <code>aichallenge_submit.tar.gz</code> to upload. You can optionally add a comment. You can also change the rank range of the opponent to challenge — by default you battle the team one rank above you. Widening the range lets you challenge higher-ranked teams, with a larger rating gain if you win. Choose strategically.</p>
 <p>If successful, "Success" will be displayed.
 If the build fails, the launch fails, or the score is not output, "Failed" will be displayed. In this case, please re-upload as there may be an internal server error. Contact us via Slack if the problem persists.</p>
 <p><img src="./images/siteImage3.png" width="100%"></p>
@@ -2580,7 +2647,12 @@ If the build fails, the launch fails, or the score is not output, "Failed" will 
 </li>
 </ul>
 <h2 id="if-failed">If Failed</h2>
+<p>First determine whether it was a <strong>build failure</strong> or a <strong>run failure</strong>.</p>
 <ul>
+<li><strong>Failed during Building</strong>: caused by dependency or build errors. Note that during the online build, dependencies that <code>rosdep</code> cannot resolve are <strong>skipped without an error</strong>, so a missing dependency may only surface at runtime rather than at build time. Always confirm your code builds and launches cleanly with a local <code>make eval</code> first.</li>
+<li>
+<p><strong>Failed after reaching Running</strong>: caused by launch failures or nodes crashing. Check <code>autoware.log</code> and the rosbag downloadable from the submission details.</p>
+</li>
 <li>
 <p>Check for package dependency issues</p>
 <ul>
