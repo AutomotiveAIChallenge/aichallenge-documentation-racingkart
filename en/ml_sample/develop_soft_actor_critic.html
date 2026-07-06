@@ -2840,7 +2840,7 @@
 <li>実装: <a href="https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/tree/main/aichallenge/ml_workspace/reinforcement_learning">reinforcement_learning</a></li>
 </ul>
 <h2 id="setup">Setup</h2>
-<p><a href="../setup/introduction.html">環境構築</a>を実施してください。GPU を積んだマシンでの実行を前提とします。</p>
+<p><a href="../setup/introduction.ja.md">環境構築</a>を実施してください。GPU を積んだマシンでの実行を前提とします。</p>
 <p>学習には AWSIM がカメラ画像を描画し続ける必要があるため、通常の模倣学習用セットアップに加えて以下の変更が必要です。</p>
 <h3 id="1-gpu-env">1. GPU 描画を有効にする (<code>.env</code>)</h3>
 <p><code>aichallenge-racingkart/.env</code> の <code>COMPOSE_FILE</code> が GPU overlay (<code>docker-compose.gpu.yml</code>) を含むようにしてください。コメントアウトされている場合は先頭の <code>#</code> を外してください。</p>
@@ -2928,36 +2928,36 @@ mv<span class="w"> </span>model.zip<span class="w"> </span>awsim_sac_model.zip
 <h3 id="ros-gym">ROS トピック ⇔ Gym 環境のブリッジ構造</h3>
 <p>学習・推論はいずれも <code>ROS_DOMAIN_ID=1</code> (Autoware 側のドメイン) で動作します。Gymnasium の <code>AWSIMEnv</code> と ROS 2 ノード <code>AWSIMEnvNode</code> が橋渡しし、<code>step()</code> のたびに行動の publish → 観測の取得 → 報酬・終了判定という 1 サイクルを回します。</p>
 <pre class="mermaid"><code>flowchart LR
-    subgraph SB3["stable-baselines3 (SAC)"]
-        A[action]
+    RL["SAC エージェント&lt;br/&gt;(stable-baselines3)"]
+
+    subgraph ENV["Gymnasium 環境: AWSIMEnv"]
+        direction TB
+        AA["ActionAdapter&lt;br/&gt;action → 制御指令"]
+        subgraph RET["step() の戻り値を構築"]
+            direction TB
+            OB["ObservationBuilder&lt;br/&gt;→ obs（画像 + 車速）"]
+            RW["RewardFunction&lt;br/&gt;→ reward"]
+            TM["TerminationFunction&lt;br/&gt;→ terminated（衝突判定）"]
+        end
     end
 
-    subgraph GYM["Gymnasium: AWSIMEnv"]
-        S[step]
-        AA[ActionAdapter]
-        OB[ObservationBuilder]
-        RW[RewardFunction]
-        TM[TerminationFunction]
+    subgraph NODE["ROS 2 ノード: AWSIMEnvNode（ROS_DOMAIN_ID=1）"]
+        direction TB
+        PUB["publish&lt;br/&gt;/control/command/control_cmd"]
+        SUB["subscribe&lt;br/&gt;/sensing/camera/image_raw&lt;br/&gt;/vehicle/status/velocity_status&lt;br/&gt;/awsim/status ・ /awsim/state"]
+        RST["publish（reset 時のみ）&lt;br/&gt;/awsim/reset&lt;br/&gt;/awsim/control_mode_request_topic"]
     end
 
-    subgraph NODE["ROS2 Node: AWSIMEnvNode (DOMAIN=1)"]
-        PUB["/control/command/control_cmd"]
-        SUB1["/sensing/camera/image_raw"]
-        SUB2["/vehicle/status/velocity_status"]
-        SUB3["/awsim/status, /awsim/state"]
-        RST["/awsim/reset"]
-    end
+    SIM["AWSIM&lt;br/&gt;シミュレータ"]
 
-    A --&gt; S
-    S --&gt; AA --&gt; PUB
-    PUB --&gt;|AWSIM| SUB1
-    PUB --&gt;|AWSIM| SUB2
-    SUB1 --&gt; OB
-    SUB2 --&gt; OB
-    SUB3 --&gt; OB
-    OB --&gt; TM --&gt; RW
-    RW --&gt;|obs, reward, terminated| SB3
-    S -.reset時.-&gt; RST</code></pre>
+    RL --&gt;|"① action（steering, acceleration）"| AA
+    AA --&gt;|"② 制御指令"| PUB
+    PUB --&gt;|"③"| SIM
+    SIM --&gt;|"④ センサ・車両状態"| SUB
+    SUB --&gt;|"⑤ 最新の状態"| RET
+    RET --&gt;|"⑥ obs / reward / terminated"| RL
+    ENV -.-&gt;|"reset()"| RST
+    RST -.-&gt;|"リセット &amp; Auto 切替"| SIM</code></pre>
 <p><code>AWSIMEnvNode</code> は他にも GNSS/IMU/LiDAR/Trajectory など多数のトピックを購読できるよう用意していますが、現在の <code>AWSIMEnv</code> が実際に使うのは <code>/awsim/state</code>、<code>/awsim/status</code>、<code>/sensing/camera/image_raw</code>、<code>/vehicle/status/velocity_status</code> の4つのみです。<code>reset()</code> は <code>/awsim/reset</code> を publish し、0.5秒待ってから <code>/awsim/control_mode_request_topic</code> に Auto (true) を publish してシミュレータを再開させます。</p>
 <h3 id="_4">拡張ポイント</h3>
 <p><code>select_parts.py</code> が、コンフィグの <code>name</code> フィールドの文字列に応じて実装クラスを切り替えるプラガブルな構成になっています。観測・行動・報酬・終了条件はそれぞれ独立した interface (<code>observation/interfaces.py</code>, <code>action/interfaces.py</code>, <code>reward/interfaces.py</code>, <code>termination/interfaces.py</code>) を実装したクラスとして追加でき、<code>select_*</code> 関数に分岐を足すだけで <code>default_config.yaml</code> の <code>name</code> を書き換えて選択できるようになります。</p>
