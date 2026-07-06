@@ -1683,6 +1683,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#reinforcement-learning-based-end-to-end-sample-ros-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reinforcement Learning based End-to-End Sample ROS Node
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2014,7 +2025,7 @@
   <span class="md-ellipsis">
     
   
-    Design: Sample ROS Node(VLM Planner)
+    SoftActorCritic
   
 
     
@@ -2027,6 +2038,92 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SoftActorCritic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ml_sample/develop_soft_actor_critic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Develop: Soft Actor-Critic (Reinforcement Learning)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design: Sample ROS Node(VLM Planner)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2082,10 +2179,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6_2" >
         
           
-          <label class="md-nav__link" for="__nav_8_5_2" id="__nav_8_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_6_2" id="__nav_8_6_2_label" tabindex="0">
             
   
   
@@ -2103,8 +2200,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_5_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2196,10 +2293,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6_3" >
         
           
-          <label class="md-nav__link" for="__nav_8_5_3" id="__nav_8_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_6_3" id="__nav_8_6_3_label" tabindex="0">
             
   
   
@@ -2217,8 +2314,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_5_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2498,6 +2595,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#reinforcement-learning-based-end-to-end-sample-ros-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reinforcement Learning based End-to-End Sample ROS Node
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2743,6 +2851,14 @@
 <li><a href="ml_sample/getting_started_vlm_setup.html">Getting started</a></li>
 <li><a href="ml_sample/design.html">Design: Sample ROS Node</a></li>
 <li><a href="ml_sample/algorithms.html">Algorithms</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="reinforcement-learning-based-end-to-end-sample-ros-node">Reinforcement Learning based End-to-End Sample ROS Node</h3>
+<ul>
+<li>カメラ画像と車両の速度状態を観測として用い、強化学習（SAC: Soft Actor-Critic）によりエージェントを学習し、制御指令（steering, acceleration）を出力します。</li>
+<li>機能概要<ul>
+<li>学習・実行方法については、<a href="ml_sample/develop_soft_actor_critic.html">Develop: SoftActorCritic</a>を参照ください。</li>
 </ul>
 </li>
 </ul>

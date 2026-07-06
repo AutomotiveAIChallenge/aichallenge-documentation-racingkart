@@ -1793,6 +1793,92 @@
                 
   
   
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoftActorCritic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SoftActorCritic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="develop_soft_actor_critic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Develop: Soft Actor-Critic (Reinforcement Learning)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1809,10 +1895,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
             
   
   
@@ -1830,8 +1916,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1887,10 +1973,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6_2" >
         
           
-          <label class="md-nav__link" for="__nav_8_5_2" id="__nav_8_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_6_2" id="__nav_8_6_2_label" tabindex="0">
             
   
   
@@ -1908,8 +1994,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_5_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2003,10 +2089,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_8_5_3" id="__nav_8_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_6_3" id="__nav_8_6_3_label" tabindex="0">
             
   
   
@@ -2024,8 +2110,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_8_5_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_6_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2548,14 +2634,14 @@
 <p>このドキュメントでは、Gemini APIとAWSIMを用いて、VAD Plannerを動かす方法について説明します。</p>
 <h2 id="awsim">AWSIMの実行</h2>
 <ul>
-<li><a href="getting_started_vlm_setup.html#awsim側の準備">AWSIM側の準備</a>にて作成したdocker container内で、<code>./run_evaluation.bash</code>を実行しましょう。</li>
+<li><a href="getting_started_vlm_setup.html#awsim">AWSIM側の準備</a>にて作成したdocker container内で、<code>./run_evaluation.bash</code>を実行しましょう。</li>
 <li>scaleは0.02程度に変更しましょう。(Geminiが5秒に1回しか推論できないため。)</li>
 </ul>
 <p><img alt="camera_awsim_after" src="../../assets/camera_awsim_after.png" /></p>
 <h2 id="vad-planner">VAD Plannerの実行</h2>
 <h3 id="vad">VADの実行</h3>
 <ul>
-<li><a href="getting_started_vad_setup.html#vad-planner環境側の準備">VAD Planner環境側の準備</a>で作成したdocker container内で、以下を実行しましょう。</li>
+<li><a href="getting_started_vad_setup.html#vad-planner">VAD Planner環境側の準備</a>で作成したdocker container内で、以下を実行しましょう。</li>
 <li>以下のコマンドを実行し、VAD Plannerを動かしてみてください。</li>
 <li>初回実行時は、launchの際にonnxからengine fileへの変換処理が走ります。この処理は数分かかる可能性があります。</li>
 </ul>
@@ -2565,8 +2651,8 @@
 </code></pre></div>
 <h3 id="trajectory-selector">trajectory selectorの実行</h3>
 <ul>
-<li><a href="getting_started_vad_setup.html#vad-planner環境側の準備">VAD Planner環境側の準備</a>で作成したdocker container内に、もう一つterminalを立ち上げます。</li>
-<li>このterminalの中でも、<a href="getting_started_vad_setup.html#gemini-apiの設定">GEMINI API KEYの設定</a>を行ってください。</li>
+<li><a href="getting_started_vad_setup.html#vad-planner">VAD Planner環境側の準備</a>で作成したdocker container内に、もう一つterminalを立ち上げます。</li>
+<li>このterminalの中でも、<a href="getting_started_vad_setup.html#gemini-api_1">GEMINI API KEYの設定</a>を行ってください。</li>
 </ul>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>aichallenge-e2e-utils-vad<span class="w"> </span>/bin/bash
 </code></pre></div>

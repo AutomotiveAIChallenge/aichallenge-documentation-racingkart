@@ -10,33 +10,35 @@
       
       
       
-        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/contributing.html">
+        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/ml_sample/develop_soft_actor_critic.html">
       
       
-        <link rel="prev" href="community.html">
+        <link rel="prev" href="develop_pilot_net.html">
       
+      
+        <link rel="next" href="design.html">
       
       
         
-          <link rel="alternate" href="../contributing.html" hreflang="ja">
+          <link rel="alternate" href="../../ml_sample/develop_soft_actor_critic.html" hreflang="ja">
         
-          <link rel="alternate" href="contributing.html" hreflang="en">
+          <link rel="alternate" href="develop_soft_actor_critic.html" hreflang="en">
         
       
       
-      <link rel="icon" href="../assets/favicon.ico">
+      <link rel="icon" href="../../assets/favicon.ico">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Contributing - 自動運転 AI チャレンジ 2026</title>
+        <title>Develop: Soft Actor-Critic (Reinforcement Learning) - 自動運転 AI チャレンジ 2026</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,9 +57,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/custom.css">
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -150,7 +152,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#documentation-structure-guide" class="md-skip">
+        <a href="#develop-soft-actor-critic-reinforcement-learning" class="md-skip">
           Skip to content
         </a>
       
@@ -189,7 +191,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="index.html" title="自動運転 AI チャレンジ 2026" class="md-header__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
+    <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-header__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -209,7 +211,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contributing
+              Develop: Soft Actor-Critic (Reinforcement Learning)
             
           </span>
         </div>
@@ -230,13 +232,13 @@
       <ul class="md-select__list">
         
           <li class="md-select__item">
-            <a href="../contributing.html" hreflang="ja" class="md-select__link">
+            <a href="../../ml_sample/develop_soft_actor_critic.html" hreflang="ja" class="md-select__link">
               日本語
             </a>
           </li>
         
           <li class="md-select__item">
-            <a href="contributing.html" hreflang="en" class="md-select__link">
+            <a href="develop_soft_actor_critic.html" hreflang="en" class="md-select__link">
               English
             </a>
           </li>
@@ -314,7 +316,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="index.html" class="md-tabs__link">
+      <a href="../index.html" class="md-tabs__link">
         
   
   
@@ -333,7 +335,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="getting-started.html" class="md-tabs__link">
+      <a href="../getting-started.html" class="md-tabs__link">
         
   
   
@@ -354,7 +356,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="setup/requirements.html" class="md-tabs__link">
+        <a href="../setup/requirements.html" class="md-tabs__link">
           
   
   
@@ -374,7 +376,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="development/development-guide.html" class="md-tabs__link">
+        <a href="../development/development-guide.html" class="md-tabs__link">
           
   
   
@@ -394,7 +396,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="competition/index.html" class="md-tabs__link">
+        <a href="../competition/index.html" class="md-tabs__link">
           
   
   
@@ -414,7 +416,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="specifications/interface.html" class="md-tabs__link">
+        <a href="../specifications/interface.html" class="md-tabs__link">
           
   
   
@@ -434,7 +436,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="course/index.html" class="md-tabs__link">
+        <a href="../course/index.html" class="md-tabs__link">
           
   
   
@@ -450,11 +452,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="ai.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ai.html" class="md-tabs__link">
           
   
   
@@ -472,7 +476,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="faq.html" class="md-tabs__link">
+      <a href="../faq.html" class="md-tabs__link">
         
   
   
@@ -491,7 +495,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="community.html" class="md-tabs__link">
+      <a href="../community.html" class="md-tabs__link">
         
   
   
@@ -508,11 +512,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="contributing.html" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../contributing.html" class="md-tabs__link">
         
   
   
@@ -554,7 +556,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="index.html" title="自動運転 AI チャレンジ 2026" class="md-nav__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
+    <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-nav__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -584,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href="../index.html" class="md-nav__link">
         
   
   
@@ -611,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started.html" class="md-nav__link">
+      <a href="../getting-started.html" class="md-nav__link">
         
   
   
@@ -688,7 +690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/requirements.html" class="md-nav__link">
+      <a href="../setup/requirements.html" class="md-nav__link">
         
   
   
@@ -716,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/introduction.html" class="md-nav__link">
+      <a href="../setup/introduction.html" class="md-nav__link">
         
   
   
@@ -744,7 +746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/gpu-simulation.html" class="md-nav__link">
+      <a href="../setup/gpu-simulation.html" class="md-nav__link">
         
   
   
@@ -772,7 +774,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup/update-environment.html" class="md-nav__link">
+      <a href="../setup/update-environment.html" class="md-nav__link">
         
   
   
@@ -857,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="development/development-guide.html" class="md-nav__link">
+      <a href="../development/development-guide.html" class="md-nav__link">
         
   
   
@@ -885,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="development/environment.html" class="md-nav__link">
+      <a href="../development/environment.html" class="md-nav__link">
         
   
   
@@ -913,7 +915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="development/commands.html" class="md-nav__link">
+      <a href="../development/commands.html" class="md-nav__link">
         
   
   
@@ -941,7 +943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="development/main-module.html" class="md-nav__link">
+      <a href="../development/main-module.html" class="md-nav__link">
         
   
   
@@ -969,7 +971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="development/development-ideas.html" class="md-nav__link">
+      <a href="../development/development-ideas.html" class="md-nav__link">
         
   
   
@@ -1054,7 +1056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="competition/index.html" class="md-nav__link">
+      <a href="../competition/index.html" class="md-nav__link">
         
   
   
@@ -1082,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="competition/sw-class.html" class="md-nav__link">
+      <a href="../competition/sw-class.html" class="md-nav__link">
         
   
   
@@ -1110,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="competition/submission.html" class="md-nav__link">
+      <a href="../competition/submission.html" class="md-nav__link">
         
   
   
@@ -1138,7 +1140,7 @@
   
   
     <li class="md-nav__item">
-      <a href="competition/ai-class.html" class="md-nav__link">
+      <a href="../competition/ai-class.html" class="md-nav__link">
         
   
   
@@ -1223,7 +1225,7 @@
   
   
     <li class="md-nav__item">
-      <a href="specifications/interface.html" class="md-nav__link">
+      <a href="../specifications/interface.html" class="md-nav__link">
         
   
   
@@ -1251,7 +1253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="specifications/hardware.html" class="md-nav__link">
+      <a href="../specifications/hardware.html" class="md-nav__link">
         
   
   
@@ -1279,7 +1281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="specifications/simulator.html" class="md-nav__link">
+      <a href="../specifications/simulator.html" class="md-nav__link">
         
   
   
@@ -1364,7 +1366,7 @@
   
   
     <li class="md-nav__item">
-      <a href="course/index.html" class="md-nav__link">
+      <a href="../course/index.html" class="md-nav__link">
         
   
   
@@ -1392,7 +1394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="course/vehicle.html" class="md-nav__link">
+      <a href="../course/vehicle.html" class="md-nav__link">
         
   
   
@@ -1420,7 +1422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="course/velocity_planning.html" class="md-nav__link">
+      <a href="../course/velocity_planning.html" class="md-nav__link">
         
   
   
@@ -1448,7 +1450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="course/avoidance.html" class="md-nav__link">
+      <a href="../course/avoidance.html" class="md-nav__link">
         
   
   
@@ -1476,7 +1478,7 @@
   
   
     <li class="md-nav__item">
-      <a href="course/localization.html" class="md-nav__link">
+      <a href="../course/localization.html" class="md-nav__link">
         
   
   
@@ -1508,24 +1510,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
             
   
   
@@ -1543,7 +1550,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1561,7 +1568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ai.html" class="md-nav__link">
+      <a href="../ai.html" class="md-nav__link">
         
   
   
@@ -1589,7 +1596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/algorithms.html" class="md-nav__link">
+      <a href="algorithms.html" class="md-nav__link">
         
   
   
@@ -1667,7 +1674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/develop_tiny_lidar_net.html" class="md-nav__link">
+      <a href="develop_tiny_lidar_net.html" class="md-nav__link">
         
   
   
@@ -1753,7 +1760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/develop_pilot_net.html" class="md-nav__link">
+      <a href="develop_pilot_net.html" class="md-nav__link">
         
   
   
@@ -1786,6 +1793,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1796,11 +1805,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" checked>
         
           
           <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
@@ -1821,7 +1830,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1836,10 +1845,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="ml_sample/develop_soft_actor_critic.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Develop: Soft Actor-Critic (Reinforcement Learning)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="develop_soft_actor_critic.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1855,6 +1891,209 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gpu-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. GPU 描画を有効にする (.env)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-awsim-devsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AWSIM のカメラとカウントダウンの設定変更 (dev.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-control_method-rl_train" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. control_method を rl_train に変更する
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAC の学習手順
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SAC の学習手順">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. 学習用ディレクトリの作成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. コンフィグのコピー
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-autoware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. Autoware のビルドと起動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4. コンテナに入って学習を実行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推論走行の手順
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        仕組みの解説
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="仕組みの解説">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        観測空間・行動空間
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-gym" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS トピック ⇔ Gym 環境のブリッジ構造
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拡張ポイント
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1925,7 +2164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/design.html" class="md-nav__link">
+      <a href="design.html" class="md-nav__link">
         
   
   
@@ -2003,7 +2242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/getting_started_vlm_setup.html" class="md-nav__link">
+      <a href="getting_started_vlm_setup.html" class="md-nav__link">
         
   
   
@@ -2031,7 +2270,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/getting_started_vlm_run.html" class="md-nav__link">
+      <a href="getting_started_vlm_run.html" class="md-nav__link">
         
   
   
@@ -2117,7 +2356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/getting_started_vad_setup.html" class="md-nav__link">
+      <a href="getting_started_vad_setup.html" class="md-nav__link">
         
   
   
@@ -2145,7 +2384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/getting_started_vad_run.html" class="md-nav__link">
+      <a href="getting_started_vad_run.html" class="md-nav__link">
         
   
   
@@ -2189,7 +2428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ml_sample/faq.html" class="md-nav__link">
+      <a href="faq.html" class="md-nav__link">
         
   
   
@@ -2224,7 +2463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="faq.html" class="md-nav__link">
+      <a href="../faq.html" class="md-nav__link">
         
   
   
@@ -2251,7 +2490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="community.html" class="md-nav__link">
+      <a href="../community.html" class="md-nav__link">
         
   
   
@@ -2275,37 +2514,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Contributing
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="contributing.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../contributing.html" class="md-nav__link">
         
   
   
@@ -2321,48 +2533,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Principles
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-a-new-page" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Adding a new page
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2394,10 +2564,121 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#principles" class="md-nav__link">
+  <a href="#setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principles
+        Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gpu-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. GPU 描画を有効にする (.env)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-awsim-devsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AWSIM のカメラとカウントダウンの設定変更 (dev.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-control_method-rl_train" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. control_method を rl_train に変更する
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAC の学習手順
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SAC の学習手順">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. 学習用ディレクトリの作成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. コンフィグのコピー
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-autoware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. Autoware のビルドと起動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4. コンテナに入って学習を実行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推論走行の手順
       
     </span>
   </a>
@@ -2405,10 +2686,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adding-a-new-page" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Adding a new page
+        仕組みの解説
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="仕組みの解説">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        観測空間・行動空間
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-gym" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ROS トピック ⇔ Gym 環境のブリッジ構造
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        拡張ポイント
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notes
       
     </span>
   </a>
@@ -2433,6 +2764,64 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Top Page
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../ai.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    ML
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="develop_soft_actor_critic.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    SoftActorCritic
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -2443,21 +2832,148 @@
   
 
 
-<h1 id="documentation-structure-guide">Documentation Structure Guide</h1>
-<p>This page describes how to organize files under <code>docs/</code> and how to add/restructure pages.</p>
-<h2 id="principles">Principles</h2>
+<h1 id="develop-soft-actor-critic-reinforcement-learning">Develop: Soft Actor-Critic (Reinforcement Learning)</h1>
+<p>このドキュメントでは、AI Challenge 環境で Soft Actor-Critic (SAC) による強化学習と推論走行を行う手順を説明します。</p>
+<p>TinyLiDARNet や PilotNet が rosbag を使った模倣学習であるのに対し、ここで扱う SAC は模倣学習ではありません。教師データ (rosbag) を事前に集める必要はなく、AWSIM と直接やり取りしながら方策 (policy) を学習します。学習中は AWSIM を GPU 描画付きで起動し続け、エージェントが行動を送るたびにシミュレータが応答する、という相互作用を繰り返してモデルを更新します。</p>
 <ul>
-<li>Design <code>nav</code> based on the participant reading flow</li>
-<li>Avoid changing URLs; if necessary, provide redirects</li>
-<li>Use <code>mkdocs-static-i18n</code> suffix files (<code>.ja.md</code> / <code>.en.md</code>)</li>
-<li>Put unpublished drafts under <code>drafts/</code> (not under <code>docs/</code>)</li>
+<li>アルゴリズムの位置付け: <a href="algorithms.html">ml_sample/algorithms.md</a></li>
+<li>実装: <a href="https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/tree/main/aichallenge/ml_workspace/reinforcement_learning">reinforcement_learning</a></li>
 </ul>
-<h2 id="adding-a-new-page">Adding a new page</h2>
-<ol>
-<li>Create <code>docs/&lt;path&gt;.ja.md</code> and <code>docs/&lt;path&gt;.en.md</code></li>
-<li>Add <code>&lt;path&gt;.md</code> (without suffix) to <code>nav:</code> in <code>mkdocs.yaml</code></li>
-<li>Run <code>mkdocs build</code> and fix warnings/links</li>
-</ol>
+<h2 id="setup">Setup</h2>
+<p><a href="../setup/introduction.html">環境構築</a>を実施してください。GPU を積んだマシンでの実行を前提とします。</p>
+<p>学習には AWSIM がカメラ画像を描画し続ける必要があるため、通常の模倣学習用セットアップに加えて以下の変更が必要です。</p>
+<h3 id="1-gpu-env">1. GPU 描画を有効にする (<code>.env</code>)</h3>
+<p><code>aichallenge-racingkart/.env</code> の <code>COMPOSE_FILE</code> が GPU overlay (<code>docker-compose.gpu.yml</code>) を含むようにしてください。コメントアウトされている場合は先頭の <code>#</code> を外してください。</p>
+<div class="highlight"><pre><span></span><code>COMPOSE_FILE=docker-compose.yml:docker-compose.gpu.yml
+</code></pre></div>
+<h3 id="2-awsim-devsh">2. AWSIM のカメラとカウントダウンの設定変更 (<code>dev.sh</code>)</h3>
+<p><code>aichallenge/simulator_scripts/dev.sh</code> を以下のように変更してください。</p>
+<div class="highlight"><pre><span></span><code><span class="gd">-    --camera off \</span>
+<span class="gi">+    --camera cpu \</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="gd">-    --start-count-seconds 5 \</span>
+<span class="gi">+    --start-count-seconds 0 \</span>
+</code></pre></div>
+<p><code>--camera off</code> のままだと <code>/sensing/camera/image_raw</code> が配信されず、観測に使う画像が得られません。また <code>--start-count-seconds</code> はカウントダウン秒数で、学習中に毎エピソード待たされないよう <code>0</code> にしておくと便利です。</p>
+<h3 id="3-control_method-rl_train">3. <code>control_method</code> を <code>rl_train</code> に変更する</h3>
+<p><code>aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml</code> の <code>control_method</code> を <code>rl_train</code> に書き換えてください。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_method&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;rl_train&quot;</span>
+</code></pre></div>
+<h2 id="sac">SAC の学習手順</h2>
+<h3 id="step-1">Step 1. 学習用ディレクトリの作成</h3>
+<p>コンフィグ・ログ・学習済みモデルを保存するディレクトリを作成します。名前は分かりやすければ何でも構いません。ここでは <code>202605122237</code> とします。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/aichallenge/ml_workspace/reinforcement_learning/
+mkdir<span class="w"> </span>-p<span class="w"> </span>workspace/202605122237/
+</code></pre></div>
+<h3 id="step-2">Step 2. コンフィグのコピー</h3>
+<p>デフォルトのコンフィグを作成したディレクトリにコピーします。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/aichallenge/ml_workspace/reinforcement_learning/
+cp<span class="w"> </span>./src/config/config_store/default_config.yaml<span class="w"> </span>./workspace/202605122237/default_config.yaml
+</code></pre></div>
+<h3 id="step-3-autoware">Step 3. Autoware のビルドと起動</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/
+make<span class="w"> </span>autoware-build
+make<span class="w"> </span>dev
+</code></pre></div>
+<p>AWSIM に <code>Race Result</code> というウィンドウが表示されますが、これは正常な動作です。</p>
+<h3 id="step-4">Step 4. コンテナに入って学習を実行</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/
+./docker_exec.sh
+</code></pre></div>
+<p><code>autoware</code> が名前に含まれる docker コンテナを選択してください。以降はこのコンテナ内のシェルで操作します。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/reinforcement_learning/
+<span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>python3<span class="w"> </span>./src/main.py<span class="w"> </span>--train<span class="w"> </span>--config<span class="w"> </span>./workspace/202605122237/default_config.yaml
+</code></pre></div>
+<p><code>--config</code> で渡した YAML と同じディレクトリに <code>model/</code> (学習済みモデル) と <code>log/</code> (TensorBoard ログ) が保存されます。指定したステップ数 (<code>default_config.yaml</code> では <code>total_timesteps: 300000</code>) の学習が終わると、<code>/aichallenge/ml_workspace/reinforcement_learning/workspace/202605122237/model.zip</code> が生成されます。</p>
+<h2 id="_1">推論走行の手順</h2>
+<p>学習済みモデル (<code>model.zip</code>) の名前を <code>awsim_sac_model.zip</code> にリネームします。<code>--infer</code> はデフォルトで <code>awsim_sac_model</code> というモデルパスを読みに行くためです。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/reinforcement_learning/workspace/202605122237/
+mv<span class="w"> </span>model.zip<span class="w"> </span>awsim_sac_model.zip
+</code></pre></div>
+<p>推論走行を実行します。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/aichallenge/ml_workspace/reinforcement_learning/workspace/202605122237/
+<span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>python3<span class="w"> </span>../../src/main.py<span class="w"> </span>--infer<span class="w"> </span>--config<span class="w"> </span>./default_config.yaml
+</code></pre></div>
+<p><code>--episodes</code> (デフォルト 5) でエピソード数を、<code>--model-path</code> でモデルファイルのパスを変更できます。</p>
+<h2 id="_2">仕組みの解説</h2>
+<h3 id="_3">観測空間・行動空間</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>観測 (Dict)</td>
+<td><code>image</code>: フロントカメラ画像を 64x64x3 にリサイズしたもの (uint8)。<code>speed</code>: 車速 [m/s] (0 未満はクリップ)</td>
+</tr>
+<tr>
+<td>行動 (Box, 2次元)</td>
+<td><code>[steering, acceleration]</code> の連続値。デフォルト範囲は <code>steering: [-1.0, 1.0]</code>、<code>acceleration: [0.0, 1.0]</code></td>
+</tr>
+<tr>
+<td>報酬</td>
+<td><code>speed_reward_scale × max(0, speed) - collision_penalty (衝突時のみ) - step_time_penalty (毎ステップ)</code> の3項のみ</td>
+</tr>
+<tr>
+<td>終了条件 (terminated)</td>
+<td>衝突判定のみ。急減速 (前ステップから <code>collision_speed_drop_threshold</code> 以上速度が落ちた) か、低速状態 (<code>collision_speed_threshold</code> 未満) が <code>collision_count_threshold</code> 回連続した場合に終了</td>
+</tr>
+</tbody>
+</table>
+<p>エピソード開始直後 (<code>step_count &lt;= 20</code>) は衝突判定を抑制し、リセット直後の不安定な挙動で誤終了しないようにしています。</p>
+<p>なお <code>default_config.yaml</code> には最大ステップ数で打ち切る <code>TimeLimit</code> wrapper の設定 (<code>algorithm.wrapper_order</code>, <code>algorithm.timelimit</code>) がありますが、これは <code>terminated</code> とは別に <code>truncated</code> を発生させるものです。コースアウト専用の判定はなく、コースアウトは速度低下という間接的な指標でしか検出されません。</p>
+<h3 id="ros-gym">ROS トピック ⇔ Gym 環境のブリッジ構造</h3>
+<p>学習・推論はいずれも <code>ROS_DOMAIN_ID=1</code> (Autoware 側のドメイン) で動作します。Gymnasium の <code>AWSIMEnv</code> と ROS 2 ノード <code>AWSIMEnvNode</code> が橋渡しし、<code>step()</code> のたびに行動の publish → 観測の取得 → 報酬・終了判定という 1 サイクルを回します。</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph SB3["stable-baselines3 (SAC)"]
+        A[action]
+    end
+
+    subgraph GYM["Gymnasium: AWSIMEnv"]
+        S[step]
+        AA[ActionAdapter]
+        OB[ObservationBuilder]
+        RW[RewardFunction]
+        TM[TerminationFunction]
+    end
+
+    subgraph NODE["ROS2 Node: AWSIMEnvNode (DOMAIN=1)"]
+        PUB["/control/command/control_cmd"]
+        SUB1["/sensing/camera/image_raw"]
+        SUB2["/vehicle/status/velocity_status"]
+        SUB3["/awsim/status, /awsim/state"]
+        RST["/awsim/reset"]
+    end
+
+    A --&gt; S
+    S --&gt; AA --&gt; PUB
+    PUB --&gt;|AWSIM| SUB1
+    PUB --&gt;|AWSIM| SUB2
+    SUB1 --&gt; OB
+    SUB2 --&gt; OB
+    SUB3 --&gt; OB
+    OB --&gt; TM --&gt; RW
+    RW --&gt;|obs, reward, terminated| SB3
+    S -.reset時.-&gt; RST</code></pre>
+<p><code>AWSIMEnvNode</code> は他にも GNSS/IMU/LiDAR/Trajectory など多数のトピックを購読できるよう用意していますが、現在の <code>AWSIMEnv</code> が実際に使うのは <code>/awsim/state</code>、<code>/awsim/status</code>、<code>/sensing/camera/image_raw</code>、<code>/vehicle/status/velocity_status</code> の4つのみです。<code>reset()</code> は <code>/awsim/reset</code> を publish し、0.5秒待ってから <code>/awsim/control_mode_request_topic</code> に Auto (true) を publish してシミュレータを再開させます。</p>
+<h3 id="_4">拡張ポイント</h3>
+<p><code>select_parts.py</code> が、コンフィグの <code>name</code> フィールドの文字列に応じて実装クラスを切り替えるプラガブルな構成になっています。観測・行動・報酬・終了条件はそれぞれ独立した interface (<code>observation/interfaces.py</code>, <code>action/interfaces.py</code>, <code>reward/interfaces.py</code>, <code>termination/interfaces.py</code>) を実装したクラスとして追加でき、<code>select_*</code> 関数に分岐を足すだけで <code>default_config.yaml</code> の <code>name</code> を書き換えて選択できるようになります。</p>
+<ul>
+<li><strong>報酬を変える</strong>: <code>reward/default_reward.py</code> の <code>DefaultAWSIMReward</code> は速度・衝突・時間の3項のみを見ています。セクション通過やラップ完走に応じたボーナスを加えたい場合はここに実装を追加してください。</li>
+<li><strong>観測を変える</strong>: <code>observation/default_observation.py</code> の <code>ImageSpeedObservationBuilder</code> は画像とスピードのみを返します。LiDAR やステアリング角など他のセンサ値を使いたい場合は、<code>context/extract_map/context_extract_map.yaml</code> の抽出マップに項目を追加した上で <code>ObservationBuilder</code> を拡張してください。</li>
+<li><strong>終了条件を変える</strong>: <code>termination/default_termination.py</code> の <code>CollisionTermination</code> は速度ベースの衝突判定のみです。コースアウト専用の判定を追加したい場合はここに実装してください。</li>
+</ul>
+<h2 id="notes">Notes</h2>
+<ul>
+<li><code>ROS_DOMAIN_ID</code> は必ず <code>1</code> (Autoware 側のドメイン) を指定してください。学習・推論コマンドの例はすべて <code>ROS_DOMAIN_ID=1</code> を前提にしています。</li>
+<li>学習中は AWSIM がカメラ画像を描画し続けるため、GPU 描画が必須です。<code>--camera off</code> のままだと画像が配信されず観測がゼロ埋めのままになります。</li>
+<li>AWSIM に表示される <code>Race Result</code> ウィンドウは学習時にも出てきますが、正常な動作です。</li>
+<li><code>--config</code> を指定しない場合、コンフィグは Python 側の <code>DEFAULT_CONFIG</code> (デフォルト値) にフォールバックします。このとき <code>gamma</code> や <code>reward</code> 系の値が <code>default_config.yaml</code> の値とは異なる (例: <code>gamma</code> は YAML では <code>0.99</code>、Python 既定値は <code>0.98</code>) ので、意図したハイパーパラメータで学習したい場合は必ず <code>--config</code> を指定してください。</li>
+<li>学習後に生成されるファイルは <code>model.zip</code> という固定名です。推論 (<code>--infer</code>) はデフォルトで <code>awsim_sac_model.zip</code> を読みに行くため、手動でのリネームが必要です。</li>
+</ul>
 
 
 
@@ -2493,7 +3009,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="community.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Community">
+          <a href="develop_pilot_net.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Develop: PilotNet (Camera-based End-to-End)">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2503,11 +3019,27 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Community
+                Develop: PilotNet (Camera-based End-to-End)
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="design.html" class="md-footer__link md-footer__link--next" aria-label="Next: Design: Sample ROS Node(VLM Planner)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Design: Sample ROS Node(VLM Planner)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
@@ -2541,12 +3073,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "announce.dismiss", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "announce.dismiss", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../javascripts/twitter-embeds.js"></script>
+        <script src="../../javascripts/twitter-embeds.js"></script>
       
     
   </body>
