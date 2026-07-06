@@ -767,6 +767,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/update-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境のアップデート
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -935,22 +963,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        サービス一覧
+        Docker Compose サービス一覧
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="サービス一覧">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ワークスペースの構成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ワークスペースの構成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aichallenge_submit" class="md-nav__link">
+  <a href="#docker-dev" class="md-nav__link">
     <span class="md-ellipsis">
       
-        aichallenge_submit の構成
+        開発環境（docker-dev）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-eval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        評価環境（docker-eval）
       
     </span>
   </a>
@@ -1006,6 +1056,34 @@
   
   
     <li class="md-nav__item">
+      <a href="main-module.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autowareの構成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="development-ideas.html" class="md-nav__link">
         
   
@@ -1014,62 +1092,6 @@
     
   
     開発のアイデア
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="update-environment.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    環境のアップデート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="main-module.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    メインモジュール
   
 
     
@@ -2343,22 +2365,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#docker-compose" class="md-nav__link">
     <span class="md-ellipsis">
       
-        サービス一覧
+        Docker Compose サービス一覧
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="サービス一覧">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ワークスペースの構成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ワークスペースの構成">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aichallenge_submit" class="md-nav__link">
+  <a href="#docker-dev" class="md-nav__link">
     <span class="md-ellipsis">
       
-        aichallenge_submit の構成
+        開発環境（docker-dev）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-eval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        評価環境（docker-eval）
       
     </span>
   </a>
@@ -2441,7 +2485,7 @@
 <h1 id="_1">環境の説明</h1>
 <p>大会用リポジトリでは、ビルド・実行環境はすべて Docker コンテナ内で完結しています。
 各コンテナは <code>docker-compose.yml</code> でサービスとして定義されており、参加者が日常的に使う操作は <code>make</code> コマンドでラップされています。そのため、Docker Compose の詳細を意識せずに開発を進められます。</p>
-<p>Autoware構成の詳細については、<a href="main-module.html">メインモジュール</a>を参照してください。</p>
+<p>参加者が編集するパッケージ群は <code>aichallenge_submit/</code> です。詳細は<a href="main-module.html">Autowareの構成</a>を参照してください。</p>
 <h2 id="_2">ディレクトリ構成</h2>
 <div class="highlight"><pre><span></span><code>aichallenge-racingkart/
 ├── aichallenge/
@@ -2460,8 +2504,8 @@
 └── docker_build.sh                           # Docker イメージビルドスクリプト
 </code></pre></div>
 <p><code>make dev</code> 実行時、 <code>aichallenge/workspace/</code> と <code>output/</code> はコンテナにマウントされるため、ホスト側での編集内容や実行結果にコンテナ内から直接アクセスできます。</p>
-<h2 id="_3">サービス一覧</h2>
-<p><code>docker-compose.yml</code> で定義されているサービスの一覧です。</p>
+<h2 id="docker-compose">Docker Compose サービス一覧</h2>
+<p><code>docker-compose.yml</code> で定義されている Docker Compose サービスの一覧です（ROS 2 のサービスとは異なります）。</p>
 <table>
 <thead>
 <tr>
@@ -2513,74 +2557,16 @@
 </tr>
 </tbody>
 </table>
-<h3 id="aichallenge_submit">aichallenge_submit の構成</h3>
-<p>参加者が変更できるパッケージが <code>aichallenge_submit/</code> にまとめられています。</p>
-<table>
-<thead>
-<tr>
-<th>パッケージ</th>
-<th>概要</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>aichallenge_submit_launch/</code></td>
-<td>起動設定・パラメータ・マップ・データを管理するランチパッケージ</td>
-</tr>
-<tr>
-<td><code>simple_pure_pursuit/</code></td>
-<td>Pure Pursuit ベースのルールベース制御</td>
-</tr>
-<tr>
-<td><code>simple_trajectory_generator/</code></td>
-<td>経路（Trajectory）生成</td>
-</tr>
-<tr>
-<td><code>path_to_trajectory/</code></td>
-<td>Path メッセージを Trajectory に変換</td>
-</tr>
-<tr>
-<td><code>multi_purpose_mpc_ros/</code></td>
-<td>MPC（モデル予測制御）ベースの制御</td>
-</tr>
-<tr>
-<td><code>tiny_lidar_net_controller/</code></td>
-<td>TinyLiDARNet による End-to-End 制御</td>
-</tr>
-<tr>
-<td><code>pilot_net_controller/</code></td>
-<td>PilotNet による End-to-End 制御</td>
-</tr>
-<tr>
-<td><code>gyro_odometer/</code></td>
-<td>ジャイロセンサを使ったオドメトリ推定</td>
-</tr>
-<tr>
-<td><code>imu_corrector/</code></td>
-<td>IMU データの補正</td>
-</tr>
-<tr>
-<td><code>imu_gnss_poser/</code></td>
-<td>IMU と GNSS を組み合わせた位置推定</td>
-</tr>
-<tr>
-<td><code>racing_kart_gnss_poser/</code></td>
-<td>レーシングカート向け GNSS 位置推定</td>
-</tr>
-<tr>
-<td><code>laserscan_generator/</code></td>
-<td>点群から LaserScan を生成</td>
-</tr>
-<tr>
-<td><code>racing_kart_description/</code></td>
-<td>車両モデル（URDF・メッシュ）</td>
-</tr>
-<tr>
-<td><code>racing_kart_sensor_kit_description/</code></td>
-<td>センサキット構成（URDF）</td>
-</tr>
-</tbody>
-</table>
+<h2 id="_3">ワークスペースの構成</h2>
+<p>参考までに本大会で使用しているワークスペースの構成は以下となります。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>大会で提出するフォルダは <code>/aichallenge/workspace/src/aichallenge_submit</code> になります。このフォルダ以外で実装を追加・変更しても、提出物に含めることはできません。</p>
+</div>
+<h3 id="docker-dev">開発環境（docker-dev）</h3>
+<p><img alt="dev" src="images/docker/dev.drawio.svg" /></p>
+<h3 id="docker-eval">評価環境（docker-eval）</h3>
+<p><img alt="eval" src="images/docker/eval.drawio.svg" /></p>
 
 
 

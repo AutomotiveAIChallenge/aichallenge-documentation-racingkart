@@ -767,6 +767,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup/update-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境のアップデート
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -915,6 +943,34 @@
   
   
     <li class="md-nav__item">
+      <a href="development/main-module.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autowareの構成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="development/development-ideas.html" class="md-nav__link">
         
   
@@ -923,62 +979,6 @@
     
   
     開発のアイデア
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="development/update-environment.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    環境のアップデート
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="development/main-module.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    メインモジュール
   
 
     
@@ -2247,17 +2247,6 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        シミュレータ・実行
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
         解決しない場合
       
     </span>
@@ -2399,17 +2388,6 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        シミュレータ・実行
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         解決しない場合
@@ -2568,17 +2546,6 @@
 </details>
 <h2 id="autoware">Autoware</h2>
 <details class="question">
-<summary>制御モードを変更するにはどうすればいいですか？</summary>
-<p><code>reference.launch.xml</code>の<code>control_mode</code>引数を変更することで制御モードを切り替えられます。</p>
-<ul>
-<li><code>mpc</code>（デフォルト）：MPCベースの制御</li>
-<li><code>pure_pursuit</code>: Pure Pursuitベースの制御</li>
-<li><code>tiny_lidar_net</code>: TinyLiDARNetによるEnd-to-End制御</li>
-<li><code>pilot_net</code>: PilotNetによるEnd-to-End制御</li>
-<li><code>joycon</code>: 手動テレオペ操作</li>
-</ul>
-</details>
-<details class="question">
 <summary>経路生成（Behavior Path/Motion Planner）に関して教えてください。</summary>
 <p>behavior plannerは、主にODD3以上のいわゆる一般道での走行を行うのに必要な機能（一時停止線、横断歩道、信号停止）など破ってはいけない交通ルールを加味したplanningを行うものとなっています。
 それ故、回避機能もルールベースの回避で最適化を行っていません。
@@ -2606,22 +2573,9 @@
 <summary>mpcのチューニングをしたいのですが，今回AWSIMで使用されているモデルパラメータ（遅れや時定数など）は公開されていないでしょうか．</summary>
 <p>遅れや時定数については計測も公開もされていませんが、基本的な仕様については<a href="specifications/simulator.html">こちら</a>に公開されています。</p>
 </details>
-<h2 id="_4">シミュレータ・実行</h2>
-<details class="question">
-<summary>車を初期位置にリセットするにはどうすればいいでしょうか。</summary>
-<p>AWSIMのキーボード操作で<code>Space</code>キーを押すとリセットできます。また、<code>/admin/awsim/reset</code>トピックに<code>std_msgs/msg/Empty</code>をPublishすることでもリセットが可能です。</p>
-</details>
-<details class="question">
-<summary>AWSIMの動作が安定しません。</summary>
-<p>GPUの性能不足が原因の一つになります。
-高性能GPUの利用が難しい場合は、awsimの画面の下部にスライドバーでtime scaleを0.5くらいに設定すると安定して動作する可能性があります。</p>
-</details>
-<details class="question">
-<summary>センサの追加取り付けは可能ですか。</summary>
-<p>同一条件・難易度で課題に取り組んでいただくために、新たなセンサの取り付けは不可としています。</p>
-</details>
-<h2 id="_5">解決しない場合</h2>
+<h2 id="_4">解決しない場合</h2>
 <p><a class="md-button md-button--primary" href="community.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M6 13h8l-3.5 3.5 1.42 1.42L17.84 12l-5.92-5.92L10.5 7.5 14 11H6z"/></svg></span> コミュニティで情報を探す</a></p>
+<p>Slackの質問チャンネルもご活用ください。</p>
 
 
 
