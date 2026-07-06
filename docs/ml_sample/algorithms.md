@@ -81,6 +81,22 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 
 引用元: [https://github.com/CSL-KU/TinyLidarNet](https://github.com/CSL-KU/TinyLidarNet)
 
+## 強化学習 (Reinforcement Learning)
+
+- ここまで紹介した手法はいずれも人間の運転データ(教師データ)を模倣する模倣学習(Imitation Learning)ですが、強化学習は教師データを使わず、環境との相互作用によって得られる報酬信号から方策を学習します。
+
+### [Soft Actor-Critic](https://arxiv.org/abs/1801.01290)
+
+- 期待報酬に加えて方策のエントロピー(行動のランダム性)も同時に最大化する、最大エントロピー強化学習の枠組みに基づく手法です。エントロピーを高く保つことで探索と活用のバランスを自動的に取ります。
+- Off-policyなactor-critic法で、過去の経験をリプレイバッファに蓄積して再利用できるため、on-policy法に比べてサンプル効率が高いのが特徴です。
+- Q関数の過大評価を抑えるため、2つのQ NetworkのうちQ値が小さい方を採用するtwin Q-networkを使用します。
+- 報酬のスケールに応じて手動調整が必要だった温度パラメータα(エントロピー項の重み)を、学習中に自動調整する仕組みを備えています。
+- 連続値の行動空間を前提に設計されており、ステアリング角やアクセル・ブレーキ量のような連続値制御と相性が良い手法です。
+- 論文: [Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor](https://arxiv.org/abs/1801.01290)
+- 論文(拡張版): [Soft Actor-Critic Algorithms and Applications](https://arxiv.org/abs/1812.05905)
+- 実装: [stable-baselines3 SAC](https://stable-baselines3.readthedocs.io/en/master/modules/sac.html)
+- 本リポジトリでの学習手順: [Develop: Soft Actor-Critic](develop_soft_actor_critic.md)
+
 ## VLM based planner
 
 - 言語モデルを使用したPlannerも多数登場しています。いくつか例を紹介します。

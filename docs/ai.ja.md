@@ -65,6 +65,12 @@ Sample ROS Nodeと教材は以下のlinkより参照ください。
     - [Design: Sample ROS Node](./ml_sample/design.md)
     - [Algorithms](./ml_sample/algorithms.md)
 
+### Reinforcement Learning based End-to-End Sample ROS Node
+
+- カメラ画像と車両の速度状態を観測として用い、強化学習（SAC: Soft Actor-Critic）によりエージェントを学習し、制御指令（steering, acceleration）を出力します。
+- 機能概要
+    - 学習・実行方法については、[Develop: SoftActorCritic](./ml_sample/develop_soft_actor_critic.md)を参照ください。
+
 ## 本教材の想定読者
 
 !!! tip "想定読者"

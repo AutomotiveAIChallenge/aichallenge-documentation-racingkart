@@ -70,6 +70,8 @@ nav:
           - ml_sample/develop_tiny_lidar_net.md
       - PilotNet:
           - ml_sample/develop_pilot_net.md
+      - SoftActorCritic:
+          - ml_sample/develop_soft_actor_critic.md
       - "Design: Sample ROS Node(VLM Planner)":
           - ml_sample/design.md
           - VLM:

@@ -13,7 +13,7 @@ tiny_lidar_net との主な違い:
 | 入力 | 2D LiDAR スキャン | フロントカメラ画像 (66x200) |
 | 教師 | Autoware の経路追従コマンド | MPC エキスパートの制御コマンド |
 | 推論 | NumPy | NumPy |
-| 入力前処理 | 距離正規化 | 上部 37.5% クロップ → 66x200 リサイズ → YUV 変換 |
+| 入力前処理 | 距離正規化 | 上部 37.5% クロップ → 66x200 リサイズ (抽出時) → YUV 変換 (学習時) |
 
 ## Setup
 
@@ -135,8 +135,10 @@ python3 /aichallenge/ml_workspace/pilot_net/extract_data_from_bag.py \
 
 1. rosbag から `/sensing/camera/image_raw` と `/control/command/control_cmd` を時刻同期して取得
 2. 各画像の上部 37.5% をクロップ (空・遠景を除外)
-3. 66x200 にリサイズして `images.npy` (uint8) として保存
+3. 66x200 にリサイズして `images.npy` (RGB uint8) として保存
 4. ステアリングと加速度を `steers.npy` / `accelerations.npy` に保存
+
+YUV への変換はここでは行われません。`images.npy` は RGB のまま保存され、Step 3 で `train.py` がデータを読み込む際 (`lib/data.py` の Dataset 内、リサイズ後・正規化前) に `color_space: yuv` 設定に従って変換されます。
 
 以下のような出力が得られたら成功です:
 
@@ -194,7 +196,7 @@ cp /aichallenge/ml_workspace/pilot_net/weights/pilotnet_weights.npy \
 
 ### Step 5. Run PilotNet Sample ROS Node
 
-[`reference.launch.xml`におけるcontrol method](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`rule_based`から`pilot_net`に変更しましょう。
+[`reference.launch.xml`におけるcontrol method](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`mpc`(デフォルト)から`pilot_net`に変更しましょう。
 
 Step 1 でコンテナを既に起動している場合は、そのまま Terminal を再利用できます。コンテナを停止していた場合はホスト側で再度 `./docker_run.sh dev` (Terminal 1) と `./docker_exec.sh` (Terminal 2 以降) で入り直してください。
 
@@ -224,11 +226,11 @@ Step 1 でコンテナを既に起動している場合は、そのまま Termin
 
 ## オプション: train/val 分割と augmentation { #option-train-val-augmentation }
 
-`extract_data_from_bag.py` の出力 (`./dataset/train/`) のままでも学習は開始できますが、汎化性能を上げたい場合は train/val 分割と水平反転 augmentation を行ってから `train.py` を実行してください:
+`extract_data_from_bag.py` の出力 (`./dataset/train/`) のままでも学習は開始できますが、汎化性能を上げたい場合は train/val 分割と水平反転 augmentation を行ってから `train.py` を実行してください。`prepare_data.py` はデフォルトで `dataset/all/` 配下の抽出済みシーケンスを読み込むため、Step 2 で `--outdir` に `dataset/train/` / `dataset/val/` を指定した場合は `--all-dir` で抽出先を明示してください:
 
 ```sh
 cd /aichallenge/ml_workspace/pilot_net/
-python3 prepare_data.py
+python3 prepare_data.py --all-dir dataset/train
 ```
 
 `dataset/train/merged/` と `dataset/val/merged/` が生成され、`train.py` がこちらを優先して読み込みます。
@@ -241,6 +243,10 @@ extract → prepare → train → convert を一気に実行できます:
 cd /aichallenge/ml_workspace/pilot_net
 ./run_pipeline.bash /aichallenge/ml_workspace/train
 ```
+
+**注意 (破壊的動作):** `run_pipeline.bash` は実行のたびに `dataset/` ディレクトリ全体、および `checkpoints/`・`logs/` ディレクトリを `rm -rf` で削除してから処理を開始します。既存の学習済み checkpoint や過去に抽出した dataset を残したい場合は、事前に別ディレクトリへコピーしておいてください。
+
+**注意 (損失関数):** Step 3 で `train.py` を直接実行した場合、`output_dim=2` ではデフォルトで `WeightedSmoothL1Loss` が使われますが、`run_pipeline.bash` は内部で常に `+train.loss_type=mse` を付与するため、`output_dim` の値によらず `MSELoss` で学習されます。
 
 引数で解像度・色空間・出力次元・クロップ比率を変更できます:
 
