@@ -2,7 +2,39 @@ description: Official documentation for the Autonomous Driving AI Challenge (Rac
 
 # Japan Automotive AI Challenge 2026
 
-![top_image](./assets/top_image.jpg)
+## FY2026 Videos
+
+<div class="video-carousel" data-videos="current">
+  <noscript>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=K_ToeWGitbk">Guide 01: Introduction</a></li>
+      <li><a href="https://www.youtube.com/watch?v=5BowSyA8hV8">Guide 02: Autoware</a></li>
+      <li><a href="https://www.youtube.com/watch?v=MabDMP6f-Ek">Talk 1: Launch of the End-to-End AI Category (TIER IV)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=cGJK4Zlm11c">Talk 2: Community-born AI Chatbot (TPAC)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=fGzGK3MC1Gw">Talk 3: The Wabi-Sabi of the AI Challenge (SUBARU)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=jrDxfqbDJd4">Talk 4: GNSS for Autonomous Driving (Nikon-Trimble)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=Sh-8HNGfQaw">Talk 5: Toward Social Implementation (AIST)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=4YcWzPdrdbE">Talk 6: Cooperative Driving with V2X (UTokyo Tsukada Lab)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=nG4jIycigBo">Talk 7: The World of Autonomous Racing (GMO)</a></li>
+    </ul>
+  </noscript>
+</div>
+
+## Past Competition Videos
+
+<div class="video-carousel" data-videos="past">
+  <noscript>
+    <ul>
+      <li><a href="https://www.youtube.com/watch?v=z3pqjLJnENo">2025 Preliminary Award Ceremony Digest</a></li>
+      <li><a href="https://www.youtube.com/watch?v=G07HQNn1_tU">2025 Final Digest</a></li>
+      <li><a href="https://www.youtube.com/watch?v=_wvVNh3_Axo">2025 Final (Day 2)</a></li>
+      <li><a href="https://www.youtube.com/watch?v=yjgMUAnJHKw">2025 AI vs Racer Digest</a></li>
+      <li><a href="https://www.youtube.com/watch?v=Mynxk4GBAzA">2025 Simulation Footage</a></li>
+      <li><a href="https://www.youtube.com/watch?v=COZDHMm4E_8">2024 EV Kart Test Run</a></li>
+      <li><a href="https://www.youtube.com/watch?v=FGGTUcfV7nU">2024 Documentary</a></li>
+    </ul>
+  </noscript>
+</div>
 
 ## Concept
 
@@ -34,23 +66,15 @@ description: Official documentation for the Autonomous Driving AI Challenge (Rac
 
 The preliminary round will be conducted through online simulations. The competition aims to achieve faster lap times on the course using AWSIM, which is oriented towards digital twin simulations. Participants will not only learn the structure of Autoware but also adjust parameters for behavior and decision-making parts and develop new algorithms as needed.
 
-<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/cM3Up6fgpWI?si=S6N3wzBEgXVpl54x" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 ### Final Round
 
 The final competition will be conducted using an EV racing kart as the competition vehicle. Participants will apply the knowledge gained from simulations to real vehicles and tackle challenges unique to real vehicles that cannot be replicated in AWSIM.
 
 For example, participants will be challenged to adjust parameters for application to real vehicles and develop algorithms for noise handling and delay countermeasures that cannot be replicated in simulations.
 
-<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/GsuCUoNrMDM?si=zoh1mL_U0yRnB2fj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 ## Awards
 
 <!-- The total prize money is over 1 million yen. For details, please refer to the [racingkart Autonomous Driving AI Challenge Overview](https://www.jsae.or.jp/jaaic/racingkartver/summary/). -->
-
-## Course
-
-<iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/K-N-2nLXXF8?si=pZ2NovtO_IGwsa_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Vehicle
 

@@ -1,4 +1,5 @@
 site
+.superpowers
 .env
 .cache
 .venv

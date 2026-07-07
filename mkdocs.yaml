@@ -90,6 +90,7 @@ extra_css:
 
 extra_javascript:
   - javascripts/twitter-embeds.js
+  - javascripts/video-carousel.js
 
 markdown_extensions:
   - meta
