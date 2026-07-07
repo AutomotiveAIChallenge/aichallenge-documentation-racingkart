@@ -163,3 +163,239 @@
     filter: saturate(1.15);
   }
 }
+
+/* =========================================================
+   トップページ 動画回転プレビュー（自動回転カバーフロー）
+   ========================================================= */
+.video-carousel {
+  margin: 8px 0 32px;
+  /* サムネ失敗時・プレースホルダで共通のハッチ背景 */
+  --vc-hatch: repeating-linear-gradient(
+    135deg,
+    #2a2140,
+    #2a2140 14px,
+    #241c38 14px,
+    #241c38 28px
+  );
+}
+
+.vc-stage {
+  position: relative;
+  height: 420px;
+  perspective: 2000px;
+}
+
+.vc-track {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.vc-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 460px;
+  height: 259px;
+  margin: -129px 0 0 -230px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #15151e;
+  border: 1px solid rgba(69, 54, 172, 0.5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.7s,
+    filter 0.7s;
+  will-change: transform;
+}
+
+.vc-item .vc-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* サムネ読み込み失敗時のフォールバック */
+.vc-item.vc-thumb-failed {
+  background: var(--vc-hatch);
+}
+
+.vc-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vc-play::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 28px solid rgba(255, 255, 255, 0.92);
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
+
+.vc-cap-in {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #f5f7ff;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.82));
+}
+
+/* プレースホルダタイル */
+.vc-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #a99fe0;
+  background: var(--vc-hatch);
+}
+
+.vc-ph-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  border: 1px solid #6a5cc9;
+  border-radius: 20px;
+  padding: 3px 12px;
+  margin-bottom: 10px;
+}
+
+.vc-ph-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.vc-item.vc-active {
+  border: 2px solid #cfc9ff;
+  box-shadow: 0 0 30px rgba(69, 54, 172, 0.9), 0 18px 44px rgba(0, 0, 0, 0.6);
+}
+
+.vc-item:not(.vc-active) {
+  filter: saturate(0.85) brightness(0.66);
+}
+
+.vc-item:not(.vc-active) .vc-play {
+  display: none;
+}
+
+/* 再生中のカードは中身を iframe に差し替え */
+.vc-item.vc-playing {
+  cursor: default;
+}
+
+.vc-item.vc-playing iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.vc-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(207, 201, 255, 0.4);
+  background: rgba(21, 21, 30, 0.78);
+  color: #cfc9ff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.vc-btn:hover {
+  background: rgba(69, 54, 172, 0.85);
+  color: #fff;
+}
+
+.vc-prev {
+  left: 6px;
+}
+
+.vc-next {
+  right: 6px;
+}
+
+.vc-caption {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-top: 8px;
+  min-height: 1.4em;
+}
+
+.vc-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.vc-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(207, 201, 255, 0.35);
+  cursor: pointer;
+}
+
+.vc-dot.vc-on {
+  background: #cfc9ff;
+  transform: scale(1.15);
+}
+
+/* レスポンシブ: タブレット */
+@media screen and (max-width: 960px) {
+  .vc-stage {
+    height: 320px;
+  }
+  .vc-item {
+    width: 360px;
+    height: 203px;
+    margin: -101px 0 0 -180px;
+  }
+}
+
+/* レスポンシブ: スマホ */
+@media screen and (max-width: 600px) {
+  .vc-stage {
+    height: 240px;
+  }
+  .vc-item {
+    width: 260px;
+    height: 146px;
+    margin: -73px 0 0 -130px;
+  }
+  .vc-play::after {
+    border-left-width: 20px;
+    border-top-width: 13px;
+    border-bottom-width: 13px;
+  }
+  .vc-cap-in,
+  .vc-ph-title {
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vc-item {
+    transition: none;
+  }
+}
