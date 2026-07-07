@@ -33,6 +33,7 @@
 空のコンテナ `<div>` を置くだけにし、URL 変更は JS 1ファイルの編集で完結させる。
 
 ### 1. `docs/javascripts/video-carousel.js`（新規）
+
 - 動画配列を保持: `{ id?, ja, en }`（`id` が無ければプレースホルダ）
 - `document.getElementById('video-carousel')` を見つけて DOM を構築
 - キャプションはページ言語（`document.documentElement.lang`）で ja/en を出し分け
@@ -47,22 +48,25 @@
 - `prefers-reduced-motion: reduce` の場合は自動回転を無効化
 
 ### 2. `docs/stylesheets/custom.css`（追記）
+
 - `.video-carousel` 一式のスタイル（既存のブランド配色 `#15151e` / `#4536ac` に合わせる）
 - 実在動画: YouTube サムネイル `https://img.youtube.com/vi/<id>/hqdefault.jpg`
 - プレースホルダ: グラデーションのタイル＋「準備中」タグ＋ラベル
 - レスポンシブ: 画面幅に応じてカード幅・オフセットを縮小（スマホ対応）
 
 ### 3. `docs/index.ja.md` / `docs/index.en.md`（編集）
+
 - 冒頭見出し直後に `<div id="video-carousel" class="video-carousel"></div>` を配置
 - 既存のインライン `<iframe>` を各セクションから撤去（挑戦課題・セットアップ等）
 - 見出し・本文テキストは残す
 
 ### 4. `mkdocs.yaml`（編集）
+
 - `extra_javascript` に `javascripts/video-carousel.js` を追加
 
 ## データフロー
 
-```
+```text
 index.md の <div id="video-carousel">
   → video-carousel.js が起動時に検出
     → 動画配列から各カード(サムネ or プレースホルダ)を生成
