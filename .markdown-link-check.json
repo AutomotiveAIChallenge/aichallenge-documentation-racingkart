@@ -1,9 +1,5 @@
 {
   "aliveStatusCodes": [200, 206],
-  "timeout": "30s",
-  "retryOn429": true,
-  "retryCount": 3,
-  "fallbackRetryDelay": "15s",
   "ignorePatterns": [
     {
       "pattern": "https://tier4inc-my.sharepoint.com/"
