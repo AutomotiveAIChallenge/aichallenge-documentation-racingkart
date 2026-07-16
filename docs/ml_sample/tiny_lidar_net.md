@@ -190,8 +190,33 @@ cp /aichallenge/ml_workspace/tiny_lidar_net/weights/converted_weights.npy \
 ![awsim_scenario_2](./images/awsim_scenario_2.jpg)
 ![awsim_scenario_3](./images/awsim_scenario_3.jpg)
 
-### Rvizの設定
+### Rockerから操作する場合
 
-sensorモジュールはBestEffortでpublishしています。Rvizのtopicの設定をReliableからBestEffortにしてください。
+AutowareやAWSIMの起動を繰り返す場合は、Rockerを使用するほうが便利な場合もあります。
 
-<img src="../assets/awsim-2.png" alt="awsim" width="50%">
+- AWSIMの起動
+    - 新規ターミナルで下記コマンドでAWSIMを起動し、任意の設定を行いStartします
+
+    ```bash
+    ./docker_run.sh dev
+    ./run_simulator.bash
+    ```
+
+- Autowareの起動
+    - 新規ターミナルで下記コマンドでAutowareを起動します
+    - もしも走行しない場合は、RViz上で「InitialPose Set」と「Auto Mode Stat」をクリックしてください
+
+    ```bash
+    ./docker_exec.sh
+    ./run_autoware.bash awsim 1
+    ```
+
+- rosbag記録
+    - 新規ターミナルで下記コマンドでrosbag記録します
+
+    ```bash
+    ./docker_exec.sh
+    cd /aichallenge/ml_workspace
+    export ROS_DOMAIN_ID=1
+    ./record_data.bash
+    ```
