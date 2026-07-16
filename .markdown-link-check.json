@@ -11,6 +11,9 @@
       "pattern": "https://aichallenge-board\\.jsae\\.or\\.jp"
     },
     {
+      "pattern": "https://proceedings\\.neurips\\.cc"
+    },
+    {
       "pattern": "^#option-train-val-augmentation$"
     },
     {
