@@ -1,4 +1,4 @@
-# Develop: PilotNet (Camera-based End-to-End)
+# PilotNet
 
 このドキュメントでは、NVIDIA PilotNet (DAVE-2) を AI Challenge 環境で学習・デプロイする手順を説明します。
 
