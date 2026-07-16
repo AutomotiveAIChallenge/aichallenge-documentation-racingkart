@@ -214,3 +214,9 @@ make gate3
 ```
 
 ![autoware-gate1](./images/autoware-gate1.jpg)
+
+### スタックからの自動復帰
+
+- 壁への衝突などで車両がスタック（停止）してしまうことがあります。
+- スタックを検知して自動で後退・復帰する[stuck_recovery_controller](https://github.com/AutomotiveAIChallenge/stuck_recovery_controller)パッケージを用意していますので、ぜひ使ってみてください。
+- 使い方はリポジトリの[README](https://github.com/AutomotiveAIChallenge/stuck_recovery_controller#usage)のUsageを参照してください。
