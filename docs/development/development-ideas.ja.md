@@ -60,6 +60,11 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
     ※コピー元のパッケージのライセンスを違反しないよう各自確認お願いいたします。
 
+??? tip "[任意]自動復帰処理を追加してみる"
+    走行中に壁への衝突などで車両がスタック（停止）してしまうことがあります。スタックを検知して自動で後退・復帰する[stuck_recovery_controller](https://github.com/AutomotiveAIChallenge/stuck_recovery_controller)パッケージを用意していますので、ぜひ使ってみてください。
+
+    使い方はリポジトリの[README](https://github.com/AutomotiveAIChallenge/stuck_recovery_controller#usage)のUsageを参照してください。
+
 ??? tip "[任意]Trajectoryの編集をしてみる"
     2025年度のAIチャレンジでは岐阜大学のチームが作成してくれた[Trajectory Editor](https://github.com/AutomotiveAIChallenge/aichallenge-trajectory-editor)などのツールを使ってTrajectoryの編集をしていきます。
 
