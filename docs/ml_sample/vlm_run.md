@@ -1,4 +1,4 @@
-# Getting started: VLM Plannerの実行
+# VLM Plannerの実行
 
 このドキュメントでは、Gemini APIとAWSIMを用いて、VLM Plannerを動かす方法について説明します。
 

@@ -1,6 +1,6 @@
-# Getting started: Setup for VLM Planner
+# Setup for VAD Planner
 
-このドキュメントでは、Gemini APIとAWSIMを用いて、VLM Plannerのsetupを行う方法について説明します。
+このドキュメントでは、Gemini APIとAWSIMを用いて、VAD Plannerのsetupを行う方法について説明します。
 
 ## AWSIM側の準備
 
@@ -43,7 +43,21 @@ cd /aichallenge
 
     Gemini API KEYは自分だけしか見られない場所に保管してください。GitHubにpushしないよう気をつけましょう。
 
-## VLM Planner環境側の準備
+## VAD Planner環境側の準備
+
+### sample model(onnx)のdownload
+
+- [nuScenes datasetで学習されたonnx file](https://tier4inc-my.sharepoint.com/:f:/g/personal/taiki_tanaka_tier4_jp/EvQZY6sIudNKnFJSAnuyS9ABpodIW_FSYk57BrenzhCtXg?e=T4RLVw)をdownloadします
+  - `$HOME/autoware_data`というディレクトリを作成し、onnx fileをその中に格納してください。
+- 格納後の状態が以下のようになっているか、確認してください。
+
+```sh
+❯ tree ~/autoware_data/vad
+/home/user_name/autoware_data/vad
+├── sim_vadv1.extract_img_feat.onnx
+├── sim_vadv1.pts_bbox_head.forward.onnx
+└── sim_vadv1_prev.pts_bbox_head.forward.onnx
+```
 
 ### docker imageのpull
 
@@ -68,6 +82,7 @@ sh script/setup.sh
 ### docker run
 
 - `/path/to/e2e-utils-beta`には、local環境にcloneしてきた`e2e-utils-beta`のpathを埋めてください。
+- `user_name`には、お使いのPCのユーザー名を埋めてください。
 
 ```sh
 rocker \
@@ -76,7 +91,8 @@ rocker \
   --network host \
   --user \
   --volume /path/to/e2e-utils-beta:/home/e2e-utils-beta \
-  --name aichallenge-e2e-utils \
+  --volume /home/user_name/autoware_data:/home/user_name/autoware_data \
+  --name aichallenge-e2e-utils-vad \
   ghcr.io/autowarefoundation/autoware:universe-devel-cuda \
   /bin/bash
 ```
@@ -90,8 +106,8 @@ cd /home/e2e-utils-beta
 rosdep update;rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 ```
 
-```sh
-colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release --packages-up-to autoware_auto_planning_msgs autoware_internal_planning_msgs
+```bash
+colcon build --symlink-install --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=Release --packages-up-to vad_aic_launch autoware_auto_planning_msgs
 ```
 
 ### uvの環境構築
@@ -107,11 +123,11 @@ source ~/.bashrc
 uvのinstall完了後、以下を実行してください。
 
 ```sh
-cd /home/e2e-utils-beta;source install/setup.bash;export ROS_LOCALHOST_ONLY=1
+cd /home/e2e-utils-beta;source install/setup.bash
 ```
 
 ```sh
-cd /home/e2e-utils-beta/src/vlm_planner;uv venv -p python3.10
+cd /home/e2e-utils-beta/src/vlm_trajectory_selector;uv venv -p python3.10
 ```
 
 ```sh
@@ -124,7 +140,7 @@ uv pip install .
 
 ### Gemini APIの設定
 
-- [Gemini APIの準備](./getting_started_vlm_setup.md#gemini-api)にて取得したAPI KEYを環境変数に設定しましょう。
+- [Gemini APIの準備](./getting_started_vad_setup.md#gemini-api)にて取得したAPI KEYを環境変数に設定しましょう。
 
 ```sh
 export GEMINI_API_KEY="YOUR_API_KEY"

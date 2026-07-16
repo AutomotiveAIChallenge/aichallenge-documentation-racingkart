@@ -1,4 +1,4 @@
-# Getting started: VAD Plannerの実行
+# VAD Plannerの実行
 
 このドキュメントでは、Gemini APIとAWSIMを用いて、VAD Plannerを動かす方法について説明します。
 

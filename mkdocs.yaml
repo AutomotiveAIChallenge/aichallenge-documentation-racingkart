@@ -66,20 +66,16 @@ nav:
   - ML:
       - ai.md
       - ml_sample/algorithms.md
-      - TinyLiDARNet:
-          - ml_sample/develop_tiny_lidar_net.md
-      - PilotNet:
-          - ml_sample/develop_pilot_net.md
-      - SoftActorCritic:
-          - ml_sample/develop_soft_actor_critic.md
-      - "Design: Sample ROS Node(VLM Planner)":
-          - ml_sample/design.md
-          - VLM:
-              - ml_sample/getting_started_vlm_setup.md
-              - ml_sample/getting_started_vlm_run.md
-          - VAD:
-              - ml_sample/getting_started_vad_setup.md
-              - ml_sample/getting_started_vad_run.md
+      - ml_sample/tiny_lidar_net.md
+      - ml_sample/pilot_net.md
+      - ml_sample/soft_actor_critic.md
+      - VLM Planner:
+          - ml_sample/ai_sample_node_vlm.md
+          - ml_sample/vlm_setup.md
+          - ml_sample/vlm_run.md
+      - VAD Planner:
+          - ml_sample/vad_setup.md
+          - ml_sample/vad_run.md
       - ml_sample/faq.md
   - FAQ: faq.md
   - Community: community.md

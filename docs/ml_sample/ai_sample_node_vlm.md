@@ -1,4 +1,4 @@
-# Design: Sample ROS Node(VLM Planner)
+# Sample ROS Node(VLM Planner)
 
 !!! success "このページの想定読者"
 

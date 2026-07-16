@@ -1,6 +1,6 @@
 # Algorithms
 
-教材への理解を深めるために、理解しておくと良いアルゴリズムについて紹介します。興味を惹かれる論文があれば、[Sample NodeのDesign](./design.md)を参考にして、ROS Nodeを作成してみてください。
+教材への理解を深めるために、理解しておくと良いアルゴリズムについて紹介します。興味を惹かれる論文があれば、[Sample ROS Node (VLM Planner) ](./ai_sample_node_vlm.md)を参考にして、ROS Nodeを作成してみてください。
 
 ## 前提知識
 
@@ -22,7 +22,7 @@
 - 2016年にNVIDIAから発表された手法で、CNNを用いています。
 - ALVINNよりも計算機が強力になったものの、5層のconvolution layerと3層の全結合層からなる、コンパクトな構成でした。
 - 論文: [End to End Learning for Self-Driving Cars](https://arxiv.org/abs/1604.07316)
-- 本リポジトリでの学習・デプロイ手順: [Develop: PilotNet](develop_pilot_net.md)
+- 本リポジトリでの学習・デプロイ手順: [PilotNet](pilot_net.md)
 
 ![DAVE-2 Architecture](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
 
@@ -75,7 +75,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 
 - 論文: [TinyLidarNet: 2D LiDAR-based End-to-End Deep Learning Model for F1TENTH Autonomous Racing](https://arxiv.org/abs/2410.07447)
 - [code](https://github.com/CSL-KU/TinyLidarNet)
-- 本リポジトリでの学習・デプロイ手順: [Develop: TinyLiDARNet](develop_tiny_lidar_net.md)
+- 本リポジトリでの学習・デプロイ手順: [TinyLiDARNet](tiny_lidar_net.md)
 
 ![TinyLidarNet Architecture](https://github.com/CSL-KU/TinyLidarNet/raw/main/Images/TinyLidarNet_Architecture.jpg)
 
@@ -95,7 +95,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 論文: [Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor](https://arxiv.org/abs/1801.01290)
 - 論文(拡張版): [Soft Actor-Critic Algorithms and Applications](https://arxiv.org/abs/1812.05905)
 - 実装: [stable-baselines3 SAC](https://stable-baselines3.readthedocs.io/en/master/modules/sac.html)
-- 本リポジトリでの学習手順: [Develop: Soft Actor-Critic](develop_soft_actor_critic.md)
+- 本リポジトリでの学習手順: [Soft Actor-Critic](soft_actor_critic.md)
 
 ## VLM based planner
 
