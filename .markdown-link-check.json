@@ -14,7 +14,7 @@
       "pattern": "https://proceedings\\.neurips\\.cc"
     },
     {
-      "pattern": "^#option-train-val-augmentation$"
+      "pattern": "^#train-val-augmentation$"
     },
     {
       "pattern": "^#env-check$"

@@ -1,4 +1,4 @@
-# Develop: Soft Actor-Critic (Reinforcement Learning)
+# Soft Actor-Critic (Reinforcement Learning)
 
 このドキュメントでは、AI Challenge 環境で Soft Actor-Critic (SAC) による強化学習と推論走行を行う手順を説明します。
 
