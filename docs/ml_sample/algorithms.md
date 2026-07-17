@@ -1,6 +1,6 @@
 # Algorithms
 
-教材への理解を深めるために、理解しておくと良いアルゴリズムについて紹介します。興味を惹かれる論文があれば、[Sample ROS Node (VLM Planner) ](./ai_sample_node_vlm.md)を参考にして、ROS Nodeを作成してみてください。
+教材への理解を深めるために、理解しておくと良いアルゴリズムについて紹介します。興味を惹かれる論文があれば、[Sample ROS Node (VLM Planner)](./ai_sample_node_vlm.md)を参考にして、ROS Nodeを作成してみてください。
 
 ## 前提知識
 

@@ -263,6 +263,6 @@ cd /aichallenge/ml_workspace/pilot_net
 ## Notes
 
 - **入力解像度を変える場合は学習側 (`run_pipeline.bash` の引数 または `train.yaml`) と推論側 (`pilot_net_node.param.yaml`) を必ず揃えてください。** ずらすと flatten dim 不一致でモデルが読めません。
-- 複数台走行データの収集・学習は将来拡張です。詳細は [tiny_lidar_net の Overtake セクション](develop_tiny_lidar_net.md#tinylidarnetovertake) を参照。
+- 複数台走行データの収集・学習は将来拡張です。詳細は [tiny_lidar_net の Overtake セクション](tiny_lidar_net.md#tinylidarnetovertake) を参照。
 - Rviz で camera topic を表示する場合は QoS を Reliable から BestEffort に変更してください。
 - 推論性能: 66x200 でも 40Hz は CPU 推論で厳しい場合があります。必要なら ONNX Runtime への移行を検討してください。
