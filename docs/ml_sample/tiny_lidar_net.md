@@ -215,7 +215,11 @@ cp ./weights/converted_weights.npy \
     - 注意：自車両と他車両を合わせて4台配置する場合は、事前にVehiclesを4にしてください。また、「Scenario」の設定を「On」にしておきます。
     - シナリオ作成だけを行う場合は `make simulator` コマンドでAWSIMだけを起動することもできます。
 - 任意の場所に任意の車両や障害物を配置できます。シナリオエディタの操作方法は[こちら](../specifications/simulator.ja.md)をご参照ください。
-- お好みの配置ができたら、「Save & Start」で走行開始できます。このとき、シナリオに名前をつけておくと後からLoadすることができます。また、事前に用意されているSafety Gate用のシナリオをLoadすることもできます。
+- お好みの配置ができたら、「Save & Start」で走行開始できます。
+    - このとき、シナリオに名前をつけておくと後からLoadすることができます。シナリオファイルは `~/aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM_Data/StreamingAssets/Scenarios/` にyamlファイルで保存されます。
+    - また、事前に用意されているSafety Gate用のシナリオをLoadすることもできます。
+
+
 
 ![awsim_scenario_1](./images/awsim_scenario_1.jpg)
 ![awsim_scenario_2](./images/awsim_scenario_2.jpg)
