@@ -219,8 +219,6 @@ cp ./weights/converted_weights.npy \
     - このとき、シナリオに名前をつけておくと後からLoadすることができます。シナリオファイルは `~/aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM_Data/StreamingAssets/Scenarios/` にyamlファイルで保存されます。
     - また、事前に用意されているSafety Gate用のシナリオをLoadすることもできます。
 
-
-
 ![awsim_scenario_1](./images/awsim_scenario_1.jpg)
 ![awsim_scenario_2](./images/awsim_scenario_2.jpg)
 ![awsim_scenario_3](./images/awsim_scenario_3.jpg)
