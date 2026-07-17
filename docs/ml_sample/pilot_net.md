@@ -1,219 +1,145 @@
 # PilotNet
 
-このドキュメントでは、NVIDIA PilotNet (DAVE-2) を AI Challenge 環境で学習・デプロイする手順を説明します。
+PilotNet (DAVE-2) では、カメラから出力された画像データを用いて、機械学習モデルによる推論を実行し、制御信号（steering, acceleration）を出力します。
 
-- 参考論文: [End to End Learning for Self-Driving Cars (Bojarski et al., 2016)](https://arxiv.org/abs/1604.07316)
-- アルゴリズムの位置付け: [ml_sample/algorithms.md](algorithms.md)
+このドキュメントでは、PilotNetの学習方法と実行方法について説明します。
+
+- アルゴリズムの説明: [ml_sample/algorithms.md](algorithms.md#dave-2)
 - ROS 推論ノード: [pilot_net_controller](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/tree/main/aichallenge/workspace/src/aichallenge_submit/pilot_net_controller)
+- 入力: フロントカメラ画像 (66x200)
+- 学習: PyTorch
+- 推論: NumPy
+- 入力前処理: 上部 37.5% クロップ → 66x200 リサイズ (抽出時) → YUV 変換 (学習時)
 
-tiny_lidar_net との主な違い:
+## 事前準備
 
-| | tiny_lidar_net | pilot_net |
-|---|---|---|
-| 入力 | 2D LiDAR スキャン | フロントカメラ画像 (66x200) |
-| 教師 | Autoware の経路追従コマンド | MPC エキスパートの制御コマンド |
-| 推論 | NumPy | NumPy |
-| 入力前処理 | 距離正規化 | 上部 37.5% クロップ → 66x200 リサイズ (抽出時) → YUV 変換 (学習時) |
+[環境構築](../setup/introduction.ja.md)を実施して、`make dev` コマンドによってAutowareとAWSIMが使用できることを確認してください。また、[.envの記載](../setup/gpu-simulation.ja.md#env-check)を参考にGPUが使用できていることを確認してください。
 
-## Setup
+## 全体の流れ
 
-[環境構築](../setup/introduction.ja.md)を実施してください。
+以下の手順でPilotNetを使います。提供する重みファイルをそのまま使い、まずは動かしてみたい方はStep1後に直接Step4にお進みください。
 
-## PilotNet の学習手順
+- Step1. AWSIMの設定をE2E用にする
+- Step2. 学習用データの取得
+- Step3. 学習
+- Step4. PilotNetを使いAutowareを動かす
 
-PilotNet の学習には Autoware から取得した rosbag が必要です。本セクションでは、rosbag の取得から学習・デプロイまでの手順を説明します。
+## Step1. AWSIMの設定をE2E用にする
 
-### Step 1. コンテナの操作 (rocker で起動)
+[TinyLidarNetの手順](./tiny_lidar_net.md#step1)と同様です。
 
-このステップでは、4 つの Terminal を使います。1つ目は `./docker_run.sh dev` で **rocker により新しいコンテナを起動**し、残りは `./docker_exec.sh` で **既存コンテナに `docker exec` で入る**運用です。ホスト側のコマンドはすべて `~/aichallenge-racingkart` で実行する前提ですが、必要に応じて変更してください。
+## Step2. 学習用データの取得
 
-```sh
-cd ~/aichallenge-racingkart
-```
+[TinyLidarNetの手順](./tiny_lidar_net.md#step2)と同様です。
 
-各 Terminal でコンテナに入ったら、ROS 2 の source を実行してください:
+## Step3. 学習
 
-```sh
-source /opt/ros/humble/setup.bash
-source /autoware/install/setup.bash
-source /aichallenge/workspace/install/setup.bash
-```
+rosbag保存するときに使用したターミナルか、新規ターミナルで再度 `make autoware-bash` コマンドを実行してAutoware環境が有効なコンテナに入ります。
 
-#### Terminal 1: AWSIM の起動
+以下の1〜5の手順で学習を進めます。各手順の詳細は折りたたみの説明（クリックで展開）にまとめています。実際に実行するコマンドは、説明の後にある一括コマンドを上から順にコピーして進めてください。
 
-```sh
-pwd
-./docker_run.sh dev
-./run_simulator.bash
-```
+??? note "1. rosbagを訓練データと検証データに割り振る"
+    ここでは、流れを掴むために訓練データと検証データに取得したデータをそのままコピーしています。実際には、訓練データと検証データを別のものにしたり、データを選定するなどの工夫を行ってください。
 
-PilotNet は単独走行を前提に動作確認するため、起動画面では **1人プレイ** を選択してください。
+    精度を上げたい場合は後述の [train/val 分割と Augmentation](#train-val-augmentation) を参照してください。
 
-#### Terminal 2: Autoware1 の起動
+??? note "2. rosbagを学習用datasetに変換"
+    訓練用と検証用の両方を変換します
 
-```sh
-./docker_exec.sh
-./run_autoware.bash awsim 1
-```
+    以下のような出力が得られたら成功です。
 
-Initial pose を設定します。Rviz の view を `ThirdPersonFollower` から `TopdownOrtho` に切り替えてから設定してください。
+    ```sh
+    [INFO] [PID:99328] Found 1 bags. Starting processing with 1 workers.
+    [INFO] [PID:99356] Saved rosbag2_autoware: 413 samples (Total: 0.13s)
+    [INFO] [PID:99328] All processing finished in 0.34 seconds.
+    ```
 
-設定したら、AWSIM 画面右上の Control ボタンで Manual → Autonomous に切り替えます。
+    このコマンドは内部で以下を実行します:
 
-#### Terminal 3: ROS topic の確認 (任意)
+    1. rosbag から `/sensing/camera/image_raw` と `/control/command/control_cmd` を時刻同期して取得
+    2. 前処理を行い `images.npy` (RGB uint8) として保存
+    3. ステアリングと加速度を `steers.npy` / `accelerations.npy` に保存
 
-```sh
-./docker_exec.sh
-export ROS_DOMAIN_ID=1
-ros2 topic list
-```
+    YUV への変換はここでは行われません。`images.npy` は RGB のまま保存され、次のステップで `train.py` がデータを読み込む際 (`lib/data.py` の Dataset 内、リサイズ後・正規化前) に `color_space: yuv` 設定に従って変換されます。
 
-`/sensing/camera/image_raw` と `/control/command/control_cmd` の双方が存在することを確認してください。
+??? note "3. 学習"
+    学習ログ (TensorBoard) は `logs/` 配下、checkpoint は `checkpoints/` 配下に保存されます。`best_model.pth` が val loss 最良のモデルです。
 
-#### Terminal 4: rosbag の記録開始
+    各種パラメータは `aichallenge/ml_workspace/pilot_net/config/train.yaml` で調整できます。
 
-```sh
-./docker_exec.sh
-export ROS_DOMAIN_ID=1
-cd /aichallenge/ml_workspace
-./record_data.bash
-```
+    ステアのみ学習したい場合 (アクセル学習が不安定なときに推奨):
 
-`record_data.bash` は `/sensing/camera/image_raw` と `/control/command/control_cmd` を含む形で `record_data.bash` 内に定義されているので、tiny_lidar_net と同じスクリプトでカメラデータも収集できます。
+    ```sh
+    python3 ./train.py train.loss.accel_weight=0.0
+    ```
 
-走行が終わったら Ctrl+C で記録を停止します。記録された rosbag は `/aichallenge/ml_workspace/rawdata/$(date +%Y%m%d-%H%M%S)` に保存されます。
+    ただしこの方法では出力次元は 2 のままで、アクセル側は未学習になります。走行時はアクセルが不定にならないよう、[アクセル制御の有効/無効設定](#accel-control) で `control_mode` を `"fixed"` に設定してください。
 
-検証データを別に取るのが理想ですが、まずは動作を掴むために訓練・検証ともに同じデータを使います:
+    なお、CPUで学習を回したい場合や、RTX 50 seriesなどを用いていてCUDAがこの環境に対応していない場合は、以下のようにGPUを無効化して実行してください。
 
-```sh
-mkdir -p /aichallenge/ml_workspace/train # if there are no train directory
+    ```sh
+    CUDA_VISIBLE_DEVICES="" python3 ./train.py
+    ```
+
+??? note "4. 重みファイルの変換"
+    .pthファイルを.npyに変換します。
+
+    以下のような出力が得られれば成功です。
+
+    ```sh
+    Loaded checkpoint: checkpoints/best_model.pth
+    Saved NumPy weights to: weights/converted_weights.npy
+    ```
+
+??? note "5. 重みファイルのデプロイ"
+    作成した`converted_weights.npy`を、ROS 2 package内のckptディレクトリにコピーします。
+
+```bash
+make autoware-bash
+
+# 以後、コンテナ内部でのコマンド
+
+# 1-a. 訓練データの準備
+mkdir -p /aichallenge/ml_workspace/train
 cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/train
-```
 
-```sh
-mkdir -p /aichallenge/ml_workspace/val # if there are no val directory
+# 1-b. 検証データの準備（本来は訓練データとは分けるべき）
+mkdir -p /aichallenge/ml_workspace/val
 cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/val
-```
 
-<details>
-<summary>※ teleop で手動収集する場合</summary>
+cd /aichallenge/ml_workspace/pilot_net
 
-Terminal 2 で `./run_autoware.bash awsim 1` の代わりに
-
-```sh
-export ROS_DOMAIN_ID=1
-ros2 launch teleop_manager teleop_manager.launch.xml
-```
-
-を実行すると、Joycon 等で手動走行できます。
-</details>
-
-### Step 2. Dataset conversion
-
-rosbag を学習用 dataset に変換します。
-
-```sh
-cd /aichallenge/ml_workspace/pilot_net/
-```
-
-```sh
-python3 /aichallenge/ml_workspace/pilot_net/extract_data_from_bag.py \
+# 2. rosbagを学習用datasetに変換
+python3 ./extract_data_from_bag.py \
     --bags-dir /aichallenge/ml_workspace/train/ \
-    --outdir /aichallenge/ml_workspace/pilot_net/dataset/train/
-```
-
-trainだけでなく、validation setも変換しておきましょう。
-
-```sh
-cd /aichallenge/ml_workspace/pilot_net/
-python3 /aichallenge/ml_workspace/pilot_net/extract_data_from_bag.py \
+    --outdir ./dataset/train/
+python3 ./extract_data_from_bag.py \
     --bags-dir /aichallenge/ml_workspace/val/ \
-    --outdir /aichallenge/ml_workspace/pilot_net/dataset/val/
+    --outdir ./dataset/val/
+
+# 3. 学習の実行
+python3 ./train.py
+
+# 全Epochが完了するまで待つか、ある程度収束したらctrl-cで終了します
+
+# 4. 重みファイルの変換(.pthから.npyに変換)
+python3 ./convert_weight.py \
+    --ckpt ./checkpoints/best_model.pth \
+    --output ./weights/converted_weights.npy
+
+# 5. 重みファイルのデプロイ
+cp ./weights/converted_weights.npy \
+    /aichallenge/workspace/src/aichallenge_submit/pilot_net_controller/ckpt/pilotnet_weights.npy
 ```
 
-このコマンドは内部で以下を実行します:
+## Step4. PilotNetを使いAutowareを動かす
 
-1. rosbag から `/sensing/camera/image_raw` と `/control/command/control_cmd` を時刻同期して取得
-2. 各画像の上部 37.5% をクロップ (空・遠景を除外)
-3. 66x200 にリサイズして `images.npy` (RGB uint8) として保存
-4. ステアリングと加速度を `steers.npy` / `accelerations.npy` に保存
+- `aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml` の `control_method` を`pilot_net`に変更します。
+- その後、いつも通り `make dev` コマンドによって起動すると、 PilotNetによって車両が動き出します。
 
-YUV への変換はここでは行われません。`images.npy` は RGB のまま保存され、Step 3 で `train.py` がデータを読み込む際 (`lib/data.py` の Dataset 内、リサイズ後・正規化前) に `color_space: yuv` 設定に従って変換されます。
+## PilotNetのTips
 
-以下のような出力が得られたら成功です:
-
-```sh
-[INFO] [PID:99328] Found 1 bags. Starting processing with 1 workers.
-[INFO] [PID:99356] Saved rosbag2_autoware: 413 samples (Total: 0.13s)
-[INFO] [PID:99328] All processing finished in 0.34 seconds.
-```
-
-まずはこのまま Step 3 に進んでください。精度を上げたい場合は後述の [オプション: train/val 分割と augmentation](#option-train-val-augmentation) を参照。
-
-### Step 3. Model training
-
-```sh
-python3 /aichallenge/ml_workspace/pilot_net/train.py
-```
-
-CPU で学習を回したい場合や、RTX 50 シリーズなどで CUDA がこの環境に対応していない場合は次を実行してください:
-
-```sh
-CUDA_VISIBLE_DEVICES="" python3 /aichallenge/ml_workspace/pilot_net/train.py
-```
-
-学習ログ (TensorBoard) は `logs/` 配下、checkpoint は `checkpoints/` 配下に保存されます。`best_model.pth` が val loss 最良のモデルです。
-
-ステアのみ学習したい場合 (アクセル学習が不安定なときに推奨):
-
-```sh
-python3 /aichallenge/ml_workspace/pilot_net/train.py train.loss.accel_weight=0.0
-```
-
-### Step 4. Model deployment
-
-`.pth` から `.npy` に変換します:
-
-```sh
-python3 convert_weight.py \
-    --ckpt /aichallenge/ml_workspace/pilot_net/checkpoints/best_model.pth \
-    --output /aichallenge/ml_workspace/pilot_net/weights/pilotnet_weights.npy
-```
-
-以下のような出力が得られれば成功です:
-
-```sh
-Loaded checkpoint: /aichallenge/ml_workspace/pilot_net/checkpoints/best_model.pth
-Saved NumPy weights to: /aichallenge/ml_workspace/pilot_net/weights/pilotnet_weights.npy
-```
-
-作成した `pilotnet_weights.npy` を ROS 2 package 内の ckpt ディレクトリにコピーします:
-
-```sh
-cp /aichallenge/ml_workspace/pilot_net/weights/pilotnet_weights.npy \
-   /aichallenge/workspace/src/aichallenge_submit/pilot_net_controller/ckpt/pilotnet_weights.npy
-```
-
-### Step 5. Run PilotNet Sample ROS Node
-
-[`reference.launch.xml`におけるcontrol method](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml#L20)を、`mpc`(デフォルト)から`pilot_net`に変更しましょう。
-
-Step 1 でコンテナを既に起動している場合は、そのまま Terminal を再利用できます。コンテナを停止していた場合はホスト側で再度 `./docker_run.sh dev` (Terminal 1) と `./docker_exec.sh` (Terminal 2 以降) で入り直してください。
-
-#### Terminal 1: AWSIM の起動確認
-
-```sh
-./run_simulator.bash
-```
-
-#### Terminal 2: Autoware1 の起動確認
-
-```sh
-./docker_exec.sh
-./run_autoware.bash awsim 1
-```
-
-## アクセル制御の追加
+### アクセル制御の有効/無効設定 { #accel-control }
 
 `pilot_net_node.param.yaml` の `control_mode` をデフォルトでは `"ai"` にしています。`"fixed"` に変更すると、ステアのみネットワークが推論し、アクセルは `acceleration` パラメータで指定した固定値を使います。
 
@@ -224,29 +150,41 @@ Step 1 でコンテナを既に起動している場合は、そのまま Termin
 
 `output_dim=1` で学習した場合 (ステアのみ学習) は自動的に `fixed` 相当の動作になります。
 
-## オプション: train/val 分割と augmentation { #option-train-val-augmentation }
+### train/val 分割と Augmentation { #train-val-augmentation }
 
-`extract_data_from_bag.py` の出力 (`./dataset/train/`) のままでも学習は開始できますが、汎化性能を上げたい場合は train/val 分割と水平反転 augmentation を行ってから `train.py` を実行してください。`prepare_data.py` はデフォルトで `dataset/all/` 配下の抽出済みシーケンスを読み込むため、Step 2 で `--outdir` に `dataset/train/` / `dataset/val/` を指定した場合は `--all-dir` で抽出先を明示してください:
+上述の手順で示したように、`extract_data_from_bag.py` の出力のままでも学習は開始できますが、汎化性能を上げたい場合はAugmentationが有効です。また、本来は訓練用データと検証用データは分けるべきです。
+
+`prepare_data.py` によって、データセットのtrain/val分割と水平反転 Augmentationを行えます。
 
 ```sh
-cd /aichallenge/ml_workspace/pilot_net/
-python3 prepare_data.py --all-dir dataset/train
+# 1. rosbagを同じ場所に配置する
+mkdir -p /aichallenge/ml_workspace/all
+cp -r /aichallenge/ml_workspace/rawdata/* /aichallenge/ml_workspace/all
+
+cd /aichallenge/ml_workspace/pilot_net
+
+# 2. rosbagを学習用datasetに変換
+python3 ./extract_data_from_bag.py \
+    --bags-dir /aichallenge/ml_workspace/all/ \
+    --outdir ./dataset/all
+
+# 2-x. datasetにAugmentationを行い、train/valに振り分ける
+rm -rf ./dataset/train ./dataset/val  # 古いデータセットが残っていたら削除しておく
+python3 prepare_data.py --all-dir ./dataset/all
 ```
 
-`dataset/train/merged/` と `dataset/val/merged/` が生成され、`train.py` がこちらを優先して読み込みます。
-
-## ワンショット実行 (run_pipeline.bash)
+### ワンショット実行 (run_pipeline.bash)
 
 extract → prepare → train → convert を一気に実行できます:
 
 ```sh
 cd /aichallenge/ml_workspace/pilot_net
-./run_pipeline.bash /aichallenge/ml_workspace/train
+./run_pipeline.bash /aichallenge/ml_workspace/rawdata/<bag_dir_name>
 ```
 
 **注意 (破壊的動作):** `run_pipeline.bash` は実行のたびに `dataset/` ディレクトリ全体、および `checkpoints/`・`logs/` ディレクトリを `rm -rf` で削除してから処理を開始します。既存の学習済み checkpoint や過去に抽出した dataset を残したい場合は、事前に別ディレクトリへコピーしておいてください。
 
-**注意 (損失関数):** Step 3 で `train.py` を直接実行した場合、`output_dim=2` ではデフォルトで `WeightedSmoothL1Loss` が使われますが、`run_pipeline.bash` は内部で常に `+train.loss_type=mse` を付与するため、`output_dim` の値によらず `MSELoss` で学習されます。
+**注意 (損失関数):**  `train.py` を直接実行した場合、`output_dim=2` ではデフォルトで `WeightedSmoothL1Loss` が使われますが、`run_pipeline.bash` は内部で常に `+train.loss_type=mse` を付与するため、`output_dim` の値によらず `MSELoss` で学習されます。
 
 引数で解像度・色空間・出力次元・クロップ比率を変更できます:
 
@@ -260,9 +198,11 @@ cd /aichallenge/ml_workspace/pilot_net
 ./run_pipeline.bash /aichallenge/ml_workspace/train 66 200 yuv 1 0.375
 ```
 
-## Notes
+### Notes
 
 - **入力解像度を変える場合は学習側 (`run_pipeline.bash` の引数 または `train.yaml`) と推論側 (`pilot_net_node.param.yaml`) を必ず揃えてください。** ずらすと flatten dim 不一致でモデルが読めません。
-- 複数台走行データの収集・学習は将来拡張です。詳細は [tiny_lidar_net の Overtake セクション](tiny_lidar_net.md#tinylidarnetovertake) を参照。
-- Rviz で camera topic を表示する場合は QoS を Reliable から BestEffort に変更してください。
 - 推論性能: 66x200 でも 40Hz は CPU 推論で厳しい場合があります。必要なら ONNX Runtime への移行を検討してください。
+
+## TinyLidarNetとPilotNetで共通のTips
+
+[TinyLidarNetのTips](./tiny_lidar_net.md#tips)を参考にしてください。
