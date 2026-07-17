@@ -212,9 +212,10 @@ cp ./weights/converted_weights.npy \
 
 - 単独走行であれば、ML Plannerを用いる必要性は低いですが、複数台走行の場合は、overtakeといった高度な意思決定が必要となり、機械学習の活躍場面が増えます。AWSIMの複数台走行やシナリオエディタを使用すれば、そのようなシーンの学習データを取得することができます
 - `make dev` コマンドで実行後、画面上部の 「top」 ボタンをクリックし、「Scenario Editor」をクリックします
-    - 注意：自車両と他車両を合わせて4台配置する場合は、事前にVehiclesを4にしてください
+    - 注意：自車両と他車両を合わせて4台配置する場合は、事前にVehiclesを4にしてください。また、「Scenario」の設定を「On」にしておきます。
+    - シナリオ作成だけを行う場合は `make simulator` コマンドでAWSIMだけを起動することもできます。
 - 任意の場所に任意の車両や障害物を配置できます。シナリオエディタの操作方法は[こちら](../specifications/simulator.ja.md)をご参照ください。
-- お好みの配置ができたら、 「Save & Start」で走行開始できます。保存したシナリオは後からLoadすることができます。また、事前に用意されているSafety Gate用のシナリオをLoadすることもできます。
+- お好みの配置ができたら、「Save & Start」で走行開始できます。このとき、シナリオに名前をつけておくと後からLoadすることができます。また、事前に用意されているSafety Gate用のシナリオをLoadすることもできます。
 
 ![awsim_scenario_1](./images/awsim_scenario_1.jpg)
 ![awsim_scenario_2](./images/awsim_scenario_2.jpg)
