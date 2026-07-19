@@ -3,6 +3,7 @@
 AWSIM's Multiplay feature lets you race against other people by connecting multiple PCs to the same network. Each client shares its own kart (GoKart) pose over UDP, and everyone sees each other's vehicles on screen.
 
 No internet-facing server is required. **Simply connect every PC to a smartphone tethering hotspot** and you can race on the spot (a shared home or venue Wi-Fi works too, of course).
+For security, when racing with friends or acquaintances it is best to use a throwaway hotspot name and password just for the session, and change them afterwards.
 
 ## What you need
 
@@ -61,8 +62,24 @@ make simulator-multiplay-client
 
 Once connected, each player's vehicle appears on the other screens.
 
+![Remote kart visible on screen](images/multiplay-remote-kart.png)
+
 !!! warning "Most important: `--multiplay-address` takes the server (host) IP"
     `--multiplay-address` is the **IP address of the server (host) you are connecting to**. **It is not your own PC's IP address.** Putting your own IP here is the most common mistake.
+
+## Setting a player name (optional)
+
+Add `--multiplay-name` to show a name of your choice (up to 6 characters) on the label above your kart. Without it, an auto-generated ID like `P32430` is shown instead (the front kart in the screenshot above).
+
+Add one line to each host / client script:
+
+```bash
+    --multiplay-name descto \  # ← your name (up to 6 characters)
+```
+
+Once every kart touches the ground, the countdown starts and the race begins.
+
+![Countdown with a player name set](images/multiplay-countdown.png)
 
 ## Troubleshooting
 
