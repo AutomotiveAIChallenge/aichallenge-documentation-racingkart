@@ -102,6 +102,10 @@ server 役の PC でバイナリを直接実行します。
 - server と同じ PC の人: `make simulator-multiplay-client`（接続先はデフォルトの `127.0.0.1` のままで OK）
 - 別の PC の人: `multiplay-client.sh` の `--multiplay-address` を server の IP に変更して `make simulator-multiplay-client`
 
+## Autoware 接続・rosbag 記録（任意）
+
+`make autoware-simulator` で Autoware を接続して自動走行させることも、`make autoware-attach` で Docker コンテナに入って rosbag を記録することもできます。もちろん LiDAR やカメラのデータも記録できます。
+
 ## うまくいかないとき
 
 接続できない場合は、上から順に確認してください。

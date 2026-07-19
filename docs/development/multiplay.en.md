@@ -102,6 +102,10 @@ Then everyone joins as a client:
 - On the same PC as the server: `make simulator-multiplay-client` (keep the default `127.0.0.1` as the address)
 - On other PCs: change `--multiplay-address` in `multiplay-client.sh` to the server's IP, then run `make simulator-multiplay-client`
 
+## Connecting Autoware / recording rosbags (optional)
+
+You can also connect Autoware for autonomous driving with `make autoware-simulator`, or attach to the Docker container with `make autoware-attach` to record rosbags — including LiDAR and camera data, of course.
+
 ## Troubleshooting
 
 If you cannot connect, check the following in order.
