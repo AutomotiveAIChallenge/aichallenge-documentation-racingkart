@@ -17,7 +17,7 @@ For security, when racing with friends or acquaintances it is best to use a thro
 | **host** | Acts as the server and also plays (one person takes this role) | `make simulator-multiplay-host` |
 | **client** | Connects to the host and plays (everyone else) | `make simulator-multiplay-client` |
 
-These commands run `aichallenge/simulator_scripts/multiplay-host.sh` / `multiplay-client.sh` respectively. To change launch arguments such as the server IP, edit these scripts directly.
+These commands run `aichallenge/simulator_scripts/multiplay-host.sh` / `multiplay-client.sh` respectively. To change launch arguments such as the server IP, edit these scripts directly. Feel free to set sensor arguments such as `--camera` / `--lidar` however you like.
 
 ## Steps
 
@@ -81,6 +81,26 @@ Add the following to each host / client script. Including `--start-mode count` m
 Once every kart touches the ground, the countdown starts and the race begins.
 
 ![Countdown with a player name set](images/multiplay-countdown.png)
+
+## Server + client setup (dedicated server)
+
+The steps above use the host setup (one person acts as both server and player), but you can also **run a dedicated server that nobody drives, with everyone joining as an equal client**.
+
+!!! note "Launch the server directly, not through Docker"
+    The `make` commands (Docker) can only run one simulator per PC. To run a server and a client on the same PC, launch the server side by running the AWSIM binary directly, without Docker.
+
+On the server PC, run the binary directly:
+
+```bash
+./aichallenge/simulator/AWSIM/AWSIM.x86_64 --multiplay server --multiplay-port 7777
+```
+
+Alternatively, launch it without arguments and set Multiplay to `server` in the startup settings UI.
+
+Then everyone joins as a client:
+
+- On the same PC as the server: `make simulator-multiplay-client` (keep the default `127.0.0.1` as the address)
+- On other PCs: change `--multiplay-address` in `multiplay-client.sh` to the server's IP, then run `make simulator-multiplay-client`
 
 ## Troubleshooting
 
