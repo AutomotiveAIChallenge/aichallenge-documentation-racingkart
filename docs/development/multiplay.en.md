@@ -17,7 +17,7 @@ For security, when racing with friends or acquaintances it is best to use a thro
 | **host** | Acts as the server and also plays (one person takes this role) | `make simulator-multiplay-host` |
 | **client** | Connects to the host and plays (everyone else) | `make simulator-multiplay-client` |
 
-The launch arguments are defined in `aichallenge/simulator_scripts/multiplay-host.sh` / `multiplay-client.sh`.
+These commands run `aichallenge/simulator_scripts/multiplay-host.sh` / `multiplay-client.sh` respectively. To change launch arguments such as the server IP, edit these scripts directly.
 
 ## Steps
 
