@@ -17,7 +17,7 @@ For security, when racing with friends or acquaintances it is best to use a thro
 | **host** | Acts as the server and also plays (one person takes this role) | `make simulator-multiplay-host` |
 | **client** | Connects to the host and plays (everyone else) | `make simulator-multiplay-client` |
 
-The authoritative launch arguments live in `aichallenge/simulator_scripts/multiplay-host.sh` / `multiplay-client.sh`.
+The launch arguments are defined in `aichallenge/simulator_scripts/multiplay-host.sh` / `multiplay-client.sh`.
 
 ## Steps
 
@@ -71,10 +71,11 @@ Once connected, each player's vehicle appears on the other screens.
 
 Add `--multiplay-name` to show a name of your choice (up to 6 characters) on the label above your kart. Without it, an auto-generated ID like `P32430` is shown instead (the front kart in the screenshot above).
 
-Add one line to each host / client script:
+Add the following to each host / client script. Including `--start-mode count` makes the countdown start automatically once every kart touches the ground:
 
 ```bash
     --multiplay-name descto \  # ← your name (up to 6 characters)
+    --start-mode count \
 ```
 
 Once every kart touches the ground, the countdown starts and the race begins.
