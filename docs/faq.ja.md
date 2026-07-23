@@ -139,6 +139,17 @@
 ??? question "mpcのチューニングをしたいのですが，今回AWSIMで使用されているモデルパラメータ（遅れや時定数など）は公開されていないでしょうか．"
     遅れや時定数については計測も公開もされていませんが、基本的な仕様については[こちら](./specifications/simulator.ja.md)に公開されています。
 
+## AI
+
+??? question "RTX 50 シリーズのGPUで学習を行う方法を教えてください。"
+    現状提供しているDocker環境はCUDA 12.1 + PyTorch 2.3.1です。RTX 50 シリーズ (Blackwell) では CUDA 12.8以上 + PyTorch 2.6.0以上が必要となります。
+
+    [こちらのPR](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/197/files) を参考にrequirements.txtを更新してから、`./docker_build.sh dev` によってDockerイメージを再ビルドしてください。
+
+    - 注意：本変更はローカル環境のみに有効です。AI学習などには使えますが、オンライン実行環境は運営が管理しているためデフォルト設定のままになります
+    - 注意：本変更を行うとPyTorchで使われるCUDAバージョンが新しくなります。これに伴い、ホストPCのNVIDIAドライバが古い場合には、学習時にGPUが使われずCPUにフォールバックしてしまい、学習が遅くなる可能性があります。もしも学習時に下記警告が発生したら、NVIDIAドライバのバージョンを570.26以上に更新してください。
+        - `UserWarning: CUDA initialization: The NVIDIA driver on your system is too old`
+
 ## 解決しない場合
 
 [:material-arrow-right-circle: コミュニティで情報を探す](./community.ja.md){ .md-button .md-button--primary }
