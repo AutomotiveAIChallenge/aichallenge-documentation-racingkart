@@ -142,7 +142,7 @@
 ## AI
 
 ??? question "RTX 50 シリーズのGPUで学習を行う方法を教えてください。"
-    現状提供しているDocker環境はCUDA 12.1 + PyTorch 2.3.1です。RTX 50 シリーズ (Blackwell) では CUDA 12.8以上 + PyTorch 2.6.0以上が必要となります。
+    現状提供しているDocker環境はCUDA 12.1 + PyTorch 2.3.1です。RTX 50 シリーズ (Blackwell) では CUDA 12.8以上 + PyTorch 2.7.0以上が必要となります。
 
     [こちらのPR](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/197/files) を参考にrequirements.txtを更新してから、`./docker_build.sh dev` によってDockerイメージを再ビルドしてください。
 
