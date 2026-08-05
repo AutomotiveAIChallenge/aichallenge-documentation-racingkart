@@ -12,7 +12,7 @@
 ## 環境構築
 
 まず､ Autoware の動作に必要な ROS 2 をインストールします｡
-[ROS 2 Documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html) の手順にしたがってEnvironment setupまでを完了させてください｡
+[ROS 2 Documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) の手順にしたがってEnvironment setupまでを完了させてください｡
 
 つづけて､いくつかの開発支援ツールセットもインストールします｡
 
