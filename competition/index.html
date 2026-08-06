@@ -1215,7 +1215,7 @@
   <span class="md-ellipsis">
     
   
-    SW部門 ルール
+    Sim to Real部門 説明
   
 
     
@@ -1243,7 +1243,7 @@
   <span class="md-ellipsis">
     
   
-    SW部門 提出手順
+    Sim to Real部門 提出手順
   
 
     
@@ -1271,7 +1271,7 @@
   <span class="md-ellipsis">
     
   
-    AI部門 ルール
+    End to End部門 説明
   
 
     
@@ -2368,7 +2368,7 @@
 </tr>
 <tr>
 <td>競技走行環境</td>
-<td>オンライン・運営が用意した PC</td>
+<td>オンライン・運営が用意した PC（SIM 決勝は持参 PC も可）</td>
 <td>参加チーム自身の PC</td>
 </tr>
 <tr>
@@ -2400,7 +2400,7 @@
 </tr>
 <tr>
 <td>7月1日 〜 9月1日</td>
-<td>予選期間（SW部門：オンライン SIM ／ AI部門：提出資料審査）</td>
+<td>予選期間（Sim to Real部門：オンライン採点環境で走行／E2E AI部門：資料提出）</td>
 </tr>
 <tr>
 <td>9月18日</td>
@@ -2426,13 +2426,13 @@
     E([表彰式])
 
     subgraph PRE["予選（〜9/1）"]
-        SW1["SW部門\nSIM予選（オンライン）"]
-        AI1["AI部門\n資料審査予選"]
+        SW1["Sim to Real部門\nSIM予選（オンライン）"]
+        AI1["E2E AI部門\n資料審査予選"]
     end
 
     subgraph SIMF["SIM決勝（9/19・オンサイト）"]
-        SW2["SW部門\nSIM決勝"]
-        AI2["AI部門\nSIM決勝"]
+        SW2["Sim to Real部門\nSIM決勝"]
+        AI2["E2E AI部門\nSIM決勝"]
     end
 
     A --&gt; SW1
@@ -2453,8 +2453,8 @@
 </ul>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">AI部門は実車両決勝なし</p>
-<p>AI部門の最終ステージは SIM 決勝です。実車両決勝は SW 部門のみ実施します。</p>
+<p class="admonition-title">E2E AI部門は実車両決勝なし</p>
+<p>E2E AI部門の最終ステージは SIM 決勝です。実車両決勝は Sim to Real SW 部門のみ実施します。</p>
 </div>
 <h2 id="sim-to-real-sw">Sim to Real SW 部門概要</h2>
 <ul>
@@ -2463,7 +2463,7 @@
 <li><strong>SIM 予選 → SIM 決勝 → 実機決勝</strong> の 3 ステップで腕を競います。<ul>
 <li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5.5A3.5 3.5 0 0 1 15.5 9a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 8.5 9 3.5 3.5 0 0 1 12 5.5M5 8c.56 0 1.08.15 1.53.42-.15 1.43.27 2.85 1.13 3.96C7.16 13.34 6.16 14 5 14a3 3 0 0 1-3-3 3 3 0 0 1 3-3m14 0a3 3 0 0 1 3 3 3 3 0 0 1-3 3c-1.16 0-2.16-.66-2.66-1.62a5.54 5.54 0 0 0 1.13-3.96c.45-.27.97-.42 1.53-.42M5.5 18.25c0-2.07 2.91-3.75 6.5-3.75s6.5 1.68 6.5 3.75V20h-13zM0 20v-1.5c0-1.39 1.89-2.56 4.45-2.9-.59.68-.95 1.62-.95 2.65V20zm24 0h-3.5v-1.75c0-1.03-.36-1.97-.95-2.65 2.56.34 4.45 1.51 4.45 2.9z"/></svg></span> <strong>社会人クラス</strong> と <strong>学生クラス</strong> の 2 クラス制</li>
 <li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> 参加登録時にチーム登録が必須</li>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16H3V4h18m0-2H3c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2"/></svg></span> 競技走行は運営が用意した PC で実行するため、参加チームの PC・GPU は不要です。ただし、ローカルでの開発時に AWSIM を動かすには GPU が必要です。</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16H3V4h18m0-2H3c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h7v2H8v2h8v-2h-2v-2h7a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2"/></svg></span> 競技走行は運営が用意した PC で実行するため、参加チームの PC・GPU は不要です（SIM 決勝では持参 PC の使用も可能です）。ただし、ローカルでの開発時に AWSIM を動かすには GPU が必要です。</li>
 </ul>
 </li>
 </ul>
@@ -2471,9 +2471,9 @@
 <ul>
 <li>機械学習アルゴリズムによってソフトウェアを改善する部門です。</li>
 <li>カメラ・2D LiDARといった外界センサデータを入力とした単一AIモデルを実装することが期待されます。</li>
-<li>最終ステージは <strong>SIM 決勝</strong> で、実機決勝はありません。<ul>
+<li>最終ステージは9月19日の <strong>SIM 決勝</strong> で、実機決勝はありません。<ul>
 <li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"/></svg></span> クラス分けなし（統一クラス）</li>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> SW 部門参加チームが希望制で追加参加可能</li>
+<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2m-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8z"/></svg></span> Sim to Real SW 部門参加チームが希望制で追加参加可能</li>
 <li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 6h16v10H4m16 2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4c-1.11 0-2 .89-2 2v10a2 2 0 0 0 2 2H0v2h24v-2z"/></svg></span> 競技走行は参加チーム自身の PC で実行します。GPU の使用も可能です。</li>
 </ul>
 </li>
@@ -2530,13 +2530,13 @@
         
         
           
-          <a href="sw-class.html" class="md-footer__link md-footer__link--next" aria-label="次: SW部門 ルール">
+          <a href="sw-class.html" class="md-footer__link md-footer__link--next" aria-label="次: Sim to Real部門 説明">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 次
               </span>
               <div class="md-ellipsis">
-                SW部門 ルール
+                Sim to Real部門 説明
               </div>
             </div>
             <div class="md-footer__button md-icon">

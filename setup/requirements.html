@@ -1204,7 +1204,7 @@
   <span class="md-ellipsis">
     
   
-    SW部門 ルール
+    Sim to Real部門 説明
   
 
     
@@ -1232,7 +1232,7 @@
   <span class="md-ellipsis">
     
   
-    SW部門 提出手順
+    Sim to Real部門 提出手順
   
 
     
@@ -1260,7 +1260,7 @@
   <span class="md-ellipsis">
     
   
-    AI部門 ルール
+    End to End部門 説明
   
 
     
@@ -2354,6 +2354,7 @@
 <li><strong>GPU未搭載</strong>：AWSIM画面が非表示となるヘッドレスモードで動かすことは可能です。rviz上で最低限の動作確認はできます。</li>
 </ul>
 <h2 id="pc">PCスペック (目安)</h2>
+<p>下記は開発・実行に必要なPCスペックになります。大会で実際に使用されるPCのスペックは<a href="../specifications/hardware.html">仕様/ハードウェア</a>をご確認ください。</p>
 <ul>
 <li>OS: Ubuntu 22.04</li>
 <li>CPU:<ul>
@@ -2392,9 +2393,14 @@
 <h2 id="_2">環境の確認方法</h2>
 <ul>
 <li>上記スペックは目安です。ご自身の環境で実行できるかどうかを確認するには、<a href="introduction.html">環境構築の流れ</a> の手順に沿って実際にお試しください。</li>
-<li>各処理が期待通りの速度で動いていることをご確認ください。<ul>
-<li>AWSIMが30FPS以上（画面右上のFPS表示を確認）</li>
-<li><code>/control/command/control_cmd</code> トピックの周波数が約 40 Hz (制御アルゴリズムがMPCの場合（デフォルト設定）。制御アルゴリズムがSimplePurePursuitの場合は約100 Hz)</li>
+<li>Autoware実行中に各処理が期待通りの速度で動いていることをご確認ください。<ul>
+<li>AWSIMの画面右上に表示されるFPSが30FPS以上（理想は60FPS）</li>
+<li>
+<p>下記コマンドで表示される、 <code>/control/command/control_cmd</code> トピックの周波数が約 40 Hz (制御アルゴリズムがMPCの場合（デフォルト設定）。制御アルゴリズムがSimplePurePursuitの場合は約100 Hz)</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>autoware-bash
+ros2<span class="w"> </span>topic<span class="w"> </span>hz<span class="w"> </span>/control/command/control_cmd<span class="w"> </span>-w<span class="w"> </span><span class="m">10</span>
+</code></pre></div>
+</li>
 </ul>
 </li>
 </ul>

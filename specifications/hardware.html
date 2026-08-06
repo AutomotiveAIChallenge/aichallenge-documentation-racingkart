@@ -1119,7 +1119,7 @@
   <span class="md-ellipsis">
     
   
-    SW部門 ルール
+    Sim to Real部門 説明
   
 
     
@@ -1147,7 +1147,7 @@
   <span class="md-ellipsis">
     
   
-    SW部門 提出手順
+    Sim to Real部門 提出手順
   
 
     
@@ -1175,7 +1175,7 @@
   <span class="md-ellipsis">
     
   
-    AI部門 ルール
+    End to End部門 説明
   
 
     
@@ -1372,6 +1372,17 @@
     <span class="md-ellipsis">
       
         PC構成 (SIM予選環境)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pc-sim_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC構成 (SIM決勝環境)
       
     </span>
   </a>
@@ -2240,6 +2251,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pc-sim_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PC構成 (SIM決勝環境)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2378,6 +2400,31 @@
 </tr>
 </tbody>
 </table>
+<p>SIM 予選では、オンライン環境のインスタンス上で AWSIM と 3 チーム分の Autoware を同時に起動しています。1 インスタンスを複数チームで共有するため、他チームのプログラムからの干渉を防ぐよう、ROS_DOMAIN_ID の分離とリソースの割り当てを行っています。</p>
+<h2 id="pc-sim_1">PC構成 (SIM決勝環境)</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>スペック</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>Intel Core i7-8700</td>
+</tr>
+<tr>
+<td>Mem</td>
+<td>16 GB</td>
+</tr>
+<tr>
+<td>備考</td>
+<td>推奨環境より低スペックです（後述の理由による）</td>
+</tr>
+</tbody>
+</table>
+<p>SIM 決勝では、Autoware を単体で動かし AWSIM は別 PC で動かす構成のため、上記スペックの PC を使用します。具体的には、AWSIM 用の PC 1 台に Autoware 用の PC 4 台を接続して対戦を行う予定です。</p>
 
 
 
