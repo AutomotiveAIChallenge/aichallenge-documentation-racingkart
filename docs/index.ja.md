@@ -9,6 +9,7 @@ description: 自動運転 AI チャレンジ 2026（レーシングカート部�
     <ul>
       <li><a href="https://www.youtube.com/watch?v=K_ToeWGitbk">解説① 導入編</a></li>
       <li><a href="https://www.youtube.com/watch?v=5BowSyA8hV8">解説② Autoware解説編</a></li>
+      <li><a href="https://www.youtube.com/watch?v=hriSPe97rfQ">解説③ End to End AI編</a></li>
       <li><a href="https://www.youtube.com/watch?v=MabDMP6f-Ek">講演① End to End AI部門の創設（TIER IV）</a></li>
       <li><a href="https://www.youtube.com/watch?v=cGJK4Zlm11c">講演② コミュニティ発AIチャットボット（TPAC）</a></li>
       <li><a href="https://www.youtube.com/watch?v=fGzGK3MC1Gw">講演③ 自動運転AIチャレンジの侘び寂び（SUBARU）</a></li>
