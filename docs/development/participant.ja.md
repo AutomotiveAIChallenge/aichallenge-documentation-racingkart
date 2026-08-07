@@ -31,6 +31,7 @@ sudo wg show
 VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを起動します。
 
 ```bash
+cd ~/aichallenge-racingkart/aichallenge/simulator/AWSIM
 ./AWSIM.x86_64 \
   --collisions off \
   --laps unlimited \
@@ -42,9 +43,6 @@ VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを
 ```
 
 - `<あなたの名前>` — 任意の表示名(ダッシュボードに表示されます)
-- `<割り当てられたカート番号>` — 主催者から割り当てられた整数(`.conf` ファイル末尾に記載、レースダッシュボードの **Kart #** にも表示されます)
-
-> **重要:** `--multiplay-vehicle-index` を省略したり、他の参加者と番号が重複したりすると、2台のカートが同じ位置に重なって出現します。
 
 AWSIMが接続すると、他の参加者のカートが参加するたびに画面上に表示されます。
 
