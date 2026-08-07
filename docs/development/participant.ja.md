@@ -33,10 +33,12 @@ VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを
 ```bash
 ./AWSIM.x86_64 \
   --collisions off \
+  --laps unlimited \
+  --timeout 10000000.0 \
   --multiplay client \
   --multiplay-address 10.0.0.1 \
   --multiplay-port 7777 \
-  --multiplay-name <あなたの名前> \
+  --multiplay-name <あなたの名前>
 ```
 
 - `<あなたの名前>` — 任意の表示名(ダッシュボードに表示されます)
