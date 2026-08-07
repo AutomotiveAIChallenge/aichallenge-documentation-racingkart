@@ -30,8 +30,6 @@ sudo wg show
 
 VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを起動します。
 
-`.conf` ファイルを受け取る際に、主催者から**カート番号(vehicle index)**も伝えられます。各参加者は一意のカート番号を持ち、それによりトラック上の異なる位置からスタートします。
-
 ```bash
 ./AWSIM.x86_64 \
   --collisions off \
@@ -39,7 +37,6 @@ VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを
   --multiplay-address 10.0.0.1 \
   --multiplay-port 7777 \
   --multiplay-name <あなたの名前> \
-  --multiplay-vehicle-index <割り当てられたカート番号>
 ```
 
 - `<あなたの名前>` — 任意の表示名(ダッシュボードに表示されます)
