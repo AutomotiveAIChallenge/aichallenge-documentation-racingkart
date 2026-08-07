@@ -35,7 +35,12 @@ https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/dev/aichall
 を下記のように編集します。
 
 ```bash
-# camera と lidarはオンにすることもできます
+#!/bin/bash
+
+AWSIM_DIRECTORY=/aichallenge/simulator/AWSIM
+export ROS_DOMAIN_ID=0
+
+exec $AWSIM_DIRECTORY/AWSIM.x86_64 \
   --collisions off \
   --start-mode count \
   --start-count-seconds 0 \
