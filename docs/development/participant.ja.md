@@ -31,14 +31,21 @@ sudo wg show
 VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを起動します。
 
 ```bash
+# 以下はカメラ・lidarオフですが、オンにもできます。--camera 
 cd ~/aichallenge-racingkart/aichallenge/simulator/AWSIM
 ./AWSIM.x86_64 \
   --collisions off \
+  --start-mode count \
+  --start-count-seconds 0 \
+  --wall-recovery off \
   --laps unlimited \
   --timeout 10000000.0 \
   --multiplay client \
   --multiplay-address 10.0.0.1 \
   --multiplay-port 7777 \
+  --sound off \
+  --camera off \
+  --lidar off \
   --multiplay-name <あなたの名前>
 ```
 
