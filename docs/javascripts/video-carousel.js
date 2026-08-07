@@ -13,11 +13,20 @@
   // セットごとに独立して編集できるよう、あえて別々の配列で定義している。
   const SETS = {
     current: [
-      { id: "K_ToeWGitbk", ja: "解説① 導入編", en: "Guide 01: Introduction" },
+      {
+        id: "K_ToeWGitbk",
+        ja: "解説① 導入編",
+        en: "Guide 01: Introduction",
+      },
       {
         id: "5BowSyA8hV8",
         ja: "解説② Autoware解説編",
         en: "Guide 02: Autoware",
+      },
+      {
+        id: "hriSPe97rfQ",
+        ja: "解説③ End to End AI編",
+        en: "Guide 03: End to End AI",
       },
       {
         id: "MabDMP6f-Ek",
