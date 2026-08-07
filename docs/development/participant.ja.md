@@ -30,10 +30,12 @@ sudo wg show
 
 VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを起動します。
 
+https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/dev/aichallenge/simulator_scripts/multiplay-client.sh
+
+を下記のように編集します。
+
 ```bash
 # camera と lidarはオンにすることもできます
-cd ~/aichallenge-racingkart/aichallenge/simulator/AWSIM
-./AWSIM.x86_64 \
   --collisions off \
   --start-mode count \
   --start-count-seconds 0 \
@@ -55,10 +57,15 @@ AWSIMが接続すると、他の参加者のカートが参加するたびに画
 
 ## Step 4 — AWSIMをクライアントモードで起動する
 
+
+```bash
+make simulator-multiplay-client
+```
+
 以下のコマンドでAutowareとRvizを起動します。
 
 ```bash
-make autoware-simulator 
+make autoware-simulator
 ```
 
 ## Step 5 — 終了時の切断
