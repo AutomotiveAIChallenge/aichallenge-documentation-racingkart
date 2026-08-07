@@ -34,6 +34,7 @@ VPNが接続できたら、サーバーのVPNアドレスを指定してAWSIMを
 
 ```bash
 ./AWSIM.x86_64 \
+  --collisions off \
   --multiplay client \
   --multiplay-address 10.0.0.1 \
   --multiplay-port 7777 \
