@@ -54,6 +54,7 @@ nav:
       - competition/sw-class.md
       - competition/submission.md
       - competition/ai-class.md
+      - competition/sim-finals.md
   - specifications:
       - specifications/interface.md
       - specifications/hardware.md
