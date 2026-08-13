@@ -42,6 +42,7 @@ Dockerイメージをビルドします。ビルドログは `output/docker/` �
 | `make dev2` | AWSIM + Autoware x 2 を開発用に起動します |
 | `make dev3` | AWSIM + Autoware x 3 を開発用に起動します |
 | `make dev4` | AWSIM + Autoware x 4 を開発用に起動します |
+| `make e2e` | AWSIM + Autoware を E2E 練習用に起動します（NPC 2台入り。提出前の確認もこれ） |
 | `make eval` | AWSIM + Autoware を評価用に起動します |
 | `make gate1` | 安全ゲートシナリオ（障害物停止）を起動します |
 | `make gate2` | 安全ゲートシナリオ（追い越し）を起動します |
@@ -60,12 +61,16 @@ Dockerイメージをビルドします。ビルドログは `output/docker/` �
 | `make simulator-dev2` | AWSIM のみ起動します (2台走行用) |
 | `make simulator-dev3` | AWSIM のみ起動します (3台走行用) |
 | `make simulator-dev4` | AWSIM のみ起動します (4台走行用) |
+| `make simulator-e2e-final` | AWSIM のみ起動します（E2E 決勝の設定） |
+| `make simulator-s2r-final` | AWSIM のみ起動します（S2R 決勝の設定） |
 | `make autoware-simulator` | Autoware のみ起動します（シミュレータ向け） |
 | `make autoware-vehicle` | Autoware のみ起動します（実車向け） |
 | `make driver` | 実車インターフェース（`racing_kart_interface`）を起動します |
 | `make zenoh` | Zenoh（実車遠隔接続）を起動します |
 | `make rviz2` | RViz2 を起動します |
 | `make autoware-driver-zenoh` | `driver` + `autoware` + `zenoh` をまとめて起動します（実車向け） |
+
+`make simulator-<モード名>` は `aichallenge/simulator_scripts/<モード名>.sh` を実行します。モードの一覧と設定値は[シミュレーターの起動モード](../specifications/simulator.ja.md#launch-modes)を参照してください。
 
 ### コマンド送信
 
