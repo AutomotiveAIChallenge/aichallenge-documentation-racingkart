@@ -21,8 +21,8 @@
 | --- | --- | --- | --- |
 | `dev` | `make dev`（`dev2`〜`dev4` で複数台） | 開発 / S2R 練習 | 1台（引数で N 台）・周回/時間 無制限・カメラ/LiDAR off |
 | `e2e` | `make e2e` | E2E 練習（提出前の確認もこれ） | 1台 + NPC 2台・6周・タイムアウト実質なし・カメラ/LiDAR cpu |
-| `e2e-final` | `make simulator-e2e-final` | E2E 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on |
-| `s2r-final` | `make simulator-s2r-final` | S2R 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on |
+| `e2e-final` | `make simulator-e2e-final` | E2E 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on |
+| `s2r-final` | `make simulator-s2r-final` | S2R 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on |
 | `eval` | `make eval` | 評価（提出時と同じ条件） | 1台・6周・600秒・sync開始 |
 | `parallel` | `make simulator-parallel` | 複数台レース | 3台・6周・600秒・sync開始 |
 | `gate` | `make gate1`〜`make gate3` | セーフティゲートのテスト | 1台・シナリオ別 |
@@ -47,6 +47,7 @@
 - 練習モードは周回数・タイムアウトを無制限（`e2e` は `--timeout 10000000.0`、`dev` はさらに `--laps unlimited`）にしてあり、途中で止まらずに走り続けられます。時間制限つきで確認したい場合は決勝モードか `make eval` を使ってください。
 - 練習は `count` 開始（全車が接地してから自動でカウントダウン。`e2e` はカウント0秒で即スタート）、決勝は `sync` 開始（`/admin/awsim/start` を待って一斉スタート）です。
 - `e2e` は `--start-random on` で開始位置が毎回変わるため、特定のスタート位置に依存しない挙動を確認できます。決勝は公平性のため固定です。
+- エンジン音（`--sound`）は決勝の2モードのみ on です。練習モードや評価（`make eval`）では off にしてあります。
 
 ## 画面説明
 
