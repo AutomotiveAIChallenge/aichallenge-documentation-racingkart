@@ -4,16 +4,16 @@
 
 ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を参照してください。遠隔 PC 側の構築と操作は[遠隔操作](remote.ja.md)にまとまっています。
 
-## 実車両で走らせる場合の注意点
+## 第1部 走行前の設定と起動
 
 シミュレータと違い、実車両では以下を走行前に必ず確認します。
 
-### 1. `.env` の設定
+### 1-1. `.env` の設定
 
 `.env` は git 管理外なので、`./setup.bash bootstrap`（または `./setup.bash env`）で `.env.example` から生成されます。
 生成後、**人が手で書き換えないといけない項目**は次の4つです。
 
-| 変数 | `.env.example` の初期値 | 実車で必要な設定 |
+| 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
 | --- | --- | --- |
 | `VEHICLE_ID` | `A0` | 走らせる号機（`A1`,`A2`,`A3`,`A5`,`A6`,`A7`,`A8`）。zenoh の接続先ポートがこの値で決まります（`vehicle/run_zenoh.bash`） |
 | `NTRIP_USERNAME` | `your_username` | RTK 補正情報配信（NTRIP）のアカウント。未設定だと RTK Fix にならず自己位置の精度が出ません |
@@ -24,15 +24,15 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 
 `HOST_UID` / `HOST_GID` / `HOST_GID_DIALOUT` / `HOST_GID_INPUT` と `COMPOSE_FILE`（GPU 判定）は `./setup.bash env` が実測値で自動設定するので、通常は触りません。
 
-### 2. IMUバイアスの修正
+### 1-2. IMU バイアスの修正
 
-車両ごとに IMU のジャイロバイアスを実測して `imu_corrector` のパラメータを更新します。`/sensing/imu/imu_raw` は driver / autoware が動いていないと流れないため、実測は「3. 車両起動」で一度起動してから行います。
+車両ごとに IMU のジャイロバイアスを実測して `imu_corrector` のパラメータを更新します。`/sensing/imu/imu_raw` は driver / autoware が動いていないと流れないため、実測は「1-3. 車両起動」で一度起動してから行います。
 
 対象ファイルは `aichallenge/workspace/src/aichallenge_submit/imu_corrector/config/imu_corrector.param.yaml` です。
 
 車両を静止させた状態で `/sensing/imu/imu_raw` の `angular_velocity` を観測し、各軸の平均値を `angular_velocity_offset_x` / `_y` / `_z` にそのまま書きます（符号の反転は不要です）。`--symlink-install` でビルドしているため再ビルドは不要で、autoware を再起動すれば反映されます。
 
-### 3. 車両起動
+### 1-3. 車両起動
 
 ```bash
 # 提出物データを aichallenge/workspace/src/ に取得（認証情報は対話入力）
@@ -42,10 +42,10 @@ make download SUBMISSION_ID=<id>    # 特定の提出物を指定（一覧をス
 # 取得／持ち込んだコードをビルド
 make autoware-build
 
-# rosbagを記録する場合（セットアップ確認込み。実車では基本こちら）
+# rosbag を記録する場合（セットアップ確認込み。実車両では基本こちら）
 make autoware-driver-zenoh-rosbag
 
-# rosbagを記録しない場合（セットアップ確認は実行されない）
+# rosbag を記録しない場合（セットアップ確認は実行されない）
 make autoware-driver-zenoh
 ```
 
@@ -60,14 +60,14 @@ make autoware-driver-zenoh
 
 rosbag は全トピック（`-a --include-hidden-topics`）を mcap・60 秒分割で `output/<timestamp>/d<ROS_DOMAIN_ID>/rosbag2_all/` に記録されます。記録ログは同じディレクトリの `rosbag.log` です。
 
-### 4. 停止 / 状態確認
+### 1-4. 終了手順
 
 ```bash
 make ps      # 稼働中のコンテナ確認
 make down    # 全コンテナ停止（rosbag もここで finalize される）
 ```
 
-## セットアップ確認スクリプト
+## 第2部 セットアップ確認スクリプト
 
 `make autoware-driver-zenoh-rosbag` が preflight / runtime の2フェーズを自動で実行するので、通常は個別に叩く必要はありません。`make autoware-driver-zenoh` で起動した場合や単独で確認したい場合は `make setup-vehicle` を使います（こちらは両フェーズを実行するので、autoware が起動している状態で叩いてください）。
 
@@ -88,7 +88,9 @@ runtime（起動後）で確認される項目は次のとおりです。
 
 各項目の期待される結果・手動確認コマンド・トラブルシューティング・走行前最終チェックリストは、リポジトリの [vehicle/setup_check.md](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/vehicle/setup_check.md) にまとまっています。
 
-## ECUがモーターやVCUと通信できない場合
+## 第3部 トラブルシューティング
+
+### 3-1. ECU がモーターや VCU と通信できない場合
 
 以下の順で対処してから、`make autoware-driver-zenoh-rosbag` を再実行します。
 

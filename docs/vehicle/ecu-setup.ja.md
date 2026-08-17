@@ -1,10 +1,10 @@
 # ECU の初期構築
 
-実車に載せる ECU を、Ubuntu のインストールから始めて `./setup_check.sh --phase preflight` が通る状態にするまでの手順です。
+実車両に載せる ECU を、Ubuntu のインストールから始めて `./setup_check.sh --phase preflight` が通る状態にするまでの手順です。
 
 この作業は運営が実施します。参加チームが構築済みの ECU で実車両を走らせる手順は[実車両の起動](run.ja.md)を参照してください。
 
-## 第1部 OSとユーザー
+## 第1部 OS とユーザー
 
 ### 1-1. 用意するもの
 
@@ -13,7 +13,7 @@
 - Docker イメージインストール用の SSD（容量が大きいので SSD 推奨）
 - インターネット接続のある有線 LAN
 
-### 1-2. USBメディアを作成
+### 1-2. USB メディアを作成
 
 [Ubuntu 22.04 の iso ファイル](https://releases.ubuntu.com/22.04/)を、[公式チュートリアル](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#1-overview)を参考に USB メモリへ書き込みます。
 
@@ -41,7 +41,7 @@ sudo apt full-upgrade -y
 sudo reboot
 ```
 
-## 第2部 リポジトリとDocker環境
+## 第2部 リポジトリと Docker 環境
 
 ### 2-1. リポジトリの取得と環境構築
 
@@ -77,7 +77,7 @@ groups            # docker と dialout が含まれること
 外部 SSD を ECU に挿し、デバイス名を確認してから固定パスへマウントします。
 
 ```bash
-lsblk -f                                       # 外部SSDのデバイス名（例: sdb1）を確認
+lsblk -f                                       # 外部 SSD のデバイス名（例: sdb1）を確認
 sudo mkdir -p /mnt/racing_kart_image_transfer
 sudo mount /dev/sdX1 /mnt/racing_kart_image_transfer
 ```
@@ -114,9 +114,11 @@ cd ~
 sudo umount /mnt/racing_kart_image_transfer
 ```
 
-## 第3部 udevルールの設定
+## 第3部 udev ルールの設定
 
 VCU と GNSS は `ttyUSB*` / `ttyACM*` の番号が挿抜のたびに変わるので、固定名の udev ルールを作ります。
+
+### 3-1. VCU の udev ルール
 
 ```bash
 sudo vim /etc/udev/rules.d/89-vcu.rules
@@ -126,6 +128,8 @@ sudo vim /etc/udev/rules.d/89-vcu.rules
 KERNEL=="ttyUSB[0-9]*", ENV{ID_MODEL}=="CP2102N_USB_to_UART_Bridge_Controller", SYMLINK+="vcu/usb", MODE="0666"
 ```
 
+### 3-2. GNSS の udev ルール
+
 ```bash
 sudo vim /etc/udev/rules.d/90-gnss.rules
 ```
@@ -133,6 +137,8 @@ sudo vim /etc/udev/rules.d/90-gnss.rules
 ```text
 SUBSYSTEM=="tty", KERNEL=="ttyACM*", ATTRS{idVendor}=="1546", ATTRS{idProduct}=="01a9", SYMLINK+="gnss/usb", MODE="0660", GROUP="dialout"
 ```
+
+### 3-3. ルールの反映と確認
 
 作成した2つのルールを反映します。
 
@@ -145,8 +151,10 @@ VCU と GNSS を接続して、symlink と所有グループを確認します�
 
 ```bash
 ls -l /dev/vcu/usb /dev/gnss/usb
-ls -lL /dev/gnss/usb   # dialoutグループになっていること
+ls -lL /dev/gnss/usb   # dialout グループになっていること
 ```
+
+### 3-4. CAN ツールの導入
 
 `setup_check.sh` の `candump` チェック用に、CAN のツールも入れておきます。
 
@@ -157,6 +165,8 @@ sudo apt install -y can-utils
 ## 第4部 ネットワーク
 
 ECU はネットワーク接続に Wi-Fi を使わず、有線接続のみで運用します。内蔵 Wi-Fi を有効なまま残すと、意図せず何らかのネットワークへ接続し、有線接続とデフォルトルートを争うことがあります。使わない機能なので先に無効化します。
+
+### 4-1. 内蔵 Wi-Fi の無効化
 
 MAC アドレスは筐体ごとに異なるので、対象 ECU 上で実測します。
 
@@ -193,39 +203,43 @@ sudo systemctl restart NetworkManager
 nmcli device status            # 内蔵 Wi-Fi が unmanaged / down になっていること
 ```
 
+### 4-2. ファイアウォールの無効化
+
 ファイアウォールを無効化します。
 
 ```bash
 sudo ufw disable
 ```
 
+### 4-3. SSH の有効化
+
 SSH で接続できるようにしておきます。
 
 ```bash
 sudo apt install -y openssh-server
-systemctl is-enabled ssh      # enabled
+systemctl is-enabled ssh      # enabled であること
 ```
 
-## 第5部 ホストのROS 2環境
+## 第5部 ホストの ROS 2 環境
 
 ホストからも `ros2` コマンドが使えるように、ROS 2 のセットアップもしておきます。
 
-### 5-1. ROS 2 Humbleとビルドツール
+### 5-1. ROS 2 Humble とビルドツール
 
 [公式手順](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)に従って `ros-humble-desktop` を入れます。
 
-### 5-2. CycloneDDS（/opt/autoware/cyclonedds.xml）
+### 5-2. CycloneDDS（`/opt/autoware/cyclonedds.xml`）
 
 ホスト側の設定ファイルはリポジトリ同梱のものをコピーして使います（コンテナ側は `docker-compose.yml` が `vehicle/cyclonedds.xml` をマウントするので別物です）。
 
 ```bash
 sudo apt install -y ros-humble-rmw-cyclonedds-cpp
 sudo mkdir -p /opt/autoware
-sudo cp "$HOME/aichallenge-racingkart/vehicle/cyclonedds.xml" /opt/autoware/cyclonedds.xml
+sudo cp ~/aichallenge-racingkart/vehicle/cyclonedds.xml /opt/autoware/cyclonedds.xml
 grep -i NetworkInterface /opt/autoware/cyclonedds.xml    # name="lo" があること
 ```
 
-### 5-3. ~/.bashrc に入れるもの
+### 5-3. `~/.bashrc` に入れるもの
 
 `~/.bashrc` に追記します。ROS 2 の環境変数に加えて、Docker コンテナ内で起動した GUI アプリ（RViz など）をホストの画面に描画するための設定もここでまとめて入れます。
 
