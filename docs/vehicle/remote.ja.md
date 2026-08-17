@@ -8,25 +8,64 @@
 
 ## 第1部 共通セットアップ
 
-### 1-1. ROS 2 Humble
+### 1-1. ROS 2 Humble をインストール
+
+遠隔 PC の OS は Ubuntu 22.04 (Jammy) を前提とします。内容は[公式手順](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)と同じです。
+
+遠隔 PC では `joy.bash`（`joy_node`）と `ros2` コマンドをホスト側で動かすため、ホストに ROS 2 が必要です。1-2 のセットアップスクリプトは ROS 2 を入れないので、この手順は別に実施します。
 
 ```shell
-ros2 topic list   # 動けばOK。
+sudo apt update && sudo apt install -y locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+sudo apt install -y software-properties-common curl
+sudo add-apt-repository -y universe
+export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F'"' '{print $4}')
+curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo ${UBUNTU_CODENAME:-${VERSION_CODENAME}})_all.deb"
+sudo dpkg -i /tmp/ros2-apt-source.deb
 ```
 
-### 1-2. リポジトリ取得
+`ros-humble-desktop` を入れます。
 
 ```shell
-cd $HOME
-git clone git@github.com:AutomotiveAIChallenge/aichallenge-racingkart.git
-cd aichallenge-racingkart
+sudo apt update
+sudo apt install -y ros-humble-desktop
 ```
 
-### 1-3. 環境セットアップ & イメージ取得
+シェル起動時に `ros2` コマンドが使えるよう `~/.bashrc` に追記します（1-7 で追記する環境変数と同じ場所です）。
 
 ```shell
-./setup.bash bootstrap
+echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
+source ~/.bashrc
+printenv ROS_DISTRO     # humble と出ればOK
 ```
+
+### 1-2. リポジトリ取得と環境構築
+
+`curl` を入れてから、セットアップスクリプトを実行します。リポジトリの clone から Docker のインストール、Autoware イメージの取得までを一括で行います。
+
+```shell
+sudo apt update
+sudo apt install -y curl
+curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
+```
+
+`$HOME/aichallenge-racingkart` に main ブランチが clone されます。
+
+| プロンプト | 遠隔 PC での回答 | 理由 |
+| --- | --- | --- |
+| `Download AWSIM.zip and extract` | n | 遠隔 PC では AWSIM を起動しないため（約数 GB の節約） |
+| `Run make dev (ROS_DOMAIN_ID from .env)` | n | AWSIM を使うシミュレータ起動なので不要 |
+
+### 1-3. セットアップ後の再確認
+
+```shell
+cd ~/aichallenge-racingkart
+./setup.bash doctor
+```
+
+`doctor` は OS・ツール・Docker・`.env`・イメージの有無を見るだけで、システムには何も変更を加えません。AWSIM に関する警告は 1-2 で n を選んだ結果なので、遠隔 PC では無視して構いません。
 
 ### 1-4. Zenoh bridge（ホストにインストール）
 
@@ -55,17 +94,20 @@ ls remote/tls/server   # minica.pem
 
 ### 1-7. CycloneDDS / RMW 設定
 
-`~/.bashrc` に以下があることを確認します。
+ホスト側の設定ファイルはリポジトリ同梱のものをコピーして使います（コンテナ側は `docker-compose.yml` が `vehicle/cyclonedds.xml` をマウントするので別物です）。
+
+```shell
+sudo apt install -y ros-humble-rmw-cyclonedds-cpp
+sudo mkdir -p /opt/autoware
+sudo cp ~/aichallenge-racingkart/vehicle/cyclonedds.xml /opt/autoware/cyclonedds.xml
+grep -i NetworkInterface /opt/autoware/cyclonedds.xml    # name="lo" があること
+```
+
+`~/.bashrc` に追記します。
 
 ```shell
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export CYCLONEDDS_URI=file:///opt/autoware/cyclonedds.xml
-```
-
-`/opt/autoware/cyclonedds.xml` の NetworkInterface に `name="lo"` があることを確認します。
-
-```shell
-grep -i NetworkInterface ${CYCLONEDDS_URI#file://}
 ```
 
 ### 1-8. `.env` に車両番号を設定

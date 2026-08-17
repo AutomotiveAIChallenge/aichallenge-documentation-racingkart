@@ -43,20 +43,15 @@ sudo reboot
 
 ## 第2部 リポジトリとDocker環境
 
-### 2-1. リポジトリの取得と setup.bash bootstrap
+### 2-1. リポジトリの取得と環境構築
+
+`curl` を入れてから、セットアップスクリプトを実行します。リポジトリの clone から Docker のインストール、Autoware イメージの取得までを一括で行います。
 
 ```bash
-cd "$HOME"
-git clone https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
-cd aichallenge-racingkart
-./setup.bash bootstrap
-# 必要であれば実験用ブランチに切り替えてビルドし直す。
-# git checkout experiment
-# ./docker_build.sh dev
-# make autoware-build
+sudo apt update
+sudo apt install -y curl
+curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
-
-`bootstrap` は以下以外のステップですべて y を選択します。
 
 | プロンプト | ECU での回答 | 理由 |
 | --- | --- | --- |
