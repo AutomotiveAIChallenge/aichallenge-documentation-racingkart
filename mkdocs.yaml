@@ -122,7 +122,7 @@ plugins:
             development: 開発
             index: 競技概要
             competition: 大会説明
-            vehicle: 実車運用
+            vehicle: 実車両
             specifications: 仕様
             course: 基礎演習
             ML: AI講座
