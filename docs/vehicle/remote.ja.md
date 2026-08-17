@@ -1,0 +1,200 @@
+# 遠隔操作
+
+走行中の緊急停止や手動走行は、遠隔 PC に接続したゲームコントローラを用いて遠隔操作で行います。
+
+遠隔 PC と自動運転車両の間の通信が途絶したとき、またはゲームコントローラが遠隔 PC から抜けたときには、自動運転車両が緊急停止する安全機能が入っています。ただし途絶判定のしきい値は5秒なので、ゲームコントローラが抜けた瞬間に車両が止まるわけではないことに注意してください。
+
+![遠隔操作 zenoh 構成図](./images/remote-topology.svg)
+
+## 第1部 共通セットアップ
+
+### 1-1. ROS 2 Humble
+
+```shell
+ros2 topic list   # 動けばOK。
+```
+
+### 1-2. リポジトリ取得
+
+```shell
+cd $HOME
+git clone git@github.com:AutomotiveAIChallenge/aichallenge-racingkart.git
+cd aichallenge-racingkart
+```
+
+### 1-3. 環境セットアップ & イメージ取得
+
+```shell
+./setup.bash bootstrap
+```
+
+### 1-4. Zenoh bridge（ホストにインストール）
+
+```shell
+sudo dpkg -i vehicle/zenoh-bridge-ros2dds_1.5.0_amd64.deb
+apt list --installed zenoh-bridge-ros2dds   # 1.5.0 ならOK
+```
+
+### 1-5. ゲームコントローラ用 joy パッケージ
+
+```shell
+sudo apt install -y ros-humble-joy
+sudo usermod -aG input "$USER"
+# 再ログインして反映する
+```
+
+### 1-6. TLS 証明書の配置
+
+`remote/tls/` に配布された tls.zip を展開します。
+
+```shell
+ls remote/tls          # client  server
+ls remote/tls/client   # cert.pem  key.pem(600)
+ls remote/tls/server   # minica.pem
+```
+
+### 1-7. CycloneDDS / RMW 設定
+
+`~/.bashrc` に以下があることを確認します。
+
+```shell
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+export CYCLONEDDS_URI=file:///opt/autoware/cyclonedds.xml
+```
+
+`/opt/autoware/cyclonedds.xml` の NetworkInterface に `name="lo"` があることを確認します。
+
+```shell
+grep -i NetworkInterface ${CYCLONEDDS_URI#file://}
+```
+
+### 1-8. `.env` に車両番号を設定
+
+リポジトリ直下の `.env` を開き、`VEHICLE_ID` の行を対象車両に合わせて書き換えます（以降 Ax と記載の部分は、A3、A6 など対象車両に合わせて変更してください）。
+
+```diff
+- VEHICLE_ID=A0
++ VEHICLE_ID=Ax
+```
+
+## 第2部 ノートPC1台で遠隔操作動作確認
+
+**目的**：PC 1台の中に「車両側」「遠隔側」を両方立て、両者を実 EC2 に client 接続し、joy 操作が EC2 経由で車両側に届くことを確認します。
+
+### 2-1. 手順
+
+ターミナルウィンドウを5つ（端末A〜E）用意します。各端末はカレントディレクトリを引き継がないので、端末ごとに `cd` から実行してください。
+
+```shell
+# 端末A: 車両側 zenoh bridge（domain1 → EC2）
+cd ~/aichallenge-racingkart
+make zenoh
+
+# 端末B: 車両側の joy 受け手（domain1）。echo 自体が subscriber になり bridge が転送を開始
+source /opt/ros/humble/setup.bash
+ROS_DOMAIN_ID=1 ros2 topic echo /racing_kart/joy
+
+# 端末C: 遠隔側 zenoh bridge（domain0 → EC2）
+cd ~/aichallenge-racingkart/remote
+ROS_DOMAIN_ID=0 ./connect_zenoh.bash Ax
+
+# 端末D: 遠隔側で joy を流す（domain0）
+source /opt/ros/humble/setup.bash
+ROS_DOMAIN_ID=0 ros2 topic pub -r 10 /racing_kart/joy sensor_msgs/msg/Joy \
+  '{header: {frame_id: "joy"}, axes: [0.1,0.5,0.0,0.0], buttons: [1,0,0,0]}'
+```
+
+### 2-2. 合否判定
+
+```shell
+# 端末E
+source /opt/ros/humble/setup.bash
+ROS_DOMAIN_ID=1 ros2 topic hz /racing_kart/joy     # ~10Hz なら合格
+```
+
+### 2-3. 終了手順
+
+端末B・C・D・E はフォアグラウンドのホストプロセスなので、`make down` では止まりません。先に各端末で Ctrl+C します。
+
+```shell
+# 1) 端末B(echo) / 端末C(zenoh bridge) / 端末D(topic pub) / 端末E(hz) をそれぞれ Ctrl+C
+
+# 2) 端末A で起動した zenoh コンテナを停止
+cd ~/aichallenge-racingkart
+make down
+
+# 3) 残存していないことを確認
+docker compose ps                  # 何も残っていないこと
+pgrep -af zenoh-bridge-ros2dds     # 何も出ないこと
+```
+
+## 第3部 実機構成（実車両＋遠隔PC）
+
+実車両と遠隔 PC を EC2 経由でつなぐ本番の遠隔操作です。
+遠隔 PC は EC2 経由で車両側と zenoh 接続するため、**遠隔 PC 側にインターネット接続が必須**です。
+
+### 3-1. ゲームコントローラの接続
+
+USB ケーブルでゲームコントローラ（ロジクール F310）を遠隔 PC に接続します。
+
+### 3-2. 遠隔操作の流れ（遠隔PC 側）
+
+ターミナルウィンドウを3つ用意します。
+
+遠隔 PC では `.env` の `ROS_DOMAIN_ID` を `0` に設定しておきます。端末A と端末B はホストの既定ドメインで動きますが、RViz2 はコンテナなので `.env` の値を読むためです。
+
+```diff
+- ROS_DOMAIN_ID=1
++ ROS_DOMAIN_ID=0
+```
+
+なお第2部の1台構成では、車両側 zenoh を domain 1 で起動する必要があるため `.env` は `ROS_DOMAIN_ID=1` のままにします。
+
+```shell
+# 端末A: joy_node（コントローラ入力 → /racing_kart/joy）
+cd ~/aichallenge-racingkart/remote
+ROS_DOMAIN_ID=0 ./joy.bash
+
+# 端末B: 車両と zenoh 接続（EC2 へ client 接続 / TLS）
+cd ~/aichallenge-racingkart/remote
+ROS_DOMAIN_ID=0 ./connect_zenoh.bash Ax
+
+# 端末C: RViz（遠隔可視化スタック）
+cd ~/aichallenge-racingkart/remote
+./rviz.bash
+```
+
+`connect_zenoh.bash` は `zenoh-user.json5` の TLS 証明書パスを `remote/` 基準で相対解決するため、`remote/` をカレントディレクトリにして実行する必要があります。
+
+`rviz.bash` は `make rviz2` のラッパで、rviz2 をコンテナとして起動します（`./rviz.bash restart` で開き直し、`./rviz.bash down` で停止します）。
+
+### 3-3. 車両側 ECU の起動
+
+車両側 ECU では別途 `make autoware-driver-zenoh-rosbag` で driver / autoware / rosbag / zenoh を起動します。`.env` の設定や IMU バイアスの調整を含む実車側の手順は[実車両の起動](run.ja.md)、ECU 自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)にまとまっています。
+
+### 3-4. 終了手順
+
+端末A の `joy.bash`（joy_node）と端末B の `connect_zenoh.bash`（zenoh bridge）はホスト上のフォアグラウンドプロセスであり、`make down` は Docker Compose のサービスしか停止しません。逆に端末C の rviz2 はコンテナなので Ctrl+C では止まらず、`make down`（または `./rviz.bash down`）が必要です。
+
+```shell
+# 1) 端末A(joy.bash) と 端末B(connect_zenoh.bash) をそれぞれ Ctrl+C で停止
+
+# 2) コンテナを停止（rviz2 はここで止まる）
+cd ~/aichallenge-racingkart
+make down
+
+# 3) 何も残っていないことを確認
+docker compose ps                  # 何も残っていないこと
+pgrep -af zenoh-bridge-ros2dds     # 何も出ないこと
+pgrep -af joy_node                 # 何も出ないこと
+```
+
+## 第4部 ゲームコントローラの使い方
+
+ロジクール F310 を使用して遠隔操作します。製品ページは[こちら](https://gaming.logicool.co.jp/ja-jp/products/gamepads/f310-gamepad.940-000137.html)です。
+
+![ロジクール F310](./images/f310-controller.png)
+
+ゲームコントローラの各ボタンの機能は以下の図のとおりです。
+
+![F310 ジョイスティックマッピング（ボタン/軸割当）](./images/f310-button-mapping.png)
