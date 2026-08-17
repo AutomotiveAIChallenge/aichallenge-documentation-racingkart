@@ -10,6 +10,45 @@
 
 `make dev` などでシミュレーターはAutowareと一緒に自動的に起動します。シミュレーターを単体で起動したい場合は `make simulator` を使用します。
 
+## 起動モード { #launch-modes }
+
+用途ごとに起動モードが用意されており、実体は `aichallenge/simulator_scripts/<モード名>.sh` です。**起動引数の正本は各スクリプト**なので、設定を変えたいときはこのファイルを直接編集してください。
+
+- `make simulator-<モード名>` … AWSIM のみ起動します（例: `make simulator-e2e-final`）
+- `make dev` / `make e2e` / `make eval` / `make gate1`〜`gate3` … AWSIM と Autoware をまとめて起動します
+
+| モード | 起動コマンド | 用途 | 主な設定 |
+| --- | --- | --- | --- |
+| `dev` | `make dev`（`dev2`〜`dev4` で複数台） | 開発 / S2R 練習 | 1台（引数で N 台）・周回/時間 無制限・カメラ/LiDAR off |
+| `e2e` | `make e2e` | E2E 練習（提出前の確認もこれ） | 1台 + NPC 2台・6周・タイムアウト実質なし・カメラ/LiDAR cpu |
+| `e2e-final` | `make simulator-e2e-final` | E2E 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on |
+| `s2r-final` | `make simulator-s2r-final` | S2R 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on |
+| `eval` | `make eval` | 評価（提出時と同じ条件） | 1台・6周・600秒・sync開始 |
+| `parallel` | `make simulator-parallel` | 複数台レース | 3台・6周・600秒・sync開始 |
+| `gate` | `make gate1`〜`make gate3` | セーフティゲートのテスト | 1台・シナリオ別 |
+| `multiplay-host` / `multiplay-client` | `make simulator-multiplay-host` など | 通信対戦（[Multiplay](../development/multiplay.ja.md)） | - |
+| `simulator`（既定） | `make simulator` | 引数なしの素起動 | 起動時UIで設定を選択 |
+
+### 部門ごとのモード（E2E / S2R） { #class-modes }
+
+部門ごとに **練習 → 決勝** の2モードがあり、違いはセンサー構成と、車両数・ハンディキャップ・ランキングだけです。
+
+| | E2E 部門 | S2R 部門 |
+| --- | --- | --- |
+| 課題 | End-to-End（カメラ・LiDAR から直接制御） | Sim-to-Real（実車移行を前提） |
+| カメラ / LiDAR | `cpu`（有効） | `off` |
+| IMU / GNSS / V2X | `off`（明示的に無効化） | 有効 |
+| 練習 | `e2e` | `dev` |
+| 決勝 | `e2e-final` | `s2r-final` |
+
+- センサーの on/off がそのまま部門の違いです。E2E 部門ではカメラ・LiDAR 以外の情報を使わないため、`e2e.sh` / `e2e-final.sh` では `--imu off --gnss off --v2x off` を明示しています。
+- **S2R の練習には `dev` をそのまま使います**。練習に必要な条件（カメラ・LiDAR off、ハンディキャップ・ランキング off、無制限走行）を `dev` が満たしているため、S2R 専用の練習モードはありません。
+- **E2E の練習と提出前の確認も `e2e` の1モードにまとめています**。提出物の評価そのものは `make eval`（`eval` モード）と同じ条件で行われます。
+- 練習モードは周回数・タイムアウトを無制限（`e2e` は `--timeout 10000000.0`、`dev` はさらに `--laps unlimited`）にしてあり、途中で止まらずに走り続けられます。時間制限つきで確認したい場合は決勝モードか `make eval` を使ってください。
+- 練習は `count` 開始（全車が接地してから自動でカウントダウン。`e2e` はカウント0秒で即スタート）、決勝は `sync` 開始（`/admin/awsim/start` を待って一斉スタート）です。
+- `e2e` は `--start-random on` で開始位置が毎回変わるため、特定のスタート位置に依存しない挙動を確認できます。決勝は公平性のため固定です。
+- エンジン音（`--sound`）は決勝の2モードのみ on です。練習モードや評価（`make eval`）では off にしてあります。
+
 ## 画面説明
 
 `make simulator` で起動した場合、設定画面が表示されます。後述の起動オプション相当の設定をGUIで行うことが可能です。設定が出来たら「Start」をクリックします。
@@ -44,6 +83,8 @@ AWSIMはコマンドライン引数で動作を制御でき、起動スクリプ
 | --collisions  | bool   | false      | 車両同士の衝突判定の有効/無効を設定します。       |
 | --wall-recovery | bool | true       | 壁リカバリー機能の有効/無効を設定します。         |
 | --ranking     | bool   | false      | ランキング表示の有効/無効を設定します。           |
+| --handicap    | bool   | false      | 順位に応じたハンディキャップの有効/無効を設定します。 |
+| --start-random | bool  | false      | 開始位置のランダム化の有効/無効を設定します。     |
 
 ### 制御・入力設定
 
@@ -60,6 +101,9 @@ AWSIMはコマンドライン引数で動作を制御でき、起動スクリプ
 | ---------- | ---- | ---------- | --------------------------------------- |
 | --camera   | off/cpu/gpu | gpu | カメラセンサ。`gpu`/`cpu` で有効化、`off` で無効化します。 |
 | --lidar    | off/cpu/gpu | cpu | LiDARセンサ。`gpu`/`cpu` で有効化、`off` で無効化します。 |
+| --imu      | bool | on | IMU（`/sensing/imu/imu_raw`）の有効/無効を設定します。 |
+| --gnss     | bool | on | GNSS（`/sensing/gnss/nav_sat_fix`）の有効/無効を設定します。`off` の車両は `/v2x/vehicle_positions` からも消えます。 |
+| --v2x      | bool | on | V2X車両位置共有（`/v2x/vehicle_positions`）の有効/無効を設定します。 |
 | -headless  | フラグ | （未指定） | Unity標準のヘッドレス起動フラグ（シングルダッシュ）。指定するとカメラ・LiDARセンサを無効化し、描画なしで軽量に実行します。 |
 
 ### シナリオ・リプレイ
