@@ -1424,6 +1424,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#launch-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        起動モード
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="起動モード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部門ごとのモード（E2E / S2R）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2585,6 +2613,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#launch-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        起動モード
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="起動モード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#class-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        部門ごとのモード（E2E / S2R）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2996,6 +3052,125 @@
 <p>シミュレーターは、Autowareのためのオープンソース自動運転シミュレーター「<a href="https://github.com/tier4/AWSIM">AWSIM</a>」をベースとして作成されています。</p>
 <h2 id="_3">起動方法</h2>
 <p><code>make dev</code> などでシミュレーターはAutowareと一緒に自動的に起動します。シミュレーターを単体で起動したい場合は <code>make simulator</code> を使用します。</p>
+<h2 id="launch-modes">起動モード</h2>
+<p>用途ごとに起動モードが用意されており、実体は <code>aichallenge/simulator_scripts/&lt;モード名&gt;.sh</code> です。<strong>起動引数の正本は各スクリプト</strong>なので、設定を変えたいときはこのファイルを直接編集してください。</p>
+<ul>
+<li><code>make simulator-&lt;モード名&gt;</code> … AWSIM のみ起動します（例: <code>make simulator-e2e-final</code>）</li>
+<li><code>make dev</code> / <code>make e2e</code> / <code>make eval</code> / <code>make gate1</code>〜<code>gate3</code> … AWSIM と Autoware をまとめて起動します</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>モード</th>
+<th>起動コマンド</th>
+<th>用途</th>
+<th>主な設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dev</code></td>
+<td><code>make dev</code>（<code>dev2</code>〜<code>dev4</code> で複数台）</td>
+<td>開発 / S2R 練習</td>
+<td>1台（引数で N 台）・周回/時間 無制限・カメラ/LiDAR off</td>
+</tr>
+<tr>
+<td><code>e2e</code></td>
+<td><code>make e2e</code></td>
+<td>E2E 練習（提出前の確認もこれ）</td>
+<td>1台 + NPC 2台・6周・タイムアウト実質なし・カメラ/LiDAR cpu</td>
+</tr>
+<tr>
+<td><code>e2e-final</code></td>
+<td><code>make simulator-e2e-final</code></td>
+<td>E2E 決勝</td>
+<td>4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on</td>
+</tr>
+<tr>
+<td><code>s2r-final</code></td>
+<td><code>make simulator-s2r-final</code></td>
+<td>S2R 決勝</td>
+<td>4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on</td>
+</tr>
+<tr>
+<td><code>eval</code></td>
+<td><code>make eval</code></td>
+<td>評価（提出時と同じ条件）</td>
+<td>1台・6周・600秒・sync開始</td>
+</tr>
+<tr>
+<td><code>parallel</code></td>
+<td><code>make simulator-parallel</code></td>
+<td>複数台レース</td>
+<td>3台・6周・600秒・sync開始</td>
+</tr>
+<tr>
+<td><code>gate</code></td>
+<td><code>make gate1</code>〜<code>make gate3</code></td>
+<td>セーフティゲートのテスト</td>
+<td>1台・シナリオ別</td>
+</tr>
+<tr>
+<td><code>multiplay-host</code> / <code>multiplay-client</code></td>
+<td><code>make simulator-multiplay-host</code> など</td>
+<td>通信対戦（<a href="../development/multiplay.html">Multiplay</a>）</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>simulator</code>（既定）</td>
+<td><code>make simulator</code></td>
+<td>引数なしの素起動</td>
+<td>起動時UIで設定を選択</td>
+</tr>
+</tbody>
+</table>
+<h3 id="class-modes">部門ごとのモード（E2E / S2R）</h3>
+<p>部門ごとに <strong>練習 → 決勝</strong> の2モードがあり、違いはセンサー構成と、車両数・ハンディキャップ・ランキングだけです。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>E2E 部門</th>
+<th>S2R 部門</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>課題</td>
+<td>End-to-End（カメラ・LiDAR から直接制御）</td>
+<td>Sim-to-Real（実車移行を前提）</td>
+</tr>
+<tr>
+<td>カメラ / LiDAR</td>
+<td><code>cpu</code>（有効）</td>
+<td><code>off</code></td>
+</tr>
+<tr>
+<td>IMU / GNSS / V2X</td>
+<td><code>off</code>（明示的に無効化）</td>
+<td>有効</td>
+</tr>
+<tr>
+<td>練習</td>
+<td><code>e2e</code></td>
+<td><code>dev</code></td>
+</tr>
+<tr>
+<td>決勝</td>
+<td><code>e2e-final</code></td>
+<td><code>s2r-final</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>センサーの on/off がそのまま部門の違いです。E2E 部門ではカメラ・LiDAR 以外の情報を使わないため、<code>e2e.sh</code> / <code>e2e-final.sh</code> では <code>--imu off --gnss off --v2x off</code> を明示しています。</li>
+<li><strong>S2R の練習には <code>dev</code> をそのまま使います</strong>。練習に必要な条件（カメラ・LiDAR off、ハンディキャップ・ランキング off、無制限走行）を <code>dev</code> が満たしているため、S2R 専用の練習モードはありません。</li>
+<li><strong>E2E の練習と提出前の確認も <code>e2e</code> の1モードにまとめています</strong>。提出物の評価そのものは <code>make eval</code>（<code>eval</code> モード）と同じ条件で行われます。</li>
+<li>練習モードは周回数・タイムアウトを無制限（<code>e2e</code> は <code>--timeout 10000000.0</code>、<code>dev</code> はさらに <code>--laps unlimited</code>）にしてあり、途中で止まらずに走り続けられます。時間制限つきで確認したい場合は決勝モードか <code>make eval</code> を使ってください。</li>
+<li>練習は <code>count</code> 開始（全車が接地してから自動でカウントダウン。<code>e2e</code> はカウント0秒で即スタート）、決勝は <code>sync</code> 開始（<code>/admin/awsim/start</code> を待って一斉スタート）です。</li>
+<li><code>e2e</code> は <code>--start-random on</code> で開始位置が毎回変わるため、特定のスタート位置に依存しない挙動を確認できます。決勝は公平性のため固定です。</li>
+<li>エンジン音（<code>--sound</code>）は決勝の2モードのみ on です。練習モードや評価（<code>make eval</code>）では off にしてあります。</li>
+</ul>
 <h2 id="_4">画面説明</h2>
 <p><code>make simulator</code> で起動した場合、設定画面が表示されます。後述の起動オプション相当の設定をGUIで行うことが可能です。設定が出来たら「Start」をクリックします。</p>
 <p><img alt="awsim-top.png" src="images/awsim-top.png" /></p>
@@ -3072,6 +3247,18 @@
 <td>false</td>
 <td>ランキング表示の有効/無効を設定します。</td>
 </tr>
+<tr>
+<td>--handicap</td>
+<td>bool</td>
+<td>false</td>
+<td>順位に応じたハンディキャップの有効/無効を設定します。</td>
+</tr>
+<tr>
+<td>--start-random</td>
+<td>bool</td>
+<td>false</td>
+<td>開始位置のランダム化の有効/無効を設定します。</td>
+</tr>
 </tbody>
 </table>
 <h3 id="_7">制御・入力設定</h3>
@@ -3133,6 +3320,24 @@
 <td>off/cpu/gpu</td>
 <td>cpu</td>
 <td>LiDARセンサ。<code>gpu</code>/<code>cpu</code> で有効化、<code>off</code> で無効化します。</td>
+</tr>
+<tr>
+<td>--imu</td>
+<td>bool</td>
+<td>on</td>
+<td>IMU（<code>/sensing/imu/imu_raw</code>）の有効/無効を設定します。</td>
+</tr>
+<tr>
+<td>--gnss</td>
+<td>bool</td>
+<td>on</td>
+<td>GNSS（<code>/sensing/gnss/nav_sat_fix</code>）の有効/無効を設定します。<code>off</code> の車両は <code>/v2x/vehicle_positions</code> からも消えます。</td>
+</tr>
+<tr>
+<td>--v2x</td>
+<td>bool</td>
+<td>on</td>
+<td>V2X車両位置共有（<code>/v2x/vehicle_positions</code>）の有効/無効を設定します。</td>
 </tr>
 <tr>
 <td>-headless</td>

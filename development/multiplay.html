@@ -2661,7 +2661,7 @@
 <p>スマホでテザリングを ON にして、全員の PC をその Wi-Fi に接続します。</p>
 <h3 id="2-host-ip">2. host の IP アドレスを確認する</h3>
 <p>host 役の PC で IP アドレスを確認します。</p>
-<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;inet &quot;</span>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"inet "</span>
 </code></pre></div>
 <p>テザリングなら iPhone は <code>172.20.10.x</code>、Android は <code>192.168.x.x</code> になることが多いです。この値を client 役の全員に伝えます。</p>
 <h3 id="3-host">3. host を起動する</h3>

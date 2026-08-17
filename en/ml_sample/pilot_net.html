@@ -2604,7 +2604,7 @@
 </code></pre></div>
 <p>ただしこの方法では出力次元は 2 のままで、アクセル側は未学習になります。走行時はアクセルが不定にならないよう、<a href="#accel-control">アクセル制御の有効/無効設定</a> で <code>control_mode</code> を <code>"fixed"</code> に設定してください。</p>
 <p>なお、CPUで学習を回したい場合や、RTX 50 seriesなどを用いていてCUDAがこの環境に対応していない場合は、以下のようにGPUを無効化して実行してください。</p>
-<div class="highlight"><pre><span></span><code><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="w"> </span>python3<span class="w"> </span>./train.py
+<div class="highlight"><pre><span></span><code><span class="nv">CUDA_VISIBLE_DEVICES</span><span class="o">=</span><span class="s2">""</span><span class="w"> </span>python3<span class="w"> </span>./train.py
 </code></pre></div>
 </details>
 <details class="note">

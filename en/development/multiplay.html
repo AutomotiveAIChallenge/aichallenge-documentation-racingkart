@@ -2661,7 +2661,7 @@ For security, when racing with friends or acquaintances it is best to use a thro
 <p>Turn on tethering on a smartphone and connect every PC to that Wi-Fi.</p>
 <h3 id="2-find-the-hosts-ip-address">2. Find the host's IP address</h3>
 <p>On the host PC, check its IP address:</p>
-<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;inet &quot;</span>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"inet "</span>
 </code></pre></div>
 <p>With tethering it is typically <code>172.20.10.x</code> on iPhone or <code>192.168.x.x</code> on Android. Share this value with every client player.</p>
 <h3 id="3-launch-the-host">3. Launch the host</h3>
@@ -2674,7 +2674,7 @@ For security, when racing with friends or acquaintances it is best to use a thro
 </div>
 <h3 id="4-point-the-client-at-the-hosts-ip-and-launch">4. Point the client at the host's IP and launch</h3>
 <p>On each client PC, edit <code>--multiplay-address</code> in <code>aichallenge/simulator_scripts/multiplay-client.sh</code> to the <strong>host's IP address</strong>:</p>
-<div class="highlight"><pre><span></span><code><span class="w">    </span>--multiplay-address<span class="w"> </span><span class="m">192</span>.168.x.x<span class="w"> </span><span class="se">\ </span><span class="w"> </span><span class="c1"># ← change to the host&#39;s IP</span>
+<div class="highlight"><pre><span></span><code><span class="w">    </span>--multiplay-address<span class="w"> </span><span class="m">192</span>.168.x.x<span class="w"> </span><span class="se">\ </span><span class="w"> </span><span class="c1"># ← change to the host's IP</span>
 </code></pre></div>
 <p>Then launch:</p>
 <div class="highlight"><pre><span></span><code>make<span class="w"> </span>simulator-multiplay-client

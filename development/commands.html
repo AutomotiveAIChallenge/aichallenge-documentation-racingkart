@@ -2554,6 +2554,10 @@
 <td>AWSIM + Autoware x 4 を開発用に起動します</td>
 </tr>
 <tr>
+<td><code>make e2e</code></td>
+<td>AWSIM + Autoware を E2E 練習用に起動します（NPC 2台入り。提出前の確認もこれ）</td>
+</tr>
+<tr>
 <td><code>make eval</code></td>
 <td>AWSIM + Autoware を評価用に起動します</td>
 </tr>
@@ -2617,6 +2621,14 @@
 <td>AWSIM のみ起動します (4台走行用)</td>
 </tr>
 <tr>
+<td><code>make simulator-e2e-final</code></td>
+<td>AWSIM のみ起動します（E2E 決勝の設定）</td>
+</tr>
+<tr>
+<td><code>make simulator-s2r-final</code></td>
+<td>AWSIM のみ起動します（S2R 決勝の設定）</td>
+</tr>
+<tr>
 <td><code>make autoware-simulator</code></td>
 <td>Autoware のみ起動します（シミュレータ向け）</td>
 </tr>
@@ -2642,6 +2654,7 @@
 </tr>
 </tbody>
 </table>
+<p><code>make simulator-&lt;モード名&gt;</code> は <code>aichallenge/simulator_scripts/&lt;モード名&gt;.sh</code> を実行します。モードの一覧と設定値は<a href="../specifications/simulator.html#launch-modes">シミュレーターの起動モード</a>を参照してください。</p>
 <h3 id="_4">コマンド送信</h3>
 <table>
 <thead>

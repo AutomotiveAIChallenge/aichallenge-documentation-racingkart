@@ -2661,7 +2661,7 @@
 <p><code>--camera off</code> のままだと <code>/sensing/camera/image_raw</code> が配信されず、観測に使う画像が得られません。また <code>--start-count-seconds</code> はカウントダウン秒数で、学習中に毎エピソード待たされないよう <code>0</code> にしておくと便利です。</p>
 <h3 id="3-control_method-rl_train">3. <code>control_method</code> を <code>rl_train</code> に変更する</h3>
 <p><code>aichallenge/workspace/src/aichallenge_submit/aichallenge_submit_launch/launch/reference.launch.xml</code> の <code>control_method</code> を <code>rl_train</code> に書き換えてください。</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control_method&quot;</span><span class="w"> </span><span class="na">default=</span><span class="s">&quot;rl_train&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;arg</span><span class="w"> </span><span class="na">name=</span><span class="s">"control_method"</span><span class="w"> </span><span class="na">default=</span><span class="s">"rl_train"</span>
 </code></pre></div>
 <h2 id="sac">SAC の学習手順</h2>
 <h3 id="step-1">Step 1. 学習用ディレクトリの作成</h3>
