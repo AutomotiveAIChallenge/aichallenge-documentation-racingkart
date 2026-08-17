@@ -55,10 +55,14 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 
 `~/aichallenge-racingkart` に main ブランチが clone されます。
 
+スクリプトは実行する項目を1つずつ確認してきます。次の2つは `n`、それ以外はすべて `y` と答えてください。
+
 | プロンプト | 遠隔 PC での回答 | 理由 |
 | --- | --- | --- |
 | `Download AWSIM.zip and extract` | n | 遠隔 PC では AWSIM を起動しないため（約数 GB の節約） |
 | `Run make dev (ROS_DOMAIN_ID from .env)` | n | AWSIM を使うシミュレータ起動なので不要 |
+
+プロンプトは `[y/N]` 形式で、**何も入力せず Enter を押すと `n` 扱い**になります。実行したい項目では `y` を明示的に入力してください。
 
 ### 1-3. セットアップ後の再確認
 
@@ -72,6 +76,7 @@ cd ~/aichallenge-racingkart
 ### 1-4. Zenoh bridge（ホストにインストール）
 
 ```bash
+cd ~/aichallenge-racingkart
 sudo dpkg -i vehicle/zenoh-bridge-ros2dds_1.5.0_amd64.deb
 apt list --installed zenoh-bridge-ros2dds   # 1.5.0 であること
 ```
@@ -86,7 +91,16 @@ sudo usermod -aG input "$USER"
 
 ### 1-6. TLS 証明書の配置
 
-`remote/tls/` に配布された tls.zip を展開します。
+配布された tls.zip を `remote/tls/` に展開し、秘密鍵のパーミッションを 600 にします。
+
+```bash
+cd ~/aichallenge-racingkart
+sudo apt install -y unzip
+unzip -o ~/Downloads/tls.zip -d remote/    # tls.zip の保存先は環境に合わせてください
+chmod 600 remote/tls/client/key.pem
+```
+
+展開後、次の構成になっていることを確認します。異なる場合は `remote/tls/` 以下がこの構成になるように置き直してください。
 
 ```bash
 ls remote/tls          # client  server
@@ -127,7 +141,7 @@ export CYCLONEDDS_URI=file:///opt/autoware/cyclonedds.xml
 
 ### 2-1. 手順
 
-ターミナルウィンドウを5つ（端末A〜E）用意します。各端末はカレントディレクトリを引き継がないので、端末ごとに `cd` から実行してください。
+コマンドを端末A〜E に分けて実行します。端末A の `make zenoh` はコンテナをデタッチ起動するだけで端末を占有しないので、開いたままにしておく必要があるのは端末B〜E の4つです。各端末はカレントディレクトリを引き継がないので、端末ごとに `cd` から実行してください。
 
 ```bash
 # 端末A: 車両側 zenoh bridge（domain1 → EC2）
@@ -183,7 +197,7 @@ USB ケーブルでゲームコントローラ（ロジクール F310）を遠�
 
 ### 3-2. 遠隔操作の流れ（遠隔 PC 側）
 
-ターミナルウィンドウを3つ用意します。
+コマンドを端末A〜C に分けて実行します。端末C の `rviz.bash` はコンテナをデタッチ起動するだけで端末を占有しないので、開いたままにしておく必要があるのは端末A・B の2つです。
 
 遠隔 PC では `.env` の `ROS_DOMAIN_ID` を `0` に設定しておきます。端末A と端末B はホストの既定ドメインで動きますが、RViz2 はコンテナなので `.env` の値を読むためです。
 
@@ -218,7 +232,7 @@ cd ~/aichallenge-racingkart/remote
 
 ### 3-4. 終了手順
 
-端末A の `joy.bash`（joy_node）と端末B の `connect_zenoh.bash`（zenoh bridge）はホスト上のフォアグラウンドプロセスであり、`make down` は Docker Compose のサービスしか停止しません。逆に端末C の rviz2 はコンテナなので Ctrl+C では止まらず、`make down`（または `./rviz.bash down`）が必要です。
+端末A の `joy.bash`（joy_node）と端末B の `connect_zenoh.bash`（zenoh bridge）はホスト上のフォアグラウンドプロセスであり、`make down` は Docker Compose のサービスしか停止しません。逆に rviz2 はデタッチ起動のコンテナなので、端末C を閉じても動き続けます。停止には `make down`（または `./rviz.bash down`）が必要です。
 
 ```bash
 # 1) 端末A(joy.bash) と 端末B(connect_zenoh.bash) をそれぞれ Ctrl+C で停止

@@ -53,10 +53,14 @@ sudo apt install -y curl
 curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
 
+スクリプトは実行する項目を1つずつ確認してきます。次の2つは `n`、それ以外はすべて `y` と答えてください。
+
 | プロンプト | ECU での回答 | 理由 |
 | --- | --- | --- |
 | `Download AWSIM.zip and extract` | n | ECU では AWSIM を起動しないため（約数 GB の節約） |
 | `Run make dev (ROS_DOMAIN_ID from .env)` | n | AWSIM を使うシミュレータ起動なので不要 |
+
+プロンプトは `[y/N]` 形式で、**何も入力せず Enter を押すと `n` 扱い**になります。実行したい項目では `y` を明示的に入力してください。
 
 VCU と GNSS のシリアルデバイスを開くために、手動で以下を実行します。
 
@@ -224,9 +228,28 @@ systemctl is-enabled ssh      # enabled であること
 
 ホストからも `ros2` コマンドが使えるように、ROS 2 のセットアップもしておきます。
 
-### 5-1. ROS 2 Humble とビルドツール
+### 5-1. ROS 2 Humble
 
-[公式手順](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)に従って `ros-humble-desktop` を入れます。
+apt のリポジトリを追加してから `ros-humble-desktop` を入れます。内容は[公式手順](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)と同じです。
+
+```bash
+sudo apt update && sudo apt install -y locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+
+sudo apt install -y software-properties-common curl
+sudo add-apt-repository -y universe
+export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F'"' '{print $4}')
+curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo ${UBUNTU_CODENAME:-${VERSION_CODENAME}})_all.deb"
+sudo dpkg -i /tmp/ros2-apt-source.deb
+```
+
+```bash
+sudo apt update
+sudo apt install -y ros-humble-desktop
+```
+
+シェル起動時に `ros2` コマンドが使えるようにする設定は、5-3 で他の環境変数とまとめて `~/.bashrc` に追記します。
 
 ### 5-2. CycloneDDS（`/opt/autoware/cyclonedds.xml`）
 
@@ -253,6 +276,19 @@ xhost +SI:localuser:root >/dev/null 2>&1
 ```
 
 ## 第6部 動作確認
+
+### 6-1. `.env` の `VEHICLE_ID` を設定
+
+`setup_check.sh` は Zenoh サーバーへの疎通確認で `.env` の `VEHICLE_ID` を使います。`setup.bash` が生成した直後の `.env` は初期値の `A0` で、これは有効な号機ではないため必ず FAIL します。リポジトリ直下の `~/aichallenge-racingkart/.env` を開き、この ECU を載せる号機の値（号機ごとの設定値表を参照）に書き換えてください。
+
+```diff
+- VEHICLE_ID=A0
++ VEHICLE_ID=A2
+```
+
+`.env` の残りの項目（NTRIP アカウントなど）は走行時に設定します。[実車両の起動](run.ja.md)を参照してください。
+
+### 6-2. `setup_check.sh` の実行
 
 VCU・GNSS・PCAN-USB をすべて USB に接続した状態で実行します。繋がっていないとハードウェアのチェックが FAIL になります。
 

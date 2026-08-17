@@ -20,7 +20,7 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 | `NTRIP_PASSWORD` | `your_password` | 同上 |
 | `RACING_KART_INTERFACE_DIR` | `/home/tier4/racing_kart_interface` | racing_kart_interface の実際の配置先。**絶対パス必須**です（`colcon --symlink-install` が絶対 symlink を含むため）。ここが違うと rosbag 記録も失敗します |
 
-`ROS_DOMAIN_ID` は既定の `1` のままで構いません。
+`ROS_DOMAIN_ID` は既定の `1` のままで構いません。`TEAM_NAME` は `.env.example` に含まれていますが実車両の起動では参照されないので、こちらも初期値のままで構いません。
 
 `HOST_UID` / `HOST_GID` / `HOST_GID_DIALOUT` / `HOST_GID_INPUT` と `COMPOSE_FILE`（GPU 判定）は `./setup.bash env` が実測値で自動設定するので、通常は触りません。
 
