@@ -11,7 +11,7 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 ### 1-1. `.env` の設定
 
 `.env` は git 管理外なので、`./setup.bash bootstrap`（または `./setup.bash env`）で `.env.example` から生成されます。
-生成後、**人が手で書き換えないといけない項目**は次の4つです。
+生成後、**人が手で書き換えないといけない項目**は、まず次の4つです。V2X 位置情報共有を使う場合はさらに後述の項目が必要です。
 
 | 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
 | --- | --- | --- |
@@ -32,8 +32,8 @@ V2X 位置情報共有を使う場合は、次の項目も `.env` で設定し�
 | `V2X_VEHICLE_IDS` | `d1,d2,d3,d4` | 走行に参加しうる全車両の ID をカンマ区切りで指定します。**全カートで同じ値**にしてください。ここに無い ID から届いた位置情報は捨てられます |
 | `V2X_BROKER_HOST` | `v2x-mqtt-cctb.dev.aichallenge-board.jsae.or.jp` | 接続先の MQTT broker。証明書と一緒に配布される値に合わせます |
 | `V2X_BROKER_PORT` | `8883` | TLS 接続のポート。`1883` ではありません |
-| `V2X_TLS_DIR` | `/etc/v2x/tls` | ホスト側の証明書ディレクトリ。コンテナへ同じパスで読み取り専用マウントされます |
-| `V2X_MQTT_TLS_CA_FILE` / `_CERT_FILE` / `_KEY_FILE` | `/etc/v2x/tls/ca.crt` ほか | コンテナ内から見たパス。通常は初期値のままで構いません |
+| `V2X_TLS_DIR` | `/etc/v2x/tls` | ホスト側の証明書ディレクトリ。コンテナ側は **`/etc/v2x/tls` 固定**で読み取り専用マウントされるので、この値を変えてもコンテナ内のパスは変わりません |
+| `V2X_MQTT_TLS_CA_FILE` / `_CERT_FILE` / `_KEY_FILE` | `/etc/v2x/tls/ca.crt` ほか | コンテナ内から見たパス。`V2X_TLS_DIR` を変えた場合も**初期値のまま**にします。3つ揃っていないと TLS 設定ごと無効になります |
 
 `VEHICLE_ID`（号機。zenoh の接続先ポートが決まる）と `V2X_VEHICLE_ID`（V2X の自号 ID。証明書の CN）は別物です。走行前に、参加する全カートについて号機・`V2X_VEHICLE_ID`・証明書 CN の対応表を作って共有しておくと取り違えを防げます。
 
@@ -107,6 +107,8 @@ runtime（起動後）で確認される項目は次のとおりです。
 
 各項目の期待される結果・手動確認コマンド・トラブルシューティング・走行前最終チェックリストは、リポジトリの [vehicle/setup_check.md](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/vehicle/setup_check.md) にまとまっています。
 
+なお、これらのチェックに V2X 位置情報共有の項目は含まれていません。証明書と `.env` が正しいかは「3-2. V2X で他車の位置が受信できない場合」の手順で個別に確認してください。
+
 ## 第3部 トラブルシューティング
 
 ### 3-1. ECU がモーターや VCU と通信できない場合
@@ -140,9 +142,23 @@ sudo mosquitto_sub -h <V2X_BROKER_HOST> -p 8883 -t 'v2x/vehicles/+/position' -v 
 
 TLS の検証は時刻に依存するため、`timedatectl` で `System clock synchronized: yes` になっていることも確認してください。
 
+`mosquitto_sub` は通るのに車両側で受信できない場合は、まず `.env` を疑ってください。V2X 対応前の `.env` を使い回していると、compose の既定値（`V2X_BROKER_HOST=127.0.0.1` / `V2X_BROKER_PORT=1883` / TLS 変数は空）にフォールバックし、**エラーを出さずに localhost へ平文接続しにいくだけ**になります。`.env.example` と突き合わせて V2X の項目が揃っているか確認してください。
+
 broker まで届いているなら、車両側の ROS トピックを確認します。
 
 ```bash
-ros2 topic hz /v2x/vehicle_positions     # 10 Hz で出ていること
-ros2 topic echo /v2x/vehicle_positions
+ros2 topic hz /v2x/vehicle_positions      # 集約ノードが動いているかの確認
+ros2 topic echo /v2x/vehicle_positions    # 他車が載っているかの確認
 ```
+
+`/v2x/vehicle_positions` は**他車が1台もいなくても空配列を 10 Hz で publish し続ける**仕様です。`hz` が 10 Hz でも集約ノードが動いていることしか分からないので、受信できているかどうかは `echo` して `vehicles` が空でないことで判断してください。
+
+`echo` が空のままなら、MQTT の受信段まで届いているかを見ます。
+
+```bash
+ros2 topic echo /v2x/received/vehicle_position/<相手の V2X_VEHICLE_ID>
+```
+
+ここに出ていれば「受信はできているが集約に載っていない」（`V2X_VEHICLE_IDS` に相手の ID が無い、など）、出ていなければ「そもそも受信できていない」と切り分けられます。
+
+ここまで車両側で確認できているのに遠隔 PC の RViz にだけ他車が出ない場合は、遠隔可視化の経路の問題です。RViz 用の `MarkerArray` は driver ではなく autoware コンテナ側が `/v2x/vehicle_positions/markers` に publish し、zenoh の `allow.publishers`（`vehicle/zenoh.json5`）を通って遠隔 PC に届きます。

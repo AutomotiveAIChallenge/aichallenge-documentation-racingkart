@@ -111,6 +111,16 @@ docker image inspect ghcr.io/tier4/racing_kart_interface:latest-experiment --for
 
 `ghcr.io/tier4/racing_kart_interface:latest-experiment` が表示されれば OK です。
 
+V2X 位置情報共有を使う場合は、イメージに V2X 関連パッケージが入っていることも確認します。
+
+```bash
+docker run --rm --entrypoint ls ghcr.io/tier4/racing_kart_interface:latest-experiment /workspace/install | grep v2x
+# tier4_v2x_msgs / v2x_communicator_node / v2x_connector_core
+# v2x_connector_manager / v2x_connector_std / v2x_msgs / v2x_position_sharing
+```
+
+driver の `use_v2x` は既定で有効なので、これらが入っていないイメージのままだと、証明書と `.env` を揃えても driver の起動に失敗します。何も表示されない場合は V2X を含むイメージを配布元に確認してください。
+
 SSD をアンマウントします。
 
 ```bash
@@ -261,6 +271,7 @@ V2X 位置情報共有の MQTT broker は、パスワードを使わずクライ
 配布された `ca.crt` / `kart.crt` / `kart.key` を root 所有で配置します。
 
 ```bash
+cd ~/v2x-certs                             # 配布された証明書を展開したディレクトリに合わせてください
 sudo mkdir -p /etc/v2x/tls
 sudo cp ca.crt kart.crt kart.key /etc/v2x/tls/
 sudo chown -R root:root /etc/v2x/tls
@@ -276,7 +287,7 @@ sudo openssl x509 -in /etc/v2x/tls/kart.crt -noout -subject -dates
 # subject=CN = d1   ← .env の V2X_VEHICLE_ID と一致すること
 # notAfter=...      ← 走行日より先であること
 sudo openssl verify -CAfile /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
-# kart.crt: OK
+# /etc/v2x/tls/kart.crt: OK
 ```
 
 証明書は環境ごとに CA が分かれているため、開発用の証明書で本番の broker には接続できません。走行に使う環境を確認したうえで発行されたものを配置してください。
