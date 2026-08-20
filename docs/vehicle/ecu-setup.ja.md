@@ -111,15 +111,6 @@ docker image inspect ghcr.io/tier4/racing_kart_interface:latest-experiment --for
 
 `ghcr.io/tier4/racing_kart_interface:latest-experiment` が表示されれば OK です。
 
-V2X 位置情報共有を使う場合は、イメージに V2X 関連パッケージが入っていることも確認します。
-
-```bash
-docker run --rm --entrypoint ls ghcr.io/tier4/racing_kart_interface:latest-experiment /workspace/install | grep v2x
-# tier4_v2x_msgs / v2x_communicator_node / v2x_connector_core
-# v2x_connector_manager / v2x_connector_std / v2x_msgs / v2x_position_sharing
-```
-
-driver の `use_v2x` は既定で有効なので、これらが入っていないイメージのままだと、証明書と `.env` を揃えても driver の起動に失敗します。何も表示されない場合は V2X を含むイメージを配布元に確認してください。
 
 SSD をアンマウントします。
 
