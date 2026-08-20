@@ -111,7 +111,6 @@ docker image inspect ghcr.io/tier4/racing_kart_interface:latest-experiment --for
 
 `ghcr.io/tier4/racing_kart_interface:latest-experiment` が表示されれば OK です。
 
-
 SSD をアンマウントします。
 
 ```bash
