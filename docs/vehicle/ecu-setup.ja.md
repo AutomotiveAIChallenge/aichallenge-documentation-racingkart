@@ -224,6 +224,65 @@ sudo apt install -y openssh-server
 systemctl is-enabled ssh      # enabled であること
 ```
 
+### 4-4. TLS 証明書の配置
+
+車両 ECU では2種類の TLS 証明書を使います。どちらも git 管理外なので、配布されたものを ECU 上に配置します。
+
+| 用途 | 配置先 | ファイル |
+| --- | --- | --- |
+| zenoh（遠隔操作・遠隔可視化） | `~/aichallenge-racingkart/remote/tls/` | `server/minica.pem`, `client/cert.pem`, `client/key.pem` |
+| V2X 位置情報共有（MQTT broker） | `/etc/v2x/tls/` | `ca.crt`, `kart.crt`, `kart.key` |
+
+#### zenoh 用（`remote/tls/`）
+
+車両側の zenoh コンテナも `remote/` をマウントし、`vehicle/zenoh.json5` の TLS 設定（`enable_mtls: true`）から `/remote/tls/` 以下を読みます。遠隔 PC と同じ `tls.zip` を ECU 上でも展開してください。ここが無いと zenoh が接続できず、遠隔操作も遠隔可視化もできません。
+
+```bash
+cd ~/aichallenge-racingkart
+sudo apt install -y unzip
+unzip -o ~/Downloads/tls.zip -d remote/    # tls.zip の保存先は環境に合わせてください
+chmod 600 remote/tls/client/key.pem
+```
+
+展開後、次の構成になっていることを確認します。異なる場合は `remote/tls/` 以下がこの構成になるように置き直してください。
+
+```bash
+ls remote/tls          # client  server
+ls remote/tls/client   # cert.pem  key.pem(600)
+ls remote/tls/server   # minica.pem
+```
+
+遠隔 PC 側の同じ手順は[遠隔操作](remote.ja.md)の 1-6 にあります。証明書の中身は車両側と同じものです。
+
+#### V2X 用（`/etc/v2x/tls/`）
+
+V2X 位置情報共有の MQTT broker は、パスワードを使わずクライアント証明書だけを資格情報にします。証明書は車両ごとに発行され、**CN がそのまま MQTT のユーザ名**になります。`.env` の `V2X_VEHICLE_ID` と CN が一致していないと broker に接続できません。
+
+配布された `ca.crt` / `kart.crt` / `kart.key` を root 所有で配置します。
+
+```bash
+sudo mkdir -p /etc/v2x/tls
+sudo cp ca.crt kart.crt kart.key /etc/v2x/tls/
+sudo chown -R root:root /etc/v2x/tls
+sudo chmod 700 /etc/v2x/tls
+sudo chmod 600 /etc/v2x/tls/kart.key
+sudo chmod 644 /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
+```
+
+配置したら、CN と有効期限を確認します。
+
+```bash
+sudo openssl x509 -in /etc/v2x/tls/kart.crt -noout -subject -dates
+# subject=CN = d1   ← .env の V2X_VEHICLE_ID と一致すること
+# notAfter=...      ← 走行日より先であること
+sudo openssl verify -CAfile /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
+# kart.crt: OK
+```
+
+証明書は環境ごとに CA が分かれているため、開発用の証明書で本番の broker には接続できません。走行に使う環境を確認したうえで発行されたものを配置してください。
+
+`.env` 側の V2X 設定は[実車両の起動](run.ja.md)の 1-1 を参照してください。
+
 ## 第5部 ホストの ROS 2 環境
 
 ホストからも `ros2` コマンドが使えるように、ROS 2 のセットアップもしておきます。

@@ -24,6 +24,25 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 
 `HOST_UID` / `HOST_GID` / `HOST_GID_DIALOUT` / `HOST_GID_INPUT` と `COMPOSE_FILE`（GPU 判定）は `./setup.bash env` が実測値で自動設定するので、通常は触りません。
 
+V2X 位置情報共有を使う場合は、次の項目も `.env` で設定します。証明書の配置は[ECU の初期構築](ecu-setup.ja.md)の 4-4 を参照してください。
+
+| 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
+| --- | --- | --- |
+| `V2X_VEHICLE_ID` | `d1` | この車両の V2X ID。`/etc/v2x/tls/kart.crt` の CN と一致していないと broker に拒否されます |
+| `V2X_VEHICLE_IDS` | `d1,d2,d3,d4` | 走行に参加しうる全車両の ID をカンマ区切りで指定します。**全カートで同じ値**にしてください。ここに無い ID から届いた位置情報は捨てられます |
+| `V2X_BROKER_HOST` | `v2x-mqtt-cctb.dev.aichallenge-board.jsae.or.jp` | 接続先の MQTT broker。証明書と一緒に配布される値に合わせます |
+| `V2X_BROKER_PORT` | `8883` | TLS 接続のポート。`1883` ではありません |
+| `V2X_TLS_DIR` | `/etc/v2x/tls` | ホスト側の証明書ディレクトリ。コンテナへ同じパスで読み取り専用マウントされます |
+| `V2X_MQTT_TLS_CA_FILE` / `_CERT_FILE` / `_KEY_FILE` | `/etc/v2x/tls/ca.crt` ほか | コンテナ内から見たパス。通常は初期値のままで構いません |
+
+`VEHICLE_ID`（号機。zenoh の接続先ポートが決まる）と `V2X_VEHICLE_ID`（V2X の自号 ID。証明書の CN）は別物です。走行前に、参加する全カートについて号機・`V2X_VEHICLE_ID`・証明書 CN の対応表を作って共有しておくと取り違えを防げます。
+
+V2X を使わずに走らせる場合は、起動時に `DRIVER_LAUNCH_ARGS` で V2X のノードだけを止められます。
+
+```bash
+DRIVER_LAUNCH_ARGS="use_v2x:=false" make autoware-driver-zenoh-rosbag
+```
+
 ### 1-2. IMU バイアスの修正
 
 車両ごとに IMU のジャイロバイアスを実測して `imu_corrector` のパラメータを更新します。`/sensing/imu/imu_raw` は driver / autoware が動いていないと流れないため、実測は「1-3. 車両起動」で一度起動してから行います。
@@ -98,3 +117,32 @@ runtime（起動後）で確認される項目は次のとおりです。
 2. USB ケーブルを挿し直す
 3. 車両バッテリーの電源を入れ直す
 4. `make autoware-driver-zenoh-rosbag` を実行する
+
+### 3-2. V2X で他車の位置が受信できない場合
+
+`/v2x/vehicle_positions` に他車が出てこない場合は、ROS より先に broker への疎通を確認して、「AWS・回線・証明書の問題」と「車両側スタックの問題」を切り分けます。
+
+```bash
+sudo apt install -y mosquitto-clients    # ECU には入っていません
+sudo mosquitto_sub -h <V2X_BROKER_HOST> -p 8883 -t 'v2x/vehicles/+/position' -v -d -W 8 \
+  --cafile /etc/v2x/tls/ca.crt --cert /etc/v2x/tls/kart.crt --key /etc/v2x/tls/kart.key
+```
+
+`received CONNACK (0)` で証明書が受理されたこと、`Subscribed (mid: 1): 0` で ACL が subscribe を許可したことが分かります。誰も publish していなければメッセージは出ず、`-W 8` のタイムアウトで終了するのが正常です。
+
+| 症状 | 主な原因 |
+| --- | --- |
+| TLS handshake failure / `certificate verify failed` | `ca.crt` の不一致、または DNS 名ではなく IP で接続している |
+| `Connection refused` / TCP タイムアウト | ポート違い（`8883`。`1883` ではありません）、broker の停止、回線側で塞がれている |
+| `CONNACK (5)` not authorised | 証明書が失効している、または別の CA で発行された証明書 |
+| `Subscribed ... : 128` | ACL が subscribe を拒否している |
+| 名前解決できない | モバイル回線側の DNS。`getent hosts <V2X_BROKER_HOST>` で確認します |
+
+TLS の検証は時刻に依存するため、`timedatectl` で `System clock synchronized: yes` になっていることも確認してください。
+
+broker まで届いているなら、車両側の ROS トピックを確認します。
+
+```bash
+ros2 topic hz /v2x/vehicle_positions     # 10 Hz で出ていること
+ros2 topic echo /v2x/vehicle_positions
+```
