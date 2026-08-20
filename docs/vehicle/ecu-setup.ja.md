@@ -283,6 +283,136 @@ sudo openssl verify -CAfile /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
 
 `.env` 側の V2X 設定は[実車両の起動](run.ja.md)の 1-1 を参照してください。
 
+### 4-5. LTE ルータのログ収集
+
+車両は LTE ルータ（FutureNet AS-250/L）経由でインターネットに接続します。回線が切れたとき、「電波が弱かった」のか「SIM を掴めなくなった」のかは、ルータ側のログが無いと切り分けられません。ルータ内蔵のログバッファは容量が小さく再起動で消えるため、syslog を ECU へ転送して残しておきます。
+
+必須の手順ではありませんが、現地で回線が不安定になったときの調査はこのログの有無で大きく変わります。
+
+#### ルータ側の設定
+
+ルータのコンソールで、転送先と出力カテゴリを確認します。
+
+```text
+syslog ipaddress 192.168.254.2
+syslog option system/rs232c/auth/ppp/module on
+```
+
+`module`（LTE モジュール）と `ppp`（回線接続）が含まれていないと、SIM や電波まわりのログが出ません。`syslog ipaddress` の値は、次に設定する ECU の IP と一致している必要があります。
+
+#### ECU の IP を固定
+
+syslog の転送先は IP で指定するため、**ECU 側が DHCP のままだと IP が変わった時点で転送が黙って止まります**。ルータ側の設定値に合わせて固定します。
+
+```bash
+sudo nmcli con mod "Wired connection 1" \
+    ipv4.method manual \
+    ipv4.addresses 192.168.254.2/24 \
+    ipv4.gateway 192.168.254.254 \
+    ipv4.dns 192.168.254.254
+sudo nmcli con up "Wired connection 1"
+```
+
+SSH 越しに実行すると接続が切れることがあります。戻れなくなると困る場合は、先に自動で DHCP へ戻すタイマーを仕掛けてから実行します。
+
+```bash
+sudo systemd-run --on-active=180 --unit=nm-rollback \
+  /bin/bash -c 'nmcli con mod "Wired connection 1" ipv4.method auto ipv4.addresses "" ipv4.gateway "" ipv4.dns ""; nmcli con up "Wired connection 1"'
+```
+
+疎通を確認したら**必ず解除**してください。解除しないと 180 秒後に DHCP へ戻ります。
+
+```bash
+sudo systemctl stop nm-rollback.timer
+```
+
+#### ECU 側で syslog を受信
+
+Ubuntu の rsyslog は UDP 受信が無効なので、受信設定を追加します。
+
+```bash
+sudo vim /etc/rsyslog.d/09-as250.conf
+```
+
+```text
+module(load="imudp")
+input(type="imudp" port="514")
+
+# 受信側（ECU）の時刻とルータ申告の時刻を両方残す。
+# ルータの NTP がずれていても ECU の時計で追えるようにするため。
+template(name="AS250Format" type="string"
+  string="%timegenerated:::date-rfc3339% | dev:%timereported:::date-rfc3339% | %fromhost-ip% | %syslogtag%%msg%\n")
+
+if ($fromhost-ip == "192.168.254.254") then {
+    action(type="omfile" file="/var/log/as250.log" template="AS250Format"
+           fileCreateMode="0640" fileOwner="syslog" fileGroup="adm")
+    stop
+}
+```
+
+送信元がルータの行だけを `/var/log/as250.log` に振り分け、`stop` で ECU 自身の syslog に混ざらないようにしています。
+
+ログが増え続けないようにローテートも設定します。
+
+```bash
+sudo vim /etc/logrotate.d/as250
+```
+
+```text
+/var/log/as250.log {
+    daily
+    rotate 30
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 syslog adm
+    postrotate
+        /usr/lib/rsyslog/rsyslog-rotate
+    endscript
+}
+```
+
+反映と待ち受けを確認し、ファイアウォールの許可とホームからの参照用リンクを作ります。
+
+```bash
+sudo rsyslogd -N1 -f /etc/rsyslog.conf      # 構文チェック
+sudo systemctl restart rsyslog
+ss -lunp | grep :514                         # 514/udp を待ち受けていること
+sudo ufw allow from 192.168.254.254 to any port 514 proto udp comment "AS-250/L syslog"
+ln -sfn /var/log/as250.log ~/router.log      # rsyslog は syslog ユーザーで動くため $HOME には直接書かせない
+```
+
+#### 受信の確認とログの読み方
+
+```bash
+tail -f ~/router.log
+```
+
+次のような行が流れます。
+
+```text
+2026-08-19T15:02:11+09:00 | dev:2026-08-19T15:02:11+09:00 | 192.168.254.254 | antenna=3 rat=LTE rssi=-71 band=1 rsrp=-98 rsrq=-11 network=registered ppp=online(rx=12345, tx=9876)
+```
+
+`network=` の値で、回線断の原因が電波側か SIM 側かを切り分けられます。
+
+| 値 | 意味 |
+| --- | --- |
+| `registered` | 圏内・正常 |
+| `not_registered` | 未登録 |
+| `searching` | 基地局検索中（電波を掴めていない） |
+| `denied` | 登録拒否（SIM 不正・未契約・認証拒否） |
+
+アンテナ状況を定期的に出力させたい場合は、ルータ側で出力間隔（分）を設定します。設定の保存と再起動が必要です。
+
+```text
+module logantenna 1
+restart
+```
+
+syslog は UDP なので、**ECU が停止している間に出たログは残りません**。ECU とルータが同時に電源断した区間などは、ルータ内蔵のログバッファから拾う必要があります。
+
 ## 第5部 ホストの ROS 2 環境
 
 ホストからも `ros2` コマンドが使えるように、ROS 2 のセットアップもしておきます。
