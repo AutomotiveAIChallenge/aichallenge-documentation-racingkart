@@ -107,8 +107,6 @@ runtime（起動後）で確認される項目は次のとおりです。
 
 各項目の期待される結果・手動確認コマンド・トラブルシューティング・走行前最終チェックリストは、リポジトリの [vehicle/setup_check.md](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/vehicle/setup_check.md) にまとまっています。
 
-なお、これらのチェックに V2X 位置情報共有の項目は含まれていません。証明書と `.env` が正しいかは「3-2. V2X で他車の位置が受信できない場合」の手順で個別に確認してください。
-
 ## 第3部 トラブルシューティング
 
 ### 3-1. ECU がモーターや VCU と通信できない場合
