@@ -11,14 +11,14 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 ### 1-1. `.env` の設定
 
 `.env` は git 管理外なので、`./setup.bash bootstrap`（または `./setup.bash env`）で `.env.example` から生成されます。
-生成後、**人が手で書き換えないといけない項目**は、まず次の4つです。V2X 位置情報共有を使う場合はさらに後述の項目が必要です。
+生成後、人が手で書き換えないといけない項目は、まず次の4つです。V2X 位置情報共有を使う場合はさらに後述の項目が必要です。
 
 | 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
 | --- | --- | --- |
 | `VEHICLE_ID` | `A0` | 走らせる号機（`A1`,`A2`,`A3`,`A5`,`A6`,`A7`,`A8`）。zenoh の接続先ポートがこの値で決まります（`vehicle/run_zenoh.bash`） |
 | `NTRIP_USERNAME` | `your_username` | RTK 補正情報配信（NTRIP）のアカウント。未設定だと RTK Fix にならず自己位置の精度が出ません |
 | `NTRIP_PASSWORD` | `your_password` | 同上 |
-| `RACING_KART_INTERFACE_DIR` | `/home/tier4/racing_kart_interface` | racing_kart_interface の実際の配置先。**絶対パス必須**です（`colcon --symlink-install` が絶対 symlink を含むため）。ここが違うと rosbag 記録も失敗します |
+| `RACING_KART_INTERFACE_DIR` | `/home/tier4/racing_kart_interface` | racing_kart_interface の実際の配置先。絶対パス必須です（`colcon --symlink-install` が絶対 symlink を含むため）。ここが違うと rosbag 記録も失敗します |
 
 `ROS_DOMAIN_ID` は既定の `1` のままで構いません。`TEAM_NAME` は `.env.example` に含まれていますが実車両の起動では参照されないので、こちらも初期値のままで構いません。
 
@@ -29,11 +29,11 @@ V2X 位置情報共有を使う場合は、次の項目も `.env` で設定し�
 | 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
 | --- | --- | --- |
 | `V2X_VEHICLE_ID` | `d1` | この車両の V2X ID。`/etc/v2x/tls/kart.crt` の CN と一致していないと broker に拒否されます |
-| `V2X_VEHICLE_IDS` | `d1,d2,d3,d4` | 走行に参加しうる全車両の ID をカンマ区切りで指定します。**全カートで同じ値**にしてください。ここに無い ID から届いた位置情報は捨てられます |
+| `V2X_VEHICLE_IDS` | `d1,d2,d3,d4` | 走行に参加しうる全車両の ID をカンマ区切りで指定します。全カートで同じ値にしてください。ここに無い ID から届いた位置情報は捨てられます |
 | `V2X_BROKER_HOST` | `v2x-mqtt-cctb.dev.aichallenge-board.jsae.or.jp` | 接続先の MQTT broker。証明書と一緒に配布される値に合わせます |
 | `V2X_BROKER_PORT` | `8883` | TLS 接続のポート。`1883` ではありません |
-| `V2X_TLS_DIR` | `/etc/v2x/tls` | ホスト側の証明書ディレクトリ。コンテナ側は **`/etc/v2x/tls` 固定**で読み取り専用マウントされるので、この値を変えてもコンテナ内のパスは変わりません |
-| `V2X_MQTT_TLS_CA_FILE` / `_CERT_FILE` / `_KEY_FILE` | `/etc/v2x/tls/ca.crt` ほか | コンテナ内から見たパス。`V2X_TLS_DIR` を変えた場合も**初期値のまま**にします。3つ揃っていないと TLS 設定ごと無効になります |
+| `V2X_TLS_DIR` | `/etc/v2x/tls` | ホスト側の証明書ディレクトリ。コンテナ側は `/etc/v2x/tls` 固定で読み取り専用マウントされるので、この値を変えてもコンテナ内のパスは変わりません |
+| `V2X_MQTT_TLS_CA_FILE` / `_CERT_FILE` / `_KEY_FILE` | `/etc/v2x/tls/ca.crt` ほか | コンテナ内から見たパス。`V2X_TLS_DIR` を変えた場合も初期値のままにします。3つ揃っていないと TLS 設定ごと無効になります |
 
 `VEHICLE_ID`（号機。zenoh の接続先ポートが決まる）と `V2X_VEHICLE_ID`（V2X の自号 ID。証明書の CN）は別物です。走行前に、参加する全カートについて号機・`V2X_VEHICLE_ID`・証明書 CN の対応表を作って共有しておくと取り違えを防げます。
 
@@ -69,7 +69,7 @@ make autoware-driver-zenoh
 3. 15 秒待って `zenoh` を起動
 4. `./setup_check.sh --phase runtime`（起動後チェック）
 
-`make autoware-driver-zenoh` は `driver` + `autoware` を起動して 15 秒待ち `zenoh` を起動するだけで、**セットアップ確認は実行されません**。こちらで起動した場合は別途 `make setup-vehicle` で確認してください。
+`make autoware-driver-zenoh` は `driver` + `autoware` を起動して 15 秒待ち `zenoh` を起動するだけで、セットアップ確認は実行されません。こちらで起動した場合は別途 `make setup-vehicle` で確認してください。
 
 rosbag は全トピック（`-a --include-hidden-topics`）を mcap・60 秒分割で `output/<timestamp>/d<ROS_DOMAIN_ID>/rosbag2_all/` に記録されます。記録ログは同じディレクトリの `rosbag.log` です。
 
