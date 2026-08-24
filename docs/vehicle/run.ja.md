@@ -18,7 +18,7 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 | `VEHICLE_ID` | `A0` | 走らせる号機（`A1`,`A2`,`A3`,`A5`,`A6`,`A7`,`A8`）。zenoh の接続先ポートがこの値で決まります（`vehicle/run_zenoh.bash`） |
 | `NTRIP_USERNAME` | `your_username` | RTK 補正情報配信（NTRIP）のアカウント。未設定だと RTK Fix にならず自己位置の精度が出ません |
 | `NTRIP_PASSWORD` | `your_password` | 同上 |
-| `RACING_KART_INTERFACE_DIR` | `/home/tier4/racing_kart_interface` | racing_kart_interface の実際の配置先。絶対パス必須です（`colcon --symlink-install` が絶対 symlink を含むため）。ここが違うと rosbag 記録も失敗します |
+| `RACING_KART_INTERFACE_DIR` | `/home/tier4/racing_kart_interface` | racing_kart_interface の実際の配置先。**絶対パス必須**です（`colcon --symlink-install` が絶対 symlink を含むため）。ここが違うと rosbag 記録も失敗します |
 
 `ROS_DOMAIN_ID` は既定の `1` のままで構いません。`TEAM_NAME` は `.env.example` に含まれていますが実車両の起動では参照されないので、こちらも初期値のままで構いません。
 
@@ -69,7 +69,7 @@ make autoware-driver-zenoh
 3. 15 秒待って `zenoh` を起動
 4. `./setup_check.sh --phase runtime`（起動後チェック）
 
-`make autoware-driver-zenoh` は `driver` + `autoware` を起動して 15 秒待ち `zenoh` を起動するだけで、セットアップ確認は実行されません。こちらで起動した場合は別途 `make setup-vehicle` で確認してください。
+`make autoware-driver-zenoh` は `driver` + `autoware` を起動して 15 秒待ち `zenoh` を起動するだけで、**セットアップ確認は実行されません**。こちらで起動した場合は別途 `make setup-vehicle` で確認してください。
 
 rosbag は全トピック（`-a --include-hidden-topics`）を mcap・60 秒分割で `output/<timestamp>/d<ROS_DOMAIN_ID>/rosbag2_all/` に記録されます。記録ログは同じディレクトリの `rosbag.log` です。
 
