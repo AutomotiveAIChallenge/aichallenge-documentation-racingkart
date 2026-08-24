@@ -235,8 +235,6 @@ systemctl is-enabled ssh      # enabled であること
 
 #### zenoh 用（`remote/tls/`）
 
-車両側の zenoh コンテナも `remote/` をマウントし、`vehicle/zenoh.json5` の TLS 設定（`enable_mtls: true`）から `/remote/tls/` 以下を読みます。遠隔 PC と同じ `tls.zip` を ECU 上でも展開してください。ここが無いと zenoh が接続できず、遠隔操作も遠隔可視化もできません。
-
 ```bash
 cd ~/aichallenge-racingkart
 sudo apt install -y unzip
