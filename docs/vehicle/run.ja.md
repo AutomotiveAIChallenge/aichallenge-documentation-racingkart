@@ -37,12 +37,6 @@ V2X 位置情報共有を使う場合は、次の項目も `.env` で設定し�
 
 `VEHICLE_ID`（号機。zenoh の接続先ポートが決まる）と `V2X_VEHICLE_ID`（V2X の自号 ID。証明書の CN）は別物です。走行前に、参加する全カートについて号機・`V2X_VEHICLE_ID`・証明書 CN の対応表を作って共有しておくと取り違えを防げます。
 
-V2X を使わずに走らせる場合は、起動時に `DRIVER_LAUNCH_ARGS` で V2X のノードだけを止められます。
-
-```bash
-DRIVER_LAUNCH_ARGS="use_v2x:=false" make autoware-driver-zenoh-rosbag
-```
-
 ### 1-2. IMU バイアスの修正
 
 車両ごとに IMU のジャイロバイアスを実測して `imu_corrector` のパラメータを更新します。`/sensing/imu/imu_raw` は driver / autoware が動いていないと流れないため、実測は「1-3. 車両起動」で一度起動してから行います。
