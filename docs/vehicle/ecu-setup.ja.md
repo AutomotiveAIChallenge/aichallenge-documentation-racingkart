@@ -254,8 +254,6 @@ ls remote/tls/server   # minica.pem
 
 #### V2X 用（`/etc/v2x/tls/`）
 
-V2X 位置情報共有の MQTT broker は、パスワードを使わずクライアント証明書だけを資格情報にします。証明書は車両ごとに発行され、**CN がそのまま MQTT のユーザ名**になります。`.env` の `V2X_VEHICLE_ID` と CN が一致していないと broker に接続できません。
-
 配布された `ca.crt` / `kart.crt` / `kart.key` を root 所有で配置します。
 
 ```bash
@@ -277,10 +275,6 @@ sudo openssl x509 -in /etc/v2x/tls/kart.crt -noout -subject -dates
 sudo openssl verify -CAfile /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
 # /etc/v2x/tls/kart.crt: OK
 ```
-
-証明書は環境ごとに CA が分かれているため、開発用の証明書で本番の broker には接続できません。走行に使う環境を確認したうえで発行されたものを配置してください。
-
-`.env` 側の V2X 設定は[実車両の起動](run.ja.md)の 1-1 を参照してください。
 
 ## 第5部 ホストの ROS 2 環境
 
