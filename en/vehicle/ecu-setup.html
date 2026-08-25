@@ -1560,6 +1560,45 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-4-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-4. TLS 証明書の配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-4. TLS 証明書の配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zenoh-remotetls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zenoh 用（remote/tls/）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v2x-etcv2xtls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V2X 用（/etc/v2x/tls/）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2847,6 +2886,45 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-4-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-4. TLS 証明書の配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-4. TLS 証明書の配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zenoh-remotetls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zenoh 用（remote/tls/）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v2x-etcv2xtls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V2X 用（/etc/v2x/tls/）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3183,6 +3261,58 @@ nmcli<span class="w"> </span>device<span class="w"> </span>status<span class="w"
 <p>SSH で接続できるようにしておきます。</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>openssh-server
 systemctl<span class="w"> </span>is-enabled<span class="w"> </span>ssh<span class="w">      </span><span class="c1"># enabled であること</span>
+</code></pre></div>
+<h3 id="4-4-tls">4-4. TLS 証明書の配置</h3>
+<p>車両 ECU では2種類の TLS 証明書を使います。どちらも git 管理外なので、配布されたものを ECU 上に配置します。</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>配置先</th>
+<th>ファイル</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zenoh（遠隔操作・遠隔可視化）</td>
+<td><code>~/aichallenge-racingkart/remote/tls/</code></td>
+<td><code>server/minica.pem</code>, <code>client/cert.pem</code>, <code>client/key.pem</code></td>
+</tr>
+<tr>
+<td>V2X 位置情報共有（MQTT broker）</td>
+<td><code>/etc/v2x/tls/</code></td>
+<td><code>ca.crt</code>, <code>kart.crt</code>, <code>kart.key</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="zenoh-remotetls">zenoh 用（<code>remote/tls/</code>）</h4>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>unzip
+unzip<span class="w"> </span>-o<span class="w"> </span>~/Downloads/tls.zip<span class="w"> </span>-d<span class="w"> </span>remote/<span class="w">    </span><span class="c1"># tls.zip の保存先は環境に合わせてください</span>
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>remote/tls/client/key.pem
+</code></pre></div>
+<p>展開後、次の構成になっていることを確認します。異なる場合は <code>remote/tls/</code> 以下がこの構成になるように置き直してください。</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>remote/tls<span class="w">          </span><span class="c1"># client  server</span>
+ls<span class="w"> </span>remote/tls/client<span class="w">   </span><span class="c1"># cert.pem  key.pem(600)</span>
+ls<span class="w"> </span>remote/tls/server<span class="w">   </span><span class="c1"># minica.pem</span>
+</code></pre></div>
+<p>遠隔 PC 側の同じ手順は<a href="remote.html">遠隔操作</a>の 1-6 にあります。証明書の中身は車両側と同じものです。</p>
+<h4 id="v2x-etcv2xtls">V2X 用（<code>/etc/v2x/tls/</code>）</h4>
+<p>配布された <code>ca.crt</code> / <code>kart.crt</code> / <code>kart.key</code> を root 所有で配置します。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/v2x-certs<span class="w">                             </span><span class="c1"># 配布された証明書を展開したディレクトリに合わせてください</span>
+sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/v2x/tls
+sudo<span class="w"> </span>cp<span class="w"> </span>ca.crt<span class="w"> </span>kart.crt<span class="w"> </span>kart.key<span class="w"> </span>/etc/v2x/tls/
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>root:root<span class="w"> </span>/etc/v2x/tls
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">700</span><span class="w"> </span>/etc/v2x/tls
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/etc/v2x/tls/kart.key
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/etc/v2x/tls/ca.crt<span class="w"> </span>/etc/v2x/tls/kart.crt
+</code></pre></div>
+<p>配置したら、CN と有効期限を確認します。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>openssl<span class="w"> </span>x509<span class="w"> </span>-in<span class="w"> </span>/etc/v2x/tls/kart.crt<span class="w"> </span>-noout<span class="w"> </span>-subject<span class="w"> </span>-dates
+<span class="c1"># subject=CN = d1   ← .env の V2X_VEHICLE_ID と一致すること</span>
+<span class="c1"># notAfter=...      ← 走行日より先であること</span>
+sudo<span class="w"> </span>openssl<span class="w"> </span>verify<span class="w"> </span>-CAfile<span class="w"> </span>/etc/v2x/tls/ca.crt<span class="w"> </span>/etc/v2x/tls/kart.crt
+<span class="c1"># /etc/v2x/tls/kart.crt: OK</span>
 </code></pre></div>
 <h2 id="5-ros-2">第5部 ホストの ROS 2 環境</h2>
 <p>ホストからも <code>ros2</code> コマンドが使えるように、ROS 2 のセットアップもしておきます。</p>

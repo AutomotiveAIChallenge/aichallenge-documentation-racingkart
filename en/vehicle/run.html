@@ -2638,7 +2638,7 @@
 <p>シミュレータと違い、実車両では以下を走行前に必ず確認します。</p>
 <h3 id="1-1-env">1-1. <code>.env</code> の設定</h3>
 <p><code>.env</code> は git 管理外なので、<code>./setup.bash bootstrap</code>（または <code>./setup.bash env</code>）で <code>.env.example</code> から生成されます。
-生成後、<strong>人が手で書き換えないといけない項目</strong>は次の4つです。</p>
+生成後、人が手で書き換えないといけない項目は、まず次の4つです。V2X 位置情報共有を使う場合はさらに後述の項目が必要です。</p>
 <table>
 <thead>
 <tr>
@@ -2672,6 +2672,49 @@
 </table>
 <p><code>ROS_DOMAIN_ID</code> は既定の <code>1</code> のままで構いません。<code>TEAM_NAME</code> は <code>.env.example</code> に含まれていますが実車両の起動では参照されないので、こちらも初期値のままで構いません。</p>
 <p><code>HOST_UID</code> / <code>HOST_GID</code> / <code>HOST_GID_DIALOUT</code> / <code>HOST_GID_INPUT</code> と <code>COMPOSE_FILE</code>（GPU 判定）は <code>./setup.bash env</code> が実測値で自動設定するので、通常は触りません。</p>
+<p>V2X 位置情報共有を使う場合は、次の項目も <code>.env</code> で設定します。証明書の配置は<a href="ecu-setup.html">ECU の初期構築</a>の 4-4 を参照してください。</p>
+<table>
+<thead>
+<tr>
+<th>変数</th>
+<th><code>.env.example</code> の初期値</th>
+<th>実車両で必要な設定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>V2X_VEHICLE_ID</code></td>
+<td><code>d1</code></td>
+<td>この車両の V2X ID。<code>/etc/v2x/tls/kart.crt</code> の CN と一致していないと broker に拒否されます</td>
+</tr>
+<tr>
+<td><code>V2X_VEHICLE_IDS</code></td>
+<td><code>d1,d2,d3,d4</code></td>
+<td>走行に参加しうる全車両の ID をカンマ区切りで指定します。全カートで同じ値にしてください。ここに無い ID から届いた位置情報は捨てられます</td>
+</tr>
+<tr>
+<td><code>V2X_BROKER_HOST</code></td>
+<td><code>v2x-mqtt-cctb.dev.aichallenge-board.jsae.or.jp</code></td>
+<td>接続先の MQTT broker。証明書と一緒に配布される値に合わせます</td>
+</tr>
+<tr>
+<td><code>V2X_BROKER_PORT</code></td>
+<td><code>8883</code></td>
+<td>TLS 接続のポート。<code>1883</code> ではありません</td>
+</tr>
+<tr>
+<td><code>V2X_TLS_DIR</code></td>
+<td><code>/etc/v2x/tls</code></td>
+<td>ホスト側の証明書ディレクトリ。コンテナ側は <code>/etc/v2x/tls</code> 固定で読み取り専用マウントされるので、この値を変えてもコンテナ内のパスは変わりません</td>
+</tr>
+<tr>
+<td><code>V2X_MQTT_TLS_CA_FILE</code> / <code>_CERT_FILE</code> / <code>_KEY_FILE</code></td>
+<td><code>/etc/v2x/tls/ca.crt</code> ほか</td>
+<td>コンテナ内から見たパス。<code>V2X_TLS_DIR</code> を変えた場合も初期値のままにします。3つ揃っていないと TLS 設定ごと無効になります</td>
+</tr>
+</tbody>
+</table>
+<p><code>VEHICLE_ID</code>（号機。zenoh の接続先ポートが決まる）と <code>V2X_VEHICLE_ID</code>（V2X の自号 ID。証明書の CN）は別物です。走行前に、参加する全カートについて号機・<code>V2X_VEHICLE_ID</code>・証明書 CN の対応表を作って共有しておくと取り違えを防げます。</p>
 <h3 id="1-2-imu">1-2. IMU バイアスの修正</h3>
 <p>車両ごとに IMU のジャイロバイアスを実測して <code>imu_corrector</code> のパラメータを更新します。<code>/sensing/imu/imu_raw</code> は driver / autoware が動いていないと流れないため、実測は「1-3. 車両起動」で一度起動してから行います。</p>
 <p>対象ファイルは <code>aichallenge/workspace/src/aichallenge_submit/imu_corrector/config/imu_corrector.param.yaml</code> です。</p>
