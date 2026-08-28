@@ -350,16 +350,12 @@ sudo ufw allow from 192.168.254.254 to any port 514 proto udp comment "AS-250/L 
 ln -sfn /var/log/as250.log ~/router.log      # rsyslog は syslog ユーザーで動くため $HOME には直接書かせない
 ```
 
-#### 受信の確認とログの読み方
+#### 受信の確認
+以下のコマンドでログが出力されることを確認します。
 
 ```bash
 tail -f ~/router.log
 ```
-
-次のような行が流れます。
-
-```text
-2026-08-19T15:02:11+09:00 | dev:2026-08-19T15:02:11+09:00 | 192.168.254.254 | antenna=3 rat=LTE rssi=-71 band=1 rsrp=-98 rsrq=-11 network=registered ppp=online(rx=12345, tx=9876)
 
 ## 第5部 ホストの ROS 2 環境
 
