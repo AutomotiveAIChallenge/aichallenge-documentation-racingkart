@@ -280,18 +280,7 @@ sudo openssl verify -CAfile /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
 
 車両は LTE ルータ（FutureNet AS-250/L）経由でインターネットに接続します。回線が切れたとき、「電波が弱かった」のか「SIM を掴めなくなった」のかは、ルータ側のログが無いと切り分けられません。ルータ内蔵のログバッファは容量が小さく再起動で消えるため、syslog を ECU へ転送して残しておきます。
 
-必須の手順ではありませんが、現地で回線が不安定になったときの調査はこのログの有無で大きく変わります。
-
-#### ルータ側の設定
-
-ルータのコンソールで、転送先と出力カテゴリを確認します。
-
-```text
-syslog ipaddress 192.168.254.2
-syslog option system/rs232c/auth/ppp/module on
-```
-
-`module`（LTE モジュール）と `ppp`（回線接続）が含まれていないと、SIM や電波まわりのログが出ません。`syslog ipaddress` の値は、次に設定する ECU の IP と一致している必要があります。
+必須の手順ではありませんが、現地で回線が不安定になったときの調査はこのログを活用することができます。
 
 #### ECU の IP を固定
 
@@ -304,19 +293,6 @@ sudo nmcli con mod "Wired connection 1" \
     ipv4.gateway 192.168.254.254 \
     ipv4.dns 192.168.254.254
 sudo nmcli con up "Wired connection 1"
-```
-
-SSH 越しに実行すると接続が切れることがあります。戻れなくなると困る場合は、先に自動で DHCP へ戻すタイマーを仕掛けてから実行します。
-
-```bash
-sudo systemd-run --on-active=180 --unit=nm-rollback \
-  /bin/bash -c 'nmcli con mod "Wired connection 1" ipv4.method auto ipv4.addresses "" ipv4.gateway "" ipv4.dns ""; nmcli con up "Wired connection 1"'
-```
-
-疎通を確認したら**必ず解除**してください。解除しないと 180 秒後に DHCP へ戻ります。
-
-```bash
-sudo systemctl stop nm-rollback.timer
 ```
 
 #### ECU 側で syslog を受信
