@@ -11,7 +11,7 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 ### 1-1. `.env` の設定
 
 `.env` は git 管理外なので、`./setup.bash bootstrap`（または `./setup.bash env`）で `.env.example` から生成されます。
-生成後、**人が手で書き換えないといけない項目**は次の4つです。
+生成後、人が手で書き換えないといけない項目は、まず次の4つです。V2X 位置情報共有を使う場合はさらに後述の項目が必要です。
 
 | 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
 | --- | --- | --- |
@@ -29,19 +29,13 @@ V2X 位置情報共有を使う場合は、次の項目も `.env` で設定し�
 | 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
 | --- | --- | --- |
 | `V2X_VEHICLE_ID` | `d1` | この車両の V2X ID。`/etc/v2x/tls/kart.crt` の CN と一致していないと broker に拒否されます |
-| `V2X_VEHICLE_IDS` | `d1,d2,d3,d4` | 走行に参加しうる全車両の ID をカンマ区切りで指定します。**全カートで同じ値**にしてください。ここに無い ID から届いた位置情報は捨てられます |
+| `V2X_VEHICLE_IDS` | `d1,d2,d3,d4` | 走行に参加しうる全車両の ID をカンマ区切りで指定します。全カートで同じ値にしてください。ここに無い ID から届いた位置情報は捨てられます |
 | `V2X_BROKER_HOST` | `v2x-mqtt-cctb.dev.aichallenge-board.jsae.or.jp` | 接続先の MQTT broker。証明書と一緒に配布される値に合わせます |
 | `V2X_BROKER_PORT` | `8883` | TLS 接続のポート。`1883` ではありません |
-| `V2X_TLS_DIR` | `/etc/v2x/tls` | ホスト側の証明書ディレクトリ。コンテナへ同じパスで読み取り専用マウントされます |
-| `V2X_MQTT_TLS_CA_FILE` / `_CERT_FILE` / `_KEY_FILE` | `/etc/v2x/tls/ca.crt` ほか | コンテナ内から見たパス。通常は初期値のままで構いません |
+| `V2X_TLS_DIR` | `/etc/v2x/tls` | ホスト側の証明書ディレクトリ。コンテナ側は `/etc/v2x/tls` 固定で読み取り専用マウントされるので、この値を変えてもコンテナ内のパスは変わりません |
+| `V2X_MQTT_TLS_CA_FILE` / `_CERT_FILE` / `_KEY_FILE` | `/etc/v2x/tls/ca.crt` ほか | コンテナ内から見たパス。`V2X_TLS_DIR` を変えた場合も初期値のままにします。3つ揃っていないと TLS 設定ごと無効になります |
 
 `VEHICLE_ID`（号機。zenoh の接続先ポートが決まる）と `V2X_VEHICLE_ID`（V2X の自号 ID。証明書の CN）は別物です。走行前に、参加する全カートについて号機・`V2X_VEHICLE_ID`・証明書 CN の対応表を作って共有しておくと取り違えを防げます。
-
-V2X を使わずに走らせる場合は、起動時に `DRIVER_LAUNCH_ARGS` で V2X のノードだけを止められます。
-
-```bash
-DRIVER_LAUNCH_ARGS="use_v2x:=false" make autoware-driver-zenoh-rosbag
-```
 
 ### 1-2. IMU バイアスの修正
 

@@ -235,8 +235,6 @@ systemctl is-enabled ssh      # enabled であること
 
 #### zenoh 用（`remote/tls/`）
 
-車両側の zenoh コンテナも `remote/` をマウントし、`vehicle/zenoh.json5` の TLS 設定（`enable_mtls: true`）から `/remote/tls/` 以下を読みます。遠隔 PC と同じ `tls.zip` を ECU 上でも展開してください。ここが無いと zenoh が接続できず、遠隔操作も遠隔可視化もできません。
-
 ```bash
 cd ~/aichallenge-racingkart
 sudo apt install -y unzip
@@ -256,11 +254,10 @@ ls remote/tls/server   # minica.pem
 
 #### V2X 用（`/etc/v2x/tls/`）
 
-V2X 位置情報共有の MQTT broker は、パスワードを使わずクライアント証明書だけを資格情報にします。証明書は車両ごとに発行され、**CN がそのまま MQTT のユーザ名**になります。`.env` の `V2X_VEHICLE_ID` と CN が一致していないと broker に接続できません。
-
 配布された `ca.crt` / `kart.crt` / `kart.key` を root 所有で配置します。
 
 ```bash
+cd ~/v2x-certs                             # 配布された証明書を展開したディレクトリに合わせてください
 sudo mkdir -p /etc/v2x/tls
 sudo cp ca.crt kart.crt kart.key /etc/v2x/tls/
 sudo chown -R root:root /etc/v2x/tls
@@ -276,7 +273,7 @@ sudo openssl x509 -in /etc/v2x/tls/kart.crt -noout -subject -dates
 # subject=CN = d1   ← .env の V2X_VEHICLE_ID と一致すること
 # notAfter=...      ← 走行日より先であること
 sudo openssl verify -CAfile /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
-# kart.crt: OK
+# /etc/v2x/tls/kart.crt: OK
 ```
 
 証明書は環境ごとに CA が分かれているため、開発用の証明書で本番の broker には接続できません。走行に使う環境を確認したうえで発行されたものを配置してください。
@@ -393,7 +390,6 @@ tail -f ~/router.log
 
 ```text
 2026-08-19T15:02:11+09:00 | dev:2026-08-19T15:02:11+09:00 | 192.168.254.254 | antenna=3 rat=LTE rssi=-71 band=1 rsrp=-98 rsrq=-11 network=registered ppp=online(rx=12345, tx=9876)
-```
 
 ## 第5部 ホストの ROS 2 環境
 
