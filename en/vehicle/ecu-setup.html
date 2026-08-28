@@ -1599,6 +1599,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-5-lte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-5. LTE ルータのログ収集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-5. LTE ルータのログ収集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecu-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECU の IP を固定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecu-syslog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECU 側で syslog を受信
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        受信の確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2925,6 +2975,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#4-5-lte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-5. LTE ルータのログ収集
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4-5. LTE ルータのログ収集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecu-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECU の IP を固定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecu-syslog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECU 側で syslog を受信
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        受信の確認
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3313,6 +3413,63 @@ sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">644</sp
 <span class="c1"># notAfter=...      ← 走行日より先であること</span>
 sudo<span class="w"> </span>openssl<span class="w"> </span>verify<span class="w"> </span>-CAfile<span class="w"> </span>/etc/v2x/tls/ca.crt<span class="w"> </span>/etc/v2x/tls/kart.crt
 <span class="c1"># /etc/v2x/tls/kart.crt: OK</span>
+</code></pre></div>
+<h3 id="4-5-lte">4-5. LTE ルータのログ収集</h3>
+<p>syslog転送機能を持つルーターを使う場合はこの設定をすることで、回線が不安定になったときにこログを活用することができます。</p>
+<h4 id="ecu-ip">ECU の IP を固定</h4>
+<p>syslog の転送先は IP で指定するため、ECU 側が DHCP のままだと IP が変わった時点で転送が止まります。ルータ側の設定値に合わせて固定します。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nmcli<span class="w"> </span>con<span class="w"> </span>mod<span class="w"> </span><span class="s2">"Wired connection 1"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ipv4.method<span class="w"> </span>manual<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ipv4.addresses<span class="w"> </span><span class="m">192</span>.168.254.2/24<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ipv4.gateway<span class="w"> </span><span class="m">192</span>.168.254.254<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ipv4.dns<span class="w"> </span><span class="m">192</span>.168.254.254
+sudo<span class="w"> </span>nmcli<span class="w"> </span>con<span class="w"> </span>up<span class="w"> </span><span class="s2">"Wired connection 1"</span>
+</code></pre></div>
+<h4 id="ecu-syslog">ECU 側で syslog を受信</h4>
+<p>Ubuntu の rsyslog は UDP 受信が無効なので、受信設定を追加します。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/rsyslog.d/09-as250.conf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>module(load="imudp")
+input(type="imudp" port="514")
+
+# 受信側（ECU）の時刻とルータ申告の時刻を両方残す。
+# ルータの NTP がずれていても ECU の時計で追えるようにするため。
+template(name="AS250Format" type="string"
+  string="%timegenerated:::date-rfc3339% | dev:%timereported:::date-rfc3339% | %fromhost-ip% | %syslogtag%%msg%\n")
+
+if ($fromhost-ip == "192.168.254.254") then {
+    action(type="omfile" file="/var/log/as250.log" template="AS250Format"
+           fileCreateMode="0640" fileOwner="syslog" fileGroup="adm")
+    stop
+}
+</code></pre></div>
+<p>送信元がルータの行だけを <code>/var/log/as250.log</code> に振り分け、<code>stop</code> で ECU 自身の syslog に混ざらないようにしています。</p>
+<p>ログが増え続けないようにローテートも設定します。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>vim<span class="w"> </span>/etc/logrotate.d/as250
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>/var/log/as250.log {
+    daily
+    rotate 30
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 syslog adm
+    postrotate
+        /usr/lib/rsyslog/rsyslog-rotate
+    endscript
+}
+</code></pre></div>
+<p>反映と待ち受けを確認し、ファイアウォールの許可とホームからの参照用リンクを作ります。</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rsyslogd<span class="w"> </span>-N1<span class="w"> </span>-f<span class="w"> </span>/etc/rsyslog.conf<span class="w">      </span><span class="c1"># 構文チェック</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>rsyslog
+ss<span class="w"> </span>-lunp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:514<span class="w">                         </span><span class="c1"># 514/udp を待ち受けていること</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.254.254<span class="w"> </span>to<span class="w"> </span>any<span class="w"> </span>port<span class="w"> </span><span class="m">514</span><span class="w"> </span>proto<span class="w"> </span>udp<span class="w"> </span>comment<span class="w"> </span><span class="s2">"AS-250/L syslog"</span>
+ln<span class="w"> </span>-sfn<span class="w"> </span>/var/log/as250.log<span class="w"> </span>~/router.log<span class="w">      </span><span class="c1"># rsyslog は syslog ユーザーで動くため $HOME には直接書かせない</span>
+</code></pre></div>
+<h4 id="_1">受信の確認</h4>
+<p>以下のコマンドでログが出力されることを確認します。</p>
+<div class="highlight"><pre><span></span><code>tail<span class="w"> </span>-f<span class="w"> </span>~/router.log
 </code></pre></div>
 <h2 id="5-ros-2">第5部 ホストの ROS 2 環境</h2>
 <p>ホストからも <code>ros2</code> コマンドが使えるように、ROS 2 のセットアップもしておきます。</p>
