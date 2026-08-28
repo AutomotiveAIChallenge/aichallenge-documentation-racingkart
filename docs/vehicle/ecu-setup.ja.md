@@ -351,6 +351,7 @@ ln -sfn /var/log/as250.log ~/router.log      # rsyslog は syslog ユーザー�
 ```
 
 #### 受信の確認
+
 以下のコマンドでログが出力されることを確認します。
 
 ```bash
