@@ -276,6 +276,88 @@ sudo openssl verify -CAfile /etc/v2x/tls/ca.crt /etc/v2x/tls/kart.crt
 # /etc/v2x/tls/kart.crt: OK
 ```
 
+### 4-5. LTE ルータのログ収集
+
+syslog転送機能を持つルーターを使う場合はこの設定をすることで、回線が不安定になったときにこログを活用することができます。
+
+#### ECU の IP を固定
+
+syslog の転送先は IP で指定するため、ECU 側が DHCP のままだと IP が変わった時点で転送が止まります。ルータ側の設定値に合わせて固定します。
+
+```bash
+sudo nmcli con mod "Wired connection 1" \
+    ipv4.method manual \
+    ipv4.addresses 192.168.254.2/24 \
+    ipv4.gateway 192.168.254.254 \
+    ipv4.dns 192.168.254.254
+sudo nmcli con up "Wired connection 1"
+```
+
+#### ECU 側で syslog を受信
+
+Ubuntu の rsyslog は UDP 受信が無効なので、受信設定を追加します。
+
+```bash
+sudo vim /etc/rsyslog.d/09-as250.conf
+```
+
+```text
+module(load="imudp")
+input(type="imudp" port="514")
+
+# 受信側（ECU）の時刻とルータ申告の時刻を両方残す。
+# ルータの NTP がずれていても ECU の時計で追えるようにするため。
+template(name="AS250Format" type="string"
+  string="%timegenerated:::date-rfc3339% | dev:%timereported:::date-rfc3339% | %fromhost-ip% | %syslogtag%%msg%\n")
+
+if ($fromhost-ip == "192.168.254.254") then {
+    action(type="omfile" file="/var/log/as250.log" template="AS250Format"
+           fileCreateMode="0640" fileOwner="syslog" fileGroup="adm")
+    stop
+}
+```
+
+送信元がルータの行だけを `/var/log/as250.log` に振り分け、`stop` で ECU 自身の syslog に混ざらないようにしています。
+
+ログが増え続けないようにローテートも設定します。
+
+```bash
+sudo vim /etc/logrotate.d/as250
+```
+
+```text
+/var/log/as250.log {
+    daily
+    rotate 30
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 syslog adm
+    postrotate
+        /usr/lib/rsyslog/rsyslog-rotate
+    endscript
+}
+```
+
+反映と待ち受けを確認し、ファイアウォールの許可とホームからの参照用リンクを作ります。
+
+```bash
+sudo rsyslogd -N1 -f /etc/rsyslog.conf      # 構文チェック
+sudo systemctl restart rsyslog
+ss -lunp | grep :514                         # 514/udp を待ち受けていること
+sudo ufw allow from 192.168.254.254 to any port 514 proto udp comment "AS-250/L syslog"
+ln -sfn /var/log/as250.log ~/router.log      # rsyslog は syslog ユーザーで動くため $HOME には直接書かせない
+```
+
+#### 受信の確認
+
+以下のコマンドでログが出力されることを確認します。
+
+```bash
+tail -f ~/router.log
+```
+
 ## 第5部 ホストの ROS 2 環境
 
 ホストからも `ros2` コマンドが使えるように、ROS 2 のセットアップもしておきます。
