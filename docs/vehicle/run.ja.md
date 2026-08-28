@@ -111,32 +111,3 @@ runtime（起動後）で確認される項目は次のとおりです。
 2. USB ケーブルを挿し直す
 3. 車両バッテリーの電源を入れ直す
 4. `make autoware-driver-zenoh-rosbag` を実行する
-
-### 3-2. V2X で他車の位置が受信できない場合
-
-`/v2x/vehicle_positions` に他車が出てこない場合は、ROS より先に broker への疎通を確認して、「AWS・回線・証明書の問題」と「車両側スタックの問題」を切り分けます。
-
-```bash
-sudo apt install -y mosquitto-clients    # ECU には入っていません
-sudo mosquitto_sub -h <V2X_BROKER_HOST> -p 8883 -t 'v2x/vehicles/+/position' -v -d -W 8 \
-  --cafile /etc/v2x/tls/ca.crt --cert /etc/v2x/tls/kart.crt --key /etc/v2x/tls/kart.key
-```
-
-`received CONNACK (0)` で証明書が受理されたこと、`Subscribed (mid: 1): 0` で ACL が subscribe を許可したことが分かります。誰も publish していなければメッセージは出ず、`-W 8` のタイムアウトで終了するのが正常です。
-
-| 症状 | 主な原因 |
-| --- | --- |
-| TLS handshake failure / `certificate verify failed` | `ca.crt` の不一致、または DNS 名ではなく IP で接続している |
-| `Connection refused` / TCP タイムアウト | ポート違い（`8883`。`1883` ではありません）、broker の停止、回線側で塞がれている |
-| `CONNACK (5)` not authorised | 証明書が失効している、または別の CA で発行された証明書 |
-| `Subscribed ... : 128` | ACL が subscribe を拒否している |
-| 名前解決できない | モバイル回線側の DNS。`getent hosts <V2X_BROKER_HOST>` で確認します |
-
-TLS の検証は時刻に依存するため、`timedatectl` で `System clock synchronized: yes` になっていることも確認してください。
-
-broker まで届いているなら、車両側の ROS トピックを確認します。
-
-```bash
-ros2 topic hz /v2x/vehicle_positions     # 10 Hz で出ていること
-ros2 topic echo /v2x/vehicle_positions
-```
