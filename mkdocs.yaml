@@ -56,6 +56,7 @@ nav:
       - competition/ai-class.md
       - competition/sim-finals.md
   - vehicle:
+      - vehicle/operation.md
       - vehicle/ecu-setup.md
       - vehicle/run.md
       - vehicle/remote.md
