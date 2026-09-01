@@ -55,6 +55,7 @@ nav:
       - competition/submission.md
       - competition/ai-class.md
       - competition/sim-finals.md
+      - competition/kart-finals.md
   - vehicle:
       - vehicle/ecu-setup.md
       - vehicle/run.md
