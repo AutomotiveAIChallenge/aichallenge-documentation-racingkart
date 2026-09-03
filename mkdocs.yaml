@@ -57,6 +57,7 @@ nav:
       - competition/sim-finals.md
       - competition/kart-finals.md
   - vehicle:
+      - vehicle/operation.md
       - vehicle/ecu-setup.md
       - vehicle/run.md
       - vehicle/remote.md
