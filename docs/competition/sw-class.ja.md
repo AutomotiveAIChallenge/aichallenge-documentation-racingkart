@@ -65,7 +65,7 @@ SIM決勝では、後方車両の進路を塞ぐ走行を抑えるため、コ�
 - アタッカーがいる間、ゾーン外の車両が **27 km/h 未満**でゾーンに触れた場合も違反です。
 - 違反した車両には `BLOCK` ペナルティ（**20秒間・5 km/h の速度制限**）が科されます。HUD に `BLOCK` と残り秒数が表示されます。
 
-![penalty_overtake_zone_calm](../assets/penalty_overtake_zon2.png)
+![penalty_overtake_zone_calm](../assets/penalty_overtake_zone2.png)
 
 通常時の追い越しレーンです。路面が水色になっている範囲がゾーンです。
 
