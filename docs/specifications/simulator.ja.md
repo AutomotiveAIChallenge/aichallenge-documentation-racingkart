@@ -22,7 +22,7 @@
 | `dev` | `make dev`（`dev2`〜`dev4` で複数台） | 開発 / S2R 練習 | 1台（引数で N 台）・周回/時間 無制限・カメラ/LiDAR off |
 | `e2e` | `make e2e` | E2E 練習（提出前の確認もこれ） | 1台 + NPC 2台・6周・タイムアウト実質なし・カメラ/LiDAR cpu |
 | `e2e-final` | `make simulator-e2e-final` | E2E 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on |
-| `s2r-final` | `make simulator-s2r-final` | S2R 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on・追い越しレーン on |
+| `s2r-final` | `make simulator-s2r-final` | S2R 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on・オーバーテイクレーン on |
 | `eval` | `make eval` | 評価（提出時と同じ条件） | 1台・6周・600秒・sync開始 |
 | `parallel` | `make simulator-parallel` | 複数台レース | 3台・6周・600秒・sync開始 |
 | `gate` | `make gate1`〜`make gate3` | セーフティゲートのテスト | 1台・シナリオ別 |
@@ -48,7 +48,7 @@
 - 練習は `count` 開始（全車が接地してから自動でカウントダウン。`e2e` はカウント0秒で即スタート）、決勝は `sync` 開始（`/admin/awsim/start` を待って一斉スタート）です。
 - `e2e` は `--start-random on` で開始位置が毎回変わるため、特定のスタート位置に依存しない挙動を確認できます。決勝は公平性のため固定です。
 - エンジン音（`--sound`）は決勝の2モードのみ on です。練習モードや評価（`make eval`）では off にしてあります。
-- **追い越しレーン（`--overtaking-lane`）は `s2r-final` のみ on** です。[ルール](../competition/sw-class.ja.md#overtaking-lane)と同じ条件で練習する場合は `make simulator-s2r-final` で AWSIM を起動し、別ターミナルで `make autoware-simulator` を実行します。`make dev` で判定を試したい場合は `dev.sh` の `--overtaking-lane off` を `on` に書き換えてください。
+- **オーバーテイクレーン（`--overtaking-lane`）は `s2r-final` のみ on** です。[ルール](../competition/sw-class.ja.md#overtake-lane)と同じ条件で練習する場合は `make simulator-s2r-final` で AWSIM を起動し、別ターミナルで `make autoware-simulator` を実行します。`make dev` で判定を試したい場合は `dev.sh` の `--overtaking-lane off` を `on` に書き換えてください。
 
 ## 画面説明
 
@@ -86,7 +86,7 @@ AWSIMはコマンドライン引数で動作を制御でき、起動スクリプ
 | --ranking     | bool   | false      | ランキング表示の有効/無効を設定します。           |
 | --handicap    | bool   | false      | 順位に応じたハンディキャップの有効/無効を設定します。 |
 | --start-random | bool  | false      | 開始位置のランダム化の有効/無効を設定します。     |
-| --overtaking-lane | bool | false    | 追い越しレーンのBLOCKペナルティ判定の有効/無効を設定します（[ルール](../competition/sw-class.ja.md#overtaking-lane)）。 |
+| --overtaking-lane | bool | false    | オーバーテイクレーンのBLOCKペナルティ判定の有効/無効を設定します（[ルール](../competition/sw-class.ja.md#overtake-lane)）。 |
 
 ### 制御・入力設定
 
