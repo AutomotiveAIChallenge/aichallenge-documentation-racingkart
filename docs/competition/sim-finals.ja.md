@@ -82,6 +82,10 @@ SIM 決勝進出チーム及び補欠チーム
 
 ルールは[こちら](./sw-class.ja.md#semifinal)をご確認ください。
 
+!!! info "追い越しレーンについて"
+
+    SIM決勝は `s2r-final` モード（追い越しレーン on）で実施します。ルールは[追い越しレーン](./sw-class.ja.md#overtaking-lane)を参照してください。
+
 ### 役割 { #s2r-role }
 
 - オペレーター：Autoware PCのセットアップ・操作を行う
