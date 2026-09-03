@@ -2354,6 +2354,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#overtake-lane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        オーバーテイクレーン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2501,6 +2512,17 @@
     <span class="md-ellipsis">
       
         AI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overtake-lane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        オーバーテイクレーン
       
     </span>
   </a>
@@ -2722,6 +2744,59 @@
 </ul>
 </li>
 </ul>
+</details>
+<h2 id="overtake-lane">オーバーテイクレーン</h2>
+<details class="question">
+<summary>オーバーテイクレーンとは何ですか？</summary>
+<p>後続車の進路を塞ぐ走行（ブロック）を抑えるために、バックストレート上に設定された水色の長方形ゾーンです。判定は AWSIM が自動で行い、違反すると <code>BLOCK</code> ペナルティ（20秒間・5 km/h の速度制限）が科されます。ルールの詳細は<a href="competition/sw-class.html#overtake-lane">オーバーテイクレーン</a>を参照してください。</p>
+</details>
+<details class="question">
+<summary>どのレースで有効になりますか？</summary>
+<p>SIM決勝（<code>s2r-final</code> モード）のみです。SIM予選・<code>make dev</code> などの通常モードでは無効で、End to End部門にも適用しません。判定はレース開始後のみ行われ、スタート前・シナリオエディタ・安全ゲートでは動作しません。</p>
+</details>
+<details class="question">
+<summary>ゾーンの位置と大きさを教えてください。</summary>
+<p>バックストレート上に置かれた、幅 2.5 m × 長さ 36 m の長方形です。判定は路面（XZ 平面）で行われ、描画されている高さは見やすさのためのもので判定には影響しません。</p>
+</details>
+<details class="question">
+<summary>水色とオレンジ色の違いは何ですか？</summary>
+<p>通常時は水色（静的）、<strong>hot</strong> 状態のときはオレンジ色に脈動します。hot は「アタッカーが1台以上ゾーン内にいる」状態を表します。オレンジのときだけ、ゾーン内・ゾーンへの進入が制限されます。</p>
+</details>
+<details class="question">
+<summary>「アタッカー」の条件は何ですか？</summary>
+<p><strong>車体全体（4隅すべて）がゾーン内</strong>にあり、かつ<strong>27 km/h 以上</strong>で走行している車両です。一度アタッカーになると、ゾーンから完全に離れる（車体がまったく触れなくなる）までアタッカーのままです。進入した瞬間だけでなく、ゾーン内にいる間は毎ステップ判定されるため、コーナー明けに低速で入ってストレートで加速した場合もアタッカーになります。</p>
+</details>
+<details class="question">
+<summary>どのような場合に <code>BLOCK</code> になりますか？</summary>
+<p>hot（アタッカーがいる）状態で、アタッカー以外の車両が次のいずれかに該当した場合です。</p>
+<ol>
+<li><strong>退避義務違反</strong>: ゾーンに触れたまま 27 km/h 以下で走行し、3秒以内にゾーンから完全に退出しなかった。</li>
+<li><strong>低速進入</strong>: ゾーン外にいた車両が、27 km/h 未満でゾーンに触れた（触れた瞬間に発火）。</li>
+</ol>
+</details>
+<details class="question">
+<summary>退避タイマーが動き出した後に加速すれば免除されますか？</summary>
+<p>免除されません。義務は「加速」ではなく「退避」です。3秒以内に車体全体をゾーン外へ出さなければ発火します。また、退避義務を負っている間は、加速してもアタッカーとして扱われません（加速でペナルティを回避することはできません）。タイマーが解除されるのは、ゾーンから完全に退出したとき、または hot が解除された（アタッカーがいなくなった）ときです。</p>
+</details>
+<details class="question">
+<summary>ちょうど 27 km/h の場合はどうなりますか？</summary>
+<p>車体全体がゾーン内であればアタッカー（27 km/h 以上）の判定が優先されるため、退避義務は発生しません。一方、車体の一部だけがゾーンに触れている状態ではアタッカーになれないため、27 km/h 以下として退避義務の対象になります。</p>
+</details>
+<details class="question">
+<summary>アタッカーがいないときに、ゆっくりゾーンを走ってもよいですか？</summary>
+<p>問題ありません。hot でない（アタッカーが1台もいない）間は、ゾーン内の速度に対する制限はありません。ゾーンに進入しないという選択も可能で、その場合はこのルールによる制約を一切受けません。</p>
+</details>
+<details class="question">
+<summary>ペナルティ中にさらに違反判定されますか？</summary>
+<p><code>BLOCK</code> などのペナルティが発動している車両は、オーバーテイクレーンの発火対象・退避タイマーの対象から外れます。なお <code>CRASH</code>（追突）はゾーン内でも通常どおり適用され、オーバーテイクレーンの判定とは独立しています。</p>
+</details>
+<details class="question">
+<summary>違反したかどうかはどこで確認できますか？</summary>
+<p>HUD の速度表示の横に <code>BLOCK</code> と残り秒数が表示されます。また、AWSIM のログに <code>OvertakingLane: BLOCK fired ...</code> が出力され、走行結果（<code>result-summary.json</code>）の <code>penalty_events</code> / <code>penalty_by_kind</code> にも <code>block</code> として記録されます。</p>
+</details>
+<details class="question">
+<summary>ローカルで練習するにはどうすればよいですか？</summary>
+<p><code>make simulator-s2r-final</code> で AWSIM を起動し、別ターミナルで <code>make autoware-simulator</code> を実行すると、SIM決勝と同じ条件（オーバーテイクレーン on）で走行できます。<code>make dev</code> で試したい場合は <code>dev.sh</code> の <code>--overtaking-lane off</code> を <code>on</code> に書き換えてください。詳細は<a href="specifications/simulator.html#launch-modes">シミュレータ仕様</a>を参照してください。</p>
 </details>
 <h2 id="_4">解決しない場合</h2>
 <p><a class="md-button md-button--primary" href="community.html"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 12a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M6 13h8l-3.5 3.5 1.42 1.42L17.84 12l-5.92-5.92L10.5 7.5 14 11H6z"/></svg></span> コミュニティで情報を探す</a></p>

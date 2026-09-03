@@ -3279,7 +3279,7 @@
 <td><code>s2r-final</code></td>
 <td><code>make simulator-s2r-final</code></td>
 <td>S2R 決勝</td>
-<td>4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on</td>
+<td>4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on・オーバーテイクレーン on</td>
 </tr>
 <tr>
 <td><code>eval</code></td>
@@ -3359,6 +3359,7 @@
 <li>練習は <code>count</code> 開始（全車が接地してから自動でカウントダウン。<code>e2e</code> はカウント0秒で即スタート）、決勝は <code>sync</code> 開始（<code>/admin/awsim/start</code> を待って一斉スタート）です。</li>
 <li><code>e2e</code> は <code>--start-random on</code> で開始位置が毎回変わるため、特定のスタート位置に依存しない挙動を確認できます。決勝は公平性のため固定です。</li>
 <li>エンジン音（<code>--sound</code>）は決勝の2モードのみ on です。練習モードや評価（<code>make eval</code>）では off にしてあります。</li>
+<li><strong>オーバーテイクレーン（<code>--overtaking-lane</code>）は <code>s2r-final</code> のみ on</strong> です。<a href="../competition/sw-class.html#overtake-lane">ルール</a>と同じ条件で練習する場合は <code>make simulator-s2r-final</code> で AWSIM を起動し、別ターミナルで <code>make autoware-simulator</code> を実行します。<code>make dev</code> で判定を試したい場合は <code>dev.sh</code> の <code>--overtaking-lane off</code> を <code>on</code> に書き換えてください。</li>
 </ul>
 <h2 id="_4">画面説明</h2>
 <p><code>make simulator</code> で起動した場合、設定画面が表示されます。後述の起動オプション相当の設定をGUIで行うことが可能です。設定が出来たら「Start」をクリックします。</p>
@@ -3448,6 +3449,12 @@
 <td>false</td>
 <td>開始位置のランダム化の有効/無効を設定します。</td>
 </tr>
+<tr>
+<td>--overtaking-lane</td>
+<td>bool</td>
+<td>false</td>
+<td>オーバーテイクレーンのBLOCKペナルティ判定の有効/無効を設定します（<a href="../competition/sw-class.html#overtake-lane">ルール</a>）。</td>
+</tr>
 </tbody>
 </table>
 <h3 id="_7">制御・入力設定</h3>
@@ -3536,6 +3543,7 @@
 </tr>
 </tbody>
 </table>
+<p><code>/v2x/vehicle_positions</code> には実車を模した伝送遅延が入っています。遅延は車両ごとに 100〜200 ms（平均 150 ms・標準偏差 25 ms）の範囲で与えられ、publish のたびに更新されます。配列の <code>header.stamp</code> をそのまま使って他車速度を求めると値が乱れるため、遅延を前提とした実装（受信位置の外挿、古いデータの破棄、余裕距離の確保）を行ってください。</p>
 <h3 id="_9">シナリオ・リプレイ</h3>
 <table>
 <thead>

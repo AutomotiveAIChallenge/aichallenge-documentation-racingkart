@@ -2748,6 +2748,7 @@
 <p>対象ファイルは <code>aichallenge/workspace/src/aichallenge_submit/imu_corrector/config/imu_corrector.param.yaml</code> です。</p>
 <p>車両を静止させた状態で <code>/sensing/imu/imu_raw</code> の <code>angular_velocity</code> を観測し、各軸の平均値を <code>angular_velocity_offset_x</code> / <code>_y</code> / <code>_z</code> にそのまま書きます（符号の反転は不要です）。<code>--symlink-install</code> でビルドしているため再ビルドは不要で、autoware を再起動すれば反映されます。</p>
 <h3 id="1-3">1-3. 車両起動</h3>
+<p>走行枠中の操作は、<code>make vehicle-tui</code> で起動する車両コンソールに集約されています。tmux 上で動く TUI で、事前チェック・提出物のダウンロード・ビルド・ドライバ起動・終了処理を1画面から順に実行できます。内部で呼んでいるのは以下の make ターゲットと <code>setup_check.sh</code> なので、個別に実行しても構いません。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 提出物データを aichallenge/workspace/src/ に取得（認証情報は対話入力）</span>
 make<span class="w"> </span>download<span class="w">                       </span><span class="c1"># 提出物の一覧を表示して選択</span>
 make<span class="w"> </span>download<span class="w"> </span><span class="nv">SUBMISSION_ID</span><span class="o">=</span>&lt;id&gt;<span class="w">    </span><span class="c1"># 特定の提出物を指定（一覧をスキップ）</span>

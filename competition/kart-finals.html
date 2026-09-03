@@ -1258,6 +1258,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    実機決勝特設ページ（2026/9/20）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="kart-finals.html" class="md-nav__link md-nav__link--active">
         
   
@@ -1274,6 +1292,108 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#real-vehicle-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        実車で走らせるときの注意点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実車で走らせるときの注意点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v2x-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V2X の通信遅延
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        駆動力と速度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自己位置と通信
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スタート時の挙動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rosbag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rosbag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        後日掲載する情報
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2348,6 +2468,97 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#real-vehicle-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        実車で走らせるときの注意点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="実車で走らせるときの注意点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#v2x-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V2X の通信遅延
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#traction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        駆動力と速度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自己位置と通信
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#start-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スタート時の挙動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rosbag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rosbag
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        後日掲載する情報
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2419,6 +2630,32 @@
 <p class="admonition-title">WIP</p>
 <p>このページは作成中です。記載内容はすべて暫定であり、今後変更される可能性があります。確定した情報は順次このページで公開します。</p>
 </div>
+<h2 id="real-vehicle-notes">実車で走らせるときの注意点</h2>
+<p>運営側の実車実験で分かったことのうち、参加チームの実装に影響するものをまとめます。</p>
+<h3 id="v2x-delay">V2X の通信遅延</h3>
+<p>実車では車両と MQTT broker の間を経由して位置情報を共有するため、シミュレータ内の即時共有とは異なり遅延と欠損が発生します。実測では遅延は平均 90 ms 程度、配信頻度は 20 Hz でした。AWSIM 側にも同等の伝送遅延（車両ごとに 100〜200 ms）が入っています。</p>
+<p>遅延への対処はアルゴリズム側の責務です。受信位置の外挿、古いデータの破棄、遅延を前提とした余裕距離の確保を行ってください。遅延未対応のままだと、追突判定や追い越し判断が破綻します。</p>
+<h3 id="traction">駆動力と速度</h3>
+<ul>
+<li>上り坂や一部カーブで加速トルクが不足し、一度停止するとスロットル 100% でも再発進が困難でした。カーブで止まらない走行ラインと速度計画が重要です。</li>
+<li>「一気に加速してブレーキ」というポンピング的な挙動が観測されました。accel/brake map の未整備や MPC の縦方向制御が原因の可能性があります。アクセル上限、速度設定の見直しが有効な場合があります。</li>
+<li>速度指令はそのまま実速度になりません。VCU 側で 26 km/h 程度に制限されます。加速の出方はシミュレータと異なるため、シミュレータでの最速ラインが実車で再現できるとは限りません。</li>
+<li>昨年度の上限速度は30km/h程度に制限されていました。</li>
+</ul>
+<h3 id="localization">自己位置と通信</h3>
+<ul>
+<li>RTK 補正（NTRIP）がたまにFix しない場合でも、自己位置推定ができる状態にしておいてください。</li>
+<li>IMU のジャイロバイアスは車両ごとに実測して反映する必要があります。手順は<a href="../vehicle/run.html">実車両の起動</a>の「1-2. IMU バイアスの修正」を参照してください。</li>
+</ul>
+<h3 id="start-behavior">スタート時の挙動</h3>
+<p>レース開始を表すトピックは配信されず、手動操作モードから自動モードに切り替わるだけになる予定です。<strong>スタート位置での待機中にスタック判定が働き、いきなり後退や切り返しを始めないよう、各チームで対処してください</strong>。</p>
+<h3 id="rosbag">rosbag</h3>
+<p>走行中の rosbag には V2X の車両位置（<code>/v2x/vehicle_positions</code>）も記録されます。<strong>rosbag を各チームが持ち帰ることはできません</strong>。運営が SharePoint で共有しますので、振り返りにはそちらを参照してください。V2X の受信周期、RTK Fix が外れた区間での自己位置の飛び、制御指令と実加速度のずれを確認することを推奨します。</p>
+<h2 id="tbd">後日掲載する情報</h2>
+<ul>
+<li>当日の進行、タイムテーブル、役割分担</li>
+<li>V2X 証明書（<code>kart.crt</code>）の配布時期と、車両 ID の割り当て</li>
+</ul>
 
 
 

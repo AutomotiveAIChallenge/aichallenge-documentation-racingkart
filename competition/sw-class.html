@@ -1239,6 +1239,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="速度とペナルティ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overtake-lane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        オーバーテイクレーン
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1264,7 +1281,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#prohibited" class="md-nav__link">
     <span class="md-ellipsis">
       
         禁止事項
@@ -1436,7 +1453,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         注意事項
@@ -2689,6 +2706,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="速度とペナルティ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overtake-lane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        オーバーテイクレーン
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2714,7 +2748,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#prohibited" class="md-nav__link">
     <span class="md-ellipsis">
       
         禁止事項
@@ -2886,7 +2920,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         注意事項
@@ -3026,11 +3060,75 @@
 <h3 id="_2">速度とペナルティ</h3>
 <ul>
 <li>加速度上限は約1.0m/s²に制限されています。（内訳：加速度上限が1.37、転がり抵抗が0.37）</li>
-<li>速度上限はシミュレータが使用している物理モデルに従います。実車両の場合は30km/hに制限されています。</li>
+<li>速度上限はシミュレータが使用している物理モデルに従います。実車両の場合は25km/h程度に制限されています。</li>
 <li>レース内順位によって加速度・速度に対してハンディキャップがつく場合があります。（SIM環境のみ）</li>
-<li>コースの壁や他車両への衝突等が発生した場合や、不正な加速度が入力された場合、ペナルティとして一定時間速度が制限されます。（SIM環境のみ）</li>
+<li>以下のペナルティを受けた場合、一定時間 <strong>5 km/h</strong> に速度が制限されます。種別は HUD と走行結果に表示される名前です。（SIM環境のみ）<ul>
+<li>ペナルティは<a href="#prohibited">禁止事項</a>に当たる走行を防ぐために設けています。</li>
+<li>速度制限の長さは危険度に比例します。他車を妨害する走行がもっとも長く、自車だけに影響する過加速がもっとも短くなります。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>種別</th>
+<th>条件</th>
+<th>速度制限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CRASH</code></td>
+<td>自車の前バンパーが他車の後バンパーに接触したとき。後退中は自車の後バンパーと他車の前バンパーの接触でも発火します</td>
+<td>10秒</td>
+</tr>
+<tr>
+<td><code>WALL</code></td>
+<td>壁に接触したとき。車両同士の接触は <code>CRASH</code> として扱い、<code>WALL</code> では数えません</td>
+<td>5秒</td>
+</tr>
+<tr>
+<td><code>OVER</code></td>
+<td>過加速。クランプ前の加速度入力が <strong>3 m/s²</strong> を超えたとき、または入力周期が <strong>250 Hz</strong> 以上のとき</td>
+<td>2秒</td>
+</tr>
+<tr>
+<td><code>BLOCK</code></td>
+<td>オーバーテイクレーンの違反（後述）</td>
+<td>20秒</td>
+</tr>
+</tbody>
+</table>
+<p>追突は追突した側が罰せられ、追突された側は免除されません。接触が続いている間、<code>CRASH</code> の制限時間は更新され続けます。</p>
+<p>後退（バック）中の車両が後方の車両に衝突した場合は、<strong>後退した側（前方の車両）にも <code>CRASH</code> が科されます</strong>。自車の後バンパーと他車の前バンパーの接触で発火するため、後退した車両と衝突された後方の車両の双方がペナルティを受けます。コース復帰などでバックする際は、後方の車両が通過するのを待ってから動き出してください。</p>
+<p>ペナルティが発動すると、HUD の速度表示の横に種別が赤字で表示され、速度が 5 km/h に落ちます。</p>
+<details class="example">
+<summary>HUD の表示例</summary>
+<p><img alt="penalty_crash" src="../assets/penalty_crash.png" /></p>
+<p>前方の車両に追突して <code>CRASH</code> が発動した状態です。</p>
+<p><img alt="penalty_wall" src="../assets/penalty_wall.png" /></p>
+<p>壁に接触して <code>WALL</code> が発動した状態です。</p>
+</details>
+<ul>
 <li>一時的に加速度を上昇させるブーストアイテムが用意されています。（SIM環境のみ）</li>
 </ul>
+<h4 id="overtake-lane">オーバーテイクレーン</h4>
+<p>SIM決勝では、後方車両の進路を塞ぐ走行を抑えるため、コース上の指定区間を<strong>オーバーテイクレーン</strong>とします。判定は AWSIM が自動で行います。（SIM決勝のみ。End to End部門には適用しません）</p>
+<details class="info">
+<summary>詳細ルールと見え方</summary>
+<ul>
+<li>オーバーテイクレーンは<strong>水色の長方形</strong>として路面に描画されます。</li>
+<li>車体全体がオーバーテイクレーン内に入り、<strong>27 km/h 以上</strong>で走行する車両を<strong>アタッカー</strong>とします。アタッカーがいる間、オーバーテイクレーンはオレンジ色に脈動します。</li>
+<li>アタッカーがいる間、オーバーテイクレーンに触れている他の車両は、<strong>27 km/h 以下</strong>なら<strong>3秒以内</strong>に完全に退出しなければ違反です。加速しても退出の義務は消えません。</li>
+<li>アタッカーがいる間、オーバーテイクレーン外の車両が <strong>27 km/h 未満</strong>でオーバーテイクレーンに触れた場合も違反です。</li>
+<li>違反した車両には <code>BLOCK</code> ペナルティ（<strong>20秒間・5 km/h の速度制限</strong>）が科されます。HUD に <code>BLOCK</code> と残り秒数が表示されます。</li>
+</ul>
+<p><img alt="overtake_lane_normal" src="../assets/overtake_lane_normal.png" /></p>
+<p>通常時の状態です。路面が水色になっている範囲がオーバーテイクレーンです。</p>
+<p><img alt="overtake_lane_active" src="../assets/overtake_lane_active.png" /></p>
+<p>オーバーテイクレーン内に 27 km/h 以上の車両がいる間は、オレンジ色に変わります。</p>
+</details>
+<p>オーバーテイクレーンに進入しなければ制約はありません。練習方法は<a href="../specifications/simulator.html#launch-modes">シミュレータ仕様</a>を参照してください。よくある質問は <a href="../faq.html#overtake-lane">FAQ</a> にまとめています。</p>
 <h3 id="_3">使用可能なセンサー</h3>
 <ul>
 <li>IMU</li>
@@ -3047,12 +3145,13 @@
 <li>NPC 追い越し</li>
 <li>車線維持</li>
 </ul>
-<h3 id="_5">禁止事項</h3>
+<h3 id="prohibited">禁止事項</h3>
 <p>以下のような行為・コードは禁止です。
 決勝以降はコードチェックが行われます。</p>
 <ul>
 <li>意図的に危険な走行を行うこと。</li>
 <li>意図的に蛇行走行・他車を邪魔するような走行を行うこと。</li>
+<li>V2X で得た後方車両の情報を使って、後方車両の進路を妨害すること。幅寄せ・蛇行・不要な減速を含みます。リバースでのコース復帰時など、安全確認のために後方情報を参照することは禁止しません。</li>
 <li>環境そのものをハックすること。（例えば、他の車両の通信を盗み見たり、偽データを流すこと）</li>
 </ul>
 <h2 id="sim-to-real-sim">Sim to Real部門 SIM予選</h2>
@@ -3181,7 +3280,7 @@
 <li>参加者は自身のターミナル・RVizから任意の操作が可能です。</li>
 <li>ただし、操作前には運営に申告する必要があります。また、手動運転を多用することは禁止です。自身のROS_DOMAIN_ID以外に影響を及ぼす操作も禁止です。</li>
 </ul>
-<h3 id="_6">注意事項</h3>
+<h3 id="_5">注意事項</h3>
 <ul>
 <li>参加チームは実車両へのインテグレーション作業を行い、走行に立ち会う必要があります。（作業は運営がサポートします）</li>
 <li>参加チームは、オペレータの指示により車両を停止したり、必要に応じて遠隔操作を行う必要があります。</li>
