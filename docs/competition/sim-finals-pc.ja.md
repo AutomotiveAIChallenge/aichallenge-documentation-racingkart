@@ -203,6 +203,7 @@ PC を持参するチームは、当日会場で以下の設定を行う必要�
 CycloneDDS が使用するネットワークインターフェイスに、LAN ケーブル接続に使用している LAN ポート（`IF_LOCAL`）を追加します。下記コマンドによって `~/aichallenge-racingkart/vehicle/cyclonedds.xml` に設定したインターフェイスが追記されます。
 
 ```bash
+IF_LOCAL=enx3c18a059f0d4    # 要変更
 cd ~/aichallenge-racingkart/
 ./setup.bash network if $IF_LOCAL
 ```
@@ -218,16 +219,14 @@ cd ~/aichallenge-racingkart/
 
 ### ROS 2 (ROS_DOMAIN_ID) の設定
 
-チーム席（出走位置）に応じて、`ROS_DOMAIN_ID` を `1`〜`4` のいずれかに設定します。出走位置と `ROS_DOMAIN_ID` の対応は、上記 [ネットワーク構成](#network) の表を参照してください。
-
-以下のコマンドで設定ファイル（`.env`）を開き、使用する `ROS_DOMAIN_ID` の行だけを有効化（先頭の `#` を外す）してください。
+以下のコマンドで設定ファイル（`.env`）を開き、チーム席（出走位置）に応じて、`ROS_DOMAIN_ID` を `1`〜`4` のいずれかに設定します。出走位置と `ROS_DOMAIN_ID` の対応は、上記 [ネットワーク構成](#network) の表を参照してください。
 
 ```bash
 code ~/aichallenge-racingkart/.env
 ```
 
 ```bash
-# 出走位置に応じて1行だけを有効にする（例：出走位置1）
+# 出走位置に応じて設定する
 ROS_DOMAIN_ID=1
 #ROS_DOMAIN_ID=2
 #ROS_DOMAIN_ID=3
