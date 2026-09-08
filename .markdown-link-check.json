@@ -24,6 +24,15 @@
     },
     {
       "pattern": "^#camera-lidar$"
+    },
+    {
+      "pattern": "^#operator-pc$"
+    },
+    {
+      "pattern": "^#run-autoware$"
+    },
+    {
+      "pattern": "^#byod$"
     }
   ]
 }
