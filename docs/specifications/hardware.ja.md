@@ -13,6 +13,7 @@
 
 | 項目 | スペック |
 | --- | --- |
+| OS | Ubuntu 22.04 |
 | CPU | Intel Core i9-11900H |
 | Mem | 32 GB |
 | 備考 | 車両制御ソフトウェアも同じECU上で動きます |
@@ -21,6 +22,7 @@
 
 | 項目 | スペック |
 | --- | --- |
+| OS | Ubuntu 22.04 |
 | CPU | 16 vCPU Intel Xeon Scalable (Cascade Lake) |
 | Mem | 64 GB |
 | 備考 | Autoware用には3 vCPUと12 GiBが割り当てられます |
@@ -31,6 +33,7 @@ SIM 予選では、オンライン環境のインスタンス上で AWSIM と 3 
 
 | 項目 | スペック |
 | --- | --- |
+| OS | Ubuntu 22.04 |
 | CPU | Intel Core i7-8700 |
 | Mem | 16 GB |
 | 備考 | 推奨環境より低スペックです（後述の理由による） |
