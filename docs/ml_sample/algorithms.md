@@ -66,7 +66,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 
 ## [TinyLiDARNet](https://arxiv.org/abs/2410.07447)
 
-- [F1TENTH](https://www.cps2023-race.f1tenth.org/)にて使用された手法です。
+- [F1TENTH](https://f1tenth.org/)の CPS 2023 レースにて使用された手法です。
 - 2D LiDARのデータから、速度とステアリング角を推定します。
     - input: 長さ`1081`の1次元配列。2D LiDARで得られたxy平面上の距離を格納。
     - output: Speed, Steering Angle
