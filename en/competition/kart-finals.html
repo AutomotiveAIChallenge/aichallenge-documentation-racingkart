@@ -16,7 +16,7 @@
         <link rel="prev" href="sim-finals-pc.html">
       
       
-        <link rel="next" href="../vehicle/ecu-setup.html">
+        <link rel="next" href="../vehicle/operation.html">
       
       
         
@@ -418,7 +418,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../vehicle/ecu-setup.html" class="md-tabs__link">
+        <a href="../vehicle/operation.html" class="md-tabs__link">
           
   
   
@@ -1562,6 +1562,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vehicle/operation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    実機決勝での参加者操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2982,11 +3010,32 @@
 <td>可</td>
 </tr>
 <tr>
+<td>自己位置の再設定</td>
+<td>可（申告不要）</td>
+</tr>
+<tr>
+<td><code>ros2 topic</code> によるギア切り替え・ターボコマンド発行</td>
+<td>可（申告不要）</td>
+</tr>
+<tr>
 <td>rosbag の取得</td>
+<td>不可</td>
+</tr>
+<tr>
+<td>launch ファイル・YAML の書き換え</td>
+<td>非推奨（反映に Autoware の再起動が必要）</td>
+</tr>
+<tr>
+<td>コードの変更・再ビルド</td>
+<td>不可</td>
+</tr>
+<tr>
+<td>提出物の差し替え</td>
 <td>不可</td>
 </tr>
 </tbody>
 </table>
+<p>事前準備（dynamic reconfigure 対応・チューニング用 TUI）と当日の操作手順は<a href="../vehicle/operation.html">実機決勝での参加者操作</a>を参照してください。</p>
 <h2 id="real-vehicle-notes">実車両で走らせるときの注意点</h2>
 <h3 id="v2x-delay">V2X の通信遅延</h3>
 <p>実車両は無線ネットワークを利用して位置情報を共有するため、遅延と欠損が発生します。実測では、平均 90 ms 程度の遅延が発生することがわかっています。
@@ -3065,13 +3114,13 @@
         
         
           
-          <a href="../vehicle/ecu-setup.html" class="md-footer__link md-footer__link--next" aria-label="Next: ECU の初期構築">
+          <a href="../vehicle/operation.html" class="md-footer__link md-footer__link--next" aria-label="Next: 実機決勝での参加者操作">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ECU の初期構築
+                実機決勝での参加者操作
               </div>
             </div>
             <div class="md-footer__button md-icon">
