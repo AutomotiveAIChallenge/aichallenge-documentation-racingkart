@@ -42,7 +42,7 @@ The SW Division progresses from qualifying to finals as follows:
 
 ### Safety Gates
 
-From the Finals onwards, all of the following safety gates must be cleared:
+Clearing all of the following safety gates is strongly recommended (not mandatory):
 
 - Obstacle stop
 - NPC overtaking
