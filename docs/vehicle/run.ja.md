@@ -2,7 +2,7 @@
 
 構築済みの ECU で、シミュレータ用に開発したコードを実車両で走らせるための手順です。
 
-ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を参照してください。遠隔 PC 側の構築と操作は[遠隔操作](remote.ja.md)にまとまっています。
+ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.md)を参照してください。遠隔 PC 側の構築と操作は[遠隔操作](remote.md)にまとまっています。
 
 ## 第1部 走行前の設定と起動
 
@@ -24,7 +24,7 @@ ECU（MiniPC）自体の初期構築は[ECU の初期構築](ecu-setup.ja.md)を
 
 `HOST_UID` / `HOST_GID` / `HOST_GID_DIALOUT` / `HOST_GID_INPUT` と `COMPOSE_FILE`（GPU 判定）は `./setup.bash env` が実測値で自動設定するので、通常は触りません。
 
-V2X 位置情報共有を使う場合は、次の項目も `.env` で設定します。証明書の配置は[ECU の初期構築](ecu-setup.ja.md)の 4-4 を参照してください。
+V2X 位置情報共有を使う場合は、次の項目も `.env` で設定します。証明書の配置は[ECU の初期構築](ecu-setup.md)の 4-4 を参照してください。
 
 | 変数 | `.env.example` の初期値 | 実車両で必要な設定 |
 | --- | --- | --- |
