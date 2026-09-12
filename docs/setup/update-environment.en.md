@@ -23,7 +23,7 @@ docker pull ghcr.io/automotiveaichallenge/autoware-universe:humble-latest
 
 ```bash
 cd aichallenge-racingkart # path to aichallenge
-git pull origin/main
+git pull origin main
 ```
 
 ## Updating AWSIM
