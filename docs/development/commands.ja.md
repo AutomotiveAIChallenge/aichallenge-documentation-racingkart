@@ -12,6 +12,8 @@
 | `./setup.bash pull image` | Autoware ベースイメージを `docker pull` します |
 | `./setup.bash download awsim` | AWSIM.zip をダウンロードして展開します |
 | `./setup.bash env` | `.env.example` から `.env` を作成します |
+| `./setup.bash network tune` | DDS 用のホスト設定（`rmem_max`・ループバックのマルチキャスト）を永続化します（sudo が必要） |
+| `./setup.bash network if [name]` | ネットワークインターフェースを `cyclonedds.xml` に追加します。名前を省略すると、このスクリプトで追加したインターフェースをすべて削除します |
 
 ## create_submit_file.bash
 
