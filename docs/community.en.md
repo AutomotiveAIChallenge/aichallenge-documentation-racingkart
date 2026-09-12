@@ -10,6 +10,12 @@
 
 <https://www.ritsumei.ac.jp/ise/suki_ict/story01.html/>
 
+Team Hayes: [a self-localisation trap where argmin jumps to the opposite leg (Qiita, JA/EN)](https://qiita.com/TeamHayes/items/2bd248ad00a8011406f4)
+
+Team Hayes: [starter-kit traps and the PRs that fix them (Zenn, JA/EN)](https://zenn.dev/ajayaditya/articles/aichallenge-starter-kit-traps-2026)
+
+Team Hayes: [aichallenge-toolkit, ROS-free tools for rosbag analysis and pre-submit checks](https://github.com/theCodeForgerHQ/aichallenge-toolkit)
+
 We are actively seeking contributions!!!
 
 ## Finals Video

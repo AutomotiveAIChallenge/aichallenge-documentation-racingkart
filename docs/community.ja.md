@@ -63,6 +63,9 @@
 
 [:material-launch: Team Panasonic Automotive Challengersの活躍を見る](https://automotive.panasonic.com/newsroom/jaaic){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Rits-Autoの活躍を見る](https://www.ritsumei.ac.jp/ise/suki_ict/story01.html/){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: argmin で逆向きの区間に飛ぶ自己位置の罠（Qiita）](https://qiita.com/TeamHayes/items/2bd248ad00a8011406f4){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: スターターキットで踏んだ罠と直した PR（Zenn）](https://zenn.dev/ajayaditya/articles/aichallenge-starter-kit-traps-2026){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: aichallenge-toolkit（ROS なしで rosbag を解析するツール集）](https://github.com/theCodeForgerHQ/aichallenge-toolkit){ .md-button .md-button--primary target="_blank" }
 
 <div class="community-callout">
   <p>絶賛募集中！！！</p>
