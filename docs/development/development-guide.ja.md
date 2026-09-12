@@ -60,6 +60,19 @@ make down
 make eval
 ```
 
+!!! warning "`make eval` が `Waiting for at least 1 matching subscription(s)...` のまま進まない場合"
+    `make eval` は評価コンテナを起動したあと、`make awsim-request-start`（ドメイン0で `ros2 topic pub -1 /admin/awsim/start ...`）を実行します。このコマンドは AWSIM が `/admin/awsim/start` を購読するまで待ち続けます。評価用の launch（`evaluation.launch.xml`）は AWSIM と Autoware を同じ launch で起動するため、提出パッケージの launch が失敗する（例: `aichallenge_submit` 内のパッケージがビルド・インストールされていない、依存パッケージが見つからない）と AWSIM ごと終了し、この表示のまま止まります。
+
+    `Ctrl+C` で抜けて `make down` した後、以下を確認してください。
+
+    ```bash
+    # 最新の実行ログ（launch のエラーはここに出ます）
+    less "$(ls -td output/2*/d1 | head -n 1)/autoware.log"
+
+    # 評価用イメージに自分のパッケージがインストールされているか確認（my_package は自分のパッケージ名に置き換える）
+    docker run --rm aichallenge-2025-eval ls /aichallenge/workspace/install | grep my_package
+    ```
+
 ## 結果の出力
 
 ### ワークスペースのビルド生成物
