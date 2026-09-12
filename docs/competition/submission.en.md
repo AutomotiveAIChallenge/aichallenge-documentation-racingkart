@@ -62,6 +62,11 @@ Submit to the online environment using the following steps:
 
     <img src="./images/siteImage3.png" width="100%">
 
+    !!! note "Submission limits (as shown in the submit dialog, August 2026)"
+        - The maximum upload size is **20 MB**. Take care when including large files such as trained model weights.
+        - You must wait **30 minutes** between submissions (the submit button shows `Wait MM:SS`). You can submit up to **10 times** per day (`TODAY'S USAGE n / 10`).
+        - The opponent range is set between **+1 and +5 ranks** above your team. The opponent is picked at random within the range, which is resolved against the ranking at the moment you press Submit.
+
 ## Checking Results
 
 - After the race finishes in the online environment, you can check the latest rankings.
