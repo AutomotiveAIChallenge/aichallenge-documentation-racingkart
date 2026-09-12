@@ -55,6 +55,19 @@ make down
 make eval
 ```
 
+!!! warning "`make eval` stuck at `Waiting for at least 1 matching subscription(s)...`"
+    After starting the evaluation container, `make eval` runs `make awsim-request-start` (`ros2 topic pub -1 /admin/awsim/start ...` on domain 0). This command keeps waiting until AWSIM subscribes to `/admin/awsim/start`. The evaluation launch (`evaluation.launch.xml`) starts AWSIM and Autoware together, so if the submitted launch fails (for example, a package under `aichallenge_submit` was not built or installed, or a dependency cannot be found), AWSIM shuts down too and the terminal stays on this message.
+
+    Press `Ctrl+C`, run `make down`, then check the following.
+
+    ```bash
+    # Latest run log (launch errors show up here)
+    less "$(ls -td output/2*/d1 | head -n 1)/autoware.log"
+
+    # Check whether your package is installed in the evaluation image (<package> is the package name)
+    docker run --rm aichallenge-2025-eval ls /aichallenge/workspace/install | grep <package>
+    ```
+
 ## Local Evaluation (Multiple Vehicles)
 
 - Use `run_parallel_submissions.bash` to evaluate multiple vehicles at the same time.
