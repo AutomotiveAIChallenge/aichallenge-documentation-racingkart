@@ -89,7 +89,7 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
 
     ```bash
     cd ~
-    git clone https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
+    git clone -b main https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
     cd ~/aichallenge-racingkart
     ```
 

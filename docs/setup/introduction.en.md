@@ -89,7 +89,7 @@ The following describes what `setup.bash` performs interactively, step by step. 
 
     ```bash
     cd ~
-    git clone https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
+    git clone -b main https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
     cd ~/aichallenge-racingkart
     ```
 

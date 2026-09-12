@@ -189,7 +189,7 @@
     HUD の速度表示の横に `BLOCK` と残り秒数が表示されます。また、AWSIM のログに `OvertakingLane: BLOCK fired ...` が出力され、走行結果（`result-summary.json`）の `penalty_events` / `penalty_by_kind` にも `block` として記録されます。
 
 ??? question "ローカルで練習するにはどうすればよいですか？"
-    `make simulator-s2r-final` で AWSIM を起動し、別ターミナルで `make autoware-simulator` を実行すると、SIM決勝と同じ条件（オーバーテイクレーン on）で走行できます。`make dev` で試したい場合は `dev.sh` の `--overtaking-lane off` を `on` に書き換えてください。詳細は[シミュレータ仕様](./specifications/simulator.ja.md#launch-modes)を参照してください。
+    `make simulator-s2r-final` で AWSIM を起動し、別ターミナルで `make autoware-simulator` を実行すると、SIM決勝と同じ条件（オーバーテイクレーン on）で走行できます（`s2r-final.sh` に `--overtaking-lane on` が含まれている必要があります。2026年9月12日時点では aichallenge-racingkart の `dev` ブランチのみ）。`make dev` で試したい場合は `dev.sh` の `--overtaking-lane off` を `on` に書き換えてください。詳細は[シミュレータ仕様](./specifications/simulator.ja.md#launch-modes)を参照してください。
 
 ## 解決しない場合
 
