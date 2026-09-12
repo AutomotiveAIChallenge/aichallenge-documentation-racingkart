@@ -68,6 +68,7 @@
 [:material-launch: Team Hayes: quaternion の z を yaw だと思っていませんか（Qiita）](https://qiita.com/TeamHayes/items/f004f15b7c0fe1f4b512){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: v_max を下げたら速くなった（Qiita）](https://qiita.com/TeamHayes/items/934870c19786e3e6b3fe){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: AI エージェント 100 体で学んだこと（Zenn）](https://zenn.dev/ajayaditya/articles/100-ai-agents-racing-lessons){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: 日本語が読めなくても参加できるように、ドキュメントとツールを英語対応した話（Qiita）](https://qiita.com/TeamHayes/items/7aaf06afe8f39d8f6dfd){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: aichallenge-toolkit（ROS なしで rosbag を解析するツール集）](https://github.com/theCodeForgerHQ/aichallenge-toolkit){ .md-button .md-button--primary target="_blank" }
 
 <div class="community-callout">
