@@ -36,7 +36,7 @@ Same as the [Sim to Real Division](./sw-class.en.md).
 - Gear Status
 
 !!! warning "About available sensors"
-    Because End to End AI approaches are emphasized, sensors that could be used in the Sim to Real Division, such as GNSS, cannot be used.
+    Because End to End AI approaches are emphasized, sensors used in the Sim to Real Division that are not listed above, such as GNSS, cannot be used.
 
 ### Safety Gates
 
