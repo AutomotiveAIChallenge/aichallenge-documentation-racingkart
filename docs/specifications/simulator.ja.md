@@ -158,7 +158,7 @@ AWSIMはコマンドライン引数で動作を制御でき、起動スクリプ
 
 ## 車両（レーシングカート）
 
-車両はAWSIMにおける[EGO Vehicle]の仕様に準拠しており、実際のレーシングカートに近いスペックで作成されています。
+車両はAWSIMにおけるEGO Vehicleの仕様に準拠しており、実際のレーシングカートに近いスペックで作成されています。
 
 ![vehicle-appearance](./images/vehicle-appearance.png)
 
