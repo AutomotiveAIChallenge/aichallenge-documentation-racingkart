@@ -38,7 +38,7 @@ Submit to the online environment using the following steps:
 
     - Run `./create_submit_file.bash` to compress the `aichallenge_submit` directory.
     - The compressed file is saved at `aichallenge-racingkart/submit/aichallenge_submit.tar.gz`.
-    - See the [Submission Contract](../specifications/submission-contract.en.md) for the structure and interfaces your submission must satisfy.
+    - See the [Participant Interface Contract (aichallenge-racingkart repository, in Japanese)](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/docs/interface/participant-interface.md) for the structure and interfaces your submission must satisfy.
 
 2. Verify operation in local evaluation environment
 
@@ -57,16 +57,15 @@ Submit to the online environment using the following steps:
 
     On the upload screen, select the `aichallenge_submit.tar.gz` to upload. You can optionally add a comment. You can also change the rank range of the opponent to challenge — by default you battle the team one rank above you. Widening the range lets you challenge higher-ranked teams, with a larger rating gain if you win. Choose strategically.
 
-    If successful, "Success" will be displayed.
-    If the build fails, the launch fails, or the score is not output, "Failed" will be displayed. In this case, please re-upload as there may be an internal server error. Contact us via Slack if the problem persists.
-
     <img src="./images/siteImage3.png" width="100%">
 
 ## Checking Results
 
-- After the race finishes in the online environment, you can check the latest rankings.
-- Detailed race data including lap times and logs can be checked by clicking the button at the right end of the submission history.
-    - You can check `result-summary.json`, rosbag, and `autoware.log`.
+- After upload, your source code is built and then the simulation is run. You can check the STATUS of this submission under "Your Submissions" at the bottom of the screen. When processing goes normally it changes Queued → Building → Running → Success. The whole process takes about 30 minutes. If the build or the launch fails, "Failed" is displayed; check the logs and your submission (see [If Failed](#if-failed)).
+- When the run in the online environment is finished, you can check the result in the Activity Timeline and the videos. Your rating goes up or down depending on the match result.
+- Clicking the icon on the right of "Your Submissions" at the bottom of the page lets you view and download detailed run data such as lap times and logs.
+    - You can check `result-summary.json`, the rosbag, and `autoware.log`.
+    - "Copy Public Link" at the top right of the screen gives you a link for sharing on social media.
 
     <img src="./images/siteImage4.png" width="100%">
 
@@ -85,11 +84,36 @@ First determine whether it was a **build failure** or a **run failure**.
 
 - Check Docker
 
-    - Use the following command to check inside Docker and verify that everything is correctly installed and built in the required directories.
-
-    - `docker run -it aichallenge-racingkart-eval:latest /bin/bash`
+    - While `make eval` is running, you can enter the container with `make autoware-attach`.
+    - To open the evaluation image directly, run `docker run --rm -it aichallenge-2025-eval bash` (the image name is set in `docker_build.sh`).
 
 - Directories to check:
 
     - `/aichallenge/workspace/*`
     - `/autoware/install/*`
+
+## Online Environment Pages
+
+- "Overview" page (after login only)
+    - Shows your team's rank information and submission history
+- "Live" page
+    - Shows rank information for all teams combined
+- "Student Live" page
+    - Shows rank information for the teams in the student class
+
+- Description of each element
+    - Video on the left
+        - Replay of a match in which the code submitter (CHALLENGER, P1) beat the higher-ranked team (P2)
+    - Video on the right
+        - Replay of a match in which the higher-ranked team (defender, P2) beat the code submitter (P1)
+    - Ranking Table
+        - Shows the ranks of all teams
+    - Activity Timeline
+        - Shows the win/loss history
+        - A sword icon marks a match won by the code submitter (CHALLENGER); a shield icon marks a match won by the higher-ranked team (defender)
+    - Rate Transition
+        - Shows how the rating has changed
+    - Submissions
+        - Shows the code submission history. You can check logs and download ROSBAGs here
+
+<img src="./images/siteImage6.png" width="100%">

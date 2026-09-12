@@ -36,7 +36,7 @@ Queued（受付済み） → Building（ビルド中） → Running（シミュ�
 
     - `./create_submit_file.bash`を実行してaichallenge_submitディレクトリを圧縮します。
     - 圧縮したファイルはaichallenge-racingkart/submit/aichallenge_submit.tar.gzに保存されています。
-    - 提出物が満たすべき構造・インターフェースは[提出物の契約](../specifications/submission-contract.ja.md)を参照してください。
+    - 提出物が満たすべき構造・インターフェースは[参加者インターフェース契約（aichallenge-racingkart リポジトリ）](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/docs/interface/participant-interface.md)を参照してください。
 
 2. ローカル評価環境での動作確認
 
@@ -82,6 +82,7 @@ Queued（受付済み） → Building（ビルド中） → Running（シミュ�
 - dockerの確認
 
     - `make eval`実行中に、`make autoware-attach`でコンテナに入れます
+    - 評価用イメージを直接開く場合は `docker run --rm -it aichallenge-2025-eval bash` を実行します（イメージ名は `docker_build.sh` で設定されています）
 
 - 確認するディレクトリ:
 
