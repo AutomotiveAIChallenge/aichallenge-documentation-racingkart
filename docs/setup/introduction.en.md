@@ -93,6 +93,13 @@ The following describes what `setup.bash` performs interactively, step by step. 
     cd ~/aichallenge-racingkart
     ```
 
+    The finals PC uses the `main` branch. Overtaking-lane practice (`--overtaking-lane`) requires the `dev` branch, so switch to it if you want to practice that:
+
+    ```bash
+    git -C ~/aichallenge-racingkart fetch origin dev
+    git -C ~/aichallenge-racingkart checkout dev
+    ```
+
 ??? note "6. :material-security: Verify repository"
     Checks that the repository exists correctly.
 

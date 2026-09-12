@@ -93,6 +93,15 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     cd ~/aichallenge-racingkart
     ```
 
+    決勝PCは `main` ブランチを使用します。オーバーテイクレーンの練習（`--overtaking-lane`）には `dev` ブランチが必要なので、練習したい場合は以下で切り替えてください。
+
+    ```bash
+    git -C ~/aichallenge-racingkart fetch origin dev
+    git -C ~/aichallenge-racingkart checkout dev
+    ```
+
+    詳細は[シミュレータ仕様](../specifications/simulator.ja.md#launch-modes)を参照してください。
+
 ??? note "6. :material-security: repositoryの確認"
     ちゃんとレポジトリが存在しているかチェック
 
