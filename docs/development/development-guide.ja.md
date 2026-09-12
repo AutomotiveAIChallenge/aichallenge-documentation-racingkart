@@ -69,8 +69,8 @@ make eval
     # 最新の実行ログ（launch のエラーはここに出ます）
     less "$(ls -td output/2*/d1 | head -n 1)/autoware.log"
 
-    # 評価用イメージに自分のパッケージがインストールされているか確認（<package> はパッケージ名）
-    docker run --rm aichallenge-2025-eval ls /aichallenge/workspace/install | grep <package>
+    # 評価用イメージに自分のパッケージがインストールされているか確認（my_package は自分のパッケージ名に置き換える）
+    docker run --rm aichallenge-2025-eval ls /aichallenge/workspace/install | grep my_package
     ```
 
 ## 結果の出力

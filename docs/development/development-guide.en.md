@@ -64,8 +64,8 @@ make eval
     # Latest run log (launch errors show up here)
     less "$(ls -td output/2*/d1 | head -n 1)/autoware.log"
 
-    # Check whether your package is installed in the evaluation image (<package> is the package name)
-    docker run --rm aichallenge-2025-eval ls /aichallenge/workspace/install | grep <package>
+    # Check whether your package is installed in the evaluation image (replace my_package with your package name)
+    docker run --rm aichallenge-2025-eval ls /aichallenge/workspace/install | grep my_package
     ```
 
 ## Local Evaluation (Multiple Vehicles)
