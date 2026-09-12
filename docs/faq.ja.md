@@ -133,7 +133,7 @@
     1. center pointが死んだときにplanningが経路を生成できなくなる
     2. data associationでclusteringによる障害物検知結果が消される
 
-    そのため、perceptionの構成はautoware miniが理想的ですが、このあたりを理解してノードの足し引き、取捨選択をして実装することははなかなか難しいため、center pointが問題なく動くようにすることは重要になってくるかもしれません。
+    そのため、perceptionの構成はautoware miniが理想的ですが、このあたりを理解してノードの足し引き、取捨選択をして実装することはなかなか難しいため、center pointが問題なく動くようにすることは重要になってくるかもしれません。
     [参考](https://autowarefoundation.github.io/autoware.universe/main/perception/autoware_lidar_centerpoint/)
 
 ??? question "mpcのチューニングをしたいのですが，今回AWSIMで使用されているモデルパラメータ（遅れや時定数など）は公開されていないでしょうか．"
