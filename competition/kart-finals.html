@@ -1438,6 +1438,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vehicle-stop-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        車両が停止する主なケース
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#traction" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2710,6 +2721,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#vehicle-stop-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        車両が停止する主なケース
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#traction" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3040,6 +3062,13 @@
 <h3 id="v2x-delay">V2X の通信遅延</h3>
 <p>実車両は無線ネットワークを利用して位置情報を共有するため、遅延と欠損が発生します。実測では、平均 90 ms 程度の遅延が発生することがわかっています。
 遅延への対処はアルゴリズム側の責務です。受信位置の外挿、古いデータの破棄、遅延を前提とした余裕距離の確保を行うことを推奨します。</p>
+<h3 id="vehicle-stop-cases">車両が停止する主なケース</h3>
+<p>走行中、次のような場合に車両が停止することがあります。</p>
+<ul>
+<li>安全確保のため、運営側で車両を緊急停止させることがあります。</li>
+<li>一定時間インターネット接続が途絶した場合、安全機能により車両が自動的に停止します。</li>
+<li>車両が壁などに接触して進めない状態でアクセル指令を出し続けると、駆動モーターがストールし、車両が停止することがあります。壁に向かって走行し続けないよう、衝突やスタックを検出した場合は速やかにアクセル指令を解除してください。モーターがストールした場合は、レースに復帰することはできません。</li>
+</ul>
 <h3 id="traction">駆動力と速度</h3>
 <ul>
 <li>ステアを切った状態で発進するには、スロットルモーターに大きなトルクが必要です。ステアを最大まで切った状態では発進できないことがわかっているため、ステアを切ったまま発進しないことを推奨します。</li>
