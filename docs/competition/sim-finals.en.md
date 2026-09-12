@@ -109,7 +109,17 @@ Please check the rules [here](./sw-class.en.md#sw-division-sim-finals-rules).
 | ⑥ 18–20 min | Clean-up (deleting source code, etc.) |
 | ⑦ 20–30 min | Review of the run |
 
-![s2r_sim_flow](./images/s2r_sim_flow.png)
+![Sim to Real match flow: from the rehearsal table to the waiting seats, onto the stage, and back down after the match](./images/s2r_sim_flow.png)
+
+??? info "The diagram in text (the labels in the image are in Japanese)"
+    1. Gather at the rehearsal table **40 minutes before** your match. Staff (2) give a final briefing, set up AWSIM, and support the teams.
+    2. Move to the waiting area **20 minutes before**. A staff member guides the teams to the next-team waiting seats.
+    3. When the previous match ends, go up on stage.
+    4. Set-up, 5. match operation and 6. clean-up: each team's operator works at the organisers' fixed PC for teams A-D.
+    7. Match review: the team A-D presenters move to the whiteboard (during the match they stay near the podium).
+    8. After the match, leave the stage.
+
+    On stage there is a large screen, a whiteboard, the AWSIM PC and the streaming PC (2 staff: AWSIM and streaming operation, team support, records), and the MC and commentator at the podium.
 
 - Each match proceeds according to the timetable above.
 - Please gather at the rehearsal table at the back of the main hall by 40 minutes before the start time.
@@ -159,7 +169,16 @@ Please check the rules [here](./ai-class.en.md#ai-division-sim-finals-rules).
 | ④ 25–35 min | Race run |
 | ⑤ 35–40 min | Clean-up (moving PCs, etc.) |
 
-![e2e_sim_flow](./images/e2e_sim_flow.png)
+![End to End match flow: from the waiting seats onto the stage with your own PC, and back down after the match](./images/e2e_sim_flow.png)
+
+??? info "The diagram in text (the labels in the image are in Japanese)"
+    1. Move to the waiting area **40 minutes before** your match. A staff member guides the teams to the next-team waiting seats.
+    2. When the previous match ends, go up on stage.
+    3. a) Set-up: each team's operator sets up **their own PC** for teams A-D. b) Presentation: the team A-D presenters present from near the podium.
+    4. Match operation.
+    5. After the match, leave the stage.
+
+    On stage there is a large screen, the AWSIM PC and the streaming PC (2 staff: AWSIM and streaming operation, team support, records), and the MC at the podium.
 
 - Each match proceeds according to the timetable above.
 - Please gather at the waiting area at the front of the main hall by 40 minutes before the start time.
