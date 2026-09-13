@@ -13,7 +13,7 @@
 - 当時の計算能力は非常に限られていたため、たった3層の全結合型Neural Networkが使われていました。
 - 論文: [An Autonomous Land Vehicle In a Neural Network](https://proceedings.neurips.cc/paper/1988/file/812b4ba287f5ee0bc9d43bbf5bbe87fb-Paper.pdf)
 
-![ALVINN](https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif)
+![ALVINN のネットワーク構成図。カメラとレンジファインダの入力層から中間層を経て、進行方向を表す出力ユニットへつながる3層の全結合ネットワーク](https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif)
 
 引用元: [https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif](https://jmvidal.cse.sc.edu/talks/ann/alvinn2.gif)
 
@@ -24,7 +24,7 @@
 - 論文: [End to End Learning for Self-Driving Cars](https://arxiv.org/abs/1604.07316)
 - 本リポジトリでの学習・デプロイ手順: [PilotNet](pilot_net.md)
 
-![DAVE-2 Architecture](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
+![DAVE-2 のネットワーク構成図。カメラ画像を入力とし、5層のconvolution layerと3層の全結合層を経てステアリング角を出力するCNN](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
 
 引用元: [https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png](https://figures.semanticscholar.org/0e3cc46583217ec81e87045a4f9ae3478a008227/3-Figure2-1.png)
 
@@ -37,11 +37,11 @@
 - 論文: [Planning-oriented Autonomous Driving](https://arxiv.org/abs/2212.10156)
 - [code](https://github.com/OpenDriveLab/UniAD)
 
-![UniAD](https://opendrivelab.com/assets/publication/uniad.jpg)
+![UniAD の全体構成図。複数カメラ画像からBEVFormerでBEV特徴量を取得し、知覚・予測・計画の各モジュールをQuery baseで接続してtrajectoryを出力する](https://opendrivelab.com/assets/publication/uniad.jpg)
 
 引用元: [https://opendrivelab.com/assets/publication/uniad.jpg](https://opendrivelab.com/assets/publication/uniad.jpg)
 
-![UniAD-poster](https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true)
+![CVPR2023でのUniAD発表ポスター。手法概要、実験結果、性能比較表がまとめられている](https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true)
 
 引用元: [https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true](https://github.com/OpenDriveLab/UniAD/blob/v2.0/sources/cvpr23_uniad_poster.png?raw=true)
 
@@ -52,7 +52,7 @@
 - 論文: [VAD: Vectorized Scene Representation for Efficient Autonomous Driving](https://arxiv.org/abs/2303.12077)
 - [code](https://github.com/hustvl/VAD)
 
-![VAD Architecture](https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png)
+![VAD のネットワーク構成図。UniADと同様にBEV特徴量とQuery baseの構造を用いるが、Raster mapではなくVector mapを使い高速化している](https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png)
 
 引用元: [https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png](https://raw.githubusercontent.com/hustvl/VAD/main/assets/arch.png)
 
@@ -77,7 +77,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - [code](https://github.com/CSL-KU/TinyLidarNet)
 - 本リポジトリでの学習・デプロイ手順: [TinyLiDARNet](tiny_lidar_net.md)
 
-![TinyLidarNet Architecture](https://github.com/CSL-KU/TinyLidarNet/raw/main/Images/TinyLidarNet_Architecture.jpg)
+![TinyLidarNet のネットワーク構成図。長さ1081の2D LiDAR距離配列を入力し、5層のconvolutionと4層のFully-connectedを経て速度とステアリング角を出力する](https://github.com/CSL-KU/TinyLidarNet/raw/main/Images/TinyLidarNet_Architecture.jpg)
 
 引用元: [https://github.com/CSL-KU/TinyLidarNet](https://github.com/CSL-KU/TinyLidarNet)
 
@@ -114,7 +114,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 論文: [OmniDrive: A Holistic Vision-Language Dataset for Autonomous Driving with Counterfactual Reasoning](https://arxiv.org/abs/2405.01533)
 - [code](https://github.com/NVlabs/OmniDrive)
 
-![OmniDrive Poster](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686)
+![CVPR2025でのOmniDrive発表ポスター。counterfactual reasoning用データセットの構築方法と評価結果がまとめられている](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686)
 
 引用元: [https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/34693.png?t=1748858551.4455686)
 
@@ -124,7 +124,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 「VLMが2次元画像でしか事前学習しておらず、Motion Planningでの性能が低い」という課題感から、UniAD, VADのようなBEV特徴量を使った手法から着想を得て、BEV特徴量を使用したVLM modelを提案しています。
 - 論文: [S4-Driver: Scalable Self-Supervised Driving Multimodal Large Language Modelwith Spatio-Temporal Visual Representation](https://arxiv.org/abs/2505.24139)
 
-![S4-Driver Poster](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746)
+![CVPR2025でのS4-Driver発表ポスター。BEV特徴量を用いたVLM構成と、Motion Planning性能の評価結果がまとめられている](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746)
 
 引用元: [https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746](https://cvpr.thecvf.com/media/PosterPDFs/CVPR%202025/32619.png?t=1748995327.7679746)
 
@@ -139,7 +139,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 論文: [DriveVLM: The Convergence of Autonomous Driving and Large Vision-Language Models](https://arxiv.org/abs/2402.12289)
 - [youtube link](https://www.youtube-nocookie.com/embed/mt-SdHTTZzA)
 
-![DriveVLM Pipeline](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
+![DriveVLM のパイプライン図。VLMによる遅い推論経路とVADのようなmodelによる速い推論経路を組み合わせたFast&Slow構成](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
 
 引用元: [https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png](https://tsinghua-mars-lab.github.io/DriveVLM/images/pipeline.png)
 
@@ -150,7 +150,7 @@ Sample ROS Nodeでは`VAD-tiny`と呼ばれるmodelを使用しています。
 - 論文: [Senna: Bridging Large Vision-Language Models and End-to-End Autonomous Driving](https://arxiv.org/abs/2410.22313)
 - [code](https://github.com/hustvl/Senna)
 
-![Senna](https://github.com/hustvl/Senna/raw/main/assets/teaser.png)
+![Senna の概要図。VLMがhigh levelなcommandを決定し、その出力をVADのようなBEV特徴量ベースのPlannerが受け取ってtrajectoryを生成する](https://github.com/hustvl/Senna/raw/main/assets/teaser.png)
 
 引用元: [https://github.com/hustvl/Senna/raw/main/assets/teaser.png](https://github.com/hustvl/Senna/raw/main/assets/teaser.png)
 

@@ -1,6 +1,6 @@
 # Development Ideas
 
-![Where-to-start](./images/where-to-start.drawio.svg)
+![Mountain diagram: a high-expertise competitive zone near the peak and a collaborative zone below the dashed line (Community, AutowarePractice, ROS 2), with the reader's current position marked partway up the slope](./images/where-to-start.drawio.svg)
 
 The AI Challenge leverages open-source software. By utilizing the code and web platform provided by the organizers, you can skip the initial development phase and immediately start developing in line with the competition theme.
 This approach has the significant advantage of avoiding "reinventing the wheel." Additionally, it allows anyone to easily participate in the competition and enables the competition to be run with consistent evaluation criteria.

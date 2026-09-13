@@ -9,7 +9,7 @@
 ros2 launch autoware_practice_launch practice.launch.xml problem:=vehicle_forward
 ```
 
-![vehicle-forward-judging](./images/vehicle-forward-judging.png)
+![Rviz画面。判定パネルが黄色で JUDGING と表示され、車両を表す水色の四角が緑色のゴールエリアの手前で静止している](./images/vehicle-forward-judging.png)
 
 車両を動かすためのインターフェースとして `/control/command/control_cmd` が定義されています。
 これは AckermannControlCommand というメッセージで、各フィールドは以下のような意味を持っています。
@@ -43,7 +43,7 @@ colcon build --symlink-install --packages-select autoware_practice_course
 ros2 run autoware_practice_course vehicle_forward
 ```
 
-![vehicle-forward-success](./images/vehicle-forward-success.png)
+![Rviz画面。判定パネルが緑色で SUCCESS と表示され、車両が緑色のゴールエリアに重なっている](./images/vehicle-forward-success.png)
 
 ## 01-02. 車両の旋回
 
@@ -53,7 +53,7 @@ ros2 run autoware_practice_course vehicle_forward
 ros2 launch autoware_practice_launch practice.launch.xml problem:=vehicle_turning
 ```
 
-![vehicle-turning-judging](./images/vehicle-turning-judging.png)
+![Rviz画面。判定パネルが黄色で JUDGING と表示され、車両が2本の緑色レーンの間で旋回前の直立姿勢のまま静止している](./images/vehicle-turning-judging.png)
 
 先程利用したサンプルのデータを変更して、車両が旋回するようにします。
 
@@ -72,7 +72,7 @@ colcon build --symlink-install --packages-select autoware_practice_course
 ros2 run autoware_practice_course vehicle_forward
 ```
 
-![vehicle-turning-success](./images/vehicle-turning-success.png)
+![Rviz画面。判定パネルが緑色で SUCCESS と表示され、車両が斜めに傾いた姿勢で2本の緑色レーンの間に収まっている（旋回できたことを示す）](./images/vehicle-turning-success.png)
 
 ## 01-03. 車両の後退
 
@@ -82,7 +82,7 @@ ros2 run autoware_practice_course vehicle_forward
 ros2 launch autoware_practice_launch practice.launch.xml problem:=vehicle_backward
 ```
 
-![vehicle-backward-judging](./images/vehicle-backward-judging.png)
+![Rviz画面。判定パネルが黄色で JUDGING と表示され、2本の赤いレーンの間で、車両（水色の四角）が後方の緑色のゴールラインにまだ届かない位置に静止している](./images/vehicle-backward-judging.png)
 
 以下に後退するためのコマンドを送信するノードのサンプルを用意しました。直進するためのコードと異なり、ギアを制御するコードが含まれています。サンプルでは停止保持するコマンドを送信し続けるようになっているので、データを変更して車両が後退するようにします。
 ギアがREVERSEのときは、目標加速度を正、目標速度を負にします。
@@ -104,4 +104,4 @@ colcon build --symlink-install --packages-select autoware_practice_course
 ros2 run autoware_practice_course vehicle_backward
 ```
 
-![vehicle-backward-success](./images/vehicle-backward-success.png)
+![Rviz画面。判定パネルが緑色で SUCCESS と表示され、車両が後退して緑色のゴールエリアに重なっている](./images/vehicle-backward-success.png)

@@ -13,7 +13,7 @@
 本来Autowareでは以下のノードダイアグラムのように、GNSS、Lidar、IMUなどの情報をもとにekf_localizerが`/localization/kinematic_state`を計算します。
 
 <div align="center">
-  <img src="./images/localization_node.png" alt="Alt Text">
+  <img src="./images/localization_node.png" alt="Autowareのlocalizerノード構成図。radar/lidar/GNSS/IMUの各センシングパイプラインがpose_initializerやndt_scan_matcher、ekf_localizerを経て/localization/kinematic_stateを出力する流れを示す">
   <br>
   <em>Autowareのlocalizer周りの<a href="https://app.diagrams.net/?lightbox=1#Uhttps%3A%2F%2Fautowarefoundation.github.io%2Fautoware-documentation%2Fmain%2Fdesign%2Fautoware-architecture%2Fnode-diagram%2Foverall-node-diagram-autoware-universe.drawio.svg#%7B%22pageId%22%3A%22T6t2FfeAp1iw48vGkmOz%22%7D">ノードダイアグラム</a></em>
 </div>
@@ -25,7 +25,7 @@
 <br>
 
 <div align="center">
-  <img src="./images/practice_localization_node.png" alt="Alt Text">
+  <img src="./images/practice_localization_node.png" alt="dummy_localizerのノード図。simulatorが/simulator/ground_truth/poseと/twistを配信し、dummy_localizerがそれを受けて/localization/kinematic_stateを出力する">
   <br>
   <em>autoware-practiceのdummy_localizer周りのノードダイアグラム</em>
 </div>
@@ -193,13 +193,13 @@ ros2 run plotjuggler plotjuggler
 
 左上のDataをクリックし、先程保存したautoware-practice/velocity.bag/metadata.yamlを選択し右上のOpenをクリックします。
 
-![plotjuggler_1](./images/plotjuggler_1.png)
+![PlotJugglerの画面。左側のDataボタンをクリックし、右側のファイル選択ダイアログでvelocity.bagのmetadata.yamlを選択してOpenを押す操作を示す](./images/plotjuggler_1.png)
 
 `/localization/kinematic_stat`をクリックし右下のOKをクリックします。
 
 左下のTimeseries.Listからlocalization > kinematic_state > twist > twist > linear > x を選択し、右側にドラッグ＆ドロップをすると速度の時間推移を表すグラフを表示することができます。
 
-![plotjuggler_2](./images/plotjuggler_2.png)
+![PlotJugglerのTimeseries Listでlocalization/kinematic_state/twist/twist/linear/xを選択し、右側のグラフエリアへドラッグ&ドロップする操作を示す](./images/plotjuggler_2.png)
 
 最後に以下の比例ゲインk_pを0.5から5.0に修正して、車両速度の収束速度を比べてみましょう。
 
@@ -211,13 +211,13 @@ ros2 run autoware_practice_course p_controller --ros-args -p kp:=5.0 -p target_v
 
 今回は比例ゲインKを大きくすることで、早く目標速度に収束することがわかります（左: k_p=0.5, 右: k_p=5.0）。
 
-![p_controller_plotjuggler](./images/p_controller_plotjuggler.png)
+![速度の時間推移を示す2つのグラフ。左がk_p=0.5で目標速度1.0に緩やかに漸近し、右がk_p=5.0でほぼ即座に目標速度へ収束している様子](./images/p_controller_plotjuggler.png)
 
 ## 02-03. ゴールで停止するための速度計画を行う
 
 図のような、停止状態から50m地点まで加速し、50m地点を過ぎたら減速し100m地点で停止するような速度計画を行うことを考えます。
 
-![alt text](./images/2-3/velocity_planning_image.jpg)
+![速度と位置の関係を示すグラフ。0mから50m地点まで速度10m/sまで直線的に加速し、50mを過ぎると100m地点で速度0になるよう直線的に減速する三角形の速度プロファイル](./images/2-3/velocity_planning_image.jpg)
 
 速度計画を行うために車両から目標地点までの間に1mおきに中継地点となるウェイポイントを設定します。各ウェイポイントに目標速度を設定することで速度計画を行います。
 
@@ -233,7 +233,7 @@ ros2 run autoware_practice_course p_controller --ros-args -p kp:=5.0 -p target_v
 <br>
 
 <div align="center">
-  <img src="./images/2-3/node_diagram.png" alt="Alt Text">
+  <img src="./images/2-3/node_diagram.png" alt="ノード図。dummy_localizerが/localization/kinematic_stateを、trajectory_loaderが/planning/scenario_planning/trajectoryをlongitudinal_controllerへ送り、そこから/control/command/control_cmdを出力する">
   <br>
   <em>autoware-practiceのtrajectory_loader周りのノードダイアグラム</em>
 </div>
@@ -273,23 +273,23 @@ ros2 run plotjuggler plotjuggler
 
 PlotJugglerが起動したらStartボタンを押します。
 
-![alt text](./images/2-3/PlotJuggler1.png)
+![PlotJugglerの画面。左上のStreamingパネルにあるStartボタンを押してROS2トピックの購読を開始する操作を示す](./images/2-3/PlotJuggler1.png)
 
 /localization/kinematic_stateを選択し、OKを押します。
 
-![alt text](./images/2-3/PlotJuggler2.png)
+![PlotJugglerのSelect ROS messagesダイアログ。トピック一覧から/localization/kinematic_state（nav_msgs/msg/Odometry）を選択してOKを押す操作を示す](./images/2-3/PlotJuggler2.png)
 
 `/localization/kinematic_state/pose/pose/position/x`と`/localization/kinematic_state/twist/twist/linear/x`を複数選択して**右クリック**でドラッグ＆ドロップすることで、位置と速度の関係のグラフを見ることができます。
 
-![alt text](./images/2-3/PlotJuggler3.png)
+![PlotJugglerのTimeseries Listでposition/xとtwist/linear/xを複数選択し、右クリックでグラフエリアへドラッグ&ドロップする操作を示す](./images/2-3/PlotJuggler3.png)
 
 初めは車両の位置と速度がどちらも0なので以下の図のようになります。
 
-![alt text](./images/2-3/PlotJuggler4.png)
+![PlotJugglerのXY Plot。車両の位置と速度がどちらも0のため原点付近に点が1つだけ表示された状態](./images/2-3/PlotJuggler4.png)
 
 長時間記録するためにBufferを100に変更します。
 
-![alt text](./images/2-3/PlotJuggler6.png)
+![PlotJugglerのStreamingパネルでBufferの値を100に変更する操作を示す](./images/2-3/PlotJuggler6.png)
 
 次にtrajectory_loaderノードとlongitudinal_controllerノードをそれぞれ別のターミナルで起動します。
 
@@ -302,7 +302,7 @@ ros2 run autoware_practice_course longitudinal_controller --ros-args -p kp:=5.0
 ```
 
 それぞれのノードが起動するとシミュレーター上で車両が動き始め、以下のようなグラフが得られます。
-![alt text](./images/2-3/PlotJuggler5.png)
+![PlotJugglerのXY Plot。位置xを横軸、速度を縦軸に取り、0mから約50mまで速度10m/sに向けて上昇し、以降100m付近で0まで下降する山型の軌跡](./images/2-3/PlotJuggler5.png)
 
 グラフより、大体50m付近で10m/sに達し100m付近で停止できていることがわかります。
 
@@ -311,7 +311,7 @@ ros2 run autoware_practice_course longitudinal_controller --ros-args -p kp:=5.0
 図のような、直進・90度旋回・直進・90度旋回・直進となるような経路に追従することを考えます。
 
 <div align="center">
-  <img src="./images/2-4/trajectory_zigzag.png" alt="Alt Text">
+  <img src="./images/2-4/trajectory_zigzag.png" alt="目標経路の図。車両位置からx方向に30m直進した後y方向に40m進み、さらにx方向に30m直進してジグザグ（クランク状）の経路を描く">
   <br>
   <em>今回の目標経路</em>
 </div>
@@ -325,7 +325,7 @@ ros2 run autoware_practice_course longitudinal_controller --ros-args -p kp:=5.0
 <br>
 
 <div align="center">
-  <img src="./images/2-4/node_diagram.png" alt="Alt Text">
+  <img src="./images/2-4/node_diagram.png" alt="ノード図。dummy_localizerとtrajectory_loaderの出力をtrajectory_follower内のlongitudinal_controllerとlateral_controllerが受け取り、/control/command/control_cmdをsimulatorへ送る">
   <br>
   <em>autoware-practiceのtrajectory_follower周りのノードダイアグラム</em>
 </div>
@@ -350,7 +350,7 @@ $$ \alpha: 現在の車両の向きとルックアヘッドポイントへの方
 $$ d: ルックアヘッド距離 $$
 
 <div align="center">
-  <img src="./images/2-4/pure_pursuit.png" alt="Pure Pursuit">
+  <img src="./images/2-4/pure_pursuit.png" alt="pure pursuitの概念図。車両から目標経路上のルックアヘッドポイントまでの距離dと、車両の向きとの角度差αを示し、そこから曲線的な走行軌跡を描く">
   <br>
   <em>pure pursuitの基本動作</em>
 </div>
@@ -371,11 +371,11 @@ ros2 run plotjuggler plotjuggler
 
 PlotJuggler上で`/localization/kinematic_state/pose/pose/position/x`と`/localization/kinematic_state/pose/pose/position/y`を複数選択し右クリックでドラッグ＆ドロップします。
 
-![alt text](./images/2-4/PlotJuggler1.png)
+![PlotJugglerのTimeseries Listでposition/xとposition/yを複数選択した状態を示す](./images/2-4/PlotJuggler1.png)
 
 rvizと軸の向きを合わせます。ドラッグ＆ドロップした後に表示されるポップアップでSwapを選択して軸を入れ替えてOKを選択します。その後グラフ上で右クリックしてFlip Horizontal Axisを選択して横軸を反転させます。
 
-![alt text](./images/2-4/PlotJuggler2.png)
+![PlotJugglerのNex XY Curveダイアログ。XにY座標、YにX座標を指定するSwap操作でrvizと軸の向きを合わせる設定を示す](./images/2-4/PlotJuggler2.png)
 
 PlotJugglerの設定ができたら、別々のターミナルで以下のコマンドを実行してtrajectory_loaderノードとtrajectory_followerノードを起動します。
 
@@ -389,7 +389,7 @@ ros2 run autoware_practice_course trajectory_follower --ros-args -p kp:=5.0 -p l
 
 適切に起動できると設定された経路に追従できていることがPlotJuggler上でわかります。
 
-![alt text](./images/2-4/PlotJuggler3.png)
+![PlotJugglerのXY Plot。車両がクランク状の目標経路に沿って直進、旋回、直進と正しく追従できている軌跡](./images/2-4/PlotJuggler3.png)
 
 <script type="text/javascript" asyn
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/tex-mml-chtml.js">

@@ -52,7 +52,7 @@ End to End AI部門では予選から決勝まで以下のように進みます�
 - プレゼン書類と走行動画を提出していただき、審査員による採点を行います。
 - [提出フォーム](https://forms.office.com/pages/responsepage.aspx?id=NVLCok7DvEuOMQxVDG-yrJTP427xWZBKkcBQTu6n-vxUMTU5SkpIRFQ3UDRWUk9WNTBLVjUwR0lUNy4u&route=shorturl)
 
-![e2e_submit](./images/e2e_submit.png)
+![End to End AI部門予選提出の告知画像。開発、取り組みスライドと走行動画の提出、メールでの結果通知の3ステップと、スライドに記載すべき5項目（走行データ、回避・停止対応、モデル構成、学習データ・評価、独自性）を示す](./images/e2e_submit.png)
 
 ## End to End部門 SIM決勝 { #semifinal }
 
@@ -70,7 +70,7 @@ End to End AI部門では予選から決勝まで以下のように進みます�
     - 走行開始位置は、選抜戦での順位によって決まります。
     - レースの完走順のみによって、最終的な順位が決まります。
 
-![e2e_tournament](./images/e2e_sim_tournament.png)
+![トーナメント構成図。クラス混在16チームが4チームずつの選抜戦（第1〜4試合）に分かれ、提出資料・プレゼン・試合結果の総合点で各試合から決勝戦に進出するチームが決まる様子](./images/e2e_sim_tournament.png)
 
 ### ルール
 

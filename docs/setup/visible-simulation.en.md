@@ -21,7 +21,7 @@ reboot
 nvidia-smi
 ```
 
-![nvidia-smi](./images/nvidia-smi.png)
+![Terminal output of the nvidia-smi command showing the driver version, CUDA version, GPU utilization, and a table of processes using the GPU](./images/nvidia-smi.png)
 
 ## Installing NVIDIA Container Toolkit
 
@@ -82,7 +82,7 @@ sudo apt install -y libvulkan1
 
 3. Change the permissions as shown in the diagram.
 
-   ![Permission change example](./images/awsim-permmision.png)
+   ![File Properties dialog on the Permissions tab for the AWSIM executable, with the Execute checkbox "Allow executing file as program" checked](./images/awsim-permmision.png)
 
 With this, the environment setup is complete!
 
@@ -129,6 +129,6 @@ Execute the following command:
 
 If the following screen appears, it was successful.
 
-![AWSIM-Autoware](./images/awsim-and-autoware.png)
+![AWSIM driving view of the kart on a track next to an RViz window with the planned green trajectory over the course map, speedometer reading about 13 km/h](./images/awsim-and-autoware.png)
 
 This concludes the environment setup!

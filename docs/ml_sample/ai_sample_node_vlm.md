@@ -65,7 +65,7 @@ Trajectoryは、点列(waypoints)の形式で表現されています。
 
 というような情報が格納されています。この点を並べたものをTrajectoryとして使用しています。
 
-![traj](../assets/trajectory.png)
+![Trajectoryの構造図。複数のTrajectory Pointが並び、それぞれtime_from_startとしてt=0.0からt=5.0秒までのタイムスタンプが対応付けられている](../assets/trajectory.png)
 
 ## 自作のPlannerを結合するには
 

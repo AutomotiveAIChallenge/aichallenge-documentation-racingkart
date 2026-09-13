@@ -19,7 +19,7 @@ python vlm_planner_node.py --ros-args -p output_topic:="/planning/ml_planner/aut
   - scaleは0.02程度に変更しましょう。(Geminiのfree planが5秒に1回しか推論できないため。)
     - VLMPlannerは、Geminiが利用できない時は過去のtrajectoryをそのまま使用します。簡単な実験をしてみたい場合、直進区間では、scaleを0.20程度にしても構いません。
 
-![camera_awsim_after](../assets/camera_awsim_after.png)
+![AWSIMの走行画面。左上にカメラ画像が表示され、右上のUse Imageボタンが有効になっている状態](../assets/camera_awsim_after.png)
 
 ## 実行結果を確認
 

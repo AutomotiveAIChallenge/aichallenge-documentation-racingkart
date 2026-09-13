@@ -51,8 +51,8 @@ aichallenge-racingkart/
 
 ### 開発環境（docker-dev）
 
-![dev](./images/docker/dev.drawio.svg)
+![開発環境の構成図。ホストの aichallenge フォルダ（aichallenge_submit、aichallenge_system、main.bash、simulator）と output フォルダが docker コンテナ aichallenge-dev 内の /aichallenge と /output にマウントされ、GitHub/Google Drive から clone・download する様子を示す](./images/docker/dev.drawio.svg)
 
 ### 評価環境（docker-eval）
 
-![eval](./images/docker/eval.drawio.svg)
+![評価環境の構成図。ホストの aichallenge フォルダと submit フォルダの内容が docker コンテナ aichallenge-eval 内の /aichallenge（aichallenge_submit、aichallenge_system、main.bash、simulator）と /autoware にコピー・マウントされる様子を示す](./images/docker/eval.drawio.svg)
