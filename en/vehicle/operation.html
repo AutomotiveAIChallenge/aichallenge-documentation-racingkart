@@ -1514,6 +1514,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2-1. オペレーションブース到着時の状態">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 つのペインの見方
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1532,6 +1549,17 @@
     <span class="md-ellipsis">
       
         2-3. ゲームコントローラによる遠隔手動操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-tui-autoware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-4. 車両操作 TUI の見方と Autoware の再起動
       
     </span>
   </a>
@@ -2662,6 +2690,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2-1. オペレーションブース到着時の状態">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 つのペインの見方
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -2680,6 +2725,17 @@
     <span class="md-ellipsis">
       
         2-3. ゲームコントローラによる遠隔手動操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4-tui-autoware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-4. 車両操作 TUI の見方と Autoware の再起動
       
     </span>
   </a>
@@ -2805,10 +2861,6 @@
 </thead>
 <tbody>
 <tr>
-<td>起動</td>
-<td>運営が車両 PC 上で <code>make tui</code> を実行すると、autoware コンテナ内で提出物の <code>aichallenge_submit/tui.bash</code> が実行されます。このスクリプトを提出物に含めてください</td>
-</tr>
-<tr>
 <td>機能</td>
 <td>1-2 で dynamic reconfigure 対応したパラメータを、走行中に確認・変更できること</td>
 </tr>
@@ -2818,7 +2870,6 @@
 </tr>
 </tbody>
 </table>
-<p>起動方法を運営側で統一するのは、参加チームがオペレーションブースに着いた時点で TUI を起動・表示済みにしておくためです。<code>make tui</code> は tmux 上で TUI を実行するため、SSH 接続が切れても TUI は残り、再接続後に同じ画面へ戻れます。</p>
 <h3 id="1-4">1-4. 安全ゲートのクリア（強く推奨）</h3>
 <p><a href="../competition/sw-class.ja.md#safety-gate">安全ゲート</a>（障害物停止・NPC 追い越し・車線維持）のクリアは必須ではありませんが、強く推奨します。実機決勝では反則回数が順位に直結し、衝突や停止はそのまま反則になるためです。実行方法は<a href="../development/development-guide.ja.md#safety-gate">安全ゲートシナリオの実行</a>を参照してください。</p>
 <h3 id="1-5">1-5. 実車両特有の挙動への対処</h3>
@@ -2829,11 +2880,45 @@
 <ol>
 <li>提出されたコードが車両 PC 上でビルド済み</li>
 <li>Autoware・driver・zenoh が起動済み（rosbag は運営が記録します。参加チームへの提供はありません）</li>
-<li>ブースの PC から車両 PC へ SSH 接続済みで、その端末で <code>make tui</code> によりチューニング用 TUI が起動・表示された状態</li>
+<li>ブースの PC から車両 PC へ SSH 接続済み</li>
 </ol>
 <p>参加チームはこの状態から操作を引き継ぎます。車両 PC 上の操作はすべてこの SSH 接続経由で行います。</p>
+<h4 id="4">4 つのペインの見方</h4>
+<p>操作したいペインをマウスでクリックしてから、キー入力を行います。</p>
+<p><img alt="Terminatorの4ペイン構成（左上：車両TUI、左下：監視、右上：運営TUI、右下：GUI tools）" src="../../vehicle/images/terminator-pane-layout.png" /></p>
+<table>
+<thead>
+<tr>
+<th>番号・位置</th>
+<th>ペイン</th>
+<th>用途と操作する人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 左上</td>
+<td><code>tui</code>（車両 TUI）</td>
+<td>参加者が Autoware の状態を確認し、必要な場合に停止・起動します</td>
+</tr>
+<tr>
+<td>② 左下</td>
+<td><code>monitor</code>（監視）</td>
+<td>車両 PC 上の Autoware コンテナ内の端末です。参加者が ROS 2 コマンドなどを実行して車両に指示を出すことができます</td>
+</tr>
+<tr>
+<td>③ 右上</td>
+<td><code>staff</code>（運営 TUI）</td>
+<td>運営が driver・zenoh・rosbag を管理します。参加者はこのペインを操作しません</td>
+</tr>
+<tr>
+<td>④ 右下</td>
+<td><code>gui</code>（GUI tools）</td>
+<td>手元のブース PC で GUI ツールを起動する端末です。RViz やゲームコントローラの通信に使います。参加者はこのペインを操作しません</td>
+</tr>
+</tbody>
+</table>
 <h3 id="2-2-tui">2-2. TUI でのチューニング</h3>
-<p>表示されている TUI からパラメータを変更します。変更は走行中でも反映されます。走行の様子は RViz でも確認できます（<a href="remote.html">遠隔操作</a>）。</p>
+<p>走行の様子は RViz でも確認できます（<a href="remote.html">遠隔操作</a>）。</p>
 <p>チューニングに使える時間は試合の進行によって異なります。準決勝には自由走行（10〜25分）があり、ここが主なチューニング時間です。決勝は待機時間が短く、パラメータをじっくり詰める余裕はありません（<a href="../competition/kart-finals.html#match-schedule">試合スケジュール</a>）。</p>
 <div class="admonition warning">
 <p class="admonition-title">操作前に運営へ申告してください</p>
@@ -2846,6 +2931,95 @@
 <li>スタックした場合や、車両が予期せぬ挙動をした場合の復帰は参加チーム自身で行います。運営によるサポート（遠隔操作・物理的介入）はありません。</li>
 <li>ただし、<strong>手動運転を多用することは禁止</strong>です。また、運営が危険と判断した場合は運営側で緊急停止・車両移動を行うことがあります。</li>
 </ul>
+<h3 id="2-4-tui-autoware">2-4. 車両操作 TUI の見方と Autoware の再起動</h3>
+<p>①の車両操作 TUI では、上部の <code>running:</code> に稼働中のサービス、<code>stopped:</code> に停止中のサービスが表示されます。<code>autoware</code> の状態をここで確認できます。</p>
+<p><img alt="車両操作TUIの表示例（サービスの稼働状態、操作メニュー、実行ログ）" src="../../vehicle/images/vehicle-operation-tui.png" /></p>
+<table>
+<thead>
+<tr>
+<th>キー</th>
+<th>操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>↑ / ↓</td>
+<td>実行する項目を選択します</td>
+</tr>
+<tr>
+<td>Enter</td>
+<td>選択した項目を実行します</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>車両操作 TUI を終了します。Autoware を停止する操作ではありません</td>
+</tr>
+</tbody>
+</table>
+<p>項目の状態は <code>OK</code>（完了）、<code>NG</code>（失敗）、<code>&gt;&gt;</code>（実行中）、<code>-</code>（未完了）、<code>?</code>（前提の項目が未完了）で表示されます。</p>
+<table>
+<thead>
+<tr>
+<th>番号・項目</th>
+<th>用途</th>
+<th>当日の扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 <code>check preflight</code></td>
+<td>起動前の環境確認</td>
+<td>新しく TUI を起動した際にも自動実行されます。<code>NG</code> が出ている場合は運営に伝えます</td>
+</tr>
+<tr>
+<td>2 <code>extract</code></td>
+<td>提出物の展開</td>
+<td>運営が事前に済ませます。走行枠中に実行しません</td>
+</tr>
+<tr>
+<td>3 <code>build</code></td>
+<td>提出物のビルド</td>
+<td>運営が事前に済ませます。走行枠中に実行しません</td>
+</tr>
+<tr>
+<td>4 <code>autoware-vehicle</code></td>
+<td>Autoware の起動</td>
+<td>再起動時に使います</td>
+</tr>
+<tr>
+<td>5 <code>check runtime</code></td>
+<td>起動後の環境確認</td>
+<td>Autowareを再起動した際には実行します</td>
+</tr>
+<tr>
+<td>6 <code>autoware-vehicle down</code></td>
+<td>Autoware の停止</td>
+<td>再起動時に使います</td>
+</tr>
+<tr>
+<td>7 <code>cleanup</code></td>
+<td>提出物とビルド成果物の片付け</td>
+<td>コードとビルド成果物を消すため、参加者は実行しません</td>
+</tr>
+</tbody>
+</table>
+<p>Autoware を再起動する場合は、次の順で操作します。</p>
+<ol>
+<li>運営に再起動することを申告し、車両を安全に停止させます。</li>
+<li>↑ / ↓ で <code>6 autoware-vehicle down</code> を選んで Enter を押します。</li>
+<li>停止処理が終了し、<code>stopped:</code> に <code>autoware</code> が表示されることを確認します。</li>
+<li><code>4 autoware-vehicle</code> を選んで Enter を押します。</li>
+<li><code>running:</code> に <code>autoware</code> が表示されることを確認します。</li>
+<li><code>5 check runtime</code> を選んで Enter を押し、<code>OK</code> と表示されることを確認します。<code>NG</code> の場合は走行を再開せず、表示された失敗内容を運営に伝えます。</li>
+<li>RViz で自己位置や車両の状態を確認してから走行を再開します。</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">再起動後のパラメータ確認（推奨）</p>
+<p>Autoware を再起動すると、走行中に変更したパラメータが起動時の初期値に戻る場合があります。走行を再開する前に、②の監視端末で <code>ros2 param get</code> を使い、変更したパラメータの現在値が意図した値になっていることを確認することを推奨します。異なる場合は変更値を再設定し、再度確認してください。</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>param<span class="w"> </span>get<span class="w"> </span>/ノード名<span class="w"> </span>パラメータ名
+</code></pre></div>
+<p><code>/ノード名</code> と <code>パラメータ名</code> は、確認する対象に置き換えてください。</p>
+</div>
 
 
 
