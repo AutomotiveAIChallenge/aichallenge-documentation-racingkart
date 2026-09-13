@@ -35,6 +35,7 @@ extra:
 nav:
   - index: index.md
   - getting-started.md
+  - international.md
   - setup:
       - setup/requirements.md
       - setup/introduction.md
@@ -87,6 +88,7 @@ nav:
       - ml_sample/algorithms.md
       - ml_sample/faq.md
   - FAQ: faq.md
+  - Glossary: glossary.md
   - Community: community.md
   - Contributing: contributing.md
 
