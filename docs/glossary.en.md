@@ -15,8 +15,8 @@ Terms used in the Japanese pages, rules and Slack, with the English used on this
 | 周回数 | Lap count | Number of laps completed |
 | 反則 | Foul | A rule violation. In the real-vehicle final, fewer fouls rank higher ([rules](./competition/sw-class.en.md)) |
 | ペナルティ | Penalty | A time-limited restriction for a violation, such as a speed cap |
-| オーバーテイクレーン | Overtaking lane | The overtaking rule used in the finals ([rules](./competition/sw-class.en.md)) |
-| BLOCK | BLOCK | The overtaking-lane violation penalty: 20 seconds limited to 5 km/h, shown on the HUD |
+| オーバーテイクレーン | Overtaking lane | The overtaking rule used only in the Sim to Real SW simulation final (not in the End to End division or the real-vehicle final; [rules](./competition/sw-class.en.md)) |
+| BLOCK | BLOCK | In the Sim to Real SW simulation final, the overtaking-lane violation penalty: 20 seconds limited to 5 km/h, shown on the HUD |
 | ハンディキャップ | Handicap | In the simulator only, acceleration and speed may be handicapped by race position |
 | マッチメイキング | Matchmaking | When submitting, how far above your own rank you choose to challenge |
 | レート・レーティング | Rating | Goes up with wins and down with losses; the ranking is by rating |

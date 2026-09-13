@@ -15,8 +15,8 @@
 | 周回数 | Lap count | 完了した周回の数 |
 | 反則 | Foul | ルール違反。実機決勝では反則回数が少ないほど上位（[ルール](./competition/sw-class.ja.md)） |
 | ペナルティ | Penalty | 違反に対する時間つきの制限（速度制限など） |
-| オーバーテイクレーン | Overtaking lane | 決勝で使う追い越しのルール（[ルール](./competition/sw-class.ja.md)） |
-| BLOCK | BLOCK | オーバーテイクレーン違反のペナルティ。20 秒間 5 km/h の速度制限、HUD に表示 |
+| オーバーテイクレーン | Overtaking lane | Sim to Real SW部門の SIM決勝でのみ使う追い越しのルール（End to End部門・実機決勝では使わない。[ルール](./competition/sw-class.ja.md)） |
+| BLOCK | BLOCK | Sim to Real SW部門の SIM決勝で、オーバーテイクレーン違反に科されるペナルティ。20 秒間 5 km/h の速度制限、HUD に表示 |
 | ハンディキャップ | Handicap | SIM 環境のみ、レース内順位によって加速度・速度にハンディキャップがつく場合がある |
 | マッチメイキング | Matchmaking | 提出時に、自チームよりどのくらい上位のチームに挑戦するかを選ぶこと |
 | レート・レーティング | Rating | 勝てば上がり負ければ下がる。レートの高い順にランキングが決まる |

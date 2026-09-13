@@ -7,8 +7,10 @@
 1. [はじめに](./getting-started.ja.md): 大会の概要と始め方
 2. [推奨環境](./setup/requirements.ja.md)と[環境構築](./setup/introduction.ja.md): 対応 OS は Ubuntu 22.04
 3. 参加部門のルール: [Sim to Real SW部門](./competition/sw-class.ja.md) または [End to End AI部門](./competition/ai-class.ja.md)
-4. [提出方法](./competition/submission.ja.md): アップロードとマッチメイキング
-5. 決勝進出チーム: [SIM決勝](./competition/sim-finals.ja.md)、[SIM決勝 PC 環境説明](./competition/sim-finals-pc.ja.md)、[実機決勝](./competition/kart-finals.ja.md)
+4. 予選の参加方法は部門によって異なります。
+    - Sim to Real SW部門: [提出方法](./competition/submission.ja.md)（コードのアップロードとマッチメイキング）
+    - End to End AI部門: [End to End AI部門のルール](./competition/ai-class.ja.md)の予選の節を参照。提出に加えて発表資料と走行動画が必要で、実機決勝はありません
+5. 決勝進出チーム: [SIM決勝](./competition/sim-finals.ja.md)と[SIM決勝 PC 環境説明](./competition/sim-finals-pc.ja.md)（両部門）、[実機決勝](./competition/kart-finals.ja.md)（Sim to Real SW部門のみ）
 
 公式の日程とエントリー情報は [JSAE の大会ページ](https://www.jsae.or.jp/jaaic/index/overview/)にあります。
 

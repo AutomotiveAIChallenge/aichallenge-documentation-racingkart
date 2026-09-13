@@ -7,8 +7,10 @@ A starting point for teams who do not read Japanese. The documentation is availa
 1. [Getting Started](./getting-started.en.md): what the competition is and how to begin.
 2. [Recommended Environment](./setup/requirements.en.md) and [Setup](./setup/introduction.en.md): Ubuntu 22.04 is the supported OS.
 3. The rules for your division: [Sim to Real SW](./competition/sw-class.en.md) or [End to End AI](./competition/ai-class.en.md).
-4. [Submission](./competition/submission.en.md): how to upload and how matchmaking works.
-5. For finalists: [SIM Finals](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/competition/sim-finals.html), [SIM Finals PC guide](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/competition/sim-finals-pc.html) and [Real-Vehicle Finals](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/competition/kart-finals.html).
+4. How you qualify depends on the division:
+    - Sim to Real SW: [Submission](./competition/submission.en.md), how to upload your code and how matchmaking works.
+    - End to End AI: see the qualifying section of the [End to End AI rules](./competition/ai-class.en.md); besides the submission it needs presentation documents and a driving video, and there is no real-vehicle final.
+5. For finalists: [SIM Finals](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/competition/sim-finals.html) and the [SIM Finals PC guide](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/competition/sim-finals-pc.html) (both divisions), and the [Real-Vehicle Finals](https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/en/competition/kart-finals.html) (Sim to Real SW only).
 
 The official schedule and entry information are on the [JSAE competition page](https://www.jsae.or.jp/jaaic/index/overview/).
 
