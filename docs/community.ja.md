@@ -69,6 +69,10 @@
 [:material-launch: Team Hayes: v_max を下げたら速くなった（Qiita）](https://qiita.com/TeamHayes/items/934870c19786e3e6b3fe){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: AI エージェント 100 体で学んだこと（Zenn）](https://zenn.dev/ajayaditya/articles/100-ai-agents-racing-lessons){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: 日本語が読めなくても参加できるように、ドキュメントとツールを英語対応した話（Qiita）](https://qiita.com/TeamHayes/items/7aaf06afe8f39d8f6dfd){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: 4 台で SIM 決勝の練習をする make practice-4car と 4 つの罠（Zenn）](https://zenn.dev/ajayaditya/articles/practice-4car-sim-final){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: Autoware の MPC の予測軌道がステア遅れを無視していた話（Qiita）](https://qiita.com/TeamHayes/items/1902090d5b7662a0df61){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: ROS なしで rosbag（mcap）を読む（Zenn）](https://zenn.dev/ajayaditya/articles/read-mcap-without-ros-v2x){ .md-button .md-button--primary target="_blank" }
+[:material-launch: Team Hayes: make practice-4car（4 台の提出物を SIM 決勝の条件で走らせる PR #345）](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/345){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: aichallenge-toolkit（ROS なしで rosbag を解析するツール集）](https://github.com/theCodeForgerHQ/aichallenge-toolkit){ .md-button .md-button--primary target="_blank" }
 
 <div class="community-callout">
