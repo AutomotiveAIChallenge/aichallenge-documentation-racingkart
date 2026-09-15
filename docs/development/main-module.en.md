@@ -16,7 +16,7 @@ The default Autoware is composed of many nodes to accommodate various driving en
 
 You can also view the [configuration diagram of ROS nodes that constitute Autoware](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/node-diagram/) in the official Autoware documentation. The current diagram is shown below.
 
-![node-diagram](./images/architecture/autoware-node-diagram.png)
+![Full default Autoware node diagram with dozens of nodes grouped by color into Sensing, Localization, Perception, Planning, Control, System, Vehicle Interface, Vehicle, and Map, illustrating the overall complexity](./images/architecture/autoware-node-diagram.png)
 
 Autoware is equipped with a wide range of functions in each component related to autonomous driving, designed to handle complex driving environments.
 
@@ -28,7 +28,7 @@ Therefore, in the previous simulation competition, we prepared a reduced configu
 
 The node diagram of Autoware-Micro is shown below. You can see that the number of nodes has significantly decreased, and only the functions necessary for basic autonomous driving are included.
 
-![micro-node-diagram](./images/architecture/reference-autoware.png)
+![Reduced Autoware-Micro node diagram: GNSS and IMU feed ekf_localizer for localization, goal_pose_setter and mission_planner drive behavior_path_planner's lane_following, and path_to_trajectory output reaches the Racing Kart's control_cmd via simple_pure_pursuit](./images/architecture/reference-autoware.png)
 
 Features of Autoware-Micro include:
 
@@ -64,7 +64,7 @@ For example, you can consider the following configuration, implement "Planning" 
 
 You are free to customize as long as the ROS topics for route input and vehicle interface output match.
 
-![racing-diagram](./images/architecture/racing_simple.png)
+![Two simplified architectures side by side: Implementation 1 keeps separate Planning and Control blocks, Implementation 2 merges them into one Planning and Control block. In both, vehicle_data and powertrain_data come from the Dallara AV-21R into the control block, and vehicle_inputs go from the control block to the Dallara AV-21R](./images/architecture/racing_simple.png)
 
 ## Workspace Structure
 
@@ -72,8 +72,8 @@ For reference, the workspace structure used in this competition is as follows:
 
 docker-dev
 
-![dev](./images/docker/dev.drawio.svg)
+![Development environment diagram: the host's aichallenge folder (aichallenge_submit, aichallenge_system, main.bash, simulator) and output folder are mounted into the aichallenge-dev docker container at /aichallenge and /output, with clone/download arrows from GitHub/Google Drive](./images/docker/dev.drawio.svg)
 
 docker-eval
 
-![eval](./images/docker/eval.drawio.svg)
+![Evaluation environment diagram: the host's aichallenge and submit folder contents are copied and mounted into the aichallenge-eval docker container's /aichallenge (aichallenge_submit, aichallenge_system, main.bash, simulator) and /autoware](./images/docker/eval.drawio.svg)

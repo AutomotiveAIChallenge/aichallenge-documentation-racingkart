@@ -33,7 +33,7 @@ cd /aichallenge
 - AWSIMが表示されたら、AWSIMでuse imageのボタンを押してカメラ画像を有効にします。
 - カメラ画像が左上に表示されれば、AWSIM用環境の準備はOKです。
 
-![alt text](../assets/camera_awsim_after.png)
+![AWSIMの走行画面。左上にカメラ画像が表示され、右上のUse Imageボタンが有効になっている状態](../assets/camera_awsim_after.png)
 
 ## Gemini APIの準備
 

@@ -19,11 +19,11 @@
 
 インターフェイスと主要なコンポーネントの図を以下に示します。Sim to Real SW部門では、車両インターフェイスから取得できる情報とGNSSセンサー、IMUセンサー、V2X情報を用いて、自己位置推定や経路計画などを行い、制御信号であるcontrol_cmdトピックを出力します。PlanningやControlに相当する処理を追加・改善することが参加者の主な開発対象となります。
 
-![component](./images/architecture/component.png)
+![Sim to Real SW部門の構成図。GNSS・IMU・LiDAR・Camera・V2Xなどのセンサ入力がSensing・Localization・Planning・Mapを経てControlに集約され、control_cmdとgear_cmdとして出力される](./images/architecture/component.png)
 
 End to End AI部門では以下のように、LiDARセンサーとCameraセンサーを用いて制御信号であるcontrol_cmdトピックを出力することが期待されています。図の「E2E Model」のような単一モデルで実装することが望ましいですが、処理を分離したり、一部にロジックを入れたりすることは許容されます。また、本部門ではGNSSセンサー情報などを使うことは出来ませんが、RViz表示等のために関連するノード・トピックが残っています。使用可能なセンサー情報については大会のルールをご確認ください。なお、利用できないセンサー情報から生成されるトピックも使用禁止です。
 
-![component_e2e](./images/architecture/component_e2e.png)
+![End to End AI部門の構成図。LiDARとCameraの入力のみが単一のE2E Modelに接続され、control_cmdとgear_cmdを出力する。GNSSやV2Xなど他のトピックは接続されずに残る](./images/architecture/component_e2e.png)
 
 ## ノード構成
 
@@ -31,7 +31,7 @@ End to End AI部門では以下のように、LiDARセンサーとCameraセン�
 
 自己位置推定はGNSSセンサー、IMUセンサー、車両情報を用いて、EKFによって高精度で行われます。これらの実装は動く形で提供されていますが、自己位置推定の精度に課題があると感じた場合は変更可能です。ただし、vehicle_velocity_converterはAutoware標準の処理を使っているため変更出来ません。
 
-![node_diagram](./images/architecture/node_diagram.png)
+![本大会サンプルのノード構成図。racing_kart_gnss_poser・imu_corrector・vehicle_velocity_converterの出力がimu_gnss_poserとgyro_odometerを経てekf_localizerに入り、simple_trajectory_generatorの軌道とともにMPCへ渡ってcontrol_cmdを出力する](./images/architecture/node_diagram.png)
 
 ## 制御モードの切り替え
 

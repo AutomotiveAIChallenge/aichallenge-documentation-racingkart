@@ -70,7 +70,7 @@ graph LR
     - Sim to Real部門：`make simulator-s2r-final`
     - End to End部門：`make simulator-e2e-final`
 
-![start_position](./images/start_position.png)
+![コースの空撮図。ストレート区間にP1からP4までの4台分の走行開始位置がグリッド状に配置されている様子](./images/start_position.png)
 
 ## 運営が用意する Autoware PC の使い方 { #operator-pc }
 

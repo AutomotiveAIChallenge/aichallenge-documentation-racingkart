@@ -7,7 +7,7 @@
 - [AWSIM側の準備](./vlm_setup.md#awsim)にて作成したdocker container内で、`./run_evaluation.bash`を実行しましょう。
   - scaleは0.02程度に変更しましょう。(Geminiが5秒に1回しか推論できないため。)
 
-![camera_awsim_after](../assets/camera_awsim_after.png)
+![AWSIMの走行画面。左上にカメラ画像が表示され、右上のUse Imageボタンが有効になっている状態](../assets/camera_awsim_after.png)
 
 ## VAD Plannerの起動
 

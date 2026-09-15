@@ -68,7 +68,7 @@ COMPOSE_FILE=docker-compose.yml
     nvidia-smi
     ```
 
-    ![nvidia-smi](./images/nvidia-smi.png)
+    ![nvidia-smiコマンドの実行結果。ドライバーバージョン、CUDAバージョン、GPU使用率と使用中プロセスの一覧が表示されている](./images/nvidia-smi.png)
 
 ??? note "NVIDIA Container Toolkit のインストール手順"
     NVIDIA Container Toolkit の公式手順
@@ -128,7 +128,7 @@ make simulator
 ```
 
 下記のようにシミュレータが現れたら成功です。
-![AWSIM-Autoware](./images/awsim.png)
+![AWSIMのカート視点画面。ハンドルとコース、奥にビル群が見え、左上にLaps・Time・Sectionなどのステータス表示がある](./images/awsim.png)
 
 Autowareも起動してみましょう。
 
@@ -140,7 +140,7 @@ make autoware-simulator
 
 以下のような画面が現れたら成功です。
 
-![AWSIM-Autoware](./images/awsim-and-autoware.png)
+![AWSIMのカート走行画面とRVizのウィンドウを並べた画面。RViz側にはコースマップ上に緑色の走行軌道が表示され、速度計は約13km/hを示している](./images/awsim-and-autoware.png)
 
 確認が終わったら、以下のコマンドを実行します。
 
