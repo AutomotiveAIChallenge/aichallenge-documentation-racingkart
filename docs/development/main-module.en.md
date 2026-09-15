@@ -64,7 +64,7 @@ For example, you can consider the following configuration, implement "Planning" 
 
 You are free to customize as long as the ROS topics for route input and vehicle interface output match.
 
-![Two simplified architectures side by side: Implementation 1 keeps separate Planning and Control blocks, Implementation 2 merges them into one Planning and Control block, both sending vehicle_data and vehicle_inputs to the Dallara AV-21R](./images/architecture/racing_simple.png)
+![Two simplified architectures side by side: Implementation 1 keeps separate Planning and Control blocks, Implementation 2 merges them into one Planning and Control block. In both, vehicle_data and powertrain_data come from the Dallara AV-21R into the control block, and vehicle_inputs go from the control block to the Dallara AV-21R](./images/architecture/racing_simple.png)
 
 ## Workspace Structure
 
