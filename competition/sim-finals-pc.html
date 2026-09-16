@@ -3038,7 +3038,7 @@
 <ul>
 <li><strong>PC のスペック</strong>：<a href="../specifications/hardware.html">仕様/ハードウェア</a> をご確認ください。</li>
 <li><strong>sudo 権限が必要な操作</strong>：apt コマンドによるインストールなど sudo 権限が必要な操作を行う場合は、運営スタッフにお声がけください。</li>
-<li><strong>ソースコードの配置</strong>：<code>~/aichallenge-racingkart</code> に、最新の main ブランチの AI チャレンジリポジトリが配置されています。<ul>
+<li><strong>ソースコードの配置</strong>：<code>~/aichallenge-racingkart</code> に、最新の main ブランチの AI チャレンジリポジトリが配置されています。ただし、誤操作防止等のため、一部ファイルは変更されています。<ul>
 <li><strong>この場でのソースコード変更は原則禁止</strong>です。ソースコードの取得方法は後述の手順を参照してください。</li>
 </ul>
 </li>
@@ -3262,7 +3262,7 @@ ros2<span class="w"> </span>topic<span class="w"> </span>list
 <li><strong>ソースコードをダウンロードする</strong>（<code>make download</code>）<ul>
 <li>実行するとユーザー名とパスワードを聞かれます。<strong>このログイン情報は必ず覚えておいてください。</strong></li>
 <li>続いてダウンロードするソースコードを選択します。最新のコードを使用する場合は <code>1</code> を入力してエンターを押します。</li>
-<li>注意：本手順は「事前にダウンロード済みソースコードの展開」に変更予定です</li>
+<li>注意：万が一ダウンロードに時間がかかりすぎる場合は、運営に申告してください。運営が事前にダウンロードした提出済みソースコードをお渡しします。</li>
 </ul>
 </li>
 <li><strong>ソースコードを確認する</strong>（<code>code .</code>）<ul>
@@ -3270,7 +3270,11 @@ ros2<span class="w"> </span>topic<span class="w"> </span>list
 <li>確認後は、負荷低減のため VSCode を閉じることを推奨します。</li>
 </ul>
 </li>
-<li><strong>ビルドする</strong>（<code>make autoware-build</code>）</li>
+<li><strong>ビルドする</strong>（<code>make autoware-build</code>）<ul>
+<li>注意：ルールに記載の通り、万が一時間内にビルド等のセットアップが完了しなくても、本番走行開始時刻になったらレースは開始されます</li>
+<li>注意：運営が用意するAutoware PCの場合、<code>~/aichallenge-racingkart/aichallenge/workspace/</code> には最新のmainブランチでビルドした<code>build</code>フォルダと<code>install</code>フォルダが格納されています。これは、ビルド時間を短縮するための措置です。気になる場合には削除してクリーンビルドを行ってください。</li>
+</ul>
+</li>
 </ol>
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart
 make<span class="w"> </span>download
