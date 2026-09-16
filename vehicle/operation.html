@@ -1534,10 +1534,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-2-tui" class="md-nav__link">
+  <a href="#2-2-tui-autoware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2-2. TUI でのチューニング
+        2-2. 車両操作 TUI の見方と Autoware の再起動
       
     </span>
   </a>
@@ -1548,7 +1548,7 @@
   <a href="#2-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2-3. ゲームコントローラによる遠隔手動操作
+        2-3. パラメータのチューニング
       
     </span>
   </a>
@@ -1556,10 +1556,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-4-tui-autoware" class="md-nav__link">
+  <a href="#2-4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2-4. 車両操作 TUI の見方と Autoware の再起動
+        2-4. ゲームコントローラによる遠隔手動操作
       
     </span>
   </a>
@@ -2710,10 +2710,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-2-tui" class="md-nav__link">
+  <a href="#2-2-tui-autoware" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2-2. TUI でのチューニング
+        2-2. 車両操作 TUI の見方と Autoware の再起動
       
     </span>
   </a>
@@ -2724,7 +2724,7 @@
   <a href="#2-3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2-3. ゲームコントローラによる遠隔手動操作
+        2-3. パラメータのチューニング
       
     </span>
   </a>
@@ -2732,10 +2732,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-4-tui-autoware" class="md-nav__link">
+  <a href="#2-4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2-4. 車両操作 TUI の見方と Autoware の再起動
+        2-4. ゲームコントローラによる遠隔手動操作
       
     </span>
   </a>
@@ -2879,7 +2879,10 @@
 <p>参加チームがオペレーションブースに着いた時点で、運営側の準備は以下まで完了しています。</p>
 <ol>
 <li>提出されたコードが車両 PC 上でビルド済み</li>
-<li>Autoware・driver・zenoh が起動済み（rosbag は運営が記録します。参加チームへの提供はありません）</li>
+<li>Autoware・driver・zenoh が起動済み（rosbag は運営が記録します。参加チームへの提供はありません）<ul>
+<li>期日までにソースコードを提出したチームのみ</li>
+</ul>
+</li>
 <li>ブースの PC から車両 PC へ SSH 接続済み</li>
 </ol>
 <p>参加チームはこの状態から操作を引き継ぎます。車両 PC 上の操作はすべてこの SSH 接続経由で行います。</p>
@@ -2917,21 +2920,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="2-2-tui">2-2. TUI でのチューニング</h3>
-<p>走行の様子は RViz でも確認できます（<a href="remote.html">遠隔操作</a>）。</p>
-<p>チューニングに使える時間は試合の進行によって異なります。準決勝には自由走行（10〜25分）があり、ここが主なチューニング時間です。決勝は待機時間が短く、パラメータをじっくり詰める余裕はありません（<a href="../competition/kart-finals.html#match-schedule">試合スケジュール</a>）。</p>
-<div class="admonition warning">
-<p class="admonition-title">操作前に運営へ申告してください</p>
-<p>パラメータ変更を含め、車両への操作を行う前には運営に申告する必要があります（自己位置の再設定と <code>ros2 topic</code> によるギア切り替え・ターボコマンド発行は申告不要）。また、自チームの <code>ROS_DOMAIN_ID</code> 以外に影響を及ぼす操作は禁止です（<a href="../competition/sw-class.html#final-rule">Sim to Real部門ルール</a>）。</p>
-</div>
-<h3 id="2-3">2-3. ゲームコントローラによる遠隔手動操作</h3>
-<p>参加チームにはゲームコントローラ（ロジクール F310）が渡されます。これで車両を遠隔から手動操作できます。ボタンと軸の割り当ては<a href="remote.html">遠隔操作</a>を参照してください。</p>
-<ul>
-<li><strong>自動運転と手動操作は任意のタイミングで切り替えられます。</strong></li>
-<li>スタックした場合や、車両が予期せぬ挙動をした場合の復帰は参加チーム自身で行います。運営によるサポート（遠隔操作・物理的介入）はありません。</li>
-<li>ただし、<strong>手動運転を多用することは禁止</strong>です。また、運営が危険と判断した場合は運営側で緊急停止・車両移動を行うことがあります。</li>
-</ul>
-<h3 id="2-4-tui-autoware">2-4. 車両操作 TUI の見方と Autoware の再起動</h3>
+<h3 id="2-2-tui-autoware">2-2. 車両操作 TUI の見方と Autoware の再起動</h3>
 <p>①の車両操作 TUI では、上部の <code>running:</code> に稼働中のサービス、<code>stopped:</code> に停止中のサービスが表示されます。<code>autoware</code> の状態をここで確認できます。</p>
 <p><img alt="車両操作TUIの表示例（サービスの稼働状態、操作メニュー、実行ログ）" src="images/vehicle-operation-tui.png" /></p>
 <table>
@@ -3019,6 +3008,139 @@
 <div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>param<span class="w"> </span>get<span class="w"> </span>/ノード名<span class="w"> </span>パラメータ名
 </code></pre></div>
 <p><code>/ノード名</code> と <code>パラメータ名</code> は、確認する対象に置き換えてください。</p>
+</div>
+<h3 id="2-3">2-3. パラメータのチューニング</h3>
+<p>走行の様子は RViz でも確認できます（<a href="remote.html">遠隔操作</a>）。</p>
+<p>チューニングに使える時間は試合の進行によって異なります。準決勝には自由走行（10〜25分）があり、ここが主なチューニング時間です。決勝は待機時間が短く、パラメータをじっくり詰める余裕はありません（<a href="../competition/kart-finals.html#match-schedule">試合スケジュール</a>）。</p>
+<div class="admonition warning">
+<p class="admonition-title">操作前に運営へ申告してください</p>
+<p>パラメータ変更を含め、車両への操作を行う前には運営に申告する必要があります。また、自チームの <code>ROS_DOMAIN_ID</code> 以外に影響を及ぼす操作は禁止です（<a href="../competition/sw-class.html#final-rule">Sim to Real部門ルール</a>）。</p>
+</div>
+<h3 id="2-4">2-4. ゲームコントローラによる遠隔手動操作</h3>
+<ul>
+<li>参加チームにはゲームコントローラ（<a href="https://gaming.logicool.co.jp/ja-jp/products/gamepads/f310-gamepad.940-000137.html">ロジクール F310</a>）が渡されます。これで車両を遠隔から手動操作できます。また、ステアのみ自動走行とするモードも許可されています。この場合にはアクセルのみを手動操作します。</li>
+<li>スタックした場合や、車両が予期せぬ挙動をした場合の復帰は参加チーム自身で行います。運営によるサポート（遠隔操作・物理的介入）はありません。ルールに則り手動走行で復帰してください。</li>
+<li>ゲームコントローラの各ボタンの機能は以下の図のとおりです。</li>
+</ul>
+<p><img alt="ロジクール F310" src="images/f310-controller.png" /></p>
+<table>
+<thead>
+<tr>
+<th>ボタン・軸</th>
+<th>機能</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Button A</td>
+<td>モード選択（手動）</td>
+<td>選択する前に運営に申告が必要です</td>
+</tr>
+<tr>
+<td>Button B</td>
+<td>モード選択（アクセルのみ自動）</td>
+<td>使用禁止です</td>
+</tr>
+<tr>
+<td>Button X</td>
+<td>モード選択（ステアのみ自動）</td>
+<td>使用可能です。アクセルのみ右トリガーで手動操作します</td>
+</tr>
+<tr>
+<td>Button Y</td>
+<td>モード選択（自動）</td>
+<td>通常はこちらを選びます</td>
+</tr>
+<tr>
+<td>Button 上</td>
+<td>ギア（Drive）</td>
+<td>アクセル操作によって前進します</td>
+</tr>
+<tr>
+<td>Button 左</td>
+<td>ギア（Neutral）</td>
+<td>未使用</td>
+</tr>
+<tr>
+<td>Button 下</td>
+<td>ギア（Reverse）</td>
+<td>アクセル操作によって後進します</td>
+</tr>
+<tr>
+<td>Button L, R</td>
+<td>緊急停止</td>
+<td></td>
+</tr>
+<tr>
+<td>Button Start, Back</td>
+<td>緊急停止</td>
+<td></td>
+</tr>
+<tr>
+<td>Button Mode</td>
+<td>未使用</td>
+<td>消灯状態にします</td>
+</tr>
+<tr>
+<td>左スティック X軸</td>
+<td>ステアリング</td>
+<td>手動走行時に使用します</td>
+</tr>
+<tr>
+<td>左スティック Y軸</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>右スティック X軸</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>右スティック Y軸</td>
+<td>未使用</td>
+<td></td>
+</tr>
+<tr>
+<td>左トリガー</td>
+<td>ブレーキ</td>
+<td>手動走行・ステアのみ自動走行時に使用します</td>
+</tr>
+<tr>
+<td>右トリガー</td>
+<td>アクセル</td>
+<td>手動走行・ステアのみ自動走行時に使用します</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">コントローラの注意事項</p>
+<ul>
+<li>Modeは必ず消灯状態にしてください</li>
+<li>予期せず緊急停止状態になることを防ぐため、不要なボタンは押さないでください</li>
+<li>緊急停止してしまうと、解除する必要があります。解除は運営に申告してください</li>
+<li>アクセル（右トリガー）は、なれるまではゆっくり押してください</li>
+<li>停止するためにはブレーキ（左トリガー）を押してください</li>
+<li>手動走行する際には、ギアの操作を忘れないよう気をつけてください</li>
+<li>モード状態を確認する手段がないため、モード選択ボタンを何回か連打することをおすすめします。手動走行する場合の例：<ul>
+<li>Aボタンを連打（モード選択（手動））</li>
+<li>上ボタンを連打（ギア（Drive））</li>
+<li>右トリガーをゆっくりと押す（アクセル）</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">ストール回避</p>
+<ul>
+<li>カート側に組み込まれた機構によって、壁などに衝突状態でアクセルがかかり続けると「ストール」という状態になります（自動走行・手動走行問わず）</li>
+<li>ストール状態になると復帰する手段はありません。試合終了までカートは停止状態になります</li>
+<li>ストールを回避するためには、衝突直前にXボタン押しによって「ステアのみ自動」モードに入ってから、左トリガー押しによってブレーキをかけてください<ul>
+<li>「ステアのみ自動」モードは許可されています</li>
+</ul>
+</li>
+</ul>
 </div>
 
 
