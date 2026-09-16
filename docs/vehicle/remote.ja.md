@@ -246,17 +246,3 @@ docker compose ps                  # 何も残っていないこと
 pgrep -af zenoh-bridge-ros2dds     # 何も出ないこと
 pgrep -af joy_node                 # 何も出ないこと
 ```
-
-## 第4部 ゲームコントローラの使い方
-
-### 4-1. ロジクール F310
-
-ロジクール F310 を使用して遠隔操作します。製品ページは[こちら](https://gaming.logicool.co.jp/ja-jp/products/gamepads/f310-gamepad.940-000137.html)です。
-
-![ロジクール F310](./images/f310-controller.png)
-
-### 4-2. ボタンと軸の割り当て
-
-ゲームコントローラの各ボタンの機能は以下の図のとおりです。
-
-![F310 ジョイスティックマッピング（ボタン/軸割当）](./images/f310-button-mapping.png)
