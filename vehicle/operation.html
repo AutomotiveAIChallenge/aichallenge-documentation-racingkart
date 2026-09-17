@@ -2879,13 +2879,13 @@
 <p>参加チームがオペレーションブースに着いた時点で、運営側の準備は以下まで完了しています。</p>
 <ol>
 <li>提出されたコードが車両 PC 上でビルド済み</li>
-<li>Autoware・driver・zenoh が起動済み（rosbag は運営が記録します。参加チームへの提供はありません）<ul>
+<li>driver・zenoh（通信ミドルウェア） が起動済み（rosbag は運営が記録します。参加チームへの提供はありません）<ul>
 <li>期日までにソースコードを提出したチームのみ</li>
 </ul>
 </li>
 <li>ブースの PC から車両 PC へ SSH 接続済み</li>
 </ol>
-<p>参加チームはこの状態から操作を引き継ぎます。車両 PC 上の操作はすべてこの SSH 接続経由で行います。</p>
+<p>参加チームはこの状態から操作を引き継ぎます。車両 PC 上の操作はすべてこの SSH 接続経由で行います。<strong>Autowareの起動、パラメータ調整、必要に応じたモード切替と手動走行、が参加者の責務となります。</strong></p>
 <h4 id="4">4 つのペインの見方</h4>
 <p>操作したいペインをマウスでクリックしてから、キー入力を行います。</p>
 <p><img alt="Terminatorの4ペイン構成（左上：車両TUI、左下：監視、右上：運営TUI、右下：GUI tools）" src="images/terminator-pane-layout.png" /></p>
@@ -2956,52 +2956,44 @@
 </thead>
 <tbody>
 <tr>
-<td>1 <code>check preflight</code></td>
-<td>起動前の環境確認</td>
-<td>新しく TUI を起動した際にも自動実行されます。<code>NG</code> が出ている場合は運営に伝えます</td>
+<td>1 <code>Update the acces/brake maps and IMU bias</code></td>
+<td>運営が調整したパラメータで上書きする</td>
+<td>Autoware起動前に実行します（必須ではないが推奨）</td>
 </tr>
 <tr>
-<td>2 <code>extract</code></td>
-<td>提出物の展開</td>
-<td>運営が事前に済ませます。走行枠中に実行しません</td>
-</tr>
-<tr>
-<td>3 <code>build</code></td>
-<td>提出物のビルド</td>
-<td>運営が事前に済ませます。走行枠中に実行しません</td>
-</tr>
-<tr>
-<td>4 <code>autoware-vehicle</code></td>
+<td>2 <code>autoware-vehicle</code></td>
 <td>Autoware の起動</td>
-<td>再起動時に使います</td>
+<td>再起動時も同様です</td>
 </tr>
 <tr>
-<td>5 <code>check runtime</code></td>
+<td>3 <code>check autoware</code></td>
 <td>起動後の環境確認</td>
-<td>Autowareを再起動した際には実行します</td>
+<td>Autowareを起動した際には実行します。NGが無いことを確認します。</td>
 </tr>
 <tr>
-<td>6 <code>autoware-vehicle down</code></td>
+<td>4 <code>autoware-vehicle down</code></td>
 <td>Autoware の停止</td>
 <td>再起動時に使います</td>
 </tr>
-<tr>
-<td>7 <code>cleanup</code></td>
-<td>提出物とビルド成果物の片付け</td>
-<td>コードとビルド成果物を消すため、参加者は実行しません</td>
-</tr>
 </tbody>
 </table>
+<p>Autoware を起動する場合は、次の順で操作します。</p>
+<ol>
+<li><code>1 Update the acces/brake maps and IMU bias</code> を選んで Enter を押し、 <code>OK</code> と表示されることを確認します。（オプショナル）</li>
+<li><code>2 autoware-vehicle</code> を選んで Enter を押し、 <code>OK</code> と表示されることを確認します。</li>
+<li><code>3 check autoware</code> を選んで Enter を押し、<code>OK</code> と表示されることを確認します。<code>NG</code> の場合は走行を開始せず、表示された失敗内容を運営に伝えます。</li>
+<li>RViz で自己位置や車両の状態を確認してから走行を再開します。最初は「ステアのみ自動」で低速走行で挙動を確認することを推奨します。</li>
+</ol>
 <p>Autoware を再起動する場合は、次の順で操作します。</p>
 <ol>
 <li>運営に再起動することを申告し、車両を安全に停止させます。</li>
-<li>↑ / ↓ で <code>6 autoware-vehicle down</code> を選んで Enter を押します。</li>
-<li>停止処理が終了し、<code>stopped:</code> に <code>autoware</code> が表示されることを確認します。</li>
-<li><code>4 autoware-vehicle</code> を選んで Enter を押します。</li>
-<li><code>running:</code> に <code>autoware</code> が表示されることを確認します。</li>
-<li><code>5 check runtime</code> を選んで Enter を押し、<code>OK</code> と表示されることを確認します。<code>NG</code> の場合は走行を再開せず、表示された失敗内容を運営に伝えます。</li>
-<li>RViz で自己位置や車両の状態を確認してから走行を再開します。</li>
+<li><code>4 autoware-vehicle down</code> を選んで Enter を押し、 <code>OK</code> と表示されることを確認します。</li>
+<li>上述の起動の手順で、Autowareを起動します</li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">check autowareのNG原因</p>
+<p>車両の位置が想定と異なり、計算が収束せずにcontrol_cmdが出力されないことがあります。このような場合には参加者側コードの問題となります。パラメータ調整で対応するか、手動走行に切り替えて車両の位置を調整してください。</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">再起動後のパラメータ確認（推奨）</p>
 <p>Autoware を再起動すると、走行中に変更したパラメータが起動時の初期値に戻る場合があります。走行を再開する前に、②の監視端末で <code>ros2 param get</code> を使い、変更したパラメータの現在値が意図した値になっていることを確認することを推奨します。異なる場合は変更値を再設定し、再度確認してください。</p>
