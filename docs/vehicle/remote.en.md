@@ -275,17 +275,3 @@ pgrep -af joy_node                 # 何も出ないこと
 ```
 
 (Steps: 1) stop terminal A (`joy.bash`) and terminal B (`connect_zenoh.bash`) with Ctrl+C; 2) stop the containers, which is where rviz2 stops; 3) confirm nothing is left: `docker compose ps` lists nothing and both `pgrep` commands print nothing.)
-
-## Part 4: Using the Game Controller
-
-### 4-1. Logicool F310
-
-Remote operation uses the Logicool (Logitech) F310. The product page is [here](https://gaming.logicool.co.jp/ja-jp/products/gamepads/f310-gamepad.940-000137.html).
-
-![Logicool F310](./images/f310-controller.png)
-
-### 4-2. Button and axis assignments
-
-The function of each button on the game controller is shown in the figure below.
-
-![F310 joystick mapping (button/axis assignments)](./images/f310-button-mapping.png)
