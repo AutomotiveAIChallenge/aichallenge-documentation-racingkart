@@ -24,6 +24,7 @@ sequenceDiagram
     AWSIM->>Autoware: /sensing/gnss/nav_sat_fix
     AWSIM->>Autoware: /sensing/imu/imu_raw
     AWSIM->>Autoware: /sensing/lidar/scan
+    AWSIM->>Autoware: /v2x/vehicle_positions
 
     Note over AWSIM,Autoware: 制御コマンド（AWSIM ← Autoware）
     Autoware->>AWSIM: /control/command/control_cmd
@@ -59,6 +60,12 @@ sequenceDiagram
 | Publisher | `/sensing/camera/image_raw`          | `sensor_msgs/msg/Image`                       |
 | Publisher | `/sensing/camera/camera_info`        | `sensor_msgs/msg/CameraInfo`                  |
 
+### V2X
+
+| Interface | Name                                 | Type                                          |
+| --------- | ------------------------------------ | ---------------------------------------------- |
+| Publisher | `/v2x/vehicle_positions`             | `v2x_msgs/msg/V2XVehiclePositionArray`        |
+
 ### シミュレーション管理
 
 AWSIMが各車両のドメイン（N=1〜4）で直接やり取りするトピックです。
@@ -87,6 +94,7 @@ AWSIMの全体管理に使用されるトピックです。通常の開発では
 - **制御コマンド**: [`control_cmd`](#controlcommandcontrol_cmd) / [`actuation_cmd`](#controlcommandactuation_cmd)
 - **車両ステータス**: [`actuation_status`](#vehiclestatusactuation_status) / [`velocity_status`](#vehiclestatusvelocity_status) / [`steering_status`](#vehiclestatussteering_status) / [`gear_status`](#vehiclestatusgear_status)
 - **センサ**: [`gnss`](#sensinggnssnav_sat_fix) / [`imu`](#sensingimuimu_raw) / [`lidar`](#sensinglidarscan) / [`camera`](#sensingcameraimage_raw)
+- **V2X**: [`v2x/vehicle_positions`](#v2xvehicle_positions)
 - **シミュレーション**: [`awsim/status`](#awsimstatus) / [`awsim/state`](#awsimstate) / [`awsim/cmd`](#awsimcmd) / [`admin/awsim/state`](#adminawsimstate)
 
 ### `/control/command/control_cmd`
@@ -220,6 +228,41 @@ GNSSセンサからの測位情報です。`racing_kart_gnss_poser`ノードがN
 | width               | 画像の幅（px）         |
 | k                   | カメラ内部行列（3x3）  |
 | d                   | 歪み係数               |
+
+### `/v2x/vehicle_positions`
+
+V2Xで共有される各車両の位置情報です。AWSIMが各車両のドメインに直接publishします。起動オプション `--v2x` で有効/無効を切り替えられ、`--gnss off` の車両はこの配列からも消えます（[シミュレーター](./simulator.ja.md)）。
+
+`v2x_msgs/msg/V2XVehiclePositionArray`
+
+| Name       | Description                                 |
+| ---------- | -------------------------------------------- |
+| header     | 配列全体のヘッダ                            |
+| vehicles[] | `v2x_msgs/msg/V2XVehiclePosition` の配列    |
+
+`v2x_msgs/msg/V2XVehiclePosition`
+
+| Name         | Description                                                   |
+| ------------ | --------------------------------------------------------------- |
+| header.stamp | 観測時刻                                                      |
+| header.frame_id | 座標フレーム（例: `map`）                                  |
+| vehicle_id   | 車両を識別するID（例: `d1`〜`d4`）                            |
+| position     | 車両の位置（`geometry_msgs/Point`、`header.frame_id` 系）     |
+| covariance   | 位置の不確実性（`geometry_msgs/Vector3`、x/y/z軸の標準偏差 [m]） |
+
+- 含まれるのは位置のみです。姿勢・速度のフィールドはないため、他車の向きや速度は位置の時系列から推定する必要があります。
+- 実車を模した伝送遅延（車両ごとに100〜200 ms、平均150 ms・標準偏差25 ms）が入っています。詳細は[シミュレーター](./simulator.ja.md)を参照してください。
+
+### `/aichallenge/objects`
+
+コース上の障害物情報です。`std_msgs/msg/Float64MultiArray` 型で、1物体あたり4要素です。
+
+| Name            | Description          |
+| --------------- | --------------------- |
+| data[N * 4 + 0] | N番目の物体のX座標   |
+| data[N * 4 + 1] | N番目の物体のY座標   |
+| data[N * 4 + 2] | N番目の物体のZ座標   |
+| data[N * 4 + 3] | N番目の物体の半径    |
 
 ### `/awsim/status`
 
