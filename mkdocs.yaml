@@ -55,7 +55,7 @@ nav:
       - competition/submission.md
       - competition/ai-class.md
       - competition/sim-finals.md
-      - competition/sim-finals-pc.ja.md
+      - competition/sim-finals-pc.md
       - competition/kart-finals.md
   - vehicle:
       - vehicle/operation.md
