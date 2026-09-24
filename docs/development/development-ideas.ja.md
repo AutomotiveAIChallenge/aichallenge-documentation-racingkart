@@ -19,7 +19,7 @@ AIチャレンジではオープンソースソフトウェアを駆使してい
 
     - `mpc`（デフォルト）：MPCベースの制御
     - `pure_pursuit`：Pure Pursuitベースの制御
-    - `tiny_lidar_net`：TinyLiDARNetによるEnd-to-End制御（LiDAR 1080点から加速度と操舵角を直接出力）
+    - `tiny_lidar_net`：TinyLiDARNetによるEnd-to-End制御（LiDAR 750点から加速度と操舵角を直接出力）
     - `pilot_net`：PilotNetによるEnd-to-End制御
     - `joycon`：手動テレオペ操作
 
