@@ -89,8 +89,15 @@ The following describes what `setup.bash` performs interactively, step by step. 
 
     ```bash
     cd ~
-    git clone https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
+    git clone -b main https://github.com/AutomotiveAIChallenge/aichallenge-racingkart.git
     cd ~/aichallenge-racingkart
+    ```
+
+    The finals PC uses the `main` branch. Overtaking-lane practice (`--overtaking-lane`) requires the `dev` branch, so switch to it if you want to practice that:
+
+    ```bash
+    git -C ~/aichallenge-racingkart fetch origin dev
+    git -C ~/aichallenge-racingkart checkout dev
     ```
 
 ??? note "6. :material-security: Verify repository"
