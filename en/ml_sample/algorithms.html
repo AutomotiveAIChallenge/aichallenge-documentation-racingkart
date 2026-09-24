@@ -2940,7 +2940,7 @@
 <ul>
 <li><a href="https://f1tenth.org/">F1TENTH</a>の CPS 2023 レースにて使用された手法です。</li>
 <li>2D LiDARのデータから、速度とステアリング角を推定します。<ul>
-<li>input: 長さ<code>1081</code>の1次元配列。2D LiDARで得られたxy平面上の距離を格納。</li>
+<li>input: 長さ<code>1081</code>の1次元配列。2D LiDARで得られたxy平面上の距離を格納。（論文での値です。本大会のサンプル実装では、AWSIMの2D LiDARに合わせて長さ<code>750</code>です）</li>
 <li>output: Speed, Steering Angle</li>
 </ul>
 </li>

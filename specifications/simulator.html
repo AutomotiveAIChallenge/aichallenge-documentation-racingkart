@@ -4009,11 +4009,23 @@
 <tbody>
 <tr>
 <td>スキャン点数</td>
-<td>1080点</td>
+<td>750点</td>
+</tr>
+<tr>
+<td>視野角</td>
+<td>約180°（前方。<code>angle_min</code> -1.5666 rad 〜 <code>angle_max</code> 1.5708 rad）</td>
+</tr>
+<tr>
+<td>角度分解能</td>
+<td>約0.24°（<code>angle_increment</code> 0.00419 rad）</td>
 </tr>
 <tr>
 <td>最大検出距離</td>
-<td>30 m</td>
+<td>25 m</td>
+</tr>
+<tr>
+<td>配信周期</td>
+<td>20 Hz</td>
 </tr>
 <tr>
 <td>型</td>
@@ -4023,6 +4035,28 @@
 </table>
 <h4 id="_19">カメラ</h4>
 <p>RGBカメラが車両に搭載されています。<code>/sensing/camera/image_raw</code>トピックで画像データを、<code>/sensing/camera/camera_info</code>トピックでカメラ内部パラメータを配信します。</p>
+<table>
+<thead>
+<tr>
+<th><strong>項目</strong></th>
+<th><strong>値</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解像度</td>
+<td>384 × 256 px（幅 × 高さ）</td>
+</tr>
+<tr>
+<td>エンコーディング</td>
+<td><code>bgr8</code></td>
+</tr>
+<tr>
+<td>配信周期</td>
+<td>約10 Hz</td>
+</tr>
+</tbody>
+</table>
 <h2 id="_20">アイテムシステム</h2>
 <p>シミュレータにはレースを戦略的にするためのアイテムシステムが実装されています。</p>
 <h3 id="_21">ブースト</h3>
