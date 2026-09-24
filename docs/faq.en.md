@@ -32,6 +32,20 @@ Note:
 
 ---
 
+### <u>Every Autoware node dies right after startup with `rmw_create_node: failed to create domain`.</u>
+
+Multicast is probably disabled on the loopback interface (`lo`) of the host. The Autoware container uses the host network, and the CycloneDDS configuration (`vehicle/cyclonedds.xml`) uses `lo`, so CycloneDDS cannot create its domain when `lo` has no multicast. On a fresh Ubuntu install, multicast on `lo` is off.
+
+Run `ip link show lo` and check that the flags include `MULTICAST`. If they do not, run the following in the `aichallenge-racingkart` directory (it asks for your sudo password):
+
+```bash
+./setup.bash network tune
+```
+
+This enables multicast on `lo` and sets `net.core.rmem_max`, and keeps both settings across reboots. `sudo ip link set lo multicast on` also fixes it right away, but that setting is lost on reboot. The "DDS host tuning" section of `./setup.bash doctor` shows the state of both settings.
+
+---
+
 ### <u>ros2 topic list does not display.</u>
 
 Ensure that the `ROS_DOMAIN_ID` matches on your machine (this is not an issue if you haven't set `ROS_DOMAIN_ID`). Also, ensure ROS2 is sourced correctly.

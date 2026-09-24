@@ -49,6 +49,17 @@
     2. Dockerコンテナが残っていないか確認: `make down` および `make down_all` を実行してから再度`make dev`を試してください。
     3. Dockerイメージがビルド済みか確認: `./docker_build.sh dev`を実行してから再度試してください。
 
+??? question "`rmw_create_node: failed to create domain` と出て、Autowareのノードが起動直後にすべて落ちます。"
+    ホストのループバック（`lo`）でマルチキャストが無効になっている可能性があります。Autowareのコンテナはホストのネットワークを使い、CycloneDDSの設定（`vehicle/cyclonedds.xml`）は通信に`lo`を使うため、`lo`でマルチキャストが使えないとDDSのドメインを作成できません。Ubuntuの初期状態では、`lo`のマルチキャストは無効です。
+
+    `ip link show lo` を実行し、表示されるフラグに `MULTICAST` が含まれているか確認してください。含まれていない場合は、`aichallenge-racingkart` のディレクトリで次を実行します（sudoのパスワードを求められます）。
+
+    ```bash
+    ./setup.bash network tune
+    ```
+
+    `lo` のマルチキャストの有効化と `net.core.rmem_max` の設定を、再起動後も残る形で行います。その場ですぐに試したいだけであれば `sudo ip link set lo multicast on` でも直りますが、こちらは再起動すると元に戻ります。`./setup.bash doctor` の「DDS host tuning」の欄でも、この2点の状態を確認できます。
+
 ??? question "AWSIMがコアダンプで終了します。"
     AWSIMを起動した直後にcoredumpで終了する場合、GPUのメモリが不足している可能性があります。そのため、`nvidia-smi`でGPUメモリの利用率が限界に達していないか確認してください。
     なお、GPUのメモリは11GB以上を推奨しています。
