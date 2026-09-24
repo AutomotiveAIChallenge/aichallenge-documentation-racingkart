@@ -9,7 +9,7 @@ TinyLiDARNet や PilotNet が rosbag を使った模倣学習であるのに対�
 
 ## Setup
 
-[環境構築](../setup/introduction.ja.md)を実施してください。GPU を積んだマシンでの実行を前提とします。
+[環境構築](../setup/introduction.md)を実施してください。GPU を積んだマシンでの実行を前提とします。
 
 学習には AWSIM がカメラ画像を描画し続ける必要があるため、通常の模倣学習用セットアップに加えて以下の変更が必要です。
 

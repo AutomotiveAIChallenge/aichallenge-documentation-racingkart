@@ -13,7 +13,7 @@ TinyLidarNetでは、LiDARから出力されたスキャンデータを用いて
 
 ## 事前準備
 
-[環境構築](../setup/introduction.ja.md)を実施して、`make dev` コマンドによってAutowareとAWSIMが使用できることを確認してください。また、[.envの記載](../setup/gpu-simulation.ja.md#env-check)を参考にGPUが使用できていることを確認してください。
+[環境構築](../setup/introduction.md)を実施して、`make dev` コマンドによってAutowareとAWSIMが使用できることを確認してください。また、[.envの記載](../setup/gpu-simulation.md#env-check)を参考にGPUが使用できていることを確認してください。
 
 ## 全体の流れ
 
@@ -214,7 +214,7 @@ cp ./weights/converted_weights.npy \
 - `make dev` コマンドで実行後、画面上部の 「top」 ボタンをクリックし、「Scenario Editor」をクリックします
     - 注意：自車両と他車両を合わせて4台配置する場合は、事前にVehiclesを4にしてください。また、「Scenario」の設定を「On」にしておきます。
     - シナリオ作成だけを行う場合は `make simulator` コマンドでAWSIMだけを起動することもできます。
-- 任意の場所に任意の車両や障害物を配置できます。シナリオエディタの操作方法は[こちら](../specifications/simulator.ja.md)をご参照ください。
+- 任意の場所に任意の車両や障害物を配置できます。シナリオエディタの操作方法は[こちら](../specifications/simulator.md)をご参照ください。
 - お好みの配置ができたら、「Save & Start」で走行開始できます。
     - このとき、シナリオに名前をつけておくと後からLoadすることができます。シナリオファイルは `~/aichallenge-racingkart/aichallenge/simulator/AWSIM/AWSIM_Data/StreamingAssets/Scenarios/` にyamlファイルで保存されます。
     - また、事前に用意されているSafety Gate用のシナリオをLoadすることもできます。

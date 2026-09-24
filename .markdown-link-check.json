@@ -1,5 +1,15 @@
 {
   "aliveStatusCodes": [200, 206],
+  "replacementPatterns": [
+    {
+      "pattern": "^((?:\\.\\./)*(?:setup|specifications|vehicle|competition|course|development|finals|preliminaries)/[\\w.-]+)(?<!\\.ja)(?<!\\.en)\\.md(#.*)?$",
+      "replacement": "$1.ja.md$2"
+    },
+    {
+      "pattern": "^(run|remote|ecu-setup|operation)\\.md(#.*)?$",
+      "replacement": "$1.ja.md$2"
+    }
+  ],
   "ignorePatterns": [
     {
       "pattern": "https://tier4inc-my.sharepoint.com/"
