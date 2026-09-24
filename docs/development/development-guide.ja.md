@@ -75,23 +75,24 @@ make eval
 ```text
 output/
 ├── <実行日時>/
+│   ├── awsim.log                                 # AWSIM の実行ログ（make dev の場合）
 │   └── d1/
 │       ├── autoware.log                          # Autoware の実行ログ
-│       ├── awsim.log                             # AWSIM の実行ログ（make devのみ）
 │       ├── ros/log/                              # 各ノードの個別ログ
-│       ├── capture/                              # キャプチャ動画
+│       ├── capture/                              # キャプチャ動画（cap-*.mp4）
 │       ├── rosbag2_autoware/                     # ROSBagファイル
 │       ├── d1-result-details.json                # 詳細な走行データ (make evalのみ)
 │       ├── result-summary.json                   # ラップタイムの結果サマリー (make evalのみ)
 │       └── motion_analytics-<timestamp>.html     # 速度・加速度の可視化 (make evalのみ)
-├── latest/                                       # 最新の評価結果へのシンボリックリンク (make evalのみ)
-│   └── d1/                                       # output/<実行日時>/d1/ へのシンボリックリンク
+├── latest/                                       # 実ディレクトリ。中身が最新の成果物へのシンボリックリンク (make evalのみ)
+│   ├── docker_build.log                          # 最新の docker_build.sh のビルドログ
+│   └── d1/
 │       ├── autoware.log                          # Autoware の実行ログ
-│       ├── capture/                              # キャプチャ動画
-│       ├── rosbag2_autoware/                     # ROSBag記録（MCAP形式）
-│       ├── d1-result-details.json                # 詳細な走行データ
+│       ├── capture.mp4                           # キャプチャ動画
+│       ├── rosbag2_autoware.mcap                 # ROSBag記録（MCAP形式）
+│       ├── result-details.json                   # 詳細な走行データ（d1-result-details.json へのリンク）
 │       ├── result-summary.json                   # ラップタイムの結果サマリー
-│       └── motion_analytics-<timestamp>.html     # 速度・加速度のインタラクティブ可視化
+│       └── motion_analytics.html                 # 速度・加速度のインタラクティブ可視化
 └── docker/
     └── <実行日時>-docker_build-<pid>.log          # docker_build.sh のビルドログ
 ```
