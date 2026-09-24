@@ -24,9 +24,11 @@
 | `e2e-final` | `make simulator-e2e-final` | E2E 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on |
 | `s2r-final` | `make simulator-s2r-final` | S2R 決勝 | 4台・6周・420秒・sync開始・ハンディキャップ/ランキング on・エンジン音 on・オーバーテイクレーン on |
 | `eval` | `make eval` | 評価（提出時と同じ条件） | 1台・6周・600秒・sync開始 |
-| `parallel` | `make simulator-parallel` | 複数台レース | 3台・6周・600秒・sync開始 |
-| `gate` | `make gate1`〜`make gate3` | セーフティゲートのテスト | 1台・シナリオ別 |
+| `parallel` | `make simulator-parallel` | 複数台レース | 3台・6周・600秒・sync開始・ハンディキャップ/ランキング on・**車両同士の衝突判定 off** |
+| `gate` | `make gate1`〜`make gate3`（`make simulator-gate` は test1〜3 を順次実行・AWSIM のみ） | セーフティゲートのテスト | 1台・シナリオ別 |
 | `multiplay-host` / `multiplay-client` | `make simulator-multiplay-host` など | 通信対戦（[Multiplay](../development/multiplay.ja.md)） | - |
+| `multiplay-server` | `make simulator-multiplay-server` | 通信対戦の専用サーバー | `-batchmode -nographics`・port 7777 |
+| `sample-scenario` | `make simulator-sample-scenario` | シナリオを指定して起動 | `StreamingAssets/Race/official.yaml` を `--scenario` で読み込み |
 | `simulator`（既定） | `make simulator` | 引数なしの素起動 | 起動時UIで設定を選択 |
 
 ### 部門ごとのモード（E2E / S2R） { #class-modes }
@@ -87,6 +89,8 @@ AWSIMはコマンドライン引数で動作を制御でき、起動スクリプ
 | --handicap    | bool   | false      | 順位に応じたハンディキャップの有効/無効を設定します。 |
 | --start-random | bool  | false      | 開始位置のランダム化の有効/無効を設定します。     |
 | --overtaking-lane | bool | false    | オーバーテイクレーンのBLOCKペナルティ判定の有効/無効を設定します（[ルール](../competition/sw-class.ja.md#overtake-lane)）。 |
+| --venue       | string |            | コース（会場）を指定します。起動スクリプトでは `citycircuit` を指定しています。 |
+| --safety-gate | string |            | セーフティゲートのテストを実行します。`1`/`2`/`3`/`all`（`all` は test1〜3 を順次実行）。`gate.sh` で使用しています。 |
 
 ### 制御・入力設定
 
@@ -130,6 +134,8 @@ AWSIMはコマンドライン引数で動作を制御でき、起動スクリプ
 | --multiplay-port        | int    | 50051      | 通信ポート番号。                            |
 | --multiplay-name        | string |            | プレイヤー名。                              |
 | --multiplay-send-hz     | float  | 50.0       | 送信更新頻度（Hz）。                        |
+| --multiplay-vehicle-index | int  |            | 自分が操作する車両の番号。`multiplay-host.sh` / `multiplay-client.sh` では `1`。`--vehicles` はこの値以上にしてください。 |
+| --multiplay-network-id  | int    | 0          | ネットワークID。`0` で自動採番されます。     |
 
 ### オーディオ
 
@@ -139,6 +145,9 @@ AWSIMはコマンドライン引数で動作を制御でき、起動スクリプ
 
 !!! tip "真偽値オプション"
     真偽値オプションは `1`/`true`/`on`/`enable`/`enabled` または `0`/`false`/`off`/`disable`/`disabled` を受け付けます。
+
+!!! tip "Unity 標準の起動引数"
+    AWSIM は Unity 標準の起動引数（シングルダッシュ）も受け付けます。起動スクリプトでは `-batchmode` `-nographics`（`multiplay-server.sh`）、`-screen-fullscreen` `-screen-width` `-screen-height` `-screen-quality` `-window-mode`（`parallel.sh`）を使用しています。
 
 ## キーボード操作
 
