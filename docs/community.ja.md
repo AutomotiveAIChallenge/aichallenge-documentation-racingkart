@@ -7,7 +7,7 @@
     <p class="community-hero__lead">学び・交流・発信の入口をまとめました。</p>
     <p>最新情報や取り組み記事を、気になるところからチェックしてください。</p>
     <div class="community-hero__actions">
-      <a class="md-button md-button--primary" href="https://qiita.com/advent-calendar/2023/jidounten-ai" target="_blank" rel="noopener">記事はこちら</a>
+      <a class="md-button md-button--primary" href="https://qiita.com/advent-calendar/2025/jidounten-ai" target="_blank" rel="noopener">記事はこちら</a>
     </div>
   </div>
   <div class="community-hero__media">

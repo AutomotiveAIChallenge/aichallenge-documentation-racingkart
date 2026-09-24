@@ -2,7 +2,7 @@
 
 ## Autonomous Driving AI Challenge Advent Calendar 2025
 
-<https://qiita.com/advent-calendar/2023/jidounten-ai>
+<https://qiita.com/advent-calendar/2025/jidounten-ai>
 
 ## Articles on Autonomous Driving AI Challenge Efforts
 
