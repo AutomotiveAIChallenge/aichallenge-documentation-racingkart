@@ -1,10 +1,12 @@
 # Setting Up the Environment
 
-This chapter explains how to set up the development and execution environment for the Autonomous Driving AI Challenge 2026 (Racing Kart). It covers verifying the recommended environment, preparing the workspace, and launching Docker and AWSIM.
+This chapter explains how to set up the development and execution environment for the Autonomous Driving AI Challenge 2026 (Racing Kart). A single setup script takes you through package installation, building the virtual environment, preparing the workspace, and launching Docker and AWSIM.
 
 ??? info "Changes for 2025 participants"
       - `rocker` is now limited to GUI forwarding; process management uses docker compose.
       - Individual setup steps have been consolidated into a single batch installation procedure.
+
+<iframe width="960" height="540" src="https://www.youtube.com/embed/K_ToeWGitbk?si=Chop0CTjs0rx-itt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Environment Setup
 
@@ -28,8 +30,6 @@ curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-
     cd ~/aichallenge-racingkart
     ./setup.bash bootstrap
     ```
-
-What this single command does (regarding the virtual environment)
 
 The following describes what `setup.bash` performs interactively, step by step. Open only the steps you need to review.
 
@@ -240,9 +240,11 @@ cd ~/aichallenge-racingkart
 make down
 ```
 
-This completes the environment setup and operation check.
+## If Something Goes Wrong
 
-- If AWSIM does not launch or has rendering issues, check your GPU settings.
-    - [GPU Settings](./gpu-simulation.en.md)
-- If you are ready to start developing, see the development guide.
-    - [Development Guide](../development/development-guide.en.md)
+- First log out and log back in, then try the setup again. Docker-related permission settings and various parameter settings may not have taken effect yet.
+- Scroll back up in the terminal and check whether any errors or warnings were printed.
+- You can run an environment check with the `./setup.bash doctor` command. If warnings or info messages are shown, try the remedy given for each.
+- If NVIDIA-related errors appeared, AWSIM does not start, or there are rendering problems, see [GPU Settings and Runtime Settings](./gpu-simulation.en.md).
+    - If you are taking part in the AI division you must enable Camera/LiDAR. See the steps on the same page.
+- Very occasionally AWSIM fails to start. If only the AWSIM window stays black, stop all containers with the `make down_all` command and try again.
