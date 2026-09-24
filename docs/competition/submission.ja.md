@@ -45,16 +45,16 @@ Queued（受付済み） → Building（ビルド中） → Running（シミュ�
 3. オンライン採点環境への提出
 
     [オンライン環境](https://aichallenge-board.jsae.or.jp)にアクセスします。
-    <img src="./images/topImage.png" width="100%">
+    <img src="./images/topImage.png" width="100%" alt="自動運転AIチャレンジのオンライン環境トップページ。右上に Public Dashboard と Login のボタンがある">
 
     右上の「Login」 ボタンからログインします。
-    <img src="./images/siteImage1.png" width="100%">
+    <img src="./images/siteImage1.png" width="100%" alt="ログインページ。右側にユーザー名とパスワードの入力欄、左側に協賛企業のロゴ">
 
     ログインが完了したら「Submit Code」ボタンでアップロードを行います。
-    <img src="./images/siteImage2.png" width="100%">
+    <img src="./images/siteImage2.png" width="100%" alt="ダッシュボードの Overview 画面。右上の Submit Code ボタンを赤い矢印で示している">
 
     アップロード画面では、アップロードする`aichallenge_submit.tar.gz` を選択します。任意でコメントを記載出来ます。また、対戦相手のレートの範囲を変更することが出来ます。デフォルトはランクが1つ上のチームと対戦します。範囲を広げることで、より上位ランクのチームと対戦する可能性がありますが、勝利したときのレートの上がり幅が大きくなります。戦略を練って設定しましょう。
-    <img src="./images/siteImage3.png" width="100%">
+    <img src="./images/siteImage3.png" width="100%" alt="Submit Code ダイアログ。本日の提出回数、対戦相手の範囲スライダー（+0〜+5）、ファイルのアップロード欄、コメント欄、Submit & Challenge ボタン">
 
 ## 結果の確認手順
 
@@ -64,9 +64,9 @@ Queued（受付済み） → Building（ビルド中） → Running（シミュ�
     - `result-summary.json`、rosbag、`autoware.log`を確認することができます
     - 画面右上の「Copy Public Link」によってSNSでの共有用リンクを取得できます
 
-    <img src="./images/siteImage4.png" width="100%">
+    <img src="./images/siteImage4.png" width="100%" alt="Your Submissions の一覧。詳細を開く目のアイコンを赤い矢印で示している">
 
-    <img src="./images/siteImage5.png" width="100%">
+    <img src="./images/siteImage5.png" width="100%" alt="Submission Details 画面。提出 ID、提出時刻、ユーザー ID、グループ ID、ビルド ID、状態、結果の JSON">
 
 ## Failedの場合
 
@@ -112,4 +112,4 @@ Queued（受付済み） → Building（ビルド中） → Running（シミュ�
     - Submissions
         - コードの提出履歴が表示されます。ログの確認やROSBAGダウンロードはここで行えます
 
-<img src="./images/siteImage6.png" width="100%">
+<img src="./images/siteImage6.png" width="100%" alt="Live 画面。提出数などのカウンター、レース映像、ランキング表、アクティビティ、レート推移のグラフ、提出一覧">

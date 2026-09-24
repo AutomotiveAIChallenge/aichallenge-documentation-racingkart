@@ -47,20 +47,20 @@ Submit to the online environment using the following steps:
 3. Submit to the online scoring environment
 
     Access the [online environment](https://aichallenge-board.jsae.or.jp).
-    <img src="./images/topImage.png" width="100%">
+    <img src="./images/topImage.png" width="100%" alt="Top page of the AI Challenge online environment, with the Public Dashboard and Login buttons at the top right">
 
     Log in from the "Login" button in the top right.
-    <img src="./images/siteImage1.png" width="100%">
+    <img src="./images/siteImage1.png" width="100%" alt="Sign-in page: username and password fields on the right, sponsor logos on the left">
 
     Once logged in, upload `aichallenge_submit.tar.gz` using the "Submit Code" button. After uploading, the source code will be built and simulation will be run in sequence.
-    <img src="./images/siteImage2.png" width="100%">
+    <img src="./images/siteImage2.png" width="100%" alt="Dashboard Overview screen, with a red arrow pointing to the Submit Code button at the top right">
 
     On the upload screen, select the `aichallenge_submit.tar.gz` to upload. You can optionally add a comment. You can also change the rank range of the opponent to challenge — by default you battle the team one rank above you. Widening the range lets you challenge higher-ranked teams, with a larger rating gain if you win. Choose strategically.
 
     If successful, "Success" will be displayed.
     If the build fails, the launch fails, or the score is not output, "Failed" will be displayed. In this case, please re-upload as there may be an internal server error. Contact us via Slack if the problem persists.
 
-    <img src="./images/siteImage3.png" width="100%">
+    <img src="./images/siteImage3.png" width="100%" alt="Submit Code dialog: today's submission count, the matchmaking range slider (+0 to +5), the file upload area, a comment box and the Submit & Challenge button">
 
 ## Checking Results
 
@@ -68,9 +68,9 @@ Submit to the online environment using the following steps:
 - Detailed race data including lap times and logs can be checked by clicking the button at the right end of the submission history.
     - You can check `result-summary.json`, rosbag, and `autoware.log`.
 
-    <img src="./images/siteImage4.png" width="100%">
+    <img src="./images/siteImage4.png" width="100%" alt="Your Submissions list, with a red arrow pointing to the eye icon that opens the details">
 
-    <img src="./images/siteImage5.png" width="100%">
+    <img src="./images/siteImage5.png" width="100%" alt="Submission Details screen: submission ID, submission time, user ID, group ID, build ID, state and the result JSON">
 
 ## If Failed
 
