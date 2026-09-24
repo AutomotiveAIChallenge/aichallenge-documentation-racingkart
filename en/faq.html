@@ -2378,6 +2378,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#every-autoware-node-dies-right-after-startup-with-rmw_create_node-failed-to-create-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Every Autoware node dies right after startup with rmw_create_node: failed to create domain.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ros2-topic-list-does-not-display" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2810,6 +2821,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#every-autoware-node-dies-right-after-startup-with-rmw_create_node-failed-to-create-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Every Autoware node dies right after startup with rmw_create_node: failed to create domain.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ros2-topic-list-does-not-display" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3183,6 +3205,13 @@
 <li>Mixed use of <code>ROS_LOCALHOST_ONLY=1</code> and <code>ROS_LOCALHOST_ONLY=0</code> will prevent container communication.</li>
 <li>Ensure that <code>ROS_LOCALHOST_ONLY</code> is not hard-coded in the executable.</li>
 </ul>
+<hr />
+<h3 id="every-autoware-node-dies-right-after-startup-with-rmw_create_node-failed-to-create-domain"><u>Every Autoware node dies right after startup with <code>rmw_create_node: failed to create domain</code>.</u></h3>
+<p>Multicast is probably disabled on the loopback interface (<code>lo</code>) of the host. The Autoware container uses the host network, and the CycloneDDS configuration (<code>vehicle/cyclonedds.xml</code>) uses <code>lo</code>, so CycloneDDS cannot create its domain when <code>lo</code> has no multicast. On a fresh Ubuntu install, multicast on <code>lo</code> is off.</p>
+<p>Run <code>ip link show lo</code> and check that the flags include <code>MULTICAST</code>. If they do not, run the following in the <code>aichallenge-racingkart</code> directory (it asks for your sudo password):</p>
+<div class="highlight"><pre><span></span><code>./setup.bash<span class="w"> </span>network<span class="w"> </span>tune
+</code></pre></div>
+<p>This enables multicast on <code>lo</code> and sets <code>net.core.rmem_max</code>, and keeps both settings across reboots. <code>sudo ip link set lo multicast on</code> also fixes it right away, but that setting is lost on reboot. The "DDS host tuning" section of <code>./setup.bash doctor</code> shows the state of both settings.</p>
 <hr />
 <h3 id="ros2-topic-list-does-not-display"><u>ros2 topic list does not display.</u></h3>
 <p>Ensure that the <code>ROS_DOMAIN_ID</code> matches on your machine (this is not an issue if you haven't set <code>ROS_DOMAIN_ID</code>). Also, ensure ROS2 is sourced correctly.</p>

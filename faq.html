@@ -2683,6 +2683,14 @@
 </ol>
 </details>
 <details class="question">
+<summary><code>rmw_create_node: failed to create domain</code> と出て、Autowareのノードが起動直後にすべて落ちます。</summary>
+<p>ホストのループバック（<code>lo</code>）でマルチキャストが無効になっている可能性があります。Autowareのコンテナはホストのネットワークを使い、CycloneDDSの設定（<code>vehicle/cyclonedds.xml</code>）は通信に<code>lo</code>を使うため、<code>lo</code>でマルチキャストが使えないとDDSのドメインを作成できません。Ubuntuの初期状態では、<code>lo</code>のマルチキャストは無効です。</p>
+<p><code>ip link show lo</code> を実行し、表示されるフラグに <code>MULTICAST</code> が含まれているか確認してください。含まれていない場合は、<code>aichallenge-racingkart</code> のディレクトリで次を実行します（sudoのパスワードを求められます）。</p>
+<div class="highlight"><pre><span></span><code>./setup.bash<span class="w"> </span>network<span class="w"> </span>tune
+</code></pre></div>
+<p><code>lo</code> のマルチキャストの有効化と <code>net.core.rmem_max</code> の設定を、再起動後も残る形で行います。その場ですぐに試したいだけであれば <code>sudo ip link set lo multicast on</code> でも直りますが、こちらは再起動すると元に戻ります。<code>./setup.bash doctor</code> の「DDS host tuning」の欄でも、この2点の状態を確認できます。</p>
+</details>
+<details class="question">
 <summary>AWSIMがコアダンプで終了します。</summary>
 <p>AWSIMを起動した直後にcoredumpで終了する場合、GPUのメモリが不足している可能性があります。そのため、<code>nvidia-smi</code>でGPUメモリの利用率が限界に達していないか確認してください。
 なお、GPUのメモリは11GB以上を推奨しています。</p>
