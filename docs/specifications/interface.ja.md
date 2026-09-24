@@ -187,13 +187,13 @@ GNSSセンサからの測位情報です。`racing_kart_gnss_poser`ノードがN
 | Name                | Description                    |
 | ------------------- | ------------------------------ |
 | header.stamp        | データの取得時刻               |
-| header.frame_id     | フレームID                     |
+| header.frame_id     | フレームID (`lidar`)           |
 | angle_min           | スキャン開始角度（rad）        |
 | angle_max           | スキャン終了角度（rad）        |
 | angle_increment     | 角度分解能（rad）              |
 | range_min           | 最小検出距離（m）              |
-| range_max           | 最大検出距離（m）（最大30m）   |
-| ranges              | 距離データ配列（1080点）       |
+| range_max           | 最大検出距離（m）（25m）       |
+| ranges              | 距離データ配列（750点）        |
 
 ### `/sensing/camera/image_raw`
 
@@ -202,10 +202,10 @@ GNSSセンサからの測位情報です。`racing_kart_gnss_poser`ノードがN
 | Name                | Description            |
 | ------------------- | ---------------------- |
 | header.stamp        | データの取得時刻       |
-| header.frame_id     | フレームID             |
-| height              | 画像の高さ（px）       |
-| width               | 画像の幅（px）         |
-| encoding            | エンコーディング形式   |
+| header.frame_id     | フレームID (`camera_optical_link`) |
+| height              | 画像の高さ（px）（256）  |
+| width               | 画像の幅（px）（384）    |
+| encoding            | エンコーディング形式（`bgr8`） |
 | data                | 画像データ             |
 
 ### `/sensing/camera/camera_info`

@@ -21,7 +21,7 @@ Participants will proceed with development by customizing this code and paramete
 
     - `mpc` (default): MPC-based control
     - `pure_pursuit`: Pure Pursuit-based control
-    - `tiny_lidar_net`: TinyLiDARNet End-to-End control (outputs acceleration and steering angle directly from 1080 LiDAR points)
+    - `tiny_lidar_net`: TinyLiDARNet End-to-End control (outputs acceleration and steering angle directly from 750 LiDAR points)
     - `pilot_net`: PilotNet End-to-End control
     - `joycon`: Manual teleoperation
 
