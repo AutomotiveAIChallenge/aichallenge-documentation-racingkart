@@ -204,7 +204,7 @@ cp ./weights/converted_weights.npy \
 
 ### アクセル制御の追加
 
-現在のdefault設定では、TinyLidarNetはステアリング制御のみを行い、[アクセルは固定値](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/6706f4cb1bd3b1e50dc56e092ebd51ca174a3530/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13)で制御しています。`control_mode: "ai"`に変更することで、アクセル制御もTinyLidarNetに実施させることができます。この場合、アクセル制御も学習しておく必要があります。
+現在のdefault設定では、TinyLidarNetはステアリング制御のみを行い、[アクセルは固定値](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13)で制御しています。`control_mode: "ai"`に変更することで、アクセル制御もTinyLidarNetに実施させることができます。この場合、アクセル制御も学習しておく必要があります。
 
 ## TinyLidarNetとPilotNetで共通のTips { #tips }
 
@@ -271,7 +271,7 @@ TensorBoardを使うことで学習の過程を可視化できます。下記コ
 
 ```bash
 pip install tensorboard
-cd /aichallenge/ml_workspace/tiny_lidar_net
+cd ~/aichallenge-racingkart/aichallenge/ml_workspace/tiny_lidar_net
 tensorboard --logdir logs
 # この後、表示されるURLを開く
 ```
