@@ -36,8 +36,8 @@
 
 ## 環境構築
 
-??? question "`WARNING unable to detect os for base image 'aichallenge-racingkart-dev', maybe the base image does not exist`が出ます。"
-    Dockerイメージのビルドをお願いします。
+??? question "`WARNING unable to detect os for base image 'aichallenge-2025-dev', maybe the base image does not exist`が出ます。"
+    Dockerイメージのビルドをお願いします（`./docker_build.sh dev`）。
 
 ??? question "Dockerがpullできません"
     `newgrp docker`か`sudo service docker restart`でdockerの再起動またはUbuntuの再起動をお願いします。
