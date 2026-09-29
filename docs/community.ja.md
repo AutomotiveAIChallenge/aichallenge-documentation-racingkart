@@ -78,3 +78,8 @@
 <div class="community-callout">
   <p>絶賛募集中！！！</p>
 </div>
+
+## 参加者による解説動画
+
+[:material-youtube: チーム KSK: LiDAR だけを見る AI で準優勝（End to End AI 部門の解説）](https://youtu.be/S32a94bqrxg){ .md-button .md-button--primary target="_blank" }
+[:material-youtube: チーム KSK: MPC vs Pure Pursuit を式から解説（SW 部門の解説）](https://youtu.be/uafowqYt4PU){ .md-button .md-button--primary target="_blank" }
