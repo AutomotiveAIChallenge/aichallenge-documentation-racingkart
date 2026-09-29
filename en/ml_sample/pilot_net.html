@@ -2929,7 +2929,7 @@ cp<span class="w"> </span>./weights/converted_weights.npy<span class="w"> </span
 </tr>
 </tbody>
 </table>
-<p><code>output_dim=1</code> で学習した場合 (ステアのみ学習) は自動的に <code>fixed</code> 相当の動作になります。</p>
+<p><code>output_dim=1</code> で学習した場合 (ステアのみ学習) は、推論側の <code>pilot_net_node.param.yaml</code> の <code>model.output_dim</code> も <code>1</code> にしてください。そうすると <code>control_mode</code> によらず <code>fixed</code> 相当の動作 (アクセルは <code>acceleration</code> の固定値) になります。配布時の <code>model.output_dim: 2</code> のまま <code>output_dim=1</code> の重みを読み込むと、読み込み自体は成功しますが、推論のたびに <code>IndexError: index 1 is out of bounds</code> で失敗します。</p>
 <h3 id="train-val-augmentation">train/val 分割と Augmentation</h3>
 <p>上述の手順で示したように、<code>extract_data_from_bag.py</code> の出力のままでも学習は開始できますが、汎化性能を上げたい場合はAugmentationが有効です。また、本来は訓練用データと検証用データは分けるべきです。</p>
 <p><code>prepare_data.py</code> によって、データセットのtrain/val分割と水平反転 Augmentationを行えます。</p>
@@ -2964,6 +2964,7 @@ python3<span class="w"> </span>prepare_data.py<span class="w"> </span>--all-dir<
 <h3 id="notes">Notes</h3>
 <ul>
 <li><strong>入力解像度を変える場合は学習側 (<code>run_pipeline.bash</code> の引数 または <code>train.yaml</code>) と推論側 (<code>pilot_net_node.param.yaml</code>) を必ず揃えてください。</strong> ずらすと flatten dim 不一致でモデルが読めません。</li>
+<li><strong><code>output_dim</code> も学習側と推論側 (<code>pilot_net_node.param.yaml</code> の <code>model.output_dim</code>) で揃えてください。</strong> <code>output_dim=1</code> の重みを <code>model.output_dim: 2</code> の設定で使うと、推論時に <code>IndexError</code> になります。</li>
 <li>推論性能: 66x200 でも 40Hz は CPU 推論で厳しい場合があります。必要なら ONNX Runtime への移行を検討してください。</li>
 </ul>
 <h2 id="tinylidarnetpilotnettips">TinyLidarNetとPilotNetで共通のTips</h2>
