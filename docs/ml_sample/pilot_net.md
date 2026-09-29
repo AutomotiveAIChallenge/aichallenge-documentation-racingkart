@@ -148,7 +148,7 @@ cp ./weights/converted_weights.npy \
 | `ai` | NN 出力 | NN 出力 |
 | `fixed` | `acceleration` パラメータ (固定値) | NN 出力 |
 
-`output_dim=1` で学習した場合 (ステアのみ学習) は自動的に `fixed` 相当の動作になります。
+`output_dim=1` で学習した場合 (ステアのみ学習) は、推論側の `pilot_net_node.param.yaml` の `model.output_dim` も `1` にしてください。そうすると `control_mode` によらず `fixed` 相当の動作 (アクセルは `acceleration` の固定値) になります。配布時の `model.output_dim: 2` のまま `output_dim=1` の重みを読み込むと、読み込み自体は成功しますが、推論のたびに `IndexError: index 1 is out of bounds` で失敗します。
 
 ### train/val 分割と Augmentation { #train-val-augmentation }
 
@@ -201,6 +201,7 @@ cd /aichallenge/ml_workspace/pilot_net
 ### Notes
 
 - **入力解像度を変える場合は学習側 (`run_pipeline.bash` の引数 または `train.yaml`) と推論側 (`pilot_net_node.param.yaml`) を必ず揃えてください。** ずらすと flatten dim 不一致でモデルが読めません。
+- **`output_dim` も学習側と推論側 (`pilot_net_node.param.yaml` の `model.output_dim`) で揃えてください。** `output_dim=1` の重みを `model.output_dim: 2` の設定で使うと、推論時に `IndexError` になります。
 - 推論性能: 66x200 でも 40Hz は CPU 推論で厳しい場合があります。必要なら ONNX Runtime への移行を検討してください。
 
 ## TinyLidarNetとPilotNetで共通のTips
