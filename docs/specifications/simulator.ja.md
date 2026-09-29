@@ -50,6 +50,9 @@
 - エンジン音（`--sound`）は決勝の2モードのみ on です。練習モードや評価（`make eval`）では off にしてあります。
 - **オーバーテイクレーン（`--overtaking-lane`）は `s2r-final` のみ on** です。[ルール](../competition/sw-class.ja.md#overtake-lane)と同じ条件で練習する場合は `make simulator-s2r-final` で AWSIM を起動し、別ターミナルで `make autoware-simulator` を実行します。`make dev` で判定を試したい場合は `dev.sh` の `--overtaking-lane off` を `on` に書き換えてください。
 
+!!! warning "`--overtaking-lane` は aichallenge-racingkart の `dev` ブランチにのみ入っています（2026年9月12日時点）"
+    `--overtaking-lane` フラグは aichallenge-racingkart [#295](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/295) で `dev` ブランチに追加されました。`setup.bash` が既定で取得する `main` ブランチ（2026年8月24日の `0c249d5`）の `s2r-final.sh` / `dev.sh` にはまだ含まれていないため、`main` のまま `make simulator-s2r-final` を実行してもオーバーテイクレーンは有効になりません。手元のブランチは `git -C ~/aichallenge-racingkart branch --show-current` で、フラグの有無は `grep -- --overtaking-lane ~/aichallenge-racingkart/aichallenge/simulator_scripts/s2r-final.sh` で確認できます。
+
 ## 画面説明
 
 `make simulator` で起動した場合、設定画面が表示されます。後述の起動オプション相当の設定をGUIで行うことが可能です。設定が出来たら「Start」をクリックします。
