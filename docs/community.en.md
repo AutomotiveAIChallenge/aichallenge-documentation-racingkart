@@ -12,6 +12,12 @@
 
 We are actively seeking contributions!!!
 
+## Explainer Videos by Participants
+
+Team KSK: [an AI that only sees LiDAR, runner-up in the End to End AI category (YouTube, Japanese)](https://youtu.be/S32a94bqrxg)
+
+Team KSK: [MPC vs Pure Pursuit explained from the equations, SW category (YouTube, Japanese)](https://youtu.be/uafowqYt4PU)
+
 ## Finals Video
 
 <iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/_wvVNh3_Axo?si=Pm8_VC6r_O2Oogr3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
