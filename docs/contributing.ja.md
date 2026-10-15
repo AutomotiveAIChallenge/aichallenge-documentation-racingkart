@@ -28,3 +28,4 @@
 2. `mkdocs.yaml` の `nav:` に `<path>.md`（suffix無し）を追加する
 3. 見出し名を日本語側で上書きしたい場合は、`mkdocs.yaml` の `nav_translations` を更新する
 4. `mkdocs build` でリンク切れ・警告がないか確認する
+5. 言語 suffix の無い共通ページ（`docs/ml_sample/*.md`・`docs/course/*.md` など）から他ページへリンクするときは、`../setup/introduction.md` のように suffix を付けずに書く（`.ja.md` を付けると英語版のビルドでリンク切れになる）

@@ -13,7 +13,7 @@ PilotNet (DAVE-2) では、カメラから出力された画像データを用�
 
 ## 事前準備
 
-[環境構築](../setup/introduction.ja.md)を実施して、`make dev` コマンドによってAutowareとAWSIMが使用できることを確認してください。また、[.envの記載](../setup/gpu-simulation.ja.md#env-check)を参考にGPUが使用できていることを確認してください。
+[環境構築](../setup/introduction.md)を実施して、`make dev` コマンドによってAutowareとAWSIMが使用できることを確認してください。また、[.envの記載](../setup/gpu-simulation.md#env-check)を参考にGPUが使用できていることを確認してください。
 
 ## 全体の流れ
 
