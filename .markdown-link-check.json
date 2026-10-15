@@ -33,6 +33,9 @@
     },
     {
       "pattern": "^#byod$"
+    },
+    {
+      "pattern": "^#prohibited$"
     }
   ]
 }
