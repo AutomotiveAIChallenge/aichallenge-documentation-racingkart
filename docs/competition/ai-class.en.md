@@ -1,42 +1,85 @@
-# End to End AI Division
+# End to End Division Rules
 
-## AI Division Overview
+!!! warning "WIP"
+    Some rules are not yet finalized and may be updated.
 
-The AI Division progresses from qualifying to finals as follows:
+## End to End Division Overview
+
+The End to End AI Division progresses from qualifying to the finals as follows.
 
 | Item | Schedule | Content | Participating Teams |
 | --- | --- | --- | --- |
-| AI Division Qualifying | Around August | Submit presentation documents + driving video | Applicants |
-| AI Division SIM Finals | September 19 | Race in simulation environment at the finals venue with participant-brought PCs | Top 8–16 teams from AI Qualifying |
+| End to End Division Qualifying | July 1 – September 1 | Submit presentation documents and a driving video. ([Submission form](https://forms.office.com/pages/responsepage.aspx?id=NVLCok7DvEuOMQxVDG-yrJTP427xWZBKkcBQTu6n-vxUMTU5SkpIRFQ3UDRWUk9WNTBLVjUwR0lUNy4u&route=shorturl)) | Applicants |
+| SIM Finals Preparation | September 18 | Operation check and practice runs in the same environment as on the SIM Finals day | Finalist teams that wish to take part |
+| End to End Division SIM Finals | September 19 | Race in the simulation environment at the finals venue | Top 16 teams from E2E AI Qualifying |
 
 !!! warning
-    - Teams participating in the AI Division are also required to participate in the SW Division.
-    - There is no real vehicle race in the AI Division.
+    - Teams participating in the End to End Division must also participate in the Sim to Real Division.
+    - There is no real vehicle race in the End to End Division.
 
-## AI Division Qualifying Rules
+## Common Rules for the End to End Division
 
-- In the AI Division qualifying, the organizers will evaluate the teams' approaches.
-- Teams will submit presentation documents and driving videos, which will be scored by judges.
-- Further details about the evaluation will be announced separately.
+### Race Format
 
-## AI Division SIM Finals Rules
+- Vehicles race on AWSIM in an environment that replicates the City Circuit Tokyo Bay (CCTB) course.
 
-The basic rules are the same as the SW Division SIM Finals, with the following differences:
+### Speed and Penalties
 
-### Execution Environment
-
-- Teams will run their code on their own PCs. GPU use and access to external servers are also permitted.
-- Teams' 4 PCs will be connected to the AWSIM PC provided by the organizers for the competition.
+Same as the [Sim to Real Division](./sw-class.en.md).
 
 ### Available Sensors
 
 - Camera
 - LiDAR
+- Steer Angle
 - Wheel Odometry
+- Gear Status
 
-!!! warning "About Available Sensors"
-    Because End to End AI approaches are emphasized, sensors available in the SW Division such as GNSS cannot be used.
+!!! warning "About available sensors"
+    Because End to End AI approaches are emphasized, sensors used in the Sim to Real Division that are not listed above, such as GNSS, cannot be used.
 
-### Evaluation Method
+### Safety Gates
 
-The final evaluation will be determined by a combined score of the qualifying evaluation results and the finals race results.
+Same as the [Sim to Real Division](./sw-class.en.md).
+
+### Prohibited Actions
+
+Same as the [Sim to Real Division](./sw-class.en.md).
+
+## End to End Division SIM Qualifying
+
+- In the End to End Division qualifying, the teams' approaches are reviewed.
+- Teams submit presentation documents and a driving video, which are scored by judges.
+- [Submission form](https://forms.office.com/pages/responsepage.aspx?id=NVLCok7DvEuOMQxVDG-yrJTP427xWZBKkcBQTu6n-vxUMTU5SkpIRFQ3UDRWUk9WNTBLVjUwR0lUNy4u&route=shorturl)
+
+![e2e_submit](./images/e2e_submit.png)
+
+## End to End Division SIM Finals { #semifinal }
+
+### Ranking System
+
+- Races are held with 4 vehicles simultaneously. The race is 6 laps.
+- Selection round
+    - 4 races are held, with general and student teams mixed.
+    - Starting positions are determined by the qualifying review results.
+    - The 4 teams that advance to the final race are selected by a combined score of the document review, presentation and race results.
+        - Because this division emphasizes the approach, the document review and presentation account for 70% and the race results for 30%. Therefore, a team with a top race result does not necessarily advance to the final.
+        - The breakdown of the scores is not disclosed, and inquiries about it cannot be answered.
+- Final race
+    - A race is held with the 4 teams that advanced from the selection round.
+    - Starting positions are determined by the selection round ranking.
+    - The final ranking is determined solely by the finishing order of the race.
+
+![e2e_tournament](./images/e2e_sim_tournament.png)
+
+### Rules
+
+- The basic rules follow the common rules above.
+- Races start forcibly at the scheduled start time. A team whose setup is not complete either continues working and aims to join mid-race, or retires.
+- If a vehicle gets stuck because of a crash or behaves unexpectedly, the organizers will not help it recover.
+- Participants may perform any operation from their own terminal and RViz (but cannot operate the AWSIM screen). The expected operations are:
+    - Restarting Autoware
+    - Re-setting the self-position (localization)
+    - Moving the vehicle by manual driving when it is stuck
+    - Switching gear and issuing turbo commands with the `ros2 topic` command
+- However, you must report to the organizers before operating. Frequent use of manual driving is prohibited. Operations that affect anything other than your own ROS_DOMAIN_ID are also prohibited.
