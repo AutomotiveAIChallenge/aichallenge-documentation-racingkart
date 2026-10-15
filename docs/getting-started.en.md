@@ -10,7 +10,7 @@ First, use the online scoring environment, then proceed with [environment setup]
 
 Registration for the 2025 competitions have already been closed.
 
-## Accessing and Submitting to the [Online Scoring Environment](https://aichallenge-board.jsae.or.jp/live)
+## Accessing and Submitting to the [Online Scoring Environment](https://aichallenge-board.jsae.or.jp/public/live)
 
 In this competition, you will upload submission files (compressed source code files) to the online environment, where they will be automatically scored and ranked.
 
@@ -21,7 +21,7 @@ Let's try using the online scoring environment with these four steps!
 
 1. After registering for the Autonomous Driving AI Challenge, login information will be sent to your registered email address.
 
-2. Access the [online scoring environment](https://aichallenge-board.jsae.or.jp/live) and log in using the credentials provided in the email.
+2. Access the [online scoring environment](https://aichallenge-board.jsae.or.jp/public/live) and log in using the credentials provided in the email.
 
 3. Once you have access, try submitting a source code file. Download the sample code compressed file from the red button below.
 
@@ -44,5 +44,5 @@ Let's start developing by following the link above!
 
 ## [Submitting Your Source Code](./competition/submission.en.md)
 
-Submit your completed code via the [online scoring environment](https://aichallenge-board.jsae.or.jp/live).
+Submit your completed code via the [online scoring environment](https://aichallenge-board.jsae.or.jp/public/live).
 Set up your submission using the link above.

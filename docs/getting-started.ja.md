@@ -40,7 +40,7 @@
     チームのアイコンの設定をお願いいたします。アイコンの作成においては、ChatGPTなどの生成AIを活用するのも効果的です。
     作成したアイコンは、SDVスキル標準に基づいた保有スキルの一覧表にも掲載されます。
 
-    [:material-launch: 参加者の保有スキル](https://aichallenge-board.jsae.or.jp/public/jobs){ .md-button .md-button--primary}
+    [:material-launch: 参加者の保有スキル](https://aichallenge-board.jsae.or.jp/public/team){ .md-button .md-button--primary}
 
 ??? note  "5. AIチャレンジの環境構築"
 
@@ -55,11 +55,11 @@
 
     環境構築が完了したら、実際に自動運転ソフトウェアを改良してみましょう。
 
-    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/workspace-usage.ja.md){ .md-button .md-button--primary }
+    [:material-arrow-right-circle: AIチャレンジでの開発の進め方](./development/development-guide.ja.md){ .md-button .md-button--primary }
 
 ??? note  "7. 開発したコードを提出"
 
-    完成したコードの提出は[オンライン採点環境](https://aichallenge-board.jsae.or.jp/live)から行います。
+    完成したコードの提出は[オンライン採点環境](https://aichallenge-board.jsae.or.jp/public/live)から行います。
     下記リンクより再度提出してみましょう。
 
     [:material-launch: ソースコードの提出](./competition/submission.ja.md){ .md-button .md-button--primary}
@@ -86,7 +86,7 @@
 
     手元でどの方法でもエラーが再現できない場合は、下記の情報と共に質問チャンネルでお問い合わせください。
 
-    1. https://aichallenge-board.jsae.or.jp/public/submissions のID、日時などの情報
+    1. オンライン採点環境の「Your Submissions」に表示される提出のID、日時などの情報
     2. 手元でやってみたことの手順の共有
     3. もともとのサンプルコードとの差分、どのような変更を加えたのかの説明
     4. ログの情報、その他思い当たる節がありそうな部分の共有
