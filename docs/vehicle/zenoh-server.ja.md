@@ -14,7 +14,7 @@ router は号機ごとに別のポートで動かし、router 同士はつなぎ
 
 - OS は Ubuntu 22.04（x86_64）にします。ROS 2 は要りません。router は軽いので、t3.micro 程度で足ります。
 - security group で、号機ごとのポートを TCP で開けます。号機ごとのポートは、本体リポジトリの [`vehicle/vehicle_ports.sh`](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/dev/vehicle/vehicle_ports.sh) で決まっています。
-- EC2 の公開 IP を、DNS 名 `zenoh.dev.aichallenge-board.jsae.or.jp` の A レコードに登録します。遠隔 PC と ECU はこの名前でつなぎ、server 証明書もこの名前で発行します。
+- EC2 に Elastic IP を割り当て、その IP を DNS 名 `zenoh.dev.aichallenge-board.jsae.or.jp` の A レコードに登録します。遠隔 PC と ECU はこの名前でつなぎ、server 証明書もこの名前で発行します。自動で付く公開 IP は EC2 を停止・起動すると変わるので、Elastic IP を使います。
 
 ## 2. 証明書を置く
 
@@ -23,11 +23,17 @@ mTLS の証明書は、server 用と client 用で別の CA（[minica](https://g
 証明書は手元の端末で発行します。minica は Go で書かれているので、先に Go を入れておきます（Ubuntu では `golang-go` パッケージ）。`go install` で入れた minica は `$(go env GOPATH)/bin` に入ります。
 
 ```bash
-go install github.com/jsha/minica@latest
+go install github.com/jsha/minica@v1.1.0
 export PATH="${PATH}:$(go env GOPATH)/bin"
-ca_dir=client-xxxx   # client CA の組の名前。client- で始める
-mkdir -p ~/zenoh_tls/server ~/zenoh_tls/"${ca_dir}"
+mkdir -p ~/zenoh_tls/server
 cd ~/zenoh_tls/server && minica --domains zenoh.dev.aichallenge-board.jsae.or.jp
+```
+
+server 証明書は最初に1回だけ発行します。発行し直すと server CA が変わり、配った `tls.zip` が使えなくなります。client CA と client 証明書は、組ごとに `ca_dir` を変えて発行します。
+
+```bash
+ca_dir=client-xxxx   # client CA の組の名前。client- で始める
+mkdir -p ~/zenoh_tls/"${ca_dir}"
 cd ~/zenoh_tls/"${ca_dir}" && minica --domains aichallenge-zenoh-client
 openssl x509 -in aichallenge-zenoh-client/cert.pem -noout -ext extendedKeyUsage   # TLS Web Client Authentication を含むこと
 ```
@@ -41,19 +47,19 @@ ec2=xxxx   # EC2 に ssh で入るときの宛先
 rsync -a --relative "server/${server_name}/cert.pem" "server/${server_name}/key.pem" client-*/minica.pem "${ec2}:zenoh_tls_upload/"
 ```
 
-EC2 内で置きます。router は root で動くので、鍵は root だけが読める 0600 にします。
+EC2 内で `/etc/zenoh/tls/` の下に置きます。zenohd パッケージを更新・削除すると `/etc/zenohd` は消えるので、そこには置きません。router は root で動くので、鍵は root だけが読める 0600 にします。
 
 ```bash
 server_name=zenoh.dev.aichallenge-board.jsae.or.jp
 src=~/zenoh_tls_upload
 for ca in "${src}"/client-*/minica.pem; do
   ca_dir=$(basename "$(dirname "${ca}")")
-  sudo install -d -m 0755 "/etc/zenohd/tls/${ca_dir}"
-  sudo install -m 0644 "${ca}" "/etc/zenohd/tls/${ca_dir}/minica.pem"
+  sudo install -d -m 0755 "/etc/zenoh/tls/${ca_dir}"
+  sudo install -m 0644 "${ca}" "/etc/zenoh/tls/${ca_dir}/minica.pem"
 done
-sudo install -d -m 0755 "/etc/zenohd/tls/server/${server_name}"
-sudo install -m 0644 "${src}/server/${server_name}/cert.pem" "/etc/zenohd/tls/server/${server_name}/cert.pem"
-sudo install -m 0600 "${src}/server/${server_name}/key.pem" "/etc/zenohd/tls/server/${server_name}/key.pem"
+sudo install -d -m 0755 "/etc/zenoh/tls/server/${server_name}"
+sudo install -m 0644 "${src}/server/${server_name}/cert.pem" "/etc/zenoh/tls/server/${server_name}/cert.pem"
+sudo install -m 0600 "${src}/server/${server_name}/key.pem" "/etc/zenoh/tls/server/${server_name}/key.pem"
 rm -r "${src}"
 ```
 
@@ -61,7 +67,7 @@ rm -r "${src}"
 
 ## 3. 依存を入れる
 
-EC2 内で、Eclipse Zenoh の apt リポジトリから `zenohd` を、版を指定して入れます。パッケージに付いてくる `zenohd.service` は使わないので、無効にします。
+EC2 内で、Eclipse Zenoh の apt リポジトリから `zenohd` を、版を指定して入れます。`apt upgrade` で版が変わらないよう hold します。パッケージに付いてくる `zenohd.service` は使わないので、無効にします。
 
 ```bash
 sudo install -d -m 0755 /etc/apt/keyrings
@@ -73,6 +79,7 @@ sudo apt-get update
 apt-cache madison zenohd   # 入れられる版の一覧
 zenohd_version=x.y.z       # 上の一覧から選んだ版
 sudo apt-get install -y "zenohd=${zenohd_version}"
+sudo apt-mark hold zenohd
 sudo systemctl disable --now zenohd
 ```
 
@@ -83,7 +90,7 @@ sudo systemctl disable --now zenohd
 ```bash
 vehicle_id=A2
 port=7448            # この号機のポート（vehicle/vehicle_ports.sh）
-ca_dir=client-xxxx   # この号機の組の client CA（/etc/zenohd/tls/ の下のディレクトリ名）
+ca_dir=client-xxxx   # この号機の組の client CA（/etc/zenoh/tls/ の下のディレクトリ名）
 server_name=zenoh.dev.aichallenge-board.jsae.or.jp
 sudo install -d -m 0755 /etc/zenoh/routers
 sudo tee "/etc/zenoh/routers/router-${vehicle_id,,}.json5" >/dev/null <<EOF
@@ -108,10 +115,10 @@ sudo tee "/etc/zenoh/routers/router-${vehicle_id,,}.json5" >/dev/null <<EOF
     },
     "link": {
       "tls": {
-        "root_ca_certificate": "/etc/zenohd/tls/${ca_dir}/minica.pem",
+        "root_ca_certificate": "/etc/zenoh/tls/${ca_dir}/minica.pem",
         "enable_mtls": true,
-        "listen_private_key": "/etc/zenohd/tls/server/${server_name}/key.pem",
-        "listen_certificate": "/etc/zenohd/tls/server/${server_name}/cert.pem"
+        "listen_private_key": "/etc/zenoh/tls/server/${server_name}/key.pem",
+        "listen_certificate": "/etc/zenoh/tls/server/${server_name}/cert.pem"
       }
     }
   }
