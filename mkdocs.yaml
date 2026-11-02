@@ -62,6 +62,7 @@ nav:
       - vehicle/ecu-setup.md
       - vehicle/run.md
       - vehicle/remote.md
+      - vehicle/zenoh-server.md
   - specifications:
       - specifications/interface.md
       - specifications/hardware.md
