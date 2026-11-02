@@ -29,7 +29,7 @@ mkdir -p ~/zenoh_tls/server
 cd ~/zenoh_tls/server && minica --domains zenoh.dev.aichallenge-board.jsae.or.jp
 ```
 
-server 証明書は最初に1回だけ発行します。発行し直すと server CA が変わり、配った `tls.zip` が使えなくなります。client CA と client 証明書は、組ごとに `ca_dir` を変えて発行します。
+server CA（`~/zenoh_tls/server/` の `minica.pem` と `minica-key.pem`）は最初に1回だけ作り、消さずに残します。作り直すと server CA が変わり、配った `tls.zip` が使えなくなります。client CA と client 証明書は、組ごとに `ca_dir` を変えて発行します。
 
 ```bash
 ca_dir=client-xxxx   # client CA の組の名前。client- で始める
