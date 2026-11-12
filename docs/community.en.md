@@ -30,8 +30,6 @@ Team Hayes: [reading rosbag (mcap) without ROS: decoding the V2X position array 
 
 Team Hayes: [make practice-4car, race up to four submissions under SIM-final settings (PR #345)](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/345)
 
-Team Hayes: [aichallenge-toolkit, ROS-free tools for rosbag analysis and pre-submit checks](https://github.com/theCodeForgerHQ/aichallenge-toolkit)
-
 We are actively seeking contributions!!!
 
 ## Explainer Videos by Participants
