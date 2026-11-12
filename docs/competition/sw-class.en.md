@@ -29,7 +29,14 @@ The SW Division progresses from qualifying to finals as follows:
 - Speed limit follows the physics model used by the simulator. For real vehicles, the speed is limited to 30 km/h.
 - Handicaps may be applied to acceleration and speed based on race position.
 - If a collision with course walls or other vehicles occurs, or if invalid acceleration is input, the vehicle's speed will be restricted for a certain time as a penalty.
-- Boost items that temporarily increase acceleration are available. (SIM environment only, planned)
+- Boost items that temporarily increase acceleration are available. (SIM environment only)
+- A Slow item that limits every other vehicle to **10 km/h for 10 seconds** is available (1 use by default). (SIM environment only)
+    - While any Slow is active, nobody (including its user) can use Slow.
+    - The vehicle in **1st place** cannot use Slow while it is 1st, and Slow cannot be used when there are no other vehicles.
+    - Invalid activations are ignored and do not consume a use.
+    - A slowed vehicle cannot start a boost; an active boost is paused and resumes after the Slow ends.
+
+![awsim_hud_states](../assets/awsim_hud_states.jpg)
 - When colliding with a wall, automatic attitude correction is performed. However, this does not 100% prevent the vehicle from becoming stuck after a wall collision. (SIM environment only)
 
 ### Available Sensors

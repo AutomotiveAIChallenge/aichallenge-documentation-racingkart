@@ -32,6 +32,7 @@ sequenceDiagram
     AWSIM->>Autoware: /awsim/status
     AWSIM->>Autoware: /awsim/state
     Autoware->>AWSIM: /awsim/cmd
+    Autoware->>AWSIM: /awsim/speech
 ```
 
 ## トピック一覧
@@ -69,6 +70,7 @@ AWSIMが各車両のドメイン（N=1〜4）で直接やり取りするトピ�
 | Publisher    | `/awsim/state`                      | `std_msgs/msg/String`            |
 | Subscription | `/awsim/control_mode_request_topic` | `std_msgs/msg/Bool`              |
 | Subscription | `/awsim/cmd`                        | `std_msgs/msg/Float32MultiArray` |
+| Subscription | `/awsim/speech`                     | `std_msgs/msg/String`            |
 
 ### 管理トピック（ドメイン0）
 
@@ -254,6 +256,32 @@ AWSIMへコマンドを送るトピックです。`Float32MultiArray`型で、�
 | インデックス | 値           | 説明                                                 |
 | ------------ | ------------ | ---------------------------------------------------- |
 | 0            | boostCommand | `1.0`以上に立ち上げるとターボブーストを発動。再発動するためには、一度`0.0`にしてから再度`1.0`に立ち上げてください。 |
+| 1            | slowCommand  | `1.0`以上に立ち上げると Slow（減速）を発動し、自車以外の全車両を10秒間 10 km/h に制限。立ち上げの扱いは index 0 と同じです。使用条件は[ルール](../competition/sw-class.ja.md)を参照してください。使えない状況では無視され、回数は減りません。 |
+
+```bash
+# ブースト
+ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [1.0, 0.0]}"
+ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [0.0, 0.0]}"
+# Slow
+ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [0.0, 1.0]}"
+ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [0.0, 0.0]}"
+```
+
+### `/awsim/speech`
+
+自動運転プログラムの「いまの状況」を文字列で送ると、**その車両自身の画面の最下端に1行**で表示されます。他の車両の画面には表示されません。
+
+- 最後に受信してから5秒間表示されます。新しい文字列を受信すると上書きされます。
+- 最大80文字です。超えた分は `…` で省略されます。
+- 空文字を送ると、すぐに消えます。
+
+```bash
+ros2 topic pub --once /awsim/speech std_msgs/msg/String "{data: '前の車を追い抜きます'}"
+```
+
+![awsim_speech](../assets/awsim_speech.jpg)
+
+左下（P3）の画面の最下端に発話が表示された例です。
 
 ### `/admin/awsim/state`
 
