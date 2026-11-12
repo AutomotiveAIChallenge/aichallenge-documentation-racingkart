@@ -318,8 +318,12 @@ make down
         # 以後、Dockerコンテナ内での操作
 
         # ブースト
-        ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [1.0]}"
-        ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [0.0]}"
+        ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [1.0, 0.0]}"
+        ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [0.0, 0.0]}"
+
+        # Slow（減速）
+        ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [0.0, 1.0]}"
+        ros2 topic pub --once /awsim/cmd std_msgs/msg/Float32MultiArray "{data: [0.0, 0.0]}"
 
         # ギア切り替え
         ros2 topic pub --once /control/command/gear_cmd autoware_auto_vehicle_msgs/msg/GearCommand "{command: 20}"

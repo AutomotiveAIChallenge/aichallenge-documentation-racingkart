@@ -73,7 +73,6 @@
 [:material-launch: Team Hayes: Autoware の MPC の予測軌道がステア遅れを無視していた話（Qiita）](https://qiita.com/TeamHayes/items/1902090d5b7662a0df61){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: ROS なしで rosbag（mcap）を読む（Zenn）](https://zenn.dev/ajayaditya/articles/read-mcap-without-ros-v2x){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: make practice-4car（4 台の提出物を SIM 決勝の条件で走らせる PR #345）](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/345){ .md-button .md-button--primary target="_blank" }
-[:material-launch: Team Hayes: aichallenge-toolkit（ROS なしで rosbag を解析するツール集）](https://github.com/theCodeForgerHQ/aichallenge-toolkit){ .md-button .md-button--primary target="_blank" }
 
 [:material-launch: チーム KSK: LiDARだけを見るAIでE2E部門準優勝（学習・検証の記録）](https://qiita.com/Raptor-S/items/d0dd1ba87a1871112e9a){ .md-button .md-button--primary target="_blank" }
 [:material-launch: チーム KSK: Pure PursuitとMPCを式とアニメで理解する](https://qiita.com/Raptor-S/items/dd869838eec58d68615c){ .md-button .md-button--primary target="_blank" }

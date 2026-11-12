@@ -30,16 +30,6 @@ Team Hayes: [reading rosbag (mcap) without ROS: decoding the V2X position array 
 
 Team Hayes: [make practice-4car, race up to four submissions under SIM-final settings (PR #345)](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/345)
 
-Team Hayes: [aichallenge-toolkit, ROS-free tools for rosbag analysis and pre-submit checks](https://github.com/theCodeForgerHQ/aichallenge-toolkit)
-
-Team KSK: [LiDAR-only AI, runner-up in the End to End AI category: training and evaluation notes (Qiita, Japanese)](https://qiita.com/Raptor-S/items/d0dd1ba87a1871112e9a)
-
-Team KSK: [Pure Pursuit and MPC explained with equations and animations (Qiita, Japanese)](https://qiita.com/Raptor-S/items/dd869838eec58d68615c)
-
-Team KSK: [four NumPy inference processes and BLAS thread counts (Qiita, Japanese)](https://qiita.com/Raptor-S/items/4f32f25167d76b2c3de4)
-
-Team KSK: [checking the A/B test benchmark: ties, duplicate initial conditions and interim p-values (Qiita, Japanese)](https://qiita.com/Raptor-S/items/3e5f871d1d570b1e7aa6)
-
 We are actively seeking contributions!!!
 
 ## Explainer Videos by Participants
@@ -47,6 +37,10 @@ We are actively seeking contributions!!!
 Team KSK: [an AI that only sees LiDAR, runner-up in the End to End AI category (YouTube, Japanese)](https://youtu.be/S32a94bqrxg)
 
 Team KSK: [MPC vs Pure Pursuit explained from the equations, SW category (YouTube, Japanese)](https://youtu.be/uafowqYt4PU)
+
+Team KSK: [four NumPy inference processes and BLAS thread counts (Qiita, Japanese)](https://qiita.com/Raptor-S/items/4f32f25167d76b2c3de4)
+
+Team KSK: [checking the A/B test benchmark: ties, duplicate initial conditions and interim p-values (Qiita, Japanese)](https://qiita.com/Raptor-S/items/3e5f871d1d570b1e7aa6)
 
 ## Finals Video
 
