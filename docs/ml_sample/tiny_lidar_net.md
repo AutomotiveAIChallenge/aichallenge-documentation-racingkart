@@ -128,9 +128,9 @@ rosbag保存するときに使用したターミナルか、新規ターミナ�
     3. ステアリングと加速度を `steers.npy` / `accelerations.npy` に保存
 
 ??? note "3. 学習"
-    各種パラメータは `aichallenge/ml_workspace/tiny_lidar_net/config/train.yaml` で調整できます。
+    学習用パラメータは `aichallenge/ml_workspace/tiny_lidar_net/config/train.yaml` で調整できます。`dev` ブランチの共通設定に対応した版では、入力点数・正規化・加速度の倍率を[学習と推論の共通パラメータ](#common-parameters)で設定します。
 
-    デフォルトの`config/train.yaml`では`train.loss.steer_weight`・`train.loss.accel_weight`がともに1.0に設定されており、ステアリングとアクセルの両方を学習します。ただしアクセルの学習はうまく収束しないことが分かっているため、必要に応じて以下のようにHydra（設定管理ツール）のオーバーライド（上書き）機能で`train.loss.accel_weight`を0にし、ステアリングのみを学習することもできます。
+    デフォルトの`config/train.yaml`では`train.loss.steer_weight`・`train.loss.accel_weight`がともに1.0に設定されており、ステアリングと目標加速度の両方を学習します。ステアリングのみを学習する場合は、以下のようにHydra（設定管理ツール）のオーバーライド（上書き）機能で`train.loss.accel_weight`を0にします。この重みで走行する場合は、推論の`control_mode`を`fixed`にして、学習しなかった加速度出力を使わないようにしてください。
 
     ```sh
     python3 ./train.py train.loss.accel_weight=0.0
@@ -180,7 +180,7 @@ python3 ./extract_data_from_bag.py \
 
 # 3. 学習の実行
 python3 ./train.py
-# ステアリングのみを学習する場合（アクセルは収束しにくいため）
+# ステアリングのみを学習する場合（推論はcontrol_mode: "fixed"を使用）
 # python3 ./train.py train.loss.accel_weight=0.0
 
 # 全Epochが完了するまで待つか、ある程度収束したらctrl-cで終了します
@@ -204,7 +204,29 @@ cp ./weights/converted_weights.npy \
 
 ### アクセル制御の追加
 
-現在のdefault設定では、TinyLidarNetはステアリング制御のみを行い、[アクセルは固定値](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml#L12-L13)で制御しています。`control_mode: "ai"`に変更することで、アクセル制御もTinyLidarNetに実施させることができます。この場合、アクセル制御も学習しておく必要があります。
+現在のdefault設定では、TinyLidarNetはステアリング制御のみを行い、[加速度は固定値](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/main/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_node.param.yaml)で制御しています。`control_mode: "ai"`に変更すると、目標加速度もTinyLidarNetの出力から決めます。この場合、加速度も学習しておく必要があります。負の目標加速度は必ずしもブレーキ操作を意味しません。
+
+### 学習と推論の共通パラメータ { #common-parameters }
+
+以下は、[PR #362](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/362)が入った`dev`ブランチの設定です。旧版には共通設定ファイルがないため、使用中のブランチ・コミットを確認してください。
+
+学習・推論でそろえる値は、[tiny_lidar_net_common.param.yaml](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/blob/dev/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_common.param.yaml)で設定します。
+
+| パラメータ | 既定値 | 用途 |
+| --- | --- | --- |
+| `model.input_dim` | `750` | LiDARスキャンの入力点数 |
+| `max_range` | `30.0` | LiDARの正規化に使う最大距離（m） |
+| `accel_scale` | `1.0` | 正の目標加速度の倍率 |
+| `decel_scale` | `1.0` | 負の目標加速度の倍率（ブレーキ操作の倍率ではありません） |
+
+出力層は`tanh`です。学習では正の加速度ラベルを`accel_scale`、負のラベルを`decel_scale`で割り、推論の`ai`モードでは出力を`[-1, 1]`にクリップしてから同じ倍率を掛けます。例えば`accel_scale: 1.37`、`decel_scale: 3.0`なら、+1.37は+1、−3.0は−1に対応します。これは換算例です。教師ラベルが出力範囲に収まるか、端で飽和しないかを確認して倍率を選んでください。
+
+`fixed`モードではモデルの加速度出力と上記の倍率を使わず、ノード固有の`tiny_lidar_net_node.param.yaml`にある`acceleration`を使います。加速度を学習する場合、倍率を変更したら、その値で学習し直した重みと設定を一緒に使用してください。既存の重みに倍率だけを掛けても、変更した倍率で学習したモデルにはなりません。
+
+`train.yaml`の`common_param_path`は、コンテナ内の`/aichallenge/workspace/src/aichallenge_submit/tiny_lidar_net_controller/config/tiny_lidar_net_common.param.yaml`を指します。別の場所で学習する場合は、同じ共通設定ファイルの実在するパスを指定します。
+
+!!! note "データ抽出時の正規化も確認する"
+    rosbagから`.npy`を作る`extract_data_from_bag.py`には、別に`ExtractionConfig.max_scan_range`があります。共通YAMLを変えても、抽出済みデータや学習済みの重みは自動で更新されません。`max_range`を変える場合は、抽出時のクリップ・無反射値の置換、学習時の正規化、推論時の前処理を確認し、必要に応じて元のrosbagから再抽出・再学習してください。
 
 ## TinyLidarNetとPilotNetで共通のTips { #tips }
 
