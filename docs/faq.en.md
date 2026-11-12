@@ -108,7 +108,7 @@ Please install Rocker as described [here](setup/docker.en.md).
 
 ### <u>`WARNING unable to detect os for base image 'aichallenge-2025-dev', maybe the base image does not exist` appears.</u>
 
-Please build the Docker image.
+Please build the Docker image (`./docker_build.sh dev`).
 
 ---
 
