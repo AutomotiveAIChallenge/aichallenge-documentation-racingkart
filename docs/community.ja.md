@@ -74,6 +74,11 @@
 [:material-launch: Team Hayes: ROS なしで rosbag（mcap）を読む（Zenn）](https://zenn.dev/ajayaditya/articles/read-mcap-without-ros-v2x){ .md-button .md-button--primary target="_blank" }
 [:material-launch: Team Hayes: make practice-4car（4 台の提出物を SIM 決勝の条件で走らせる PR #345）](https://github.com/AutomotiveAIChallenge/aichallenge-racingkart/pull/345){ .md-button .md-button--primary target="_blank" }
 
+[:material-launch: チーム KSK: LiDARだけを見るAIでE2E部門準優勝（学習・検証の記録）](https://qiita.com/Raptor-S/items/d0dd1ba87a1871112e9a){ .md-button .md-button--primary target="_blank" }
+[:material-launch: チーム KSK: Pure PursuitとMPCを式とアニメで理解する](https://qiita.com/Raptor-S/items/dd869838eec58d68615c){ .md-button .md-button--primary target="_blank" }
+[:material-launch: チーム KSK: NumPyの推論4プロセスとBLASのスレッド数](https://qiita.com/Raptor-S/items/4f32f25167d76b2c3de4){ .md-button .md-button--primary target="_blank" }
+[:material-launch: チーム KSK: A/Bテストの測定台を点検する（引き分け・条件の重複・p値）](https://qiita.com/Raptor-S/items/3e5f871d1d570b1e7aa6){ .md-button .md-button--primary target="_blank" }
+
 <div class="community-callout">
   <p>絶賛募集中！！！</p>
 </div>

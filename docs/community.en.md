@@ -38,6 +38,10 @@ Team KSK: [an AI that only sees LiDAR, runner-up in the End to End AI category (
 
 Team KSK: [MPC vs Pure Pursuit explained from the equations, SW category (YouTube, Japanese)](https://youtu.be/uafowqYt4PU)
 
+Team KSK: [four NumPy inference processes and BLAS thread counts (Qiita, Japanese)](https://qiita.com/Raptor-S/items/4f32f25167d76b2c3de4)
+
+Team KSK: [checking the A/B test benchmark: ties, duplicate initial conditions and interim p-values (Qiita, Japanese)](https://qiita.com/Raptor-S/items/3e5f871d1d570b1e7aa6)
+
 ## Finals Video
 
 <iframe width="960" height="540" src="https://www.youtube-nocookie.com/embed/_wvVNh3_Axo?si=Pm8_VC6r_O2Oogr3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
