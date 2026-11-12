@@ -1879,6 +1879,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#awsimspeech" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /awsim/speech
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#adminawsimstate" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3012,6 +3023,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#awsimspeech" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /awsim/speech
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#adminawsimstate" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3134,7 +3156,8 @@
     Note over AWSIM,Autoware: AWSIMステータス・コマンド
     AWSIM-&gt;&gt;Autoware: /awsim/status
     AWSIM-&gt;&gt;Autoware: /awsim/state
-    Autoware-&gt;&gt;AWSIM: /awsim/cmd</code></pre>
+    Autoware-&gt;&gt;AWSIM: /awsim/cmd
+    Autoware-&gt;&gt;AWSIM: /awsim/speech</code></pre>
 <h2 id="_2">トピック一覧</h2>
 <h3 id="_3">車両インターフェース</h3>
 <table>
@@ -3255,6 +3278,11 @@
 <td>Subscription</td>
 <td><code>/awsim/cmd</code></td>
 <td><code>std_msgs/msg/Float32MultiArray</code></td>
+</tr>
+<tr>
+<td>Subscription</td>
+<td><code>/awsim/speech</code></td>
+<td><code>std_msgs/msg/String</code></td>
 </tr>
 </tbody>
 </table>
@@ -3768,8 +3796,31 @@
 <td>boostCommand</td>
 <td><code>1.0</code>以上に立ち上げるとターボブーストを発動。再発動するためには、一度<code>0.0</code>にしてから再度<code>1.0</code>に立ち上げてください。</td>
 </tr>
+<tr>
+<td>1</td>
+<td>slowCommand</td>
+<td><code>1.0</code>以上に立ち上げると Slow（減速）を発動し、自車以外の全車両を10秒間 10 km/h に制限。立ち上げの扱いは index 0 と同じです。使用条件は<a href="../competition/sw-class.html">ルール</a>を参照してください。使えない状況では無視され、回数は減りません。</td>
+</tr>
 </tbody>
 </table>
+<div class="highlight"><pre><span></span><code><span class="c1"># ブースト</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [1.0, 0.0]}"</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [0.0, 0.0]}"</span>
+<span class="c1"># Slow</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [0.0, 1.0]}"</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [0.0, 0.0]}"</span>
+</code></pre></div>
+<h3 id="awsimspeech"><code>/awsim/speech</code></h3>
+<p>自動運転プログラムの「いまの状況」を文字列で送ると、<strong>その車両自身の画面の最下端に1行</strong>で表示されます。他の車両の画面には表示されません。</p>
+<ul>
+<li>最後に受信してから5秒間表示されます。新しい文字列を受信すると上書きされます。</li>
+<li>最大80文字です。超えた分は <code>…</code> で省略されます。</li>
+<li>空文字を送ると、すぐに消えます。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/speech<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">"{data: '前の車を追い抜きます'}"</span>
+</code></pre></div>
+<p><img alt="awsim_speech" src="../assets/awsim_speech.jpg" /></p>
+<p>左下（P3）の画面の最下端に発話が表示された例です。</p>
 <h3 id="adminawsimstate"><code>/admin/awsim/state</code></h3>
 <p>シミュレーション全体の状態を示す管理用トピックです（ドメイン0）。</p>
 <table>

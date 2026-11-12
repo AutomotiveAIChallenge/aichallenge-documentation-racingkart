@@ -3195,7 +3195,23 @@
 </details>
 <ul>
 <li>一時的に加速度を上昇させるブーストアイテムが用意されています。（SIM環境のみ）</li>
+<li>自車以外の全車両の速度を一時的に制限する Slow（減速）アイテムが用意されています。（SIM環境のみ）<ul>
+<li>使用すると、使用者以外の全車両が <strong>10秒間・10 km/h</strong> に速度制限されます。使用回数は既定で <strong>1回</strong> です。</li>
+<li>いずれかの車両の Slow が効果中の間は、使用者本人を含む全員が Slow を使えません。</li>
+<li><strong>1位の車両</strong>は、1位のあいだ Slow を使えません。自車以外に車両がいない場合も使えません。</li>
+<li>使えない状況で発動しても無視され、回数は減りません。</li>
+<li>Slow を受けている間はブーストを発動できません。発動中のブーストは一時停止し、Slow が明けると残り時間から再開します。</li>
+<li>ブースト・Slow の発動方法は<a href="../specifications/interface.html#awsimcmd">インターフェース</a>を参照してください。</li>
 </ul>
+</li>
+</ul>
+<details class="example">
+<summary>HUD の表示例（ブースト・Slow）</summary>
+<p><img alt="awsim_hud_race" src="../assets/awsim_hud_race.jpg" /></p>
+<p>各車両の画面の隅に HUD が表示されます。上段に車両番号・Auto/Manual・ギア・ブースト残数・Slow 残数、その下に順位・ラップ・セクション・速度が並びます。順位は 1〜3 位が表彰台カラーで表示されます。</p>
+<p><img alt="awsim_hud_states" src="../assets/awsim_hud_states.jpg" /></p>
+<p>速度の右に状態が表示されます。左から、Slow を受けている状態（黄色の <code>SLOW</code> と残り秒数）、ブースト中（緑の <code>BOOST</code>）、ペナルティ中（赤）です。複数が重なったときはペナルティ &gt; <code>SLOW</code> &gt; <code>BOOST</code> の順に優先して表示されます。</p>
+</details>
 <h4 id="overtake-lane">オーバーテイクレーン</h4>
 <p>SIM決勝では、後方車両の進路を塞ぐ走行を抑えるため、コース上の指定区間を<strong>オーバーテイクレーン</strong>とします。判定は AWSIM が自動で行います。（SIM決勝のみ。End to End部門には適用しません）</p>
 <details class="info">

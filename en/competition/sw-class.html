@@ -2929,9 +2929,17 @@
 <li>Speed limit follows the physics model used by the simulator. For real vehicles, the speed is limited to 30 km/h.</li>
 <li>Handicaps may be applied to acceleration and speed based on race position.</li>
 <li>If a collision with course walls or other vehicles occurs, or if invalid acceleration is input, the vehicle's speed will be restricted for a certain time as a penalty.</li>
-<li>Boost items that temporarily increase acceleration are available. (SIM environment only, planned)</li>
-<li>When colliding with a wall, automatic attitude correction is performed. However, this does not 100% prevent the vehicle from becoming stuck after a wall collision. (SIM environment only)</li>
+<li>Boost items that temporarily increase acceleration are available. (SIM environment only)</li>
+<li>A Slow item that limits every other vehicle to <strong>10 km/h for 10 seconds</strong> is available (1 use by default). (SIM environment only)<ul>
+<li>While any Slow is active, nobody (including its user) can use Slow.</li>
+<li>The vehicle in <strong>1st place</strong> cannot use Slow while it is 1st, and Slow cannot be used when there are no other vehicles.</li>
+<li>Invalid activations are ignored and do not consume a use.</li>
+<li>A slowed vehicle cannot start a boost; an active boost is paused and resumes after the Slow ends.</li>
 </ul>
+</li>
+</ul>
+<p><img alt="awsim_hud_states" src="../../assets/awsim_hud_states.jpg" />
+- When colliding with a wall, automatic attitude correction is performed. However, this does not 100% prevent the vehicle from becoming stuck after a wall collision. (SIM environment only)</p>
 <h3 id="available-sensors">Available Sensors</h3>
 <ul>
 <li>IMU</li>

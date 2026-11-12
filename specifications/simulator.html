@@ -2014,6 +2014,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow（減速）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3203,6 +3214,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slow（減速）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3448,6 +3470,8 @@
 <h2 id="_4">画面説明</h2>
 <p><code>make simulator</code> で起動した場合、設定画面が表示されます。後述の起動オプション相当の設定をGUIで行うことが可能です。設定が出来たら「Start」をクリックします。</p>
 <p><img alt="awsim-top.png" src="images/awsim-top.png" /></p>
+<p>設定画面の LOCAL 欄では、車両ごとのブースト回数と Slow 回数を選べます。</p>
+<p><img alt="awsim_startup_boost_slow" src="../assets/awsim_startup_boost_slow.jpg" /></p>
 <p><code>make dev</code> で起動した場合、AutowareとともにAWSIMが起動して直接シミュレーション画面が表示されます。</p>
 <ul>
 <li>画面左上のA/Mボタンをクリックするとモード切替ができます（自動/手動）<ul>
@@ -3455,10 +3479,12 @@
 </ul>
 </li>
 <li>画面左上のD/Rボタンをクリックするとギア切替ができます（前進/後進）</li>
-<li>画面左上のBボタンをクリックするとターボブーストがかかります。Bの後ろの数値は残りのターボブースト数です</li>
+<li>画面左上の緑の上向き二重矢印ボタンをクリックするとターボブーストがかかります。矢印の後ろの数値は残りのターボブースト数です</li>
+<li>画面左上の黄色の下向き二重矢印ボタンをクリックすると Slow（減速）を使います。矢印の後ろの数値は残りの Slow 数です</li>
 <li>画面右上のTOPボタンをクリックすると設定画面が表示されます</li>
 </ul>
-<p><img alt="awsim-button.png" src="images/awsim-button.png" /></p>
+<p><img alt="awsim_hud_race" src="../assets/awsim_hud_race.jpg" /></p>
+<p>HUD の見方とブースト・Slow のルールは<a href="../competition/sw-class.html">ルール</a>を参照してください。</p>
 <h2 id="_5">起動オプション</h2>
 <p>AWSIMはコマンドライン引数で動作を制御でき、起動スクリプト（<code>simulator_scripts/dev.sh</code> など）内で指定しています。AWSIMの設定は起動オプションの他、GUI画面からも変更可能です。</p>
 <p>ここではシミュレーター単体の起動オプションを記載しています。実際の大会・開発環境での設定値は、起動スクリプトや運営発表のルールを参照してください。なお、ここでは実際の大会・開発環境では未使用のオプションも含んでいます。</p>
@@ -3500,8 +3526,14 @@
 <tr>
 <td>--boosts</td>
 <td>int</td>
-<td>5</td>
-<td>加速アイテムの使用可能数（0〜無限）を設定します。</td>
+<td>2</td>
+<td>加速アイテムの使用可能数（0〜5）を設定します。設定画面では無限も選べます。</td>
+</tr>
+<tr>
+<td>--slowdowns</td>
+<td>int</td>
+<td>1</td>
+<td>Slow（減速）アイテムの使用可能数（0〜5）を設定します。</td>
 </tr>
 <tr>
 <td>--collisions</td>
@@ -4110,6 +4142,31 @@
 </table>
 <p>なお、実機では柵を越えないよう安全対策として電圧を下げております。
 電圧下げを解除するためのアイテムとしての位置づけです。</p>
+<h3 id="slow">Slow（減速）</h3>
+<p>使用者以外の全車両の速度を一時的に制限するアイテムです。シミュレーションのみで使用できます。</p>
+<table>
+<thead>
+<tr>
+<th><strong>項目</strong></th>
+<th><strong>値</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>速度制限</td>
+<td>10 km/h</td>
+</tr>
+<tr>
+<td>持続時間</td>
+<td>10 秒</td>
+</tr>
+<tr>
+<td>使用回数</td>
+<td>既定 1 回（<code>--slowdowns</code>）</td>
+</tr>
+</tbody>
+</table>
+<p>使用条件（効果中は全員使用不可、1位は使用不可など）と、ブーストとの関係は<a href="../competition/sw-class.html">ルール</a>を参照してください。発動は <code>/awsim/cmd</code> の index 1 で行います（<a href="interface.html#awsimcmd">インターフェース</a>）。</p>
 <h3 id="_22">修理アイテム</h3>
 <p>コース上の修理アイテムを取得すると、車両のCondition値が40回復します。2026年は未実装です。</p>
 <h2 id="_23">壁リカバリー</h2>

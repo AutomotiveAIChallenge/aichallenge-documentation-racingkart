@@ -3337,8 +3337,12 @@ make<span class="w"> </span>down
 <span class="c1"># 以後、Dockerコンテナ内での操作</span>
 
 <span class="c1"># ブースト</span>
-ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [1.0]}"</span>
-ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [0.0]}"</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [1.0, 0.0]}"</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [0.0, 0.0]}"</span>
+
+<span class="c1"># Slow（減速）</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [0.0, 1.0]}"</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/awsim/cmd<span class="w"> </span>std_msgs/msg/Float32MultiArray<span class="w"> </span><span class="s2">"{data: [0.0, 0.0]}"</span>
 
 <span class="c1"># ギア切り替え</span>
 ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>--once<span class="w"> </span>/control/command/gear_cmd<span class="w"> </span>autoware_auto_vehicle_msgs/msg/GearCommand<span class="w"> </span><span class="s2">"{command: 20}"</span>
