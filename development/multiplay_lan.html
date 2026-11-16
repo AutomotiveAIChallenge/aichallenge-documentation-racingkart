@@ -1,0 +1,3279 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="自動運転 AI チャレンジの公式ドキュメント。Autoware・ROS 2・AWSIM・Docker・自動運転車両 を用いたシミュレーション競技のルール、環境構築、仕様、基礎演習、End2End AI講座。 / Official documentation for the Autonomous Driving AI Challenge (Racing Kart): Autoware/ROS 2/AWSIM/Docker-based simulation rules, setup, specs, basic exercises, and AI guide.">
+      
+      
+      
+        <link rel="canonical" href="https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/development/multiplay_lan.html">
+      
+      
+        <link rel="prev" href="multiplay.html">
+      
+      
+        <link rel="next" href="development-ideas.html">
+      
+      
+        
+          <link rel="alternate" href="multiplay_lan.html" hreflang="ja">
+        
+          <link rel="alternate" href="../en/development/multiplay_lan.html" hreflang="en">
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Multiplay（LAN内複数PC構成） - 自動運転 AI チャレンジ 2026</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <script>
+    (function () {
+      if (typeof __md_get !== "function" || typeof __md_set !== "function") {
+        return;
+      }
+
+      // Keep consent/announce state shared across nested paths.
+      var sitePath = "/";
+      try {
+        sitePath = new URL("https://automotiveaichallenge.github.io/aichallenge-documentation-racingkart/").pathname || "/";
+      } catch (error) {}
+      if (!sitePath.endsWith("/")) {
+        sitePath += "/";
+      }
+
+      var canonicalScope = { pathname: sitePath };
+      var originalGet = __md_get;
+      var originalSet = __md_set;
+
+      function sharedKey(key) {
+        return key === "__consent" || key === "__announce";
+      }
+
+      __md_get = function (key, storage, scope) {
+        var value = originalGet(key, storage, scope);
+        if ((value === null || typeof value === "undefined") && sharedKey(key)) {
+          value = originalGet(key, storage, canonicalScope);
+          if ((value !== null && typeof value !== "undefined") && !scope) {
+            originalSet(key, value, storage);
+          }
+        }
+        return value;
+      };
+
+      __md_set = function (key, value, storage, scope) {
+        originalSet(key, value, storage, scope);
+        if (sharedKey(key)) {
+          originalSet(key, value, storage, canonicalScope);
+        }
+      };
+    })();
+  </script>
+  
+    <!-- Google Tag Manager -->
+    <script>
+      function __load_gtm() {
+        if (window.__gtm_loaded) {
+          return;
+        }
+        window.__gtm_loaded = true;
+
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+        new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+        "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,"script","dataLayer","GTM-MSKVPP23");
+      }
+    </script>
+    
+      <script>__load_gtm();</script>
+    
+    <!-- End Google Tag Manager -->
+  
+  
+    
+      <meta name="keywords" content="自動運転, 自動運転AIチャレンジ, 自動運転 AI チャレンジ 2026, レーシングカート, EVレーシングカート, Autoware, ROS 2, AWSIM, シミュレーション, Docker, LiDAR, 機械学習, AI, 競技ルール, 環境構築, Autonomous Driving, Racing Kart, Autonomous Driving AI Challenge, aichallenge, racingkart, aichallenge-racingkart, aichallenge-2026, aichallenge-2025, aichallenge-2024" />
+    
+  
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#multiplaylanpc" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="非表示にします">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+              </button>
+            
+            
+  大会スポンサーを募集しています　<a href="https://www.jsae.or.jp/enquete/AI26_sponsor_registration/" class="md-button md-button--primary banner-button" target="_blank">お問い合わせはこちら</a>
+
+          </div>
+          
+            <script>var el=document.querySelector("[data-md-component=announce]");if(el){var content=el.querySelector(".md-typeset");__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0)}</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+  
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSKVPP23" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  
+  
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-header__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            自動運転 AI チャレンジ 2026
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Multiplay（LAN内複数PC構成）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="言語切り替え">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="multiplay_lan.html" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../en/development/multiplay_lan.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="タブ" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  競技概要
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../getting-started.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  はじめ方
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../setup/requirements.html" class="md-tabs__link">
+          
+  
+  
+  環境構築
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="development-guide.html" class="md-tabs__link">
+          
+  
+  
+  開発
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../competition/index.html" class="md-tabs__link">
+          
+  
+  
+  大会説明
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../vehicle/operation.html" class="md-tabs__link">
+          
+  
+  
+  実車両
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../specifications/interface.html" class="md-tabs__link">
+          
+  
+  
+  仕様
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../course/index.html" class="md-tabs__link">
+          
+  
+  
+  基礎演習
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../ai.html" class="md-tabs__link">
+          
+  
+  
+  AI講座
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../community.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  コミュニティ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../contributing.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contributing
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="自動運転 AI チャレンジ 2026" class="md-nav__button md-logo" aria-label="自動運転 AI チャレンジ 2026" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    自動運転 AI チャレンジ 2026
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AutomotiveAIChallenge/aichallenge-documentation-racingkart" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    競技概要
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    はじめ方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境構築
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    環境構築
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    推奨環境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/introduction.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境構築の流れ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/gpu-simulation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPUの設定・動作設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/update-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境のアップデート
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開発
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開発
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="development-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開発の進め方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境の説明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="commands.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンド一覧
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="main-module.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autowareの構成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="multiplay.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiplay（通信対戦）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiplay（LAN内複数PC構成）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="multiplay_lan.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multiplay（LAN内複数PC構成）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必要なもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1awsimpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成パターン1：AWSIMを専用PCで実行する場合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2awsimautowarepc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成パターン2：AWSIMとAutowareを同じPCで実行する場合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手順
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="手順">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pcros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ホストPCのROS 2設定を無効にする
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 全PCを同じネットワークに接続する
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 全PCを同じネットワークに接続する">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ルーターに接続している場合（Ubuntuの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スイッチングハブに接続している場合（Ubuntuの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. IP接続の確認を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cyclonedds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CycloneDDSの設定を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-ros-2id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ROS 2ドメインIDの設定を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-ros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. ROS 2接続の確認を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-awsim1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AWSIMを起動する（1台のみ）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-autowarepc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Autowareを起動する（各PC）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="development-ideas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開発のアイデア
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大会説明
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    大会説明
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../competition/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大会説明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../competition/sw-class.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sim to Real部門 説明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../competition/submission.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sim to Real部門 提出手順
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../competition/ai-class.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    End to End部門 説明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../competition/sim-finals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIM決勝特設ページ（2026/9/19）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../competition/sim-finals-pc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SIM 決勝 PC 環境説明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../competition/kart-finals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    実機決勝特設ページ（2026/9/20）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    実車両
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    実車両
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vehicle/operation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    実機決勝での参加者操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vehicle/ecu-setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ECU の初期構築
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vehicle/run.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    実車両の起動
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vehicle/remote.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遠隔操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vehicle/zenoh-server.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zenoh 中継サーバー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    仕様
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    仕様
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specifications/interface.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インターフェース
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specifications/hardware.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ハードウェア
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specifications/simulator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    シミュレーター
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基礎演習
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基礎演習
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Autoware 基礎演習
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/vehicle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. 車両インターフェース
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/velocity_planning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02. 速度計画
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/avoidance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03. 障害物回避
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../course/localization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04. 自己位置推定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI講座
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI講座
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI講座
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/tiny_lidar_net.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TinyLidarNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/pilot_net.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PilotNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/soft_actor_critic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Soft Actor-Critic (Reinforcement Learning)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLM Planner
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VLM Planner
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/ai_sample_node_vlm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sample ROS Node(VLM Planner)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/vlm_setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup for VLM Planner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/vlm_run.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLM Plannerの実行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAD Planner
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VAD Planner
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/vad_setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup for VAD Planner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/vad_run.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAD Plannerの実行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/algorithms.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml_sample/faq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI講座に関するFAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../community.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コミュニティ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必要なもの
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1awsimpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成パターン1：AWSIMを専用PCで実行する場合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2awsimautowarepc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        構成パターン2：AWSIMとAutowareを同じPCで実行する場合
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        手順
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="手順">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-pcros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ホストPCのROS 2設定を無効にする
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 全PCを同じネットワークに接続する
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 全PCを同じネットワークに接続する">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ルーターに接続している場合（Ubuntuの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スイッチングハブに接続している場合（Ubuntuの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. IP接続の確認を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cyclonedds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CycloneDDSの設定を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-ros-2id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ROS 2ドメインIDの設定を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-ros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. ROS 2接続の確認を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-awsim1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AWSIMを起動する（1台のみ）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-autowarepc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Autowareを起動する（各PC）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="ナビゲーション" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    競技概要
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="development-guide.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    開発
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="multiplaylanpc">Multiplay（LAN内複数PC構成）</h1>
+<p><code>make dev4</code> コマンドを使用すると、1台のPC上でAWSIMと4つのAutowareを起動し、複数台走行を実現できます。しかし、この方法には「PCへの負荷が非常に高い」「すべての車両が同じAutowareのソースコードで動いてしまう」といった課題があります。</p>
+<p>複数のPCを同じネットワークに接続し、各PCでAutowareを個別に実行することで、これらの課題を解決できます。これにより、異なるソースコードを用いた複数チーム間での対戦走行が可能になります。また、処理負荷を分散できるほか、Autowareのみを実行するPCではAWSIMを起動する必要がないため、比較的スペックの低いPCでも参加できるようになります。</p>
+<p>なお、シミュレーション決勝のシステム構成は、本ページに記載されている方法を採用しています。</p>
+<pre class="mermaid"><code>graph LR
+    HUB{{"スイッチングHub&lt;br/&gt;192.168.10.0/24"}}
+
+    HUB --- AWSIM["AWSIM PC&lt;br/&gt;192.168.10.1"]
+    HUB --- AW1["Autoware PC 1&lt;br/&gt;192.168.10.11"]
+    HUB --- AW2["Autoware PC 2&lt;br/&gt;192.168.10.12"]
+    HUB --- AW3["Autoware PC 3&lt;br/&gt;192.168.10.13"]
+    HUB --- AW4["Autoware PC 4&lt;br/&gt;192.168.10.14"]
+
+    AWSIM -.- NOTE["1台のPCにまとめることも可能"]
+    AW1 -.- NOTE
+
+    style NOTE fill:none,stroke:none</code></pre>
+<h2 id="_1">必要なもの</h2>
+<ul>
+<li>ネットワーク接続できるPC（LANケーブルまたはWi-Fi） × 1〜5台</li>
+<li>ルーターまたはスイッチングハブ × 1台</li>
+</ul>
+<h2 id="_2">構成</h2>
+<p>AWSIMは専用のPCで動かすこともできますし、いずれかのAutoware用PC上で一緒に動かすこともできます。以下に2パターンの構成例を記載します。</p>
+<ul>
+<li>Autoware PCは4台分記載していますが、1台〜4台の任意の台数で動かすことができます。</li>
+<li>IPアドレスの設定は、スイッチングハブを使用する場合のみ必要です。ルーター（DHCP機能付き）を使用する場合は不要です。</li>
+<li>記載しているIPアドレスの数値は一例です。必ずしも同じ数値を使用する必要はありません。また、他のネットワークインターフェースの設定と競合している場合は、別の設定を行ってください。</li>
+</ul>
+<h3 id="1awsimpc">構成パターン1：AWSIMを専用PCで実行する場合</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">PC名</th>
+<th style="text-align: left;">説明</th>
+<th style="text-align: left;">IPアドレス（スイッチングハブ使用時）</th>
+<th style="text-align: left;"><code>ROS_DOMAIN_ID</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">AWSIM PC</td>
+<td style="text-align: left;">AWSIM実行用PC</td>
+<td style="text-align: left;">192.168.10.1</td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr>
+<td style="text-align: left;">Autoware PC 1</td>
+<td style="text-align: left;">Autoware実行用PC</td>
+<td style="text-align: left;">192.168.10.11</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Autoware PC 2</td>
+<td style="text-align: left;">Autoware実行用PC</td>
+<td style="text-align: left;">192.168.10.12</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Autoware PC 3</td>
+<td style="text-align: left;">Autoware実行用PC</td>
+<td style="text-align: left;">192.168.10.13</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Autoware PC 4</td>
+<td style="text-align: left;">Autoware実行用PC</td>
+<td style="text-align: left;">192.168.10.14</td>
+<td style="text-align: left;">4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2awsimautowarepc">構成パターン2：AWSIMとAutowareを同じPCで実行する場合</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">PC名</th>
+<th style="text-align: left;">説明</th>
+<th style="text-align: left;">IPアドレス（スイッチングハブ使用時）</th>
+<th style="text-align: left;"><code>ROS_DOMAIN_ID</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Autoware PC 1</td>
+<td style="text-align: left;">Autoware + AWSIM実行用PC</td>
+<td style="text-align: left;">192.168.10.11</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Autoware PC 2</td>
+<td style="text-align: left;">Autoware実行用PC</td>
+<td style="text-align: left;">192.168.10.12</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Autoware PC 3</td>
+<td style="text-align: left;">Autoware実行用PC</td>
+<td style="text-align: left;">192.168.10.13</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Autoware PC 4</td>
+<td style="text-align: left;">Autoware実行用PC</td>
+<td style="text-align: left;">192.168.10.14</td>
+<td style="text-align: left;">4</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">手順</h2>
+<h3 id="1-pcros-2">1. ホストPCのROS 2設定を無効にする</h3>
+<p>AutowareやAWSIMを実行する際は、Dockerコンテナ内部のROS 2およびCycloneDDSを使用します。ホストPC側でROS 2やCycloneDDSの設定が有効になっていると通信が阻害される可能性があるため、無効化します。</p>
+<ul>
+<li>ホストPCの <code>~/.bashrc</code> などでROS 2関連の環境変数を設定している場合は無効にします（該当する行の先頭に <code>#</code> を付けてコメントアウトしてください）。</li>
+<li><code>ROS_DOMAIN_ID</code></li>
+<li><code>ROS_LOCALHOST_ONLY</code></li>
+<li><code>RMW_IMPLEMENTATION</code></li>
+<li><code>CYCLONEDDS_URI</code></li>
+<li>変更を反映させるためターミナルを再起動し、以下のコマンドを実行して<strong>何も表示されないこと</strong>を確認します。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$ROS_DOMAIN_ID</span>
+</code></pre></div>
+<h3 id="2-pc">2. 全PCを同じネットワークに接続する</h3>
+<h4 id="ubuntu">ルーターに接続している場合（Ubuntuの場合）</h4>
+<p>以下の手順でDHCPを有効にします。</p>
+<ol>
+<li><strong>Settings</strong> → <strong>Network</strong> を開きます。</li>
+<li><code>&lt;ルーターに接続しているネットワーク名&gt;</code> の歯車アイコンをクリックし、<strong>IPv4</strong> タブを選択します。</li>
+<li>各項目を以下のように設定して適用します。</li>
+<li><strong>IPv4 Method</strong>: <code>Automatic (DHCP)</code></li>
+<li><strong>DNS</strong>: <code>Automatic</code></li>
+<li><strong>Routes</strong>: <code>Automatic</code></li>
+</ol>
+<h4 id="ubuntu_1">スイッチングハブに接続している場合（Ubuntuの場合）</h4>
+<p>以下の手順で固定IPアドレスを設定します。</p>
+<ol>
+<li><strong>Settings</strong> → <strong>Network</strong> を開きます。</li>
+<li><code>&lt;スイッチングハブに接続しているネットワーク名&gt;</code> の歯車アイコンをクリックし、<strong>IPv4</strong> タブを選択します。</li>
+<li>各項目を以下のように設定して適用します（IPアドレスの末尾は「構成」の表を参考に、PCごとに重複しない値を設定してください）。</li>
+<li><strong>IPv4 Method</strong>: <code>Manual</code></li>
+<li><strong>Address</strong>: <code>192.168.10.ooo</code>（例：<code>192.168.10.1</code>、<code>192.168.10.11</code> など）</li>
+<li><strong>Netmask</strong>: <code>255.255.255.0</code></li>
+<li><strong>Gateway</strong>: 空欄のまま</li>
+</ol>
+<p><img alt="lan-ipv4-setting" src="images/lan-ipv4-setting.png" /></p>
+<p>※いずれの場合でも、設定が完了したら一度LANケーブルを抜き差しして設定が即時に反映させることを推奨します。（ケーブルを抜く → 5秒待つ → ケーブルを再度刺す）</p>
+<h3 id="3-ip">3. IP接続の確認を行う</h3>
+<p>他のPCとのネットワーク接続が正常に行われているか確認します。</p>
+<ul>
+<li>まず、通信相手となる他のPCのIPアドレスを特定します。</li>
+<li><strong>スイッチングハブ使用時</strong>: 前項で手動設定したアドレス（例: <code>192.168.10.1</code> , <code>192.168.10.11</code> 〜 <code>192.168.10.14</code>）になります。</li>
+<li>
+<p><strong>ルーター使用時</strong>: 自動で割り当てられるため、各PCのターミナルで <code>ip a</code> コマンドを実行し、現在割り当てられているIPアドレスを確認してください。</p>
+</li>
+<li>
+<p>相手のIPアドレスが確認できたら、以下のコマンドを実行して接続（疎通）確認を行います（<code>192.168.10.ooo</code> の部分は、確認した相手のIPアドレスに置き換えてください）。</p>
+<div class="highlight"><pre><span></span><code>ping<span class="w"> </span><span class="m">192</span>.168.10.ooo
+</code></pre></div>
+</li>
+</ul>
+<p>正常に通信できていれば、応答（応答時間などの情報）が連続して表示されます（<code>Ctrl + C</code> で終了します）。</p>
+<h3 id="4-cyclonedds">4. CycloneDDSの設定を行う</h3>
+<p>Autowareでは、通信ミドルウェアとしてCycloneDDSを使用しています。Dockerコンテナ内のCycloneDDSが、ルーター（またはスイッチングハブ）に接続されたネットワークインターフェースを正しく使用できるよう設定を行います。</p>
+<ul>
+<li>まず、<code>ip a</code> コマンドを実行して、ルーター（またはスイッチングハブ）に接続されているネットワークインターフェース名を確認します。LANポートが複数ある場合は、ケーブルを抜き差しして状態が <code>UP</code> になるインターフェースを探すと特定しやすくなります。</li>
+<li>以下の出力例では、<code>enx607</code> が該当します。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="go">1: lo: 略</span>
+<span class="go">    略</span>
+<span class="go">2: docker0: 略</span>
+<span class="go">    略</span>
+<span class="go">3: enx607: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; 略</span>
+<span class="go">    略</span>
+</code></pre></div>
+<ul>
+<li>次に、以下のコマンドを実行してCycloneDDSの設定を行います（<code>enx607</code> の部分は、上記で確認したご自身のインターフェース名に書き換えてください）。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nv">IF_LOCAL</span><span class="o">=</span>enx607<span class="w">    </span><span class="c1"># 確認したネットワークインターフェース名に変更してください</span>
+<span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/
+./setup.bash<span class="w"> </span>network<span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">$IF_LOCAL</span>
+</code></pre></div>
+<h3 id="5-ros-2id">5. ROS 2ドメインIDの設定を行う</h3>
+<p>以下のコマンドで設定ファイル（<code>.env</code>）を開き、出走位置に応じて、<code>ROS_DOMAIN_ID</code> を <code>1</code>〜<code>4</code> のいずれかに設定します。出走位置と <code>ROS_DOMAIN_ID</code> の対応は、上記「構成」の表を参照してください。</p>
+<div class="highlight"><pre><span></span><code>code<span class="w"> </span>~/aichallenge-racingkart/.env
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 出走位置に応じて設定する（使用するIDのみコメントアウトを解除）</span>
+<span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span>
+<span class="c1">#ROS_DOMAIN_ID=2</span>
+<span class="c1">#ROS_DOMAIN_ID=3</span>
+<span class="c1">#ROS_DOMAIN_ID=4</span>
+</code></pre></div>
+<h3 id="6-ros-2">6. ROS 2接続の確認を行う</h3>
+<p>各PC間でROS 2の通信が正しく行われ、かつ <code>ROS_DOMAIN_ID</code> ごとに通信が分離されていることを確認します。</p>
+<ul>
+<li>まず、いずれかのPC（送信側）でテスト用のトピックを送信（publish）します。ターミナルを4つ開き、それぞれのコンテナ内で <code>ROS_DOMAIN_ID</code> を <code>1</code>〜<code>4</code> に指定して実行してください。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># ターミナル1（ROS_DOMAIN_ID=1 のトピックを送信）</span>
+<span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/
+make<span class="w"> </span>autoware-bash
+<span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>-r<span class="w"> </span><span class="m">1</span><span class="w"> </span>/chatter1<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">"data: 'Hello World 1'"</span>
+
+<span class="c1"># ターミナル2〜4でも同様に make autoware-bash を実行した上で、それぞれ以下を実行</span>
+<span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>-r<span class="w"> </span><span class="m">1</span><span class="w"> </span>/chatter2<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">"data: 'Hello World 2'"</span>
+<span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>-r<span class="w"> </span><span class="m">1</span><span class="w"> </span>/chatter3<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">"data: 'Hello World 3'"</span>
+<span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">4</span><span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>-r<span class="w"> </span><span class="m">1</span><span class="w"> </span>/chatter4<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">"data: 'Hello World 4'"</span>
+</code></pre></div>
+<ul>
+<li>次に、接続確認を行う各PC（受信側）で、<code>ROS_DOMAIN_ID</code> の設定が正しいことと、トピックが受信できることを確認します。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/
+make<span class="w"> </span>autoware-bash
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$ROS_DOMAIN_ID</span>
+ros2<span class="w"> </span>topic<span class="w"> </span>list
+</code></pre></div>
+<h3 id="7-awsim1">7. AWSIMを起動する（1台のみ）</h3>
+<p>ネットワークに接続したいずれか1台のPCでAWSIMを起動します。同時走行させる車両（Autoware PC）の台数に応じて、以下のいずれか1つのコマンドを実行してください。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart
+
+<span class="c1"># 走行させる車両の台数に合わせていずれか1つを実行</span>
+make<span class="w"> </span>simulator-dev<span class="w">     </span><span class="c1"># 1台の場合</span>
+make<span class="w"> </span>simulator-dev2<span class="w">    </span><span class="c1"># 2台の場合</span>
+make<span class="w"> </span>simulator-dev3<span class="w">    </span><span class="c1"># 3台の場合</span>
+make<span class="w"> </span>simulator-dev4<span class="w">    </span><span class="c1"># 4台の場合</span>
+</code></pre></div>
+<h3 id="8-autowarepc">8. Autowareを起動する（各PC）</h3>
+<p>ネットワークに接続した各Autoware用PCで、それぞれAutowareを起動します。なお、本コマンドではAWSIMは起動しません。</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart
+make<span class="w"> </span>autoware-simulator
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="multiplay.html" class="md-footer__link md-footer__link--prev" aria-label="前: Multiplay（通信対戦）">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                Multiplay（通信対戦）
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="development-ideas.html" class="md-footer__link md-footer__link--next" aria-label="次: 開発のアイデア">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                開発のアイデア
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2026 TIER IV, Inc.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "navigation.path", "announce.dismiss", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../javascripts/twitter-embeds.js"></script>
+      
+        <script src="../javascripts/video-carousel.js"></script>
+      
+    
+  </body>
+</html>
