@@ -200,7 +200,7 @@ make simulator-dev4    # 4台の場合
 
 ### 8. Autowareを起動する（各PC）
 
-ネットワークに接続した各Autoware用PCで、それぞれAutowareを起動します。なお、本コマンドではRVizのみが起動します。
+ネットワークに接続した各Autoware用PCで、それぞれAutowareを起動します。なお、本コマンドではAWSIMは起動しません。
 
 ```bash
 cd ~/aichallenge-racingkart

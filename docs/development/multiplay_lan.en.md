@@ -181,7 +181,7 @@ make simulator-dev4    # For 4 vehicles
 
 ### 8. Launch Autoware (On Each PC)
 
-Launch Autoware on each Autoware PC connected to the network. Note that this command launches only RViz.
+Launch Autoware on each Autoware PC connected to the network. Note that this command does not launch AWSIM.
 
 ```bash
 cd ~/aichallenge-racingkart
