@@ -37,6 +37,7 @@ The SW Division progresses from qualifying to finals as follows:
     - A slowed vehicle cannot start a boost; an active boost is paused and resumes after the Slow ends.
 
 ![awsim_hud_states](../assets/awsim_hud_states.jpg)
+
 - When colliding with a wall, automatic attitude correction is performed. However, this does not 100% prevent the vehicle from becoming stuck after a wall collision. (SIM environment only)
 
 ### Available Sensors
