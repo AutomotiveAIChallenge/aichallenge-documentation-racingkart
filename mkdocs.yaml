@@ -47,6 +47,7 @@ nav:
       - development/commands.md
       - development/main-module.md
       - development/multiplay.md
+      - development/multiplay_lan.md
       - development/development-ideas.md
 
   - competition:
