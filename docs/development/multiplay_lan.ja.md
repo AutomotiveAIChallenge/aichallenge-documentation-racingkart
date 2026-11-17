@@ -34,8 +34,9 @@ AWSIMは専用のPCで動かすこともできますし、いずれかのAutowar
 - Autoware PCは4台分記載していますが、1台〜4台の任意の台数で動かすことができます。
 - IPアドレスの設定は、スイッチングハブを使用する場合のみ必要です。ルーター（DHCP機能付き）を使用する場合は不要です。
 - 記載しているIPアドレスの数値は一例です。必ずしも同じ数値を使用する必要はありません。また、他のネットワークインターフェースの設定と競合している場合は、別の設定を行ってください。
+- 記載しているROS_DOMAIN_IDの数値も一例になります。1〜4で競合しない数値であれば、IPアドレスとの組み合わせに制限はありません。ただし、2台走行の場合は1〜2まで、3台走行の場合は1〜3までが使用できる数値です。
 
-### 構成パターン1：AWSIMを専用PCで実行する場合
+### 構成パターン1：AWSIMを専用PCで実行する場合の例
 
 | PC名 | 説明 | IPアドレス（スイッチングハブ使用時） | `ROS_DOMAIN_ID` |
 | :--- | :--- | :--- | :--- |
@@ -45,7 +46,7 @@ AWSIMは専用のPCで動かすこともできますし、いずれかのAutowar
 | Autoware PC 3 | Autoware実行用PC | 192.168.10.13 | 3 |
 | Autoware PC 4 | Autoware実行用PC | 192.168.10.14 | 4 |
 
-### 構成パターン2：AWSIMとAutowareを同じPCで実行する場合
+### 構成パターン2：AWSIMとAutowareを同じPCで実行する場合の例
 
 | PC名 | 説明 | IPアドレス（スイッチングハブ使用時） | `ROS_DOMAIN_ID` |
 | :--- | :--- | :--- | :--- |
@@ -60,11 +61,12 @@ AWSIMは専用のPCで動かすこともできますし、いずれかのAutowar
 
 AutowareやAWSIMを実行する際は、Dockerコンテナ内部のROS 2およびCycloneDDSを使用します。ホストPC側でROS 2やCycloneDDSの設定が有効になっていると通信が阻害される可能性があるため、無効化します。
 
-- ホストPCの `~/.bashrc` などでROS 2関連の環境変数を設定している場合は無効にします（該当する行の先頭に `#` を付けてコメントアウトしてください）。
-  - `ROS_DOMAIN_ID`
-  - `ROS_LOCALHOST_ONLY`
-  - `RMW_IMPLEMENTATION`
-  - `CYCLONEDDS_URI`
+- ホストPCの `~/.bashrc` などでROS 2関連の環境変数を設定していたり、読み込んでいる場合は無効にします（該当する行の先頭に `#` を付けてコメントアウトしてください）。
+    - `ROS_DOMAIN_ID`
+    - `ROS_LOCALHOST_ONLY`
+    - `RMW_IMPLEMENTATION`
+    - `CYCLONEDDS_URI`
+    - `/opt/ros/humble/setup.bash`
 - 変更を反映させるためターミナルを再起動し、以下のコマンドを実行して**何も表示されないこと**を確認します。
 
 ```bash
@@ -75,7 +77,7 @@ echo $ROS_DOMAIN_ID
 
 #### ルーターに接続している場合（Ubuntuの場合）
 
-以下の手順でDHCPを有効にします。
+以下の手順でDHCPを有効にします。（通常はデフォルトでDHCPに設定されているため作業不要です）
 
 1. **Settings** → **Network** を開きます。
 2. `<ルーターに接続しているネットワーク名>` の歯車アイコンをクリックし、**IPv4** タブを選択します。
@@ -92,13 +94,66 @@ echo $ROS_DOMAIN_ID
 2. `<スイッチングハブに接続しているネットワーク名>` の歯車アイコンをクリックし、**IPv4** タブを選択します。
 3. 各項目を以下のように設定して適用します（IPアドレスの末尾は「構成」の表を参考に、PCごとに重複しない値を設定してください）。
    - **IPv4 Method**: `Manual`
-   - **Address**: `192.168.10.ooo`（例：`192.168.10.1`、`192.168.10.11` など）
+   - **Address**: `192.168.10.ooo`
    - **Netmask**: `255.255.255.0`
    - **Gateway**: 空欄のまま
 
 ![lan-ipv4-setting](./images/lan-ipv4-setting.png)
 
+#### ルーターに接続している場合（Windowsの場合）
+
+以下の手順でDHCPを有効にします。（通常はデフォルトでDHCPに設定されているため作業不要です）
+
+1. **Windowsスタートボタン** → **設定** → **ネットワークとインターネット** を開きます。
+2. `IP割当:` の **編集** をクリックします。
+3. IP 設定の編集を以下のように設定して適用します。
+   - `自動 (DHCP)`
+
+#### スイッチングハブに接続している場合（Windowsの場合）
+
+以下の手順で固定IPアドレスを設定します。
+
+1. **Windowsスタートボタン** → **設定** → **ネットワークとインターネット** を開きます。
+2. `IP割当:` の **編集** をクリックします。
+3. IP 設定の編集を以下のように設定して適用します。（IPアドレスの末尾は「構成」の表を参考に、PCごとに重複しない値を設定してください）。
+   - `手動`
+   - **IPv4：**: `オン`
+   - **IP アドレス**: `192.168.10.ooo`
+   - **サブネットマスク**: `255.255.255.0`
+   - **ゲートウェイ**: 空欄のまま
+
 ※いずれの場合でも、設定が完了したら一度LANケーブルを抜き差しして設定が即時に反映させることを推奨します。（ケーブルを抜く → 5秒待つ → ケーブルを再度刺す）
+
+### 2.5. WSL２のネットワーク設定を行う（Windowsの場合のみ）
+
+- WSL2がWindowsホストと同じLAN上のIPアドレスを共有するように、ミラーモードに設定します。
+    - Windows側で `.wslconfig` を開き以下を追記します
+    - その後、WSL2を再起動します （Windows PowerShell上で `wsl --shutdown`）
+    - 再起動後、WSL2上で `ip a` コマンドを入力します。ネットワークに接続されているインターフェイスのIPアドレスが `192.ooo.ooo.ooo` になっていることを確認します。 `172.ooo.ooo.ooo` だとミラーモードになっていません。設定の再確認とWSL2の再起動を試してください。
+
+```txt
+[WSL2]
+networkingmode=mirrored
+```
+
+- 次に、WSL2専用のファイアウォール機能を有効にしたうえで、外部からのアクセスをすべて許可します。
+    - Windows側で、**管理者権限で**Windows PowerShellを開き、以下のコマンドを実行します。
+    - Nameは変更不要です。下記の文字列のまま入力してください。
+
+```bash
+Set-NetFirewallHyperVVMSetting `
+    -Name '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}' `
+    -DefaultInboundAction Allow `
+    -Enabled True
+
+# 元に戻す場合
+Set-NetFirewallHyperVVMSetting `
+    -Name '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}' `
+    -DefaultInboundAction NotConfigured `
+    -Enabled NotConfigured
+# 設定確認
+Get-NetFirewallHyperVVMSetting -Name '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}'
+```
 
 ### 3. IP接続の確認を行う
 
@@ -115,6 +170,14 @@ echo $ROS_DOMAIN_ID
     ```
 
 正常に通信できていれば、応答（応答時間などの情報）が連続して表示されます（`Ctrl + C` で終了します）。
+
+### 3.5. IP接続の確認を行う (Windowsの場合)
+
+Windowsの場合、WSL2上のプログラムと他のPCが接続できていることを確認する必要があります。そのために、適当なhttpサーバーを立てて確認します。
+
+1. まず、WSL2上で下記コマンドでhttpサーバーを立てます
+    - `python3 -m http.server 8080 --bind 0.0.0.0`
+2. 次に、他のPC上でブラウザを開いて `http://192.168.ooo.ooo:8080` へアクセスします。IPアドレスはWSL2上で確認したものになります。ブラウザ上にファイル一覧が表示されたら成功です。
 
 ### 4. CycloneDDSの設定を行う
 
@@ -182,6 +245,15 @@ cd ~/aichallenge-racingkart/
 make autoware-bash
 echo $ROS_DOMAIN_ID
 ros2 topic list
+```
+
+- もしもうまく行かない場合、ROS 2デーモンの再起動を試してください。特にWindowsの場合は必須かもしれません。
+
+```bash
+cd ~/aichallenge-racingkart/
+make autoware-bash
+ros2 daemon stop    # このコマンドはエラーになるかもしれないが無視
+ros2 daemon start
 ```
 
 ### 7. AWSIMを起動する（1台のみ）
