@@ -1110,7 +1110,7 @@
   <a href="#1awsimpc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        構成パターン1：AWSIMを専用PCで実行する場合
+        構成パターン1：AWSIMを専用PCで実行する場合の例
       
     </span>
   </a>
@@ -1121,7 +1121,7 @@
   <a href="#2awsimautowarepc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        構成パターン2：AWSIMとAutowareを同じPCで実行する場合
+        構成パターン2：AWSIMとAutowareを同じPCで実行する場合の例
       
     </span>
   </a>
@@ -1190,8 +1190,41 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ルーターに接続している場合（Windowsの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スイッチングハブに接続している場合（Windowsの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-wsl2windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. WSL２のネットワーク設定を行う（Windowsの場合のみ）
+      
+    </span>
+  </a>
   
 </li>
         
@@ -1200,6 +1233,17 @@
     <span class="md-ellipsis">
       
         3. IP接続の確認を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-ip-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. IP接続の確認を行う (Windowsの場合)
       
     </span>
   </a>
@@ -2713,7 +2757,7 @@
   <a href="#1awsimpc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        構成パターン1：AWSIMを専用PCで実行する場合
+        構成パターン1：AWSIMを専用PCで実行する場合の例
       
     </span>
   </a>
@@ -2724,7 +2768,7 @@
   <a href="#2awsimautowarepc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        構成パターン2：AWSIMとAutowareを同じPCで実行する場合
+        構成パターン2：AWSIMとAutowareを同じPCで実行する場合の例
       
     </span>
   </a>
@@ -2793,8 +2837,41 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ルーターに接続している場合（Windowsの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        スイッチングハブに接続している場合（Windowsの場合）
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-wsl2windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. WSL２のネットワーク設定を行う（Windowsの場合のみ）
+      
+    </span>
+  </a>
   
 </li>
         
@@ -2803,6 +2880,17 @@
     <span class="md-ellipsis">
       
         3. IP接続の確認を行う
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-ip-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. IP接続の確認を行う (Windowsの場合)
       
     </span>
   </a>
@@ -2965,14 +3053,15 @@
 <li>Autoware PCは4台分記載していますが、1台〜4台の任意の台数で動かすことができます。</li>
 <li>IPアドレスの設定は、スイッチングハブを使用する場合のみ必要です。ルーター（DHCP機能付き）を使用する場合は不要です。</li>
 <li>記載しているIPアドレスの数値は一例です。必ずしも同じ数値を使用する必要はありません。また、他のネットワークインターフェースの設定と競合している場合は、別の設定を行ってください。</li>
+<li>記載しているROS_DOMAIN_IDの数値も一例になります。1〜4で競合しない数値であれば、IPアドレスとの組み合わせに制限はありません。ただし、2台走行の場合は1〜2まで、3台走行の場合は1〜3までが使用できる数値です。</li>
 </ul>
-<h3 id="1awsimpc">構成パターン1：AWSIMを専用PCで実行する場合</h3>
+<h3 id="1awsimpc">構成パターン1：AWSIMを専用PCで実行する場合の例</h3>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">PC名</th>
 <th style="text-align: left;">説明</th>
-<th style="text-align: left;">IPアドレス（スイッチングハブ使用時）</th>
+<th style="text-align: left;">IPアドレス例（スイッチングハブ使用時）</th>
 <th style="text-align: left;"><code>ROS_DOMAIN_ID</code></th>
 </tr>
 </thead>
@@ -3009,13 +3098,13 @@
 </tr>
 </tbody>
 </table>
-<h3 id="2awsimautowarepc">構成パターン2：AWSIMとAutowareを同じPCで実行する場合</h3>
+<h3 id="2awsimautowarepc">構成パターン2：AWSIMとAutowareを同じPCで実行する場合の例</h3>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">PC名</th>
 <th style="text-align: left;">説明</th>
-<th style="text-align: left;">IPアドレス（スイッチングハブ使用時）</th>
+<th style="text-align: left;">IPアドレス例（スイッチングハブ使用時）</th>
 <th style="text-align: left;"><code>ROS_DOMAIN_ID</code></th>
 </tr>
 </thead>
@@ -3050,18 +3139,21 @@
 <h3 id="1-pcros-2">1. ホストPCのROS 2設定を無効にする</h3>
 <p>AutowareやAWSIMを実行する際は、Dockerコンテナ内部のROS 2およびCycloneDDSを使用します。ホストPC側でROS 2やCycloneDDSの設定が有効になっていると通信が阻害される可能性があるため、無効化します。</p>
 <ul>
-<li>ホストPCの <code>~/.bashrc</code> などでROS 2関連の環境変数を設定している場合は無効にします（該当する行の先頭に <code>#</code> を付けてコメントアウトしてください）。</li>
+<li>ホストPCの <code>~/.bashrc</code> などでROS 2関連の環境変数を設定していたり、読み込んでいる場合は無効にします（該当する行の先頭に <code>#</code> を付けてコメントアウトしてください）。<ul>
 <li><code>ROS_DOMAIN_ID</code></li>
 <li><code>ROS_LOCALHOST_ONLY</code></li>
 <li><code>RMW_IMPLEMENTATION</code></li>
 <li><code>CYCLONEDDS_URI</code></li>
+<li><code>/opt/ros/humble/setup.bash</code></li>
+</ul>
+</li>
 <li>変更を反映させるためターミナルを再起動し、以下のコマンドを実行して<strong>何も表示されないこと</strong>を確認します。</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="nv">$ROS_DOMAIN_ID</span>
 </code></pre></div>
 <h3 id="2-pc">2. 全PCを同じネットワークに接続する</h3>
 <h4 id="ubuntu">ルーターに接続している場合（Ubuntuの場合）</h4>
-<p>以下の手順でDHCPを有効にします。</p>
+<p>以下の手順でDHCPを有効にします。（通常はデフォルトでDHCPに設定されているため作業不要です）</p>
 <ol>
 <li><strong>Settings</strong> → <strong>Network</strong> を開きます。</li>
 <li><code>&lt;ルーターに接続しているネットワーク名&gt;</code> の歯車アイコンをクリックし、<strong>IPv4</strong> タブを選択します。</li>
@@ -3077,12 +3169,64 @@
 <li><code>&lt;スイッチングハブに接続しているネットワーク名&gt;</code> の歯車アイコンをクリックし、<strong>IPv4</strong> タブを選択します。</li>
 <li>各項目を以下のように設定して適用します（IPアドレスの末尾は「構成」の表を参考に、PCごとに重複しない値を設定してください）。</li>
 <li><strong>IPv4 Method</strong>: <code>Manual</code></li>
-<li><strong>Address</strong>: <code>192.168.10.ooo</code>（例：<code>192.168.10.1</code>、<code>192.168.10.11</code> など）</li>
+<li><strong>Address</strong>: <code>192.168.10.ooo</code></li>
 <li><strong>Netmask</strong>: <code>255.255.255.0</code></li>
 <li><strong>Gateway</strong>: 空欄のまま</li>
 </ol>
 <p><img alt="lan-ipv4-setting" src="images/lan-ipv4-setting.png" /></p>
+<h4 id="windows">ルーターに接続している場合（Windowsの場合）</h4>
+<p>以下の手順でDHCPを有効にします。（通常はデフォルトでDHCPに設定されているため作業不要です）</p>
+<ol>
+<li><strong>Windowsスタートボタン</strong> → <strong>設定</strong> → <strong>ネットワークとインターネット</strong> を開きます。</li>
+<li><code>IP割当:</code> の <strong>編集</strong> をクリックします。</li>
+<li>IP 設定の編集を以下のように設定して適用します。</li>
+<li><code>自動 (DHCP)</code></li>
+</ol>
+<h4 id="windows_1">スイッチングハブに接続している場合（Windowsの場合）</h4>
+<p>以下の手順で固定IPアドレスを設定します。</p>
+<ol>
+<li><strong>Windowsスタートボタン</strong> → <strong>設定</strong> → <strong>ネットワークとインターネット</strong> を開きます。</li>
+<li><code>IP割当:</code> の <strong>編集</strong> をクリックします。</li>
+<li>IP 設定の編集を以下のように設定して適用します。（IPアドレスの末尾は「構成」の表を参考に、PCごとに重複しない値を設定してください）。</li>
+<li><code>手動</code></li>
+<li><strong>IPv4：</strong>: <code>オン</code></li>
+<li><strong>IP アドレス</strong>: <code>192.168.10.ooo</code></li>
+<li><strong>サブネットマスク</strong>: <code>255.255.255.0</code></li>
+<li><strong>ゲートウェイ</strong>: 空欄のまま</li>
+</ol>
 <p>※いずれの場合でも、設定が完了したら一度LANケーブルを抜き差しして設定が即時に反映させることを推奨します。（ケーブルを抜く → 5秒待つ → ケーブルを再度刺す）</p>
+<h3 id="25-wsl2windows">2.5. WSL２のネットワーク設定を行う（Windowsの場合のみ）</h3>
+<ul>
+<li>WSL2がWindowsホストと同じLAN上のIPアドレスを共有するように、ミラーモードに設定します。<ul>
+<li>Windows側で <code>.wslconfig</code> を開き以下を追記します</li>
+<li>その後、WSL2を再起動します （Windows PowerShell上で <code>wsl --shutdown</code>）</li>
+<li>再起動後、WSL2上で <code>ip a</code> コマンドを入力します。ネットワークに接続されているインターフェイスのIPアドレスが <code>192.ooo.ooo.ooo</code> になっていることを確認します。 <code>172.ooo.ooo.ooo</code> だとミラーモードになっていません。設定の再確認とWSL2の再起動を試してください。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>[WSL2]
+networkingmode=mirrored
+</code></pre></div>
+<ul>
+<li>次に、WSL2専用のファイアウォール機能を有効にしたうえで、外部からのアクセスをすべて許可します。<ul>
+<li>Windows側で、<strong>管理者権限で</strong>Windows PowerShellを開き、以下のコマンドを実行します。</li>
+<li>Nameは変更不要です。下記の文字列のまま入力してください。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Set-NetFirewallHyperVVMSetting<span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>-Name<span class="w"> </span><span class="s1">'{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}'</span><span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>-DefaultInboundAction<span class="w"> </span>Allow<span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>-Enabled<span class="w"> </span>True
+
+<span class="c1"># 元に戻す場合</span>
+Set-NetFirewallHyperVVMSetting<span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>-Name<span class="w"> </span><span class="s1">'{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}'</span><span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>-DefaultInboundAction<span class="w"> </span>NotConfigured<span class="w"> </span><span class="sb">`</span>
+<span class="w">    </span>-Enabled<span class="w"> </span>NotConfigured
+<span class="c1"># 設定確認</span>
+Get-NetFirewallHyperVVMSetting<span class="w"> </span>-Name<span class="w"> </span><span class="s1">'{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}'</span>
+</code></pre></div>
 <h3 id="3-ip">3. IP接続の確認を行う</h3>
 <p>他のPCとのネットワーク接続が正常に行われているか確認します。</p>
 <ul>
@@ -3098,6 +3242,15 @@
 </li>
 </ul>
 <p>正常に通信できていれば、応答（応答時間などの情報）が連続して表示されます（<code>Ctrl + C</code> で終了します）。</p>
+<h3 id="35-ip-windows">3.5. IP接続の確認を行う (Windowsの場合)</h3>
+<p>Windowsの場合、WSL2上のプログラムと他のPCが接続できていることを確認する必要があります。そのために、適当なhttpサーバーを立てて確認します。</p>
+<ol>
+<li>まず、WSL2上で下記コマンドでhttpサーバーを立てます<ul>
+<li><code>python3 -m http.server 8080 --bind 0.0.0.0</code></li>
+</ul>
+</li>
+<li>次に、他のPC上でブラウザを開いて <code>http://192.168.ooo.ooo:8080</code> へアクセスします。IPアドレスはWSL2上で確認したものになります。ブラウザ上にファイル一覧が表示されたら成功です。</li>
+</ol>
 <h3 id="4-cyclonedds">4. CycloneDDSの設定を行う</h3>
 <p>Autowareでは、通信ミドルウェアとしてCycloneDDSを使用しています。Dockerコンテナ内のCycloneDDSが、ルーター（またはスイッチングハブ）に接続されたネットワークインターフェースを正しく使用できるよう設定を行います。</p>
 <ul>
@@ -3150,6 +3303,14 @@ make<span class="w"> </span>autoware-bash
 make<span class="w"> </span>autoware-bash
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$ROS_DOMAIN_ID</span>
 ros2<span class="w"> </span>topic<span class="w"> </span>list
+</code></pre></div>
+<ul>
+<li>もしもうまく行かない場合、ROS 2デーモンの再起動を試してください。特にWindowsの場合は必須かもしれません。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/aichallenge-racingkart/
+make<span class="w"> </span>autoware-bash
+ros2<span class="w"> </span>daemon<span class="w"> </span>stop<span class="w">    </span><span class="c1"># このコマンドはエラーになるかもしれないが無視</span>
+ros2<span class="w"> </span>daemon<span class="w"> </span>start
 </code></pre></div>
 <h3 id="7-awsim1">7. AWSIMを起動する（1台のみ）</h3>
 <p>ネットワークに接続したいずれか1台のPCでAWSIMを起動します。同時走行させる車両（Autoware PC）の台数に応じて、以下のいずれか1つのコマンドを実行してください。</p>
