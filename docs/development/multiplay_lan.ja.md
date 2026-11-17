@@ -38,7 +38,7 @@ AWSIMは専用のPCで動かすこともできますし、いずれかのAutowar
 
 ### 構成パターン1：AWSIMを専用PCで実行する場合の例
 
-| PC名 | 説明 | IPアドレス（スイッチングハブ使用時） | `ROS_DOMAIN_ID` |
+| PC名 | 説明 | IPアドレス例（スイッチングハブ使用時） | `ROS_DOMAIN_ID` |
 | :--- | :--- | :--- | :--- |
 | AWSIM PC | AWSIM実行用PC | 192.168.10.1 | - |
 | Autoware PC 1 | Autoware実行用PC | 192.168.10.11 | 1 |
@@ -48,7 +48,7 @@ AWSIMは専用のPCで動かすこともできますし、いずれかのAutowar
 
 ### 構成パターン2：AWSIMとAutowareを同じPCで実行する場合の例
 
-| PC名 | 説明 | IPアドレス（スイッチングハブ使用時） | `ROS_DOMAIN_ID` |
+| PC名 | 説明 | IPアドレス例（スイッチングハブ使用時） | `ROS_DOMAIN_ID` |
 | :--- | :--- | :--- | :--- |
 | Autoware PC 1 | Autoware + AWSIM実行用PC | 192.168.10.11 | 1 |
 | Autoware PC 2 | Autoware実行用PC | 192.168.10.12 | 2 |
