@@ -23,6 +23,18 @@ sudo apt install curl
 curl -fsSL "https://raw.githubusercontent.com/AutomotiveAIChallenge/aichallenge-racingkart/main/setup.bash" | bash
 ```
 
+!!! tip "DockerがインストールされていないPCの場合"
+
+    上記のセットアップスクリプトで、Dockerのインストールと設定が行われます。ただし、Dockerを新規にインストールする場合は、設定の反映に再ログインが必要となり、セットアップが途中で中断します。
+
+    セットアップから初回実行までを中断せずに行いたい場合は、事前に下記コマンドを実行し、同じターミナルで続けて上記のセットアップコマンドを実行してください。なお、別のターミナルでは設定が反映されないためご注意ください。
+
+    ```bash
+    sudo groupadd -f docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+    ```
+
 !!! tip "再度環境構築を行う場合"
     リポジトリを取得済みの場合は、リポジトリ内のスクリプトを直接実行できます。
 
